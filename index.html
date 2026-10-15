@@ -493,7 +493,7 @@
             margin-top: 15px;
         }
 
-        /* Final Request Received Card View */
+        /* Final Request Received Card View & WhatsApp Buttons */
         #finalSuccessView {
             display: none;
             width: 100%;
@@ -633,17 +633,47 @@
             padding-top: 16px;
         }
 
-        .whatsapp-notice {
-            margin-top: 16px;
-            font-size: 11px;
-            color: #25d366;
-            letter-spacing: 0.5px;
+        .receipt-action-btn {
+            background: linear-gradient(135deg, #d4af37 0%, #aa8c2c 100%);
+            color: #0d0d0d;
+            border: none;
+            padding: 14px 24px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            cursor: pointer;
+            width: 100%;
             text-transform: uppercase;
-            font-weight: 600;
+            text-decoration: none;
             display: flex;
-            align-items: center;
             justify-content: center;
-            gap: 6px;
+            align-items: center;
+            gap: 8px;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
+            transition: transform 0.1s ease;
+        }
+
+        .receipt-action-btn:active {
+            transform: scale(0.96);
+        }
+
+        .cancel-link {
+            display: block;
+            text-align: center;
+            font-size: 11px;
+            color: var(--text-muted);
+            text-decoration: underline;
+            text-decoration-color: rgba(255, 255, 255, 0.2);
+            text-underline-offset: 4px;
+            margin-top: 15px;
+            transition: color 0.2s;
+        }
+
+        .cancel-link:hover {
+            color: var(--gold-light);
+            text-decoration-color: var(--gold-light);
         }
     </style>
 </head>
@@ -856,29 +886,6 @@
             <button class="modal-close" onclick="closeModals()" data-en="CANCEL" data-fr="ANNULER">CANCEL</button>
         </div>
     </div>
-    
-    <!-- RETURN MODAL -->
-    <div id="returnModal" class="modal-overlay">
-        <div class="modal-card">
-            <h3 data-en="Find My Specialist" data-fr="Trouver Mon Spécialiste">Find My Specialist</h3>
-            <p data-en="We will check their availability and confirm with you." data-fr="Nous vérifierons leur disponibilité et confirmerons.">
-                We will check their availability and confirm with you.
-            </p>
-            
-            <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleSubmit(event, 'return')">
-                <input type="hidden" name="city_location" class="formCityField" value="Vancouver">
-                <input type="hidden" name="dispatch_channel" value="Previous Specialist Request">
-                
-                <input type="text" class="modal-input" name="client_name" required placeholder="First Name" data-en-placeholder="First Name" data-fr-placeholder="Prénom">
-                <input type="tel" class="modal-input" name="client_phone" placeholder="10 Digit Mobile" data-en-placeholder="10 Digit Mobile" data-fr-placeholder="Mobile à 10 chiffres" required pattern="[0-9]{10}">
-                <input type="text" class="modal-input" name="specialist_name" placeholder="Specialist's Name (Optional)" data-en-placeholder="Specialist's Name (Optional)" data-fr-placeholder="Nom du Spécialiste (Optionnel)">
-                
-                <button type="submit" class="modal-capsule-btn" data-en="CONNECT ME" data-fr="CONNECTEZ-MOI">CONNECT ME</button>
-            </form>
-            
-            <button class="modal-close" onclick="closeModals()" data-en="CANCEL" data-fr="ANNULER">CANCEL</button>
-        </div>
-    </div>
 
     <!-- SPURTAN CODE MODAL -->
     <div id="codeModal" class="modal-overlay">
@@ -930,9 +937,16 @@
                 Your concierge is coordinating with our network. You pay directly at the studio.
             </div>
 
-            <div class="whatsapp-notice">
-                <span data-en="💬 WhatsApp / SMS Update Active" data-fr="💬 Mise à jour WhatsApp / SMS active">💬 WhatsApp / SMS Update Active</span>
-            </div>
+            <!-- REPLACE '1YOURNUMBER' WITH YOUR ACTUAL WHATSAPP NUMBER BELOW -->
+            <a href="https://wa.me/14387251010?text=Hi%20SPUR%20Concierge,%20I%20am%20checking%20on%20my%20dispatch." class="receipt-action-btn" target="_blank">
+                <span style="font-size: 14px;">💬</span> 
+                <span data-en="CONFIRM VIA WHATSAPP" data-fr="CONFIRMER VIA WHATSAPP">CONFIRM VIA WHATSAPP</span>
+            </a>
+
+            <!-- REPLACE '1YOURNUMBER' WITH YOUR ACTUAL WHATSAPP NUMBER BELOW -->
+            <a href="https://wa.me/14387251010?text=Hi%20SPUR%20Concierge,%20I%20need%20to%20modify%20or%20cancel%20my%20request." class="cancel-link" data-en="Need to modify or cancel? Message Concierge." data-fr="Besoin de modifier ou d'annuler ? Contactez le Concierge." target="_blank">
+                Need to modify or cancel? Message Concierge.
+            </a>
         </div>
     </div>
 
@@ -1162,11 +1176,6 @@
                 document.getElementById('receiptSubTitle').innerText = lang === 'fr' ? "Nous coordonnons l'horaire." : "We are coordinating the schedule.";
                 document.getElementById('receiptTargetTime').innerText = "Pending";
                 document.getElementById('receiptTargetTimeLbl').innerText = "Confirm";
-            } else if (type === 'return') {
-                document.getElementById('receiptHeaderTag').innerText = lang === 'fr' ? "Demande de Spécialiste" : "Specialist Request";
-                document.getElementById('receiptSubTitle').innerText = lang === 'fr' ? "Vérification de la disponibilité." : "Checking availability.";
-                document.getElementById('receiptTargetTime').innerText = "Pending";
-                document.getElementById('receiptTargetTimeLbl').innerText = "Check";
             }
 
             document.getElementById('mainAppContainer').style.display = 'none';
