@@ -320,4 +320,826 @@
 
         .pilot-code-link {
             font-size: 11px;
-            font-weight
+            font-weight: 700;
+            color: var(--gold-light);
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .pilot-code-link:active {
+            background: rgba(212, 175, 55, 0.2);
+        }
+
+        .perks-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            text-align: center;
+        }
+        
+        .perk-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .perk-item svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--gold);
+            fill: none;
+            stroke-width: 1.5;
+            margin-bottom: 4px;
+        }
+        
+        .perk-text {
+            font-size: 10px;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            line-height: 1.4;
+        }
+
+        /* How It Works Section */
+        .hiw-section {
+            width: 100%;
+            margin-bottom: 40px;
+        }
+
+        .hiw-subtitle {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .hiw-title {
+            font-size: 22px;
+            color: var(--text-main);
+            margin-bottom: 24px;
+            letter-spacing: -0.5px;
+        }
+
+        .hiw-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .hiw-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 13px;
+            top: 32px;
+            bottom: -15px;
+            width: 1px;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .hiw-num {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 1px solid var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: var(--gold);
+            flex-shrink: 0;
+            background: var(--bg-color);
+            z-index: 2;
+        }
+
+        .hiw-text {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.4;
+            padding-top: 4px;
+        }
+
+        /* Interactive Modals */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(6px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            padding: 20px;
+        }
+
+        .modal-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 28px 24px;
+            width: 100%;
+            max-width: 380px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+        }
+
+        .modal-card h3 {
+            color: var(--gold);
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .modal-card p {
+            color: var(--text-muted);
+            font-size: 13px;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .modal-input {
+            width: 100%;
+            background-color: #141414 !important;
+            color: #ffffff !important;
+            border: 1px solid var(--border-color);
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 15px;
+            text-align: center;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        
+        select.modal-input {
+            text-align-last: center;
+        }
+
+        .modal-input:-webkit-autofill,
+        .modal-input:-webkit-autofill:hover, 
+        .modal-input:-webkit-autofill:focus {
+            -webkit-text-fill-color: #ffffff !important;
+            -webkit-box-shadow: 0 0 0px 1000px #141414 inset !important;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+
+        .modal-input:focus {
+            border-color: var(--gold);
+        }
+
+        .modal-capsule-btn {
+            background: linear-gradient(135deg, #d4af37 0%, #aa8c2c 100%);
+            color: #0d0d0d;
+            border: none;
+            padding: 14px 24px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            cursor: pointer;
+            margin: 10px auto 16px auto;
+            width: 100%;
+            text-transform: uppercase;
+        }
+        
+        .modal-circle-btn {
+            width: 95px;
+            height: 95px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #d4af37 0%, #aa8c2c 100%);
+            color: #0d0d0d;
+            border: none;
+            font-weight: 800;
+            font-size: 10px;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            margin: 10px auto 16px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+            transition: transform 0.1s ease;
+            padding: 5px;
+            line-height: 1.2;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 12px;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+        }
+
+        /* Final Request Received Card View */
+        #finalSuccessView {
+            display: none;
+            width: 100%;
+            max-width: 440px;
+            text-align: center;
+        }
+
+        .success-header-tag {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--gold);
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 6px 14px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .success-main-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .success-sub-title {
+            font-size: 15px;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .success-receipt-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 28px 24px;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+        }
+
+        .success-receipt-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gold);
+        }
+
+        .receipt-top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .receipt-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .receipt-updates-tag {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--gold);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .receipt-price-box {
+            text-align: right;
+        }
+
+        .receipt-price {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        .receipt-price-label {
+            font-size: 10px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .receipt-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .receipt-grid-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 14px;
+            padding: 16px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 80px;
+        }
+
+        .grid-box-val {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 4px;
+            line-height: 1.2;
+            text-align: center;
+        }
+
+        .grid-box-lbl {
+            font-size: 10px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .receipt-footer-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.5;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 16px;
+        }
+
+        .whatsapp-notice {
+            margin-top: 16px;
+            font-size: 11px;
+            color: #25d366;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- MAIN APP SCREEN -->
+    <div class="main-content" id="mainAppContainer">
+        
+        <!-- Header Section -->
+        <div class="header-container">
+            <div class="logo-area">
+                <h1>SPUR</h1>
+                <span>SHOW UP READY™</span>
+            </div>
+            <div class="top-right-group">
+                <div class="live-badge">
+                    <div class="live-dot"></div>
+                    <span id="liveBadgeText">Vancouver • Live</span>
+                </div>
+                
+                <div class="controls-row">
+                    <div class="toggle-capsule">
+                        <button onclick="setCity('yvr')" id="btn-yvr" class="active">YVR</button>
+                        <span>|</span>
+                        <button onclick="setCity('yyz')" id="btn-yyz">YYZ</button>
+                        <span>|</span>
+                        <button onclick="setCity('yul')" id="btn-yul">YUL</button>
+                    </div>
+                    <div class="toggle-capsule">
+                        <button onclick="switchLanguage('en')" id="btn-en" class="active">EN</button>
+                        <span>|</span>
+                        <button onclick="switchLanguage('fr')" id="btn-fr">FR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-section">
+            <div class="hero-title" data-en="You don't need to know what will make you look better." data-fr="Vous n'avez pas besoin de savoir ce qui vous mettra en valeur.">
+                You don't need to know what will make you look better.
+            </div>
+
+            <div class="hero-title-gold" data-en="That's what we're here for." data-fr="C'est exactement pour cela que nous sommes là.">
+                That's what we're here for.
+            </div>
+        </div>
+
+        <!-- CALL TO ACTION AREA -->
+        <div class="cta-container">
+            <div>
+                <button class="ready-circle-btn" onclick="openModal('verifyModal')">
+                    <span class="ready-line-1">READY</span>
+                    <span class="ready-line-2">NOW™</span>
+                </button>
+                <div class="cta-footer-note" data-en="I need to get ready soon." data-fr="J'ai besoin de me préparer bientôt.">
+                    I need to get ready soon.
+                </div>
+            </div>
+
+            <button class="ready-later-btn" onclick="openModal('laterModal')">
+                <span>🗓️</span> <span data-en="READY LATER™" data-fr="PRÉPARER PLUS TARD™">READY LATER™</span>
+            </button>
+            <div class="cta-footer-note" style="margin-top: -10px;" data-en="I want to plan ahead." data-fr="Je veux planifier à l'avance.">
+                I want to plan ahead.
+            </div>
+
+            <!-- Returning Customer Prompt -->
+            <div class="returning-prompt">
+                <p data-en="BEEN HERE BEFORE? Prefer the Specialist who knows you?" data-fr="DÉJÀ VENU ? Vous préférez le spécialiste qui vous connaît ?">
+                    BEEN HERE BEFORE? Prefer the Specialist who knows you?
+                </p>
+                <button class="returning-btn" onclick="openModal('returnModal')" data-en="FIND MY SPECIALIST →" data-fr="TROUVER MON SPÉCIALISTE →">
+                    FIND MY SPECIALIST →
+                </button>
+            </div>
+        </div>
+        
+        <!-- Showcase Feature Box -->
+        <div class="feature-box">
+            <div class="feature-header" data-en="Simple. Transparent. All-in." data-fr="Simple. Transparent. Tout inclus.">
+                Simple. Transparent. All-in.
+            </div>
+            
+            <div class="price-showcase">
+                <div class="price-val" id="displayPrice">$49.99</div>
+                <div class="price-lbl" data-en="One Flat Price" data-fr="Un Prix Fixe">One Flat Price</div>
+                <button class="pilot-code-link" onclick="openModal('codeModal')" id="codeLinkText" data-en="- HAVE SPURTAN CODE?" data-fr="- CODE SPURTAN ?">
+                    - HAVE SPURTAN CODE?
+                </button>
+            </div>
+            
+            <div class="perks-grid">
+                <div class="perk-item">
+                    <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                    <div class="perk-text" data-en="One WhatsApp Message" data-fr="Un Message WhatsApp">One WhatsApp Message</div>
+                </div>
+                <div class="perk-item">
+                    <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    <div class="perk-text" data-en="Vetted Specialist" data-fr="Spécialiste Approuvé">Vetted Specialist</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- How It Works Section -->
+        <div class="hiw-section">
+            <div class="hiw-subtitle" data-en="HOW IT WORKS" data-fr="COMMENT ÇA MARCHE">HOW IT WORKS</div>
+            <div class="hiw-title" data-en="From message to ready." data-fr="Du message à la préparation.">From message to ready.</div>
+            
+            <div class="hiw-step">
+                <div class="hiw-num">1</div>
+                <div class="hiw-text" data-en="You choose READY NOW or READY LATER." data-fr="Vous choisissez PRÉPARER MAINTENANT ou PRÉPARER PLUS TARD.">You choose READY NOW or READY LATER.</div>
+            </div>
+            <div class="hiw-step">
+                <div class="hiw-num">2</div>
+                <div class="hiw-text" data-en="We match you with a suitable available Specialist." data-fr="Nous vous associons à un spécialiste disponible et approprié.">We match you with a suitable available Specialist.</div>
+            </div>
+            <div class="hiw-step">
+                <div class="hiw-num">3</div>
+                <div class="hiw-text" data-en="You head to the Specialist's shop." data-fr="Vous vous rendez à la boutique du spécialiste.">You head to the Specialist's shop.</div>
+            </div>
+            <div class="hiw-step">
+                <div class="hiw-num">4</div>
+                <div class="hiw-text" data-en="The Specialist assesses, recommends and you approve." data-fr="Le spécialiste évalue, recommande et vous approuvez.">The Specialist assesses, recommends and you approve.</div>
+            </div>
+            <div class="hiw-step">
+                <div class="hiw-num">5</div>
+                <div class="hiw-text" data-en="You leave ready to show up." data-fr="Vous repartez prêt à vous présenter.">You leave ready to show up.</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- READY NOW MODAL -->
+    <div id="verifyModal" class="modal-overlay">
+        <div class="modal-card">
+            <h3 data-en="Get Ready Now" data-fr="Préparez-vous Maintenant">Get Ready Now</h3>
+            <p data-en="Enter your details. We will text you your match." data-fr="Entrez vos coordonnées. Nous vous enverrons votre match.">
+                Enter your details. We will text you your match.
+            </p>
+            
+            <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleSubmit(event, 'now')">
+                <input type="hidden" name="city_location" class="formCityField" value="Vancouver">
+                <input type="hidden" name="dispatch_channel" value="SMS / WhatsApp Priority Ready">
+                
+                <input type="text" class="modal-input" name="client_name" id="nameInputNow" required placeholder="First Name" data-en-placeholder="First Name" data-fr-placeholder="Prénom">
+                <input type="tel" class="modal-input" name="client_phone" placeholder="10 Digit Mobile" data-en-placeholder="10 Digit Mobile" data-fr-placeholder="Mobile à 10 chiffres" id="phoneInputNow" required pattern="[0-9]{10}">
+                
+                <button type="submit" class="modal-capsule-btn" data-en="SHOW UP READY" data-fr="SOYEZ PRÊT">SHOW UP READY</button>
+            </form>
+            
+            <button class="modal-close" onclick="closeModals()" data-en="CANCEL" data-fr="ANNULER">CANCEL</button>
+        </div>
+    </div>
+
+    <!-- READY LATER MODAL -->
+    <div id="laterModal" class="modal-overlay">
+        <div class="modal-card">
+            <h3 data-en="Plan Ahead" data-fr="Planifier à L'avance">Plan Ahead</h3>
+            <p data-en="Choose when you’d like to visit. We’ll coordinate it." data-fr="Choisissez quand vous souhaitez visiter. Nous le coordonnerons.">
+                Choose when you’d like to visit. We’ll coordinate it.
+            </p>
+            
+            <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleSubmit(event, 'later')">
+                <input type="hidden" name="city_location" class="formCityField" value="Vancouver">
+                <input type="hidden" name="dispatch_channel" value="Scheduled Request">
+                
+                <input type="text" class="modal-input" name="client_name" required placeholder="First Name" data-en-placeholder="First Name" data-fr-placeholder="Prénom">
+                <input type="tel" class="modal-input" name="client_phone" placeholder="10 Digit Mobile" data-en-placeholder="10 Digit Mobile" data-fr-placeholder="Mobile à 10 chiffres" required pattern="[0-9]{10}">
+                
+                <input type="date" class="modal-input" name="requested_date" required>
+                <select class="modal-input" name="requested_time" required>
+                    <option value="" disabled selected data-en="Select Preferred Time" data-fr="Sélectionnez l'heure">Select Preferred Time</option>
+                    <option value="Morning (9AM - 12PM)">Morning (9AM - 12PM)</option>
+                    <option value="Afternoon (12PM - 4PM)">Afternoon (12PM - 4PM)</option>
+                    <option value="Evening (4PM - 8PM)">Evening (4PM - 8PM)</option>
+                </select>
+                
+                <button type="submit" class="modal-capsule-btn" data-en="REQUEST SCHEDULE" data-fr="DEMANDER L'HORAIRE">REQUEST SCHEDULE</button>
+            </form>
+            
+            <button class="modal-close" onclick="closeModals()" data-en="CANCEL" data-fr="ANNULER">CANCEL</button>
+        </div>
+    </div>
+    
+    <!-- RETURN MODAL -->
+    <div id="returnModal" class="modal-overlay">
+        <div class="modal-card">
+            <h3 data-en="Find My Specialist" data-fr="Trouver Mon Spécialiste">Find My Specialist</h3>
+            <p data-en="We will check their availability and confirm with you." data-fr="Nous vérifierons leur disponibilité et confirmerons.">
+                We will check their availability and confirm with you.
+            </p>
+            
+            <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleSubmit(event, 'return')">
+                <input type="hidden" name="city_location" class="formCityField" value="Vancouver">
+                <input type="hidden" name="dispatch_channel" value="Previous Specialist Request">
+                
+                <input type="text" class="modal-input" name="client_name" required placeholder="First Name" data-en-placeholder="First Name" data-fr-placeholder="Prénom">
+                <input type="tel" class="modal-input" name="client_phone" placeholder="10 Digit Mobile" data-en-placeholder="10 Digit Mobile" data-fr-placeholder="Mobile à 10 chiffres" required pattern="[0-9]{10}">
+                <input type="text" class="modal-input" name="specialist_name" placeholder="Specialist's Name (Optional)" data-en-placeholder="Specialist's Name (Optional)" data-fr-placeholder="Nom du Spécialiste (Optionnel)">
+                
+                <button type="submit" class="modal-capsule-btn" data-en="CONNECT ME" data-fr="CONNECTEZ-MOI">CONNECT ME</button>
+            </form>
+            
+            <button class="modal-close" onclick="closeModals()" data-en="CANCEL" data-fr="ANNULER">CANCEL</button>
+        </div>
+    </div>
+
+    <!-- SPURTAN CODE MODAL -->
+    <div id="codeModal" class="modal-overlay">
+        <div class="modal-card">
+            <h3 data-en="Enter SPURTAN Code" data-fr="Entrez le code SPURTAN">Enter SPURTAN Code</h3>
+            <p data-en="Please enter your unique membership code." data-fr="Veuillez entrer votre code d'adhésion unique.">Please enter your unique membership code.</p>
+            
+            <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleCodeSubmit(event)">
+                <input type="hidden" name="city_location" class="formCityField" value="Vancouver">
+                <input type="hidden" name="dispatch_channel" value="Code Redemption">
+                <input type="text" class="modal-input" name="spurtan_code" placeholder="e.g., SPURTAN" id="spurInput" required>
+                <button type="submit" class="modal-circle-btn" data-en="APPLY" data-fr="APPLIQUER">APPLY</button>
+            </form>
+            
+            <button class="modal-close" onclick="closeModals()" data-en="CANCEL" data-fr="ANNULER">CANCEL</button>
+        </div>
+    </div>
+
+    <!-- FINAL CONFIRMATION SCREEN -->
+    <div id="finalSuccessView">
+        <div class="success-header-tag" id="receiptHeaderTag">Priority Dispatch</div>
+        <div class="success-main-title" data-en="Request Received." data-fr="Demande Reçue.">Request Received.</div>
+        <div class="success-sub-title" id="receiptSubTitle" data-en="We are securing your specialist." data-fr="Nous sécurisons votre spécialiste.">We are securing your specialist.</div>
+
+        <div class="success-receipt-card">
+            <div class="receipt-top-row">
+                <div>
+                    <div class="receipt-title" data-en="Check your messages" data-fr="Vérifiez vos messages">Check your messages</div>
+                    <div class="receipt-updates-tag" id="displayPhoneLine">DISPATCH LINE: ACTIVE</div>
+                </div>
+                <div class="receipt-price-box">
+                    <div class="receipt-price" id="finalReceiptPrice">$49.99</div>
+                    <div class="receipt-price-label" data-en="Flat Rate" data-fr="Prix Fixe">Flat Rate</div>
+                </div>
+            </div>
+
+            <div class="receipt-grid">
+                <div class="receipt-grid-box">
+                    <div class="grid-box-val" id="receiptTargetTime">&lt; 3</div>
+                    <div class="grid-box-lbl" id="receiptTargetTimeLbl" data-en="Minutes" data-fr="Minutes">Minutes</div>
+                </div>
+                <div class="receipt-grid-box">
+                    <div class="grid-box-val" id="receiptTargetArea">Vancouver</div>
+                    <div class="grid-box-lbl" data-en="Location" data-fr="Lieu">Location</div>
+                </div>
+            </div>
+
+            <div class="receipt-footer-desc" id="receiptFooterDesc" data-en="Your concierge is coordinating with our network. You pay directly at the studio." data-fr="Votre concierge coordonne avec notre réseau. Vous payez directement au studio.">
+                Your concierge is coordinating with our network. You pay directly at the studio.
+            </div>
+
+            <div class="whatsapp-notice">
+                <span data-en="💬 WhatsApp / SMS Update Active" data-fr="💬 Mise à jour WhatsApp / SMS active">💬 WhatsApp / SMS Update Active</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentCity = 'yvr';
+
+        const cityData = {
+            yvr: { enBadge: "Vancouver • Live", frBadge: "Vancouver • En Direct", areaName: "Vancouver" },
+            yyz: { enBadge: "Toronto • Live", frBadge: "Toronto • En Direct", areaName: "Toronto" },
+            yul: { enBadge: "Montreal • Live", frBadge: "Montréal • En Direct", areaName: "Montréal" }
+        };
+
+        function setCity(city) {
+            currentCity = city;
+            document.getElementById('btn-yvr').classList.toggle('active', city === 'yvr');
+            document.getElementById('btn-yyz').classList.toggle('active', city === 'yyz');
+            document.getElementById('btn-yul').classList.toggle('active', city === 'yul');
+
+            // Update all hidden form fields
+            document.querySelectorAll('.formCityField').forEach(el => el.value = cityData[city].areaName);
+            document.getElementById('receiptTargetArea').innerText = cityData[city].areaName;
+
+            updateBadgeText();
+            localStorage.setItem('spur_active_city', city);
+        }
+
+        function updateBadgeText() {
+            const lang = localStorage.getItem('spur_lang') || 'en';
+            const badge = document.getElementById('liveBadgeText');
+            badge.innerText = cityData[currentCity][lang === 'fr' ? 'frBadge' : 'enBadge'];
+        }
+
+        function switchLanguage(lang) {
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+            document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
+
+            document.querySelectorAll('[data-en]').forEach(el => {
+                if (lang === 'fr' && el.hasAttribute('data-fr')) {
+                    el.innerText = el.getAttribute('data-fr');
+                } else if (lang === 'en' && el.hasAttribute('data-en')) {
+                    el.innerText = el.getAttribute('data-en');
+                }
+            });
+
+            document.querySelectorAll('[data-en-placeholder]').forEach(el => {
+                if (lang === 'fr' && el.hasAttribute('data-fr-placeholder')) {
+                    el.placeholder = el.getAttribute('data-fr-placeholder');
+                } else if (lang === 'en' && el.hasAttribute('data-en-placeholder')) {
+                    el.placeholder = el.getAttribute('data-en-placeholder');
+                }
+            });
+
+            localStorage.setItem('spur_lang', lang);
+            updateBadgeText();
+        }
+
+        function openModal(id) {
+            const savedName = localStorage.getItem('spur_user_name');
+            const savedPhone = localStorage.getItem('spur_user_phone');
+            
+            const modal = document.getElementById(id);
+            if(savedName) {
+                const nameInputs = modal.querySelectorAll('input[name="client_name"]');
+                nameInputs.forEach(i => i.value = savedName);
+            }
+            if(savedPhone) {
+                const phoneInputs = modal.querySelectorAll('input[name="client_phone"]');
+                phoneInputs.forEach(i => i.value = savedPhone);
+            }
+            
+            modal.style.display = 'flex';
+        }
+        
+        function closeModals() {
+            document.querySelectorAll('.modal-overlay').forEach(el => el.style.display = 'none');
+        }
+
+        async function handleCodeSubmit(event) {
+            event.preventDefault();
+            const codeInput = document.getElementById('spurInput');
+            const codeVal = codeInput.value.trim().toUpperCase();
+
+            // Check if it contains SPUR
+            if (codeVal.includes('SPUR')) {
+                const usedCodes = JSON.parse(localStorage.getItem('spur_used_codes') || '[]');
+                const lang = localStorage.getItem('spur_lang') || 'en';
+
+                if (usedCodes.includes(codeVal)) {
+                    alert(lang === 'fr' ? "Ce code a déjà été utilisé." : "This SPURTAN code has already been redeemed.");
+                    return;
+                }
+
+                const form = event.target;
+                const formData = new FormData(form);
+
+                try {
+                    await fetch(form.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: { 'Accept': 'application/json' }
+                    });
+                    
+                    usedCodes.push(codeVal);
+                    localStorage.setItem('spur_used_codes', JSON.stringify(usedCodes));
+
+                    document.getElementById('displayPrice').innerText = "$39.99";
+                    document.getElementById('finalReceiptPrice').innerText = "$39.99";
+                    
+                    const codeLink = document.getElementById('codeLinkText');
+                    codeLink.innerText = lang === 'fr' ? "✓ CODE APPLIQUÉ" : "✓ CODE APPLIED";
+                    codeLink.style.color = "var(--gold)";
+                    codeLink.style.pointerEvents = "none";
+
+                    alert(lang === 'fr' ? "✓ Remise appliquée !" : "✓ Code applied! (-$10.00)");
+                    closeModals();
+                    form.reset();
+                } catch (e) {
+                    form.submit();
+                }
+            } else {
+                const lang = localStorage.getItem('spur_lang') || 'en';
+                alert(lang === 'fr' ? "Veuillez entrer un code valide." : "Please enter a valid code.");
+            }
+        }
+
+        async function handleSubmit(event, type) {
+            event.preventDefault();
+            const form = event.target;
+            const phoneInput = form.querySelector('input[name="client_phone"]');
+            const nameInput = form.querySelector('input[name="client_name"]');
+            
+            if (phoneInput.value.trim().length >= 10) {
+                const formData = new FormData(form);
+                
+                localStorage.setItem('spur_user_phone', phoneInput.value.trim());
+                localStorage.setItem('spur_user_name', nameInput.value.trim());
+                
+                document.getElementById('displayPhoneLine').innerText = "LINE: " + phoneInput.value.trim();
+
+                try {
+                    await fetch(form.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: { 'Accept': 'application/json' }
+                    });
+                } catch (e) {
+                    console.log("Transmission fallback active");
+                }
+
+                closeModals();
+                showSuccessScreen(type);
+            } else {
+                alert("Please enter a valid 10-digit mobile number.");
+            }
+        }
+
+        function showSuccessScreen(type) {
+            const lang = localStorage.getItem('spur_lang') || 'en';
+            
+            if (type === 'later') {
+                document.getElementById('receiptHeaderTag').innerText = lang === 'fr' ? "Demande en attente" : "Pending Request";
+                document.getElementById('receiptSubTitle').innerText = lang === 'fr' ? "Nous coordonnons l'horaire." : "We are coordinating the schedule.";
+                document.getElementById('receiptTargetTime').innerText = "Pending";
+                document.getElementById('receiptTargetTimeLbl').innerText = "Confirm";
+            } else if (type === 'return') {
+                document.getElementById('receiptHeaderTag').innerText = lang === 'fr' ? "Demande de Spécialiste" : "Specialist Request";
+                document.getElementById('receiptSubTitle').innerText = lang === 'fr' ? "Vérification de la disponibilité." : "Checking availability.";
+                document.getElementById('receiptTargetTime').innerText = "Pending";
+                document.getElementById('receiptTargetTimeLbl').innerText = "Check";
+            }
+
+            document.getElementById('mainAppContainer').style.display = 'none';
+            document.getElementById('finalSuccessView').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('spur_lang') || 'en';
+            const savedCity = localStorage.getItem('spur_active_city') || 'yvr';
+            switchLanguage(savedLang);
+            setCity(savedCity);
+        });
+    </script>
+</body>
+</html>
