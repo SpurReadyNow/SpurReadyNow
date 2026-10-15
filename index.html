@@ -746,8 +746,8 @@
                     <span class="ready-line-1">READY</span>
                     <span class="ready-line-2">NOW™</span>
                 </button>
-                <div class="cta-footer-note" data-en="Immediate dispatch to an available chair." data-fr="Dispatche immédiat vers un fauteuil libre.">
-                    Immediate dispatch to an available chair.
+                <div class="cta-footer-note" data-en="Zero wait time. Claim an open chair instantly." data-fr="Zéro temps d'attente. Réclamez un fauteuil instantanément.">
+                    Zero wait time. Claim an open chair instantly.
                 </div>
             </div>
 
@@ -761,8 +761,8 @@
                 </svg>
                 <span>READY LATER™</span>
             </button>
-            <div class="cta-footer-note" style="margin-top: -10px;" data-en="Secure your chair for a future event." data-fr="Sécurisez votre fauteuil pour un événement.">
-                Secure your chair for a future event.
+            <div class="cta-footer-note" style="margin-top: -10px;" data-en="Scheduled dispatch. Reserve your readiness." data-fr="Dispatche programmé. Réservez votre préparation.">
+                Scheduled dispatch. Reserve your readiness.
             </div>
         </div>
         
@@ -851,6 +851,29 @@
                 </select>
                 
                 <button type="submit" class="modal-capsule-btn" data-en="REQUEST SCHEDULE" data-fr="DEMANDER L'HORAIRE">REQUEST SCHEDULE</button>
+            </form>
+            
+            <button class="modal-close" onclick="closeModals()" data-en="CANCEL" data-fr="ANNULER">CANCEL</button>
+        </div>
+    </div>
+    
+    <!-- RETURN MODAL -->
+    <div id="returnModal" class="modal-overlay">
+        <div class="modal-card">
+            <h3 data-en="Find My Specialist" data-fr="Trouver Mon Spécialiste">Find My Specialist</h3>
+            <p data-en="We will check their availability and confirm with you." data-fr="Nous vérifierons leur disponibilité et confirmerons.">
+                We will check their availability and confirm with you.
+            </p>
+            
+            <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleSubmit(event, 'return')">
+                <input type="hidden" name="city_location" class="formCityField" value="Vancouver">
+                <input type="hidden" name="dispatch_channel" value="Previous Specialist Request">
+                
+                <input type="text" class="modal-input" name="client_name" required placeholder="First Name" data-en-placeholder="First Name" data-fr-placeholder="Prénom">
+                <input type="tel" class="modal-input" name="client_phone" placeholder="10 Digit Mobile" data-en-placeholder="10 Digit Mobile" data-fr-placeholder="Mobile à 10 chiffres" required pattern="[0-9]{10}">
+                <input type="text" class="modal-input" name="specialist_name" placeholder="Specialist's Name (Optional)" data-en-placeholder="Specialist's Name (Optional)" data-fr-placeholder="Nom du Spécialiste (Optionnel)">
+                
+                <button type="submit" class="modal-capsule-btn" data-en="CONNECT ME" data-fr="CONNECTEZ-MOI">CONNECT ME</button>
             </form>
             
             <button class="modal-close" onclick="closeModals()" data-en="CANCEL" data-fr="ANNULER">CANCEL</button>
@@ -1139,6 +1162,11 @@
                 document.getElementById('receiptSubTitle').innerText = lang === 'fr' ? "Nous coordonnons l'horaire." : "We are coordinating the schedule.";
                 document.getElementById('receiptTargetTime').innerText = "Pending";
                 document.getElementById('receiptTargetTimeLbl').innerText = "Confirm";
+            } else if (type === 'return') {
+                document.getElementById('receiptHeaderTag').innerText = lang === 'fr' ? "Demande de Spécialiste" : "Specialist Request";
+                document.getElementById('receiptSubTitle').innerText = lang === 'fr' ? "Vérification de la disponibilité." : "Checking availability.";
+                document.getElementById('receiptTargetTime').innerText = "Pending";
+                document.getElementById('receiptTargetTimeLbl').innerText = "Check";
             }
 
             document.getElementById('mainAppContainer').style.display = 'none';
