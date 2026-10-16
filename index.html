@@ -265,7 +265,7 @@
             text-decoration: underline;
         }
 
-        /* Core Tagline Restored */
+        /* Core Tagline */
         .brand-philosophy {
             font-size: 15px;
             color: var(--gold);
@@ -274,6 +274,7 @@
             text-align: center;
             margin-bottom: 25px;
             font-weight: 600;
+            transition: opacity 0.3s;
         }
 
         /* Call To Action Area */
@@ -472,17 +473,16 @@
             text-align-last: center;
         }
         
-        /* Optgroup styling for dropdown */
-        select.modal-input optgroup {
-            background: var(--card-bg);
-            color: var(--gold);
-            font-weight: bold;
-            font-style: normal;
-        }
+        /* Custom Colors for the flat dropdown */
         select.modal-input option {
             background: #141414;
-            color: #ffffff;
-            font-weight: normal;
+        }
+        .opt-white {
+            color: #ffffff !important;
+        }
+        .opt-gold {
+            color: var(--gold) !important;
+            font-weight: bold;
         }
 
         .modal-input:-webkit-autofill,
@@ -778,7 +778,7 @@
                     <div class="toggle-capsule">
                         <button onclick="setCity('yvr')" id="btn-yvr" class="active">YVR</button>
                         <span>|</span>
-                        <button onclick="setCity('yyz')" id="btn-yyz">YYZ</button>
+                        <button onclick="alertCity('yyz')" id="btn-yyz" style="opacity: 0.5;">YYZ</button>
                         <span>|</span>
                         <button onclick="setCity('yul')" id="btn-yul">YUL</button>
                     </div>
@@ -832,8 +832,8 @@
         <!-- Pilot Box Pricing -->
         <div class="pilot-box">
             <div>
-                <div class="pilot-label-top" data-en="Priority Flat Rate" data-fr="Tarif Fixe Prioritaire">Priority Flat Rate</div>
-                <div class="pilot-label-sub" data-en="Complete readiness. Zero menus." data-fr="Préparation complète. Zéro menu.">Complete readiness. Zero menus.</div>
+                <div class="pilot-label-top" data-en="Pilot Launch Rate" data-fr="Tarif de Lancement">Pilot Launch Rate</div>
+                <div class="pilot-label-sub" data-en="Fast grooming & refresh" data-fr="Coiffure et rafraîchissement">Fast grooming & refresh</div>
             </div>
             <div class="pilot-price-area">
                 <div class="pilot-price" id="displayPrice">$39.99 CAD</div>
@@ -843,8 +843,8 @@
             </div>
         </div>
 
-        <!-- Core Tagline -->
-        <div class="brand-philosophy" data-en="We don't look at menus. We look at you." data-fr="Nous ne regardons pas de menu. Nous vous regardons.">
+        <!-- Dynamic Brand Philosophy / Welcome Back Tagline -->
+        <div id="brandPhilosophyText" class="brand-philosophy" data-en="We don't look at menus. We look at you." data-fr="Nous ne regardons pas de menu. Nous vous regardons.">
             We don't look at menus. We look at you.
         </div>
 
@@ -938,39 +938,17 @@
                 <!-- WELCOME BACK RESET LINK (Hidden by default) -->
                 <button type="button" class="reset-user-link" onclick="resetUser()" data-en="Not you? Reset details" data-fr="Pas vous ? Réinitialiser">Not you? Reset details</button>
 
-                <!-- OCCASION / INTENT DROPDOWN -->
-                <select class="modal-input" name="service_context" required>
-                    <option value="" disabled selected data-en="What's got you looking your best today?" data-fr="Pour quelle occasion vous préparez-vous ?">What's got you looking your best today?</option>
-                    <option value="Just for me" data-en="Just for me™" data-fr="Juste pour moi™">Just for me™</option>
-                    
-                    <optgroup label="PROFESSIONAL" data-en="PROFESSIONAL" data-fr="PROFESSIONNEL">
-                        <option value="Job Interview" data-en="Job Interview" data-fr="Entretien d'embauche">Job Interview</option>
-                        <option value="Important Meeting" data-en="Important Meeting" data-fr="Réunion importante">Important Meeting</option>
-                        <option value="Presentation" data-en="Presentation" data-fr="Présentation">Presentation</option>
-                        <option value="Client Meeting" data-en="Client Meeting" data-fr="Rendez-vous client">Client Meeting</option>
-                        <option value="Networking Event" data-en="Networking Event" data-fr="Événement de réseautage">Networking Event</option>
-                    </optgroup>
-                    
-                    <optgroup label="SOCIAL" data-en="SOCIAL" data-fr="SOCIAL">
-                        <option value="Date" data-en="Date" data-fr="Rendez-vous amoureux">Date</option>
-                        <option value="Wedding" data-en="Wedding" data-fr="Mariage">Wedding</option>
-                        <option value="Night Out" data-en="Night Out" data-fr="Soirée">Night Out</option>
-                        <option value="Party" data-en="Party" data-fr="Fête">Party</option>
-                        <option value="Special Event" data-en="Special Event" data-fr="Événement spécial">Special Event</option>
-                    </optgroup>
-                    
-                    <optgroup label="LIFE" data-en="LIFE" data-fr="VIE PERSONNELLE">
-                        <option value="Travel" data-en="Travel" data-fr="Voyage">Travel</option>
-                        <option value="Family Gathering" data-en="Family Gathering" data-fr="Réunion de famille">Family Gathering</option>
-                        <option value="Photoshoot" data-en="Photoshoot" data-fr="Séance photo">Photoshoot</option>
-                        <option value="Celebration" data-en="Celebration" data-fr="Célébration">Celebration</option>
-                        <option value="Vacation" data-en="Vacation" data-fr="Vacances">Vacation</option>
-                        <option value="Big Day" data-en="Big Day" data-fr="Grand Jour">Big Day</option>
-                    </optgroup>
+                <!-- OPTIONAL FLAT DROPDOWN: Just for Me (White), Others (Gold) -->
+                <select class="modal-input" name="service_context">
+                    <option value="" disabled selected data-en="What's the occasion? (Optional)" data-fr="Quelle est l'occasion ? (Optionnel)">What's the occasion? (Optional)</option>
+                    <option value="Just for Me" class="opt-white" data-en="Just for Me™" data-fr="Juste pour moi™">Just for Me™</option>
+                    <option value="Professional" class="opt-gold" data-en="Professional" data-fr="Professionnel">Professional</option>
+                    <option value="Social" class="opt-gold" data-en="Social" data-fr="Social">Social</option>
+                    <option value="Life" class="opt-gold" data-en="Life" data-fr="Vie personnelle">Life</option>
                 </select>
 
-                <input type="text" class="modal-input" name="client_name" required placeholder="First Name" data-en-placeholder="First Name" data-fr-placeholder="Prénom">
-                <input type="tel" class="modal-input" name="client_phone" placeholder="10 Digit Mobile" data-en-placeholder="10 Digit Mobile" data-fr-placeholder="Mobile à 10 chiffres" required pattern="[0-9]{10}">
+                <input type="text" class="modal-input" name="client_name" id="nameInputNow" required placeholder="First Name" data-en-placeholder="First Name" data-fr-placeholder="Prénom">
+                <input type="tel" class="modal-input" name="client_phone" placeholder="10 Digit Mobile" data-en-placeholder="10 Digit Mobile" data-fr-placeholder="Mobile à 10 chiffres" id="phoneInputNow" required pattern="[0-9]{10}">
                 
                 <div class="legal-consent-text" data-en="By continuing, you agree to receive dispatch updates via SMS/WhatsApp. Standard rates apply." data-fr="En continuant, vous acceptez de recevoir des mises à jour via SMS/WhatsApp. Tarifs standard applicables.">
                     By continuing, you agree to receive dispatch updates via SMS/WhatsApp. Standard rates apply.
@@ -999,35 +977,13 @@
                 <!-- WELCOME BACK RESET LINK (Hidden by default) -->
                 <button type="button" class="reset-user-link" onclick="resetUser()" data-en="Not you? Reset details" data-fr="Pas vous ? Réinitialiser">Not you? Reset details</button>
 
-                <!-- OCCASION / INTENT DROPDOWN -->
-                <select class="modal-input" name="service_context" required>
-                    <option value="" disabled selected data-en="What's got you looking your best today?" data-fr="Pour quelle occasion vous préparez-vous ?">What's got you looking your best today?</option>
-                    <option value="Just for me" data-en="Just for me™" data-fr="Juste pour moi™">Just for me™</option>
-                    
-                    <optgroup label="PROFESSIONAL" data-en="PROFESSIONAL" data-fr="PROFESSIONNEL">
-                        <option value="Job Interview" data-en="Job Interview" data-fr="Entretien d'embauche">Job Interview</option>
-                        <option value="Important Meeting" data-en="Important Meeting" data-fr="Réunion importante">Important Meeting</option>
-                        <option value="Presentation" data-en="Presentation" data-fr="Présentation">Presentation</option>
-                        <option value="Client Meeting" data-en="Client Meeting" data-fr="Rendez-vous client">Client Meeting</option>
-                        <option value="Networking Event" data-en="Networking Event" data-fr="Événement de réseautage">Networking Event</option>
-                    </optgroup>
-                    
-                    <optgroup label="SOCIAL" data-en="SOCIAL" data-fr="SOCIAL">
-                        <option value="Date" data-en="Date" data-fr="Rendez-vous amoureux">Date</option>
-                        <option value="Wedding" data-en="Wedding" data-fr="Mariage">Wedding</option>
-                        <option value="Night Out" data-en="Night Out" data-fr="Soirée">Night Out</option>
-                        <option value="Party" data-en="Party" data-fr="Fête">Party</option>
-                        <option value="Special Event" data-en="Special Event" data-fr="Événement spécial">Special Event</option>
-                    </optgroup>
-                    
-                    <optgroup label="LIFE" data-en="LIFE" data-fr="VIE PERSONNELLE">
-                        <option value="Travel" data-en="Travel" data-fr="Voyage">Travel</option>
-                        <option value="Family Gathering" data-en="Family Gathering" data-fr="Réunion de famille">Family Gathering</option>
-                        <option value="Photoshoot" data-en="Photoshoot" data-fr="Séance photo">Photoshoot</option>
-                        <option value="Celebration" data-en="Celebration" data-fr="Célébration">Celebration</option>
-                        <option value="Vacation" data-en="Vacation" data-fr="Vacances">Vacation</option>
-                        <option value="Big Day" data-en="Big Day" data-fr="Grand Jour">Big Day</option>
-                    </optgroup>
+                <!-- OPTIONAL FLAT DROPDOWN: Just for Me (White), Others (Gold) -->
+                <select class="modal-input" name="service_context">
+                    <option value="" disabled selected data-en="What's the occasion? (Optional)" data-fr="Quelle est l'occasion ? (Optionnel)">What's the occasion? (Optional)</option>
+                    <option value="Just for Me" class="opt-white" data-en="Just for Me™" data-fr="Juste pour moi™">Just for Me™</option>
+                    <option value="Professional" class="opt-gold" data-en="Professional" data-fr="Professionnel">Professional</option>
+                    <option value="Social" class="opt-gold" data-en="Social" data-fr="Social">Social</option>
+                    <option value="Life" class="opt-gold" data-en="Life" data-fr="Vie personnelle">Life</option>
                 </select>
 
                 <input type="text" class="modal-input" name="client_name" required placeholder="First Name" data-en-placeholder="First Name" data-fr-placeholder="Prénom">
@@ -1143,7 +1099,15 @@
             }
         };
 
+        function alertCity(cityCode) {
+            const lang = localStorage.getItem('spur_lang') || 'en';
+            if (cityCode === 'yyz') {
+                alert(lang === 'fr' ? "Bientôt disponible à Toronto!" : "Coming soon to Toronto!");
+            }
+        }
+
         function setCity(city) {
+            if(city !== 'yvr' && city !== 'yul' && city !== 'yyz') return; 
             currentCity = city;
             
             document.getElementById('btn-yvr').classList.toggle('active', city === 'yvr');
@@ -1168,6 +1132,9 @@
             document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
 
             document.querySelectorAll('[data-en]').forEach(el => {
+                // Skip the brand philosophy text if user is logged in, we handle it dynamically
+                if (el.id === 'brandPhilosophyText' && localStorage.getItem('spur_user_name')) return;
+                
                 if (lang === 'fr' && el.hasAttribute('data-fr')) {
                     el.innerHTML = el.getAttribute('data-fr');
                 } else if (lang === 'en' && el.hasAttribute('data-en')) {
@@ -1183,14 +1150,13 @@
                 }
             });
 
-            // Handle Optgroup Labels manually for cross-browser support
-            document.querySelectorAll('optgroup[data-en]').forEach(el => {
-                if (lang === 'fr' && el.hasAttribute('data-fr')) {
-                    el.label = el.getAttribute('data-fr');
-                } else if (lang === 'en' && el.hasAttribute('data-en')) {
-                    el.label = el.getAttribute('data-en');
-                }
-            });
+            // Dynamic Welcome Back handling for language switch
+            const savedName = localStorage.getItem('spur_user_name');
+            const philText = document.getElementById('brandPhilosophyText');
+            if (savedName && philText) {
+                const firstName = savedName.split(' ')[0];
+                philText.innerText = lang === 'fr' ? "Bon retour, " + firstName + ". Nous sommes prêts quand vous l'êtes." : "Welcome back, " + firstName + ". We're ready when you are.";
+            }
 
             localStorage.setItem('spur_lang', lang);
             updateBadgeText();
@@ -1308,6 +1274,13 @@
             localStorage.removeItem('spur_user_name');
             localStorage.removeItem('spur_user_phone');
             
+            // Reset the homepage tagline to the default
+            const lang = localStorage.getItem('spur_lang') || 'en';
+            const philText = document.getElementById('brandPhilosophyText');
+            if(philText) {
+                philText.innerText = lang === 'fr' ? philText.getAttribute('data-fr') : philText.getAttribute('data-en');
+            }
+            
             document.querySelectorAll('.modal-overlay').forEach(m => {
                 if(m.style.display === 'flex') {
                     openModal(m.id);
@@ -1375,7 +1348,6 @@
             const phoneInput = form.querySelector('input[name="client_phone"]');
             const nameInput = form.querySelector('input[name="client_name"]');
             
-            // Allow submission if field is hidden (Welcome back mode) OR if it passes length check
             if (phoneInput.style.display === 'none' || phoneInput.value.trim().length >= 10) {
                 const formData = new FormData(form);
                 
@@ -1396,6 +1368,14 @@
 
                 closeModals();
                 showSuccessScreen(type);
+                
+                // Immediately refresh homepage tagline to Welcome Back
+                const lang = localStorage.getItem('spur_lang') || 'en';
+                const firstName = nameInput.value.trim().split(' ')[0];
+                const philText = document.getElementById('brandPhilosophyText');
+                if (philText) {
+                    philText.innerText = lang === 'fr' ? "Bon retour, " + firstName + ". Nous sommes prêts quand vous l'êtes." : "Welcome back, " + firstName + ". We're ready when you are.";
+                }
             } else {
                 alert("Please enter a valid 10-digit mobile number.");
             }
