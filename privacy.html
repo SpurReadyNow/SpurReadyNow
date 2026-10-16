@@ -9,25 +9,45 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
         body { background-color: var(--bg-color); color: var(--text-main); padding: 40px 20px; display: flex; justify-content: center; line-height: 1.6; }
         .container { max-width: 600px; width: 100%; }
+        
+        /* Top Navigation */
+        .top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-link { color: var(--gold); text-decoration: none; font-size: 12px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; }
+        .back-link:hover { text-decoration: underline; }
+        
+        /* Language Toggle */
+        .toggle-capsule { display: flex; align-items: center; background: rgba(255, 255, 255, 0.04); padding: 5px 10px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.08); }
+        .toggle-capsule button { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 11px; font-weight: 600; padding: 2px 3px; transition: color 0.2s ease; }
+        .toggle-capsule button.active { color: var(--gold); }
+        .toggle-capsule span { color: #444; margin: 0 3px; font-size: 11px; }
+
+        /* Typography */
         h1 { color: var(--gold); margin-bottom: 5px; font-size: 24px; letter-spacing: 1px; }
         .date { font-size: 12px; color: var(--text-muted); margin-bottom: 30px; text-transform: uppercase; letter-spacing: 1px; }
         h2 { color: var(--gold); font-size: 16px; margin-top: 25px; margin-bottom: 10px; }
         p, li { font-size: 14px; color: var(--text-muted); margin-bottom: 15px; }
         ul { margin-left: 20px; margin-bottom: 15px; color: var(--text-muted); }
-        .back-link { display: inline-block; margin-bottom: 30px; color: var(--gold); text-decoration: none; font-size: 12px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; }
-        .back-link:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
     <div class="container">
-        <a href="index.html" class="back-link" data-en="← Back to SPUR" data-fr="← Retour à SPUR">← Back to SPUR</a>
+
+        <div class="top-nav">
+            <a href="index.html" class="back-link" data-en="← Back to SPUR" data-fr="← Retour à SPUR">← Back to SPUR</a>
+            <div class="toggle-capsule">
+                <button onclick="switchLanguage('en')" id="btn-en" class="active">EN</button>
+                <span>|</span>
+                <button onclick="switchLanguage('fr')" id="btn-fr">FR</button>
+            </div>
+        </div>
+
         <h1 data-en="Privacy Policy" data-fr="Politique de confidentialité">Privacy Policy</h1>
         <div class="date" data-en="Last Updated: October 2026" data-fr="Dernière mise à jour : Octobre 2026">Last Updated: October 2026</div>
 
-        <p data-en="This Privacy Policy explains how SPUR collects, uses, and protects your personal information in compliance with Canada’s Personal Information Protection and Electronic Documents Act (PIPEDA), British Columbia’s Personal Information Protection Act (PIPA), and Quebec’s Law 25." data-fr="Cette politique de confidentialité explique comment SPUR collecte, utilise et protège vos informations personnelles conformément à la Loi sur la protection des renseignements personnels et les documents électroniques (LPRPDE) du Canada, à la Loi sur la protection des renseignements personnels (PIPA) de la Colombie-Britannique et à la Loi 25 du Québec.">This Privacy Policy explains...</p>
+        <p data-en="This Privacy Policy explains how SPUR collects, uses, and protects your personal information in compliance with Canada’s Personal Information Protection and Electronic Documents Act (PIPEDA), British Columbia’s Personal Information Protection Act (PIPA), and Quebec’s Law 25." data-fr="Cette politique de confidentialité explique comment SPUR collecte, utilise et protège vos informations personnelles conformément à la Loi sur la protection des renseignements personnels et les documents électroniques (LPRPDE) du Canada, à la Loi sur la protection des renseignements personnels (PIPA) de la Colombie-Britannique et à la Loi 25 du Québec.">This Privacy Policy explains how SPUR collects, uses, and protects your personal information in compliance with Canada’s Personal Information Protection and Electronic Documents Act (PIPEDA), British Columbia’s Personal Information Protection Act (PIPA), and Quebec’s Law 25.</p>
 
         <h2 data-en="1. Information We Collect" data-fr="1. Informations que nous collectons">1. Information We Collect</h2>
-        <p data-en="To facilitate our concierge routing, we collect only the information strictly necessary for the service:" data-fr="Pour faciliter le routage de notre concierge, nous ne collectons que les informations strictement nécessaires au service :">To facilitate our concierge routing...</p>
+        <p data-en="To facilitate our concierge routing, we collect only the information strictly necessary for the service:" data-fr="Pour faciliter le routage de notre concierge, nous ne collectons que les informations strictement nécessaires au service :">To facilitate our concierge routing, we collect only the information strictly necessary for the service:</p>
         <ul>
             <li><strong data-en="Identity Data:" data-fr="Données d'identité :">Identity Data:</strong> <span data-en="Your first name." data-fr="Votre prénom.">Your first name.</span></li>
             <li><strong data-en="Contact Data:" data-fr="Données de contact :">Contact Data:</strong> <span data-en="Your 10-digit mobile phone number." data-fr="Votre numéro de téléphone mobile à 10 chiffres.">Your 10-digit mobile phone number.</span></li>
@@ -36,19 +56,19 @@
         </ul>
 
         <h2 data-en="2. Purpose of Collection and Consent" data-fr="2. Objectif de la collecte et consentement">2. Purpose of Collection and Consent</h2>
-        <p data-en="We collect your information to match you with a grooming specialist, coordinate your arrival, and provide SMS/WhatsApp dispatch updates. By submitting a dispatch request and affirmatively continuing past our consent disclaimer, you provide express consent for SPUR to use your mobile number specifically for these logistical communications." data-fr="Nous collectons vos informations pour vous associer à un spécialiste, coordonner votre arrivée et fournir des mises à jour par SMS/WhatsApp. En soumettant une demande de dispatche et en continuant au-delà de notre clause de consentement, vous donnez votre consentement exprès pour que SPUR utilise votre numéro spécifiquement pour ces communications.">We collect your information...</p>
+        <p data-en="We collect your information to match you with a grooming specialist, coordinate your arrival, and provide SMS/WhatsApp dispatch updates. By submitting a dispatch request and affirmatively continuing past our consent disclaimer, you provide express consent for SPUR to use your mobile number specifically for these logistical communications." data-fr="Nous collectons vos informations pour vous associer à un spécialiste, coordonner votre arrivée et fournir des mises à jour par SMS/WhatsApp. En soumettant une demande de dispatche et en continuant au-delà de notre clause de consentement, vous donnez votre consentement exprès pour que SPUR utilise votre numéro spécifiquement pour ces communications.">We collect your information to match you with a grooming specialist, coordinate your arrival, and provide SMS/WhatsApp dispatch updates. By submitting a dispatch request and affirmatively continuing past our consent disclaimer, you provide express consent for SPUR to use your mobile number specifically for these logistical communications.</p>
 
         <h2 data-en="3. Communication and Anti-Spam Compliance (CASL)" data-fr="3. Communication et conformité anti-pourriel (LCAP)">3. Communication and Anti-Spam Compliance (CASL)</h2>
-        <p data-en="Your phone number is used to initiate WhatsApp or SMS notifications strictly related to your active dispatch request. You may opt out of future communications at any time by replying 'STOP' or messaging the SPUR Concierge directly." data-fr="Votre numéro de téléphone est utilisé pour initier des notifications WhatsApp ou SMS strictement liées à votre demande de dispatche. Vous pouvez vous désabonner des communications futures à tout moment en répondant 'STOP' ou en envoyant un message directement au Concierge SPUR.">Your phone number is used...</p>
+        <p data-en="Your phone number is used to initiate WhatsApp or SMS notifications strictly related to your active dispatch request. You may opt out of future communications at any time by replying 'STOP' or messaging the SPUR Concierge directly." data-fr="Votre numéro de téléphone est utilisé pour initier des notifications WhatsApp ou SMS strictement liées à votre demande de dispatche. Vous pouvez vous désabonner des communications futures à tout moment en répondant 'STOP' ou en envoyant un message directement au Concierge SPUR.">Your phone number is used to initiate WhatsApp or SMS notifications strictly related to your active dispatch request. You may opt out of future communications at any time by replying 'STOP' or messaging the SPUR Concierge directly.</p>
 
         <h2 data-en="4. Sharing of Information" data-fr="4. Partage d'informations">4. Sharing of Information</h2>
-        <p data-en="SPUR never sells your personal data. We only communicate your first name, estimated arrival time, and chosen service context to the specific independent specialist who accepts your dispatch request. No other third parties receive your personal information unless required by law." data-fr="SPUR ne vend jamais vos données personnelles. Nous ne communiquons votre prénom, votre heure d'arrivée estimée et le contexte de service choisi qu'au spécialiste indépendant spécifique qui accepte votre demande. Aucun autre tiers ne reçoit vos informations personnelles, sauf si la loi l'exige.">SPUR never sells your personal data...</p>
+        <p data-en="SPUR never sells your personal data. We only communicate your first name, estimated arrival time, and chosen service context to the specific independent specialist who accepts your dispatch request. No other third parties receive your personal information unless required by law." data-fr="SPUR ne vend jamais vos données personnelles. Nous ne communiquons votre prénom, votre heure d'arrivée estimée et le contexte de service choisi qu'au spécialiste indépendant spécifique qui accepte votre demande. Aucun autre tiers ne reçoit vos informations personnelles, sauf si la loi l'exige.">SPUR never sells your personal data. We only communicate your first name, estimated arrival time, and chosen service context to the specific independent specialist who accepts your dispatch request. No other third parties receive your personal information unless required by law.</p>
 
         <h2 data-en="5. Data Retention and Security" data-fr="5. Conservation des données et sécurité">5. Data Retention and Security</h2>
-        <p data-en="We retain your personal information only as long as necessary to fulfill the purposes for which it was collected. We utilize local browser storage to remember your details to reduce future booking friction. You may clear this data at any time via your browser settings." data-fr="Nous conservons vos informations personnelles uniquement le temps nécessaire pour atteindre les objectifs pour lesquels elles ont été collectées. Nous utilisons le stockage local de votre navigateur pour mémoriser vos coordonnées afin de réduire les frictions lors de réservations futures. Vous pouvez effacer ces données à tout moment via les paramètres.">We retain your personal information...</p>
+        <p data-en="We retain your personal information only as long as necessary to fulfill the purposes for which it was collected. We utilize local browser storage to remember your details to reduce future booking friction. You may clear this data at any time via your browser settings." data-fr="Nous conservons vos informations personnelles uniquement le temps nécessaire pour atteindre les objectifs pour lesquels elles ont été collectées. Nous utilisons le stockage local de votre navigateur pour mémoriser vos coordonnées afin de réduire les frictions lors de réservations futures. Vous pouvez effacer ces données à tout moment via les paramètres.">We retain your personal information only as long as necessary to fulfill the purposes for which it was collected. We utilize local browser storage to remember your details to reduce future booking friction. You may clear this data at any time via your browser settings.</p>
 
         <h2 data-en="6. Privacy Officer Contact" data-fr="6. Contact du responsable de la confidentialité">6. Privacy Officer Contact</h2>
-        <p data-en="To exercise your privacy rights, request a data deletion, or ask questions about our governance policies, please contact our appointed Privacy Officer:" data-fr="Pour exercer vos droits en matière de confidentialité, demander la suppression de données ou poser des questions sur nos politiques de gouvernance, veuillez contacter notre responsable de la confidentialité :">To exercise your privacy rights...</p>
+        <p data-en="To exercise your privacy rights, request a data deletion, or ask questions about our governance policies, please contact our appointed Privacy Officer:" data-fr="Pour exercer vos droits en matière de confidentialité, demander la suppression de données ou poser des questions sur nos politiques de gouvernance, veuillez contacter notre responsable de la confidentialité :">To exercise your privacy rights, request a data deletion, or ask questions about our governance policies, please contact our appointed Privacy Officer:</p>
         <p><strong><span data-en="Name:" data-fr="Nom :">Name:</span></strong> Sandeep Singh Chopra<br>
         <strong><span data-en="Title:" data-fr="Titre :">Title:</span></strong> <span data-en="Privacy Officer & Founder, SPUR" data-fr="Responsable de la confidentialité et fondateur, SPUR">Privacy Officer & Founder, SPUR</span><br>
         <strong>Email:</strong> ssc110981@gmail.com</p>
@@ -56,13 +76,17 @@
 
     <script>
         function switchLanguage(lang) {
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+            document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
+
             document.querySelectorAll('[data-en]').forEach(el => {
                 if (lang === 'fr' && el.hasAttribute('data-fr')) {
-                    el.innerText = el.getAttribute('data-fr');
+                    el.innerHTML = el.getAttribute('data-fr');
                 } else if (lang === 'en' && el.hasAttribute('data-en')) {
-                    el.innerText = el.getAttribute('data-en');
+                    el.innerHTML = el.getAttribute('data-en');
                 }
             });
+            localStorage.setItem('spur_lang', lang);
         }
 
         window.addEventListener('DOMContentLoaded', () => {
