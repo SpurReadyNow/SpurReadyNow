@@ -742,7 +742,6 @@
                         <span>|</span>
                         <button onclick="alertCity('yyz')" id="btn-yyz" style="opacity: 0.5;">YYZ</button>
                         <span>|</span>
-                        <!-- Montreal is fully active now -->
                         <button onclick="setCity('yul')" id="btn-yul">YUL</button>
                     </div>
                     <div class="toggle-capsule">
@@ -846,9 +845,8 @@
         <div class="site-footer">
             <span data-en="© 2026 SPUR. All rights reserved." data-fr="© 2026 SPUR. Tous droits réservés.">© 2026 SPUR. All rights reserved.</span>
             <br><br>
-            <!-- Replace # with actual URL links when pages are created -->
-            <a href="#" data-en="Terms of Service" data-fr="Conditions d'utilisation">Terms of Service</a> | 
-            <a href="#" data-en="Privacy Policy" data-fr="Politique de confidentialité">Privacy Policy</a>
+            <a href="terms.html" data-en="Terms of Service" data-fr="Conditions d'utilisation">Terms of Service</a> | 
+            <a href="privacy.html" data-en="Privacy Policy" data-fr="Politique de confidentialité">Privacy Policy</a>
         </div>
         
     </div>
@@ -1007,14 +1005,12 @@
                 Your concierge is coordinating with our network. You pay directly at the studio.
             </div>
 
-            <!-- REPLACE '1YOURNUMBER' WITH YOUR ACTUAL WHATSAPP NUMBER BELOW -->
-            <a href="https://wa.me/1YOURNUMBER?text=Hi%20SPUR%20Concierge,%20I%20am%20checking%20on%20my%20dispatch." class="receipt-action-btn" target="_blank">
+            <a href="https://wa.me/14387251010?text=Hi%20SPUR%20Concierge,%20I%20am%20checking%20on%20my%20dispatch." class="receipt-action-btn" target="_blank">
                 <span style="font-size: 14px;">💬</span> 
                 <span data-en="CONFIRM VIA WHATSAPP" data-fr="CONFIRMER VIA WHATSAPP">CONFIRM VIA WHATSAPP</span>
             </a>
 
-            <!-- REPLACE '1YOURNUMBER' WITH YOUR ACTUAL WHATSAPP NUMBER BELOW -->
-            <a href="https://wa.me/1YOURNUMBER?text=Hi%20SPUR%20Concierge,%20I%20need%20to%20modify%20or%20cancel%20my%20request." class="cancel-link" data-en="Need to modify or cancel? Message Concierge." data-fr="Besoin de modifier ou d'annuler ? Contactez le Concierge." target="_blank">
+            <a href="https://wa.me/14387251010?text=Hi%20SPUR%20Concierge,%20I%20need%20to%20modify%20or%20cancel%20my%20request." class="cancel-link" data-en="Need to modify or cancel? Message Concierge." data-fr="Besoin de modifier ou d'annuler ? Contactez le Concierge." target="_blank">
                 Need to modify or cancel? Message Concierge.
             </a>
         </div>
@@ -1037,6 +1033,7 @@
         }
 
         function setCity(city) {
+            if(city !== 'yvr' && city !== 'yul') return; // Only allow Vancouver and Montreal for MVP
             currentCity = city;
             
             document.getElementById('btn-yvr').classList.toggle('active', city === 'yvr');
