@@ -265,7 +265,7 @@
             text-decoration: underline;
         }
 
-        /* Core Tagline */
+        /* Core Tagline Restored */
         .brand-philosophy {
             font-size: 15px;
             color: var(--gold);
@@ -372,7 +372,7 @@
         .returning-btn {
             background: none;
             border: none;
-            color: var(--gold-light);
+            color: var(--gold);
             font-size: 11px;
             font-weight: 700;
             letter-spacing: 1px;
@@ -382,6 +382,11 @@
             text-decoration-color: rgba(212, 175, 55, 0.4);
             text-underline-offset: 4px;
             margin-top: 15px;
+            transition: color 0.2s ease;
+        }
+        
+        .returning-btn:hover {
+            color: var(--gold-light);
         }
 
         /* Footer / Legal Area */
@@ -465,6 +470,19 @@
         
         select.modal-input {
             text-align-last: center;
+        }
+        
+        /* Optgroup styling for dropdown */
+        select.modal-input optgroup {
+            background: var(--card-bg);
+            color: var(--gold);
+            font-weight: bold;
+            font-style: normal;
+        }
+        select.modal-input option {
+            background: #141414;
+            color: #ffffff;
+            font-weight: normal;
         }
 
         .modal-input:-webkit-autofill,
@@ -817,8 +835,8 @@
                     <span class="ready-line-1">READY</span>
                     <span class="ready-line-2">NOW™</span>
                 </button>
-                <div class="cta-footer-note" data-en="A specialist decides what you need. You just show up." data-fr="Un spécialiste décide de ce dont vous avez besoin.">
-                    A specialist decides what you need. You just show up.
+                <div class="cta-footer-note" data-en="A specialist recommends what you need.<br>You just show up." data-fr="Un spécialiste recommande ce dont vous avez besoin.<br>Vous vous présentez, tout simplement.">
+                    A specialist recommends what you need.<br>You just show up.
                 </div>
             </div>
 
@@ -832,8 +850,8 @@
                 </svg>
                 <span>READY LATER™</span>
             </button>
-            <div class="cta-footer-note" style="margin-top: -10px;" data-en="Scheduled dispatch. Reserve your readiness." data-fr="Dispatche programmé. Réservez votre préparation.">
-                Scheduled dispatch. Reserve your readiness.
+            <div class="cta-footer-note" style="margin-top: -10px;" data-en="Scheduled dispatch.<br>Reserve your readiness." data-fr="Dispatche programmé.<br>Réservez votre préparation.">
+                Scheduled dispatch.<br>Reserve your readiness.
             </div>
 
             <div class="active-hours-note" data-en="Active Dispatch Hours: 9:00 AM – 8:00 PM" data-fr="Heures de dispatche actives : 9h00 – 20h00">
@@ -893,11 +911,41 @@
             </p>
             
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleSubmit(event, 'now')">
-                <!-- Location natively assigned by JS cityData -->
                 <input type="hidden" name="city_location" class="formCityField" value="Yaletown, Vancouver">
                 <input type="hidden" name="dispatch_channel" value="SMS / WhatsApp Priority Ready">
                 <input type="hidden" name="requested_specialist" class="specialistHiddenField" value="Any Available">
                 
+                <!-- OCCASION / INTENT DROPDOWN -->
+                <select class="modal-input" name="service_context" required>
+                    <option value="" disabled selected data-en="What's got you looking your best today?" data-fr="Pour quelle occasion vous préparez-vous ?">What's got you looking your best today?</option>
+                    <option value="JUST FOR YOU™" data-en="JUST FOR YOU™" data-fr="JUST FOR YOU™">JUST FOR YOU™</option>
+                    
+                    <optgroup label="PROFESSIONAL" data-en="PROFESSIONAL" data-fr="PROFESSIONNEL">
+                        <option value="Job Interview" data-en="Job Interview" data-fr="Entretien d'embauche">Job Interview</option>
+                        <option value="Important Meeting" data-en="Important Meeting" data-fr="Réunion importante">Important Meeting</option>
+                        <option value="Presentation" data-en="Presentation" data-fr="Présentation">Presentation</option>
+                        <option value="Client Meeting" data-en="Client Meeting" data-fr="Rendez-vous client">Client Meeting</option>
+                        <option value="Networking Event" data-en="Networking Event" data-fr="Événement de réseautage">Networking Event</option>
+                    </optgroup>
+                    
+                    <optgroup label="SOCIAL" data-en="SOCIAL" data-fr="SOCIAL">
+                        <option value="Date" data-en="Date" data-fr="Rendez-vous amoureux">Date</option>
+                        <option value="Wedding" data-en="Wedding" data-fr="Mariage">Wedding</option>
+                        <option value="Night Out" data-en="Night Out" data-fr="Soirée">Night Out</option>
+                        <option value="Party" data-en="Party" data-fr="Fête">Party</option>
+                        <option value="Special Event" data-en="Special Event" data-fr="Événement spécial">Special Event</option>
+                    </optgroup>
+                    
+                    <optgroup label="LIFE" data-en="LIFE" data-fr="VIE PERSONNELLE">
+                        <option value="Travel" data-en="Travel" data-fr="Voyage">Travel</option>
+                        <option value="Family Gathering" data-en="Family Gathering" data-fr="Réunion de famille">Family Gathering</option>
+                        <option value="Photoshoot" data-en="Photoshoot" data-fr="Séance photo">Photoshoot</option>
+                        <option value="Celebration" data-en="Celebration" data-fr="Célébration">Celebration</option>
+                        <option value="Vacation" data-en="Vacation" data-fr="Vacances">Vacation</option>
+                        <option value="Big Day" data-en="Big Day" data-fr="Grand Jour">Big Day</option>
+                    </optgroup>
+                </select>
+
                 <input type="text" class="modal-input" name="client_name" id="nameInputNow" required placeholder="First Name" data-en-placeholder="First Name" data-fr-placeholder="Prénom">
                 <input type="tel" class="modal-input" name="client_phone" placeholder="10 Digit Mobile" data-en-placeholder="10 Digit Mobile" data-fr-placeholder="Mobile à 10 chiffres" id="phoneInputNow" required pattern="[0-9]{10}">
                 
@@ -925,6 +973,37 @@
                 <input type="hidden" name="dispatch_channel" value="Scheduled Request">
                 <input type="hidden" name="requested_specialist" class="specialistHiddenField" value="Any Available">
                 
+                <!-- OCCASION / INTENT DROPDOWN -->
+                <select class="modal-input" name="service_context" required>
+                    <option value="" disabled selected data-en="What's got you looking your best today?" data-fr="Pour quelle occasion vous préparez-vous ?">What's got you looking your best today?</option>
+                    <option value="JUST FOR YOU™" data-en="JUST FOR YOU™" data-fr="JUST FOR YOU™">JUST FOR YOU™</option>
+                    
+                    <optgroup label="PROFESSIONAL" data-en="PROFESSIONAL" data-fr="PROFESSIONNEL">
+                        <option value="Job Interview" data-en="Job Interview" data-fr="Entretien d'embauche">Job Interview</option>
+                        <option value="Important Meeting" data-en="Important Meeting" data-fr="Réunion importante">Important Meeting</option>
+                        <option value="Presentation" data-en="Presentation" data-fr="Présentation">Presentation</option>
+                        <option value="Client Meeting" data-en="Client Meeting" data-fr="Rendez-vous client">Client Meeting</option>
+                        <option value="Networking Event" data-en="Networking Event" data-fr="Événement de réseautage">Networking Event</option>
+                    </optgroup>
+                    
+                    <optgroup label="SOCIAL" data-en="SOCIAL" data-fr="SOCIAL">
+                        <option value="Date" data-en="Date" data-fr="Rendez-vous amoureux">Date</option>
+                        <option value="Wedding" data-en="Wedding" data-fr="Mariage">Wedding</option>
+                        <option value="Night Out" data-en="Night Out" data-fr="Soirée">Night Out</option>
+                        <option value="Party" data-en="Party" data-fr="Fête">Party</option>
+                        <option value="Special Event" data-en="Special Event" data-fr="Événement spécial">Special Event</option>
+                    </optgroup>
+                    
+                    <optgroup label="LIFE" data-en="LIFE" data-fr="VIE PERSONNELLE">
+                        <option value="Travel" data-en="Travel" data-fr="Voyage">Travel</option>
+                        <option value="Family Gathering" data-en="Family Gathering" data-fr="Réunion de famille">Family Gathering</option>
+                        <option value="Photoshoot" data-en="Photoshoot" data-fr="Séance photo">Photoshoot</option>
+                        <option value="Celebration" data-en="Celebration" data-fr="Célébration">Celebration</option>
+                        <option value="Vacation" data-en="Vacation" data-fr="Vacances">Vacation</option>
+                        <option value="Big Day" data-en="Big Day" data-fr="Grand Jour">Big Day</option>
+                    </optgroup>
+                </select>
+
                 <input type="text" class="modal-input" name="client_name" required placeholder="First Name" data-en-placeholder="First Name" data-fr-placeholder="Prénom">
                 <input type="tel" class="modal-input" name="client_phone" placeholder="10 Digit Mobile" data-en-placeholder="10 Digit Mobile" data-fr-placeholder="Mobile à 10 chiffres" required pattern="[0-9]{10}">
                 
@@ -1046,7 +1125,7 @@
         }
 
         function setCity(city) {
-            if(city !== 'yvr' && city !== 'yul') return; // Only allow Vancouver and Montreal for MVP
+            if(city !== 'yvr' && city !== 'yul') return; 
             currentCity = city;
             
             document.getElementById('btn-yvr').classList.toggle('active', city === 'yvr');
@@ -1072,9 +1151,9 @@
 
             document.querySelectorAll('[data-en]').forEach(el => {
                 if (lang === 'fr' && el.hasAttribute('data-fr')) {
-                    el.innerText = el.getAttribute('data-fr');
+                    el.innerHTML = el.getAttribute('data-fr');
                 } else if (lang === 'en' && el.hasAttribute('data-en')) {
-                    el.innerText = el.getAttribute('data-en');
+                    el.innerHTML = el.getAttribute('data-en');
                 }
             });
 
@@ -1083,6 +1162,15 @@
                     el.placeholder = el.getAttribute('data-fr-placeholder');
                 } else if (lang === 'en' && el.hasAttribute('data-en-placeholder')) {
                     el.placeholder = el.getAttribute('data-en-placeholder');
+                }
+            });
+
+            // Handle Optgroup Labels manually for cross-browser support
+            document.querySelectorAll('optgroup[data-en]').forEach(el => {
+                if (lang === 'fr' && el.hasAttribute('data-fr')) {
+                    el.label = el.getAttribute('data-fr');
+                } else if (lang === 'en' && el.hasAttribute('data-en')) {
+                    el.label = el.getAttribute('data-en');
                 }
             });
 
@@ -1278,16 +1366,9 @@
 
         window.addEventListener('DOMContentLoaded', () => {
             const savedLang = localStorage.getItem('spur_lang') || 'en';
-            
-            // Initialization checks
             const savedCity = localStorage.getItem('spur_active_city') || 'yvr';
             setCity(savedCity);
             switchLanguage(savedLang);
-            
-            // Trigger explicit data hydration for base city
-            if (!localStorage.getItem('spur_active_city')) {
-                setCity('yvr');
-            }
         });
     </script>
 </body>
