@@ -283,7 +283,7 @@
             align-items: center;
             width: 100%;
             gap: 20px;
-            margin-bottom: 40px;
+            margin-bottom: 20px;
         }
 
         @keyframes breathing {
@@ -337,7 +337,15 @@
             margin-top: 8px;
         }
 
-        /* Cleaned Up Ready Later Button - Custom SVG, No Emoji */
+        .active-hours-note {
+            font-size: 10px;
+            color: #666;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-align: center;
+            margin-top: -5px;
+        }
+
         .ready-later-btn {
             background: transparent;
             border: 1px solid rgba(212, 175, 55, 0.4);
@@ -372,6 +380,29 @@
             text-decoration-color: rgba(212, 175, 55, 0.4);
             text-underline-offset: 4px;
             margin-top: 15px;
+        }
+
+        /* Footer / Legal Area */
+        .site-footer {
+            width: 100%;
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 10px;
+            color: #555;
+            letter-spacing: 0.5px;
+        }
+
+        .site-footer a {
+            color: #777;
+            text-decoration: none;
+            margin: 0 8px;
+            transition: color 0.2s;
+        }
+
+        .site-footer a:hover {
+            color: var(--gold);
         }
 
         /* Interactive Modals */
@@ -444,6 +475,15 @@
 
         .modal-input:focus {
             border-color: var(--gold);
+        }
+
+        .legal-consent-text {
+            font-size: 9px;
+            color: #666;
+            line-height: 1.3;
+            margin-top: -4px;
+            margin-bottom: 14px;
+            text-align: center;
         }
 
         .modal-capsule-btn {
@@ -794,6 +834,17 @@
             <div class="cta-footer-note" style="margin-top: -10px;" data-en="Scheduled dispatch. Reserve your readiness." data-fr="Dispatche programmé. Réservez votre préparation.">
                 Scheduled dispatch. Reserve your readiness.
             </div>
+            <div class="active-hours-note" data-en="Active Dispatch Hours: 9:00 AM – 8:00 PM" data-fr="Heures de dispatche actives : 9h00 – 20h00">
+                Active Dispatch Hours: 9:00 AM – 8:00 PM
+            </div>
+        </div>
+        
+        <!-- Legal Footer -->
+        <div class="site-footer">
+            <span data-en="© 2026 SPUR. All rights reserved." data-fr="© 2026 SPUR. Tous droits réservés.">© 2026 SPUR. All rights reserved.</span>
+            <br><br>
+            <a href="#" data-en="Terms of Service" data-fr="Conditions d'utilisation">Terms of Service</a> | 
+            <a href="#" data-en="Privacy Policy" data-fr="Politique de confidentialité">Privacy Policy</a>
         </div>
         
     </div>
@@ -842,11 +893,14 @@
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleSubmit(event, 'now')">
                 <input type="hidden" name="city_location" class="formCityField" value="Vancouver">
                 <input type="hidden" name="dispatch_channel" value="SMS / WhatsApp Priority Ready">
-                <!-- Hidden field to capture Page 2 Intercept data -->
                 <input type="hidden" name="requested_specialist" class="specialistHiddenField" value="Any Tier-1">
                 
                 <input type="text" class="modal-input" name="client_name" id="nameInputNow" required placeholder="First Name" data-en-placeholder="First Name" data-fr-placeholder="Prénom">
                 <input type="tel" class="modal-input" name="client_phone" placeholder="10 Digit Mobile" data-en-placeholder="10 Digit Mobile" data-fr-placeholder="Mobile à 10 chiffres" id="phoneInputNow" required pattern="[0-9]{10}">
+                
+                <div class="legal-consent-text" data-en="By continuing, you agree to receive dispatch updates via SMS/WhatsApp. Standard rates apply." data-fr="En continuant, vous acceptez de recevoir des mises à jour via SMS/WhatsApp. Tarifs standard applicables.">
+                    By continuing, you agree to receive dispatch updates via SMS/WhatsApp. Standard rates apply.
+                </div>
                 
                 <button type="submit" class="modal-capsule-btn" data-en="SHOW UP READY" data-fr="SOYEZ PRÊT">SHOW UP READY</button>
             </form>
@@ -866,14 +920,16 @@
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleSubmit(event, 'later')">
                 <input type="hidden" name="city_location" class="formCityField" value="Vancouver">
                 <input type="hidden" name="dispatch_channel" value="Scheduled Request">
-                <!-- Hidden field to capture Page 2 Intercept data -->
                 <input type="hidden" name="requested_specialist" class="specialistHiddenField" value="Any Tier-1">
                 
                 <input type="text" class="modal-input" name="client_name" required placeholder="First Name" data-en-placeholder="First Name" data-fr-placeholder="Prénom">
                 <input type="tel" class="modal-input" name="client_phone" placeholder="10 Digit Mobile" data-en-placeholder="10 Digit Mobile" data-fr-placeholder="Mobile à 10 chiffres" required pattern="[0-9]{10}">
                 
+                <div class="legal-consent-text" data-en="By continuing, you agree to receive dispatch updates via SMS/WhatsApp. Standard rates apply." data-fr="En continuant, vous acceptez de recevoir des mises à jour via SMS/WhatsApp. Tarifs standard applicables.">
+                    By continuing, you agree to receive dispatch updates via SMS/WhatsApp. Standard rates apply.
+                </div>
+                
                 <input type="date" class="modal-input" name="requested_date" required>
-                <!-- EXPLICIT HOURLY SLOTS ADDED HERE -->
                 <select class="modal-input" name="requested_time" required>
                     <option value="" disabled selected data-en="Select Preferred Time" data-fr="Sélectionnez l'heure">Select Preferred Time</option>
                     <option value="9:00 AM">9:00 AM</option>
@@ -948,13 +1004,13 @@
             </div>
 
             <!-- REPLACE '1YOURNUMBER' WITH YOUR ACTUAL WHATSAPP NUMBER BELOW -->
-            <a href="https://wa.me/14387251010?text=Hi%20SPUR%20Concierge,%20I%20am%20checking%20on%20my%20dispatch." class="receipt-action-btn" target="_blank">
+            <a href="https://wa.me/1YOURNUMBER?text=Hi%20SPUR%20Concierge,%20I%20am%20checking%20on%20my%20dispatch." class="receipt-action-btn" target="_blank">
                 <span style="font-size: 14px;">💬</span> 
                 <span data-en="CONFIRM VIA WHATSAPP" data-fr="CONFIRMER VIA WHATSAPP">CONFIRM VIA WHATSAPP</span>
             </a>
 
             <!-- REPLACE '1YOURNUMBER' WITH YOUR ACTUAL WHATSAPP NUMBER BELOW -->
-            <a href="https://wa.me/14387251010?text=Hi%20SPUR%20Concierge,%20I%20need%20to%20modify%20or%20cancel%20my%20request." class="cancel-link" data-en="Need to modify or cancel? Message Concierge." data-fr="Besoin de modifier ou d'annuler ? Contactez le Concierge." target="_blank">
+            <a href="https://wa.me/1YOURNUMBER?text=Hi%20SPUR%20Concierge,%20I%20need%20to%20modify%20or%20cancel%20my%20request." class="cancel-link" data-en="Need to modify or cancel? Message Concierge." data-fr="Besoin de modifier ou d'annuler ? Contactez le Concierge." target="_blank">
                 Need to modify or cancel? Message Concierge.
             </a>
         </div>
