@@ -265,7 +265,7 @@
             text-decoration: underline;
         }
 
-        /* Core Tagline */
+        /* Core Tagline Restored */
         .brand-philosophy {
             font-size: 15px;
             color: var(--gold);
@@ -553,6 +553,25 @@
             margin-top: 15px;
         }
 
+        /* User Reset Link inside Modal */
+        .reset-user-link {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--gold);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            text-decoration: underline;
+            text-decoration-color: rgba(212, 175, 55, 0.4);
+            text-underline-offset: 4px;
+            margin: 0 auto 15px auto;
+            width: 100%;
+            text-align: center;
+        }
+
         /* Final Request Received Card View & WhatsApp Buttons */
         #finalSuccessView {
             display: none;
@@ -640,6 +659,7 @@
             font-size: 22px;
             font-weight: 700;
             color: var(--gold);
+            margin-bottom: 4px;
         }
 
         .receipt-price-label {
@@ -905,7 +925,7 @@
     <!-- READY NOW MODAL -->
     <div id="verifyModal" class="modal-overlay">
         <div class="modal-card">
-            <h3 data-en="Get Ready Now" data-fr="Préparez-vous Maintenant">Get Ready Now</h3>
+            <h3 class="dynamic-header" data-en="Get Ready Now" data-fr="Préparez-vous Maintenant">Get Ready Now</h3>
             <p data-en="Enter your details. We will text you your match." data-fr="Entrez vos coordonnées. Nous vous enverrons votre match.">
                 Enter your details. We will text you your match.
             </p>
@@ -915,10 +935,13 @@
                 <input type="hidden" name="dispatch_channel" value="SMS / WhatsApp Priority Ready">
                 <input type="hidden" name="requested_specialist" class="specialistHiddenField" value="Any Available">
                 
+                <!-- WELCOME BACK RESET LINK (Hidden by default) -->
+                <button type="button" class="reset-user-link" onclick="resetUser()" data-en="Not you? Reset details" data-fr="Pas vous ? Réinitialiser">Not you? Reset details</button>
+
                 <!-- OCCASION / INTENT DROPDOWN -->
                 <select class="modal-input" name="service_context" required>
                     <option value="" disabled selected data-en="What's got you looking your best today?" data-fr="Pour quelle occasion vous préparez-vous ?">What's got you looking your best today?</option>
-                    <option value="JUST FOR YOU™" data-en="JUST FOR YOU™" data-fr="JUST FOR YOU™">JUST FOR YOU™</option>
+                    <option value="Just for me" data-en="Just for me™" data-fr="Juste pour moi™">Just for me™</option>
                     
                     <optgroup label="PROFESSIONAL" data-en="PROFESSIONAL" data-fr="PROFESSIONNEL">
                         <option value="Job Interview" data-en="Job Interview" data-fr="Entretien d'embauche">Job Interview</option>
@@ -946,8 +969,8 @@
                     </optgroup>
                 </select>
 
-                <input type="text" class="modal-input" name="client_name" id="nameInputNow" required placeholder="First Name" data-en-placeholder="First Name" data-fr-placeholder="Prénom">
-                <input type="tel" class="modal-input" name="client_phone" placeholder="10 Digit Mobile" data-en-placeholder="10 Digit Mobile" data-fr-placeholder="Mobile à 10 chiffres" id="phoneInputNow" required pattern="[0-9]{10}">
+                <input type="text" class="modal-input" name="client_name" required placeholder="First Name" data-en-placeholder="First Name" data-fr-placeholder="Prénom">
+                <input type="tel" class="modal-input" name="client_phone" placeholder="10 Digit Mobile" data-en-placeholder="10 Digit Mobile" data-fr-placeholder="Mobile à 10 chiffres" required pattern="[0-9]{10}">
                 
                 <div class="legal-consent-text" data-en="By continuing, you agree to receive dispatch updates via SMS/WhatsApp. Standard rates apply." data-fr="En continuant, vous acceptez de recevoir des mises à jour via SMS/WhatsApp. Tarifs standard applicables.">
                     By continuing, you agree to receive dispatch updates via SMS/WhatsApp. Standard rates apply.
@@ -963,7 +986,7 @@
     <!-- READY LATER MODAL -->
     <div id="laterModal" class="modal-overlay">
         <div class="modal-card">
-            <h3 data-en="Plan Ahead" data-fr="Planifier à L'avance">Plan Ahead</h3>
+            <h3 class="dynamic-header" data-en="Plan Ahead" data-fr="Planifier à L'avance">Plan Ahead</h3>
             <p data-en="Choose when you’d like to visit. We’ll coordinate it." data-fr="Choisissez quand vous souhaitez visiter. Nous le coordonnerons.">
                 Choose when you’d like to visit. We’ll coordinate it.
             </p>
@@ -973,10 +996,13 @@
                 <input type="hidden" name="dispatch_channel" value="Scheduled Request">
                 <input type="hidden" name="requested_specialist" class="specialistHiddenField" value="Any Available">
                 
+                <!-- WELCOME BACK RESET LINK (Hidden by default) -->
+                <button type="button" class="reset-user-link" onclick="resetUser()" data-en="Not you? Reset details" data-fr="Pas vous ? Réinitialiser">Not you? Reset details</button>
+
                 <!-- OCCASION / INTENT DROPDOWN -->
                 <select class="modal-input" name="service_context" required>
                     <option value="" disabled selected data-en="What's got you looking your best today?" data-fr="Pour quelle occasion vous préparez-vous ?">What's got you looking your best today?</option>
-                    <option value="JUST FOR YOU™" data-en="JUST FOR YOU™" data-fr="JUST FOR YOU™">JUST FOR YOU™</option>
+                    <option value="Just for me" data-en="Just for me™" data-fr="Juste pour moi™">Just for me™</option>
                     
                     <optgroup label="PROFESSIONAL" data-en="PROFESSIONAL" data-fr="PROFESSIONNEL">
                         <option value="Job Interview" data-en="Job Interview" data-fr="Entretien d'embauche">Job Interview</option>
@@ -1118,7 +1144,6 @@
         };
 
         function setCity(city) {
-            if(city !== 'yvr' && city !== 'yul' && city !== 'yyz') return; 
             currentCity = city;
             
             document.getElementById('btn-yvr').classList.toggle('active', city === 'yvr');
@@ -1169,6 +1194,11 @@
 
             localStorage.setItem('spur_lang', lang);
             updateBadgeText();
+            
+            // Refresh open modals to update dynamic headers
+            document.querySelectorAll('.modal-overlay').forEach(m => {
+                if(m.style.display === 'flex') openModal(m.id);
+            });
         }
 
         /* --- PAGE 2: INTERCEPT LOGIC --- */
@@ -1234,22 +1264,55 @@
             }
         }
 
-        /* --- STANDARD MODAL & FORM LOGIC --- */
+        /* --- STANDARD MODAL & "WELCOME BACK" LOGIC --- */
         function openModal(id) {
             const savedName = localStorage.getItem('spur_user_name');
             const savedPhone = localStorage.getItem('spur_user_phone');
+            const lang = localStorage.getItem('spur_lang') || 'en';
             
             const modal = document.getElementById(id);
-            if(savedName) {
-                const nameInputs = modal.querySelectorAll('input[name="client_name"]');
-                nameInputs.forEach(i => i.value = savedName);
-            }
-            if(savedPhone) {
-                const phoneInputs = modal.querySelectorAll('input[name="client_phone"]');
-                phoneInputs.forEach(i => i.value = savedPhone);
+            const dynamicHeader = modal.querySelector('.dynamic-header');
+            const nameInputs = modal.querySelectorAll('input[name="client_name"]');
+            const phoneInputs = modal.querySelectorAll('input[name="client_phone"]');
+            const resetBtns = modal.querySelectorAll('.reset-user-link');
+            
+            if (savedName && savedPhone) {
+                // "Welcome Back" Mode: Hide inputs, strip HTML validation, update header
+                nameInputs.forEach(i => { i.value = savedName; i.style.display = 'none'; i.removeAttribute('required'); });
+                phoneInputs.forEach(i => { i.value = savedPhone; i.style.display = 'none'; i.removeAttribute('required'); });
+                resetBtns.forEach(btn => btn.style.display = 'block');
+                
+                if(dynamicHeader) {
+                    const firstName = savedName.split(' ')[0];
+                    dynamicHeader.innerText = lang === 'fr' ? "Bon retour, " + firstName : "Welcome back, " + firstName;
+                }
+            } else {
+                // First-time visitor Mode: Show all inputs, enforce HTML validation
+                nameInputs.forEach(i => { i.value = ''; i.style.display = 'block'; i.setAttribute('required', 'true'); });
+                phoneInputs.forEach(i => { i.value = ''; i.style.display = 'block'; i.setAttribute('required', 'true'); });
+                resetBtns.forEach(btn => btn.style.display = 'none');
+                
+                if(dynamicHeader) {
+                    if (lang === 'fr' && dynamicHeader.hasAttribute('data-fr')) {
+                        dynamicHeader.innerText = dynamicHeader.getAttribute('data-fr');
+                    } else if (dynamicHeader.hasAttribute('data-en')) {
+                        dynamicHeader.innerText = dynamicHeader.getAttribute('data-en');
+                    }
+                }
             }
             
             modal.style.display = 'flex';
+        }
+        
+        function resetUser() {
+            localStorage.removeItem('spur_user_name');
+            localStorage.removeItem('spur_user_phone');
+            
+            document.querySelectorAll('.modal-overlay').forEach(m => {
+                if(m.style.display === 'flex') {
+                    openModal(m.id);
+                }
+            });
         }
         
         function closeModals() {
@@ -1312,7 +1375,8 @@
             const phoneInput = form.querySelector('input[name="client_phone"]');
             const nameInput = form.querySelector('input[name="client_name"]');
             
-            if (phoneInput.value.trim().length >= 10) {
+            // Allow submission if field is hidden (Welcome back mode) OR if it passes length check
+            if (phoneInput.style.display === 'none' || phoneInput.value.trim().length >= 10) {
                 const formData = new FormData(form);
                 
                 localStorage.setItem('spur_user_phone', phoneInput.value.trim());
