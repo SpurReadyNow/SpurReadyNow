@@ -733,7 +733,7 @@
             <div class="top-right-group">
                 <div class="live-badge">
                     <div class="live-dot"></div>
-                    <span id="liveBadgeText">Vancouver • Live</span>
+                    <span id="liveBadgeText">Vancouver • Yaletown • Live</span>
                 </div>
                 
                 <div class="controls-row">
@@ -893,7 +893,8 @@
             </p>
             
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleSubmit(event, 'now')">
-                <input type="hidden" name="city_location" class="formCityField" value="Vancouver">
+                <!-- Location natively assigned by JS cityData -->
+                <input type="hidden" name="city_location" class="formCityField" value="Yaletown, Vancouver">
                 <input type="hidden" name="dispatch_channel" value="SMS / WhatsApp Priority Ready">
                 <input type="hidden" name="requested_specialist" class="specialistHiddenField" value="Any Available">
                 
@@ -920,7 +921,7 @@
             </p>
             
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleSubmit(event, 'later')">
-                <input type="hidden" name="city_location" class="formCityField" value="Vancouver">
+                <input type="hidden" name="city_location" class="formCityField" value="Yaletown, Vancouver">
                 <input type="hidden" name="dispatch_channel" value="Scheduled Request">
                 <input type="hidden" name="requested_specialist" class="specialistHiddenField" value="Any Available">
                 
@@ -962,7 +963,7 @@
             <p data-en="Please enter your unique membership code." data-fr="Veuillez entrer votre code d'adhésion unique.">Please enter your unique membership code.</p>
             
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleCodeSubmit(event)">
-                <input type="hidden" name="city_location" class="formCityField" value="Vancouver">
+                <input type="hidden" name="city_location" class="formCityField" value="Yaletown, Vancouver">
                 <input type="hidden" name="dispatch_channel" value="Code Redemption">
                 <input type="text" class="modal-input" name="spurtan_code" placeholder="e.g., SPURTAN" id="spurInput" required>
                 <button type="submit" class="modal-circle-btn" data-en="APPLY" data-fr="APPLIQUER">APPLY</button>
@@ -996,7 +997,7 @@
                     <div class="grid-box-lbl" id="receiptTargetTimeLbl" data-en="Mins Est." data-fr="Minutes (Est.)">Mins Est.</div>
                 </div>
                 <div class="receipt-grid-box">
-                    <div class="grid-box-val" id="receiptTargetArea">Vancouver</div>
+                    <div class="grid-box-val" id="receiptTargetArea">Yaletown, Vancouver</div>
                     <div class="grid-box-lbl" data-en="Location" data-fr="Lieu">Location</div>
                 </div>
             </div>
@@ -1020,9 +1021,21 @@
         let currentCity = 'yvr';
 
         const cityData = {
-            yvr: { enBadge: "Vancouver • Live", frBadge: "Vancouver • En Direct", areaName: "Vancouver" },
-            yyz: { enBadge: "Toronto • Live", frBadge: "Toronto • En Direct", areaName: "Toronto" },
-            yul: { enBadge: "Montreal • Live", frBadge: "Montréal • En Direct", areaName: "Montréal" }
+            yvr: { 
+                enBadge: "Vancouver • Yaletown • Live", 
+                frBadge: "Vancouver • Yaletown • En Direct", 
+                areaName: "Yaletown, Vancouver" 
+            },
+            yyz: { 
+                enBadge: "Toronto • Coming Soon", 
+                frBadge: "Toronto • Bientôt", 
+                areaName: "Toronto" 
+            },
+            yul: { 
+                enBadge: "Montreal • Plateau • Live", 
+                frBadge: "Montréal • Le Plateau • En Direct", 
+                areaName: "Le Plateau, Montréal" 
+            }
         };
 
         function alertCity(cityCode) {
@@ -1265,9 +1278,16 @@
 
         window.addEventListener('DOMContentLoaded', () => {
             const savedLang = localStorage.getItem('spur_lang') || 'en';
+            
+            // Initialization checks
             const savedCity = localStorage.getItem('spur_active_city') || 'yvr';
-            switchLanguage(savedLang);
             setCity(savedCity);
+            switchLanguage(savedLang);
+            
+            // Trigger explicit data hydration for base city
+            if (!localStorage.getItem('spur_active_city')) {
+                setCity('yvr');
+            }
         });
     </script>
 </body>
