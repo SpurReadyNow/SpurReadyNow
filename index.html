@@ -742,7 +742,8 @@
                         <span>|</span>
                         <button onclick="alertCity('yyz')" id="btn-yyz" style="opacity: 0.5;">YYZ</button>
                         <span>|</span>
-                        <button onclick="alertCity('yul')" id="btn-yul" style="opacity: 0.5;">YUL</button>
+                        <!-- Montreal is fully active now -->
+                        <button onclick="setCity('yul')" id="btn-yul">YUL</button>
                     </div>
                     <div class="toggle-capsule">
                         <button onclick="switchLanguage('en')" id="btn-en" class="active">EN</button>
@@ -822,7 +823,7 @@
                 </div>
             </div>
 
-            <!-- Ready Later Option Restored -->
+            <!-- Ready Later Option -->
             <button class="ready-later-btn" onclick="openIntercept('later')">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
@@ -893,7 +894,6 @@
                 Enter your details. We will text you your match.
             </p>
             
-            <!-- Replace Formspree ID mjykllwj with your live endpoint if needed -->
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleSubmit(event, 'now')">
                 <input type="hidden" name="city_location" class="formCityField" value="Vancouver">
                 <input type="hidden" name="dispatch_channel" value="SMS / WhatsApp Priority Ready">
@@ -963,7 +963,6 @@
             <h3 data-en="Enter SPURTAN Code" data-fr="Entrez le code SPURTAN">Enter SPURTAN Code</h3>
             <p data-en="Please enter your unique membership code." data-fr="Veuillez entrer votre code d'adhésion unique.">Please enter your unique membership code.</p>
             
-            <!-- Replace Formspree ID mjykllwj with your live endpoint if needed -->
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleCodeSubmit(event)">
                 <input type="hidden" name="city_location" class="formCityField" value="Vancouver">
                 <input type="hidden" name="dispatch_channel" value="Code Redemption">
@@ -1025,23 +1024,25 @@
         let currentCity = 'yvr';
 
         const cityData = {
-            yvr: { enBadge: "Vancouver • Live", frBadge: "Vancouver • En Direct", areaName: "Vancouver" }
+            yvr: { enBadge: "Vancouver • Live", frBadge: "Vancouver • En Direct", areaName: "Vancouver" },
+            yyz: { enBadge: "Toronto • Live", frBadge: "Toronto • En Direct", areaName: "Toronto" },
+            yul: { enBadge: "Montreal • Live", frBadge: "Montréal • En Direct", areaName: "Montréal" }
         };
 
         function alertCity(cityCode) {
             const lang = localStorage.getItem('spur_lang') || 'en';
             if (cityCode === 'yyz') {
                 alert(lang === 'fr' ? "Bientôt disponible à Toronto!" : "Coming soon to Toronto!");
-            } else if (cityCode === 'yul') {
-                alert(lang === 'fr' ? "Bientôt disponible à Montréal!" : "Coming soon to Montreal!");
             }
         }
 
         function setCity(city) {
-            // Only allow Vancouver for MVP pilot
-            if(city !== 'yvr') return;
             currentCity = city;
             
+            document.getElementById('btn-yvr').classList.toggle('active', city === 'yvr');
+            document.getElementById('btn-yyz').classList.toggle('active', city === 'yyz');
+            document.getElementById('btn-yul').classList.toggle('active', city === 'yul');
+
             document.querySelectorAll('.formCityField').forEach(el => el.value = cityData[city].areaName);
             document.getElementById('receiptTargetArea').innerText = cityData[city].areaName;
 
@@ -1254,7 +1255,6 @@
                 document.getElementById('receiptTargetTime').innerText = "Pending";
                 document.getElementById('receiptTargetTimeLbl').innerText = "Confirm";
             } else {
-                // Reset to default READY NOW text in case they previously submitted a 'later' request
                 document.getElementById('receiptHeaderTag').innerText = lang === 'fr' ? "Dispatche Prioritaire" : "Priority Dispatch";
                 document.getElementById('receiptSubTitle').innerText = lang === 'fr' ? "Nous sécurisons votre spécialiste." : "We are securing your specialist.";
                 document.getElementById('receiptTargetTime').innerText = "~ 3-5";
