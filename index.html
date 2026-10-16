@@ -7,6 +7,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#0d0d0d">
+    <link rel="manifest" href="manifest.json">
     
     <style>
         :root {
@@ -265,7 +266,7 @@
             text-decoration: underline;
         }
 
-        /* Core Tagline */
+        /* Core Tagline Restored */
         .brand-philosophy {
             font-size: 15px;
             color: var(--gold);
@@ -274,7 +275,6 @@
             text-align: center;
             margin-bottom: 25px;
             font-weight: 600;
-            transition: opacity 0.3s;
         }
 
         /* Call To Action Area */
@@ -1150,6 +1150,15 @@
                 }
             });
 
+            // Handle Optgroup Labels manually for cross-browser support
+            document.querySelectorAll('optgroup[data-en]').forEach(el => {
+                if (lang === 'fr' && el.hasAttribute('data-fr')) {
+                    el.label = el.getAttribute('data-fr');
+                } else if (lang === 'en' && el.hasAttribute('data-en')) {
+                    el.label = el.getAttribute('data-en');
+                }
+            });
+
             // Dynamic Welcome Back handling for language switch
             const savedName = localStorage.getItem('spur_user_name');
             const philText = document.getElementById('brandPhilosophyText');
@@ -1348,6 +1357,7 @@
             const phoneInput = form.querySelector('input[name="client_phone"]');
             const nameInput = form.querySelector('input[name="client_name"]');
             
+            // Allow submission if field is hidden (Welcome back mode) OR if it passes length check
             if (phoneInput.style.display === 'none' || phoneInput.value.trim().length >= 10) {
                 const formData = new FormData(form);
                 
