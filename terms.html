@@ -9,45 +9,69 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
         body { background-color: var(--bg-color); color: var(--text-main); padding: 40px 20px; display: flex; justify-content: center; line-height: 1.6; }
         .container { max-width: 600px; width: 100%; }
+        
+        /* Top Navigation */
+        .top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-link { color: var(--gold); text-decoration: none; font-size: 12px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; }
+        .back-link:hover { text-decoration: underline; }
+        
+        /* Language Toggle */
+        .toggle-capsule { display: flex; align-items: center; background: rgba(255, 255, 255, 0.04); padding: 5px 10px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.08); }
+        .toggle-capsule button { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 11px; font-weight: 600; padding: 2px 3px; transition: color 0.2s ease; }
+        .toggle-capsule button.active { color: var(--gold); }
+        .toggle-capsule span { color: #444; margin: 0 3px; font-size: 11px; }
+
+        /* Typography */
         h1 { color: var(--gold); margin-bottom: 5px; font-size: 24px; letter-spacing: 1px; }
         .date { font-size: 12px; color: var(--text-muted); margin-bottom: 30px; text-transform: uppercase; letter-spacing: 1px; }
         h2 { color: var(--gold); font-size: 16px; margin-top: 25px; margin-bottom: 10px; }
         p { font-size: 14px; color: var(--text-muted); margin-bottom: 15px; }
-        .back-link { display: inline-block; margin-bottom: 30px; color: var(--gold); text-decoration: none; font-size: 12px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; }
-        .back-link:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
     <div class="container">
-        <a href="index.html" class="back-link" data-en="← Back to SPUR" data-fr="← Retour à SPUR">← Back to SPUR</a>
+        
+        <div class="top-nav">
+            <a href="index.html" class="back-link" data-en="← Back to SPUR" data-fr="← Retour à SPUR">← Back to SPUR</a>
+            <div class="toggle-capsule">
+                <button onclick="switchLanguage('en')" id="btn-en" class="active">EN</button>
+                <span>|</span>
+                <button onclick="switchLanguage('fr')" id="btn-fr">FR</button>
+            </div>
+        </div>
+
         <h1 data-en="Terms of Service" data-fr="Conditions d'utilisation">Terms of Service</h1>
         <div class="date" data-en="Last Updated: October 2026" data-fr="Dernière mise à jour : Octobre 2026">Last Updated: October 2026</div>
 
         <h2 data-en="1. Nature of the Platform and Liability Shield" data-fr="1. Nature de la plateforme et limitation de responsabilité">1. Nature of the Platform and Liability Shield</h2>
-        <p data-en="SPUR operates exclusively as a technology and logistics routing platform that connects users with independent, third-party grooming specialists. SPUR is not a salon, barbershop, or grooming service provider. All specialists operating through the SPUR network are independent contractors. By using the platform, you acknowledge and agree that SPUR holds no liability or responsibility for the actual physical grooming services provided, the conduct of the specialists, or any injuries, damages, or dissatisfaction resulting from your appointment." data-fr="SPUR opère exclusivement comme une plateforme technologique et logistique de routage qui met en relation les utilisateurs avec des spécialistes indépendants. SPUR n'est pas un salon de coiffure, un barbier ou un fournisseur de services. Tous les spécialistes opérant sur le réseau SPUR sont des entrepreneurs indépendants. En utilisant la plateforme, vous reconnaissez et acceptez que SPUR n'assume aucune responsabilité quant aux services physiques fournis, à la conduite des spécialistes, ou aux blessures, dommages ou insatisfactions résultant de votre rendez-vous.">SPUR operates exclusively as a technology and logistics routing platform...</p>
+        <p data-en="SPUR operates exclusively as a technology and logistics routing platform that connects users with independent, third-party grooming specialists. SPUR is not a salon, barbershop, or grooming service provider. All specialists operating through the SPUR network are independent contractors. By using the platform, you acknowledge and agree that SPUR holds no liability or responsibility for the actual physical grooming services provided, the conduct of the specialists, or any injuries, damages, or dissatisfaction resulting from your appointment." data-fr="SPUR opère exclusivement comme une plateforme technologique et logistique de routage qui met en relation les utilisateurs avec des spécialistes indépendants. SPUR n'est pas un salon de coiffure, un barbier ou un fournisseur de services. Tous les spécialistes opérant sur le réseau SPUR sont des entrepreneurs indépendants. En utilisant la plateforme, vous reconnaissez et acceptez que SPUR n'assume aucune responsabilité quant aux services physiques fournis, à la conduite des spécialistes, ou aux blessures, dommages ou insatisfactions résultant de votre rendez-vous.">SPUR operates exclusively as a technology and logistics routing platform that connects users with independent, third-party grooming specialists. SPUR is not a salon, barbershop, or grooming service provider. All specialists operating through the SPUR network are independent contractors. By using the platform, you acknowledge and agree that SPUR holds no liability or responsibility for the actual physical grooming services provided, the conduct of the specialists, or any injuries, damages, or dissatisfaction resulting from your appointment.</p>
 
         <h2 data-en="2. Pilot Pricing and Payment Collection" data-fr="2. Tarification pilote et encaissement">2. Pilot Pricing and Payment Collection</h2>
-        <p data-en="During the SPUR pilot launch, all dispatch requests are offered at a flat rate of $39.99 CAD (or $29.99 CAD with a valid SPURTAN promotional code). SPUR facilitates the routing and reservation of the specialist's chair; however, payment for the service is currently settled directly between you and the independent specialist at the studio location." data-fr="Lors du lancement pilote de SPUR, toutes les demandes de dispatche sont proposées à un tarif fixe de 39,99 $ CA (ou 29,99 $ CA avec un code SPURTAN valide). SPUR facilite le routage et la réservation du fauteuil du spécialiste ; cependant, le paiement du service est actuellement réglé directement entre vous et le spécialiste indépendant au studio.">During the SPUR pilot launch...</p>
+        <p data-en="During the SPUR pilot launch, all dispatch requests are offered at a flat rate of $39.99 CAD (or $29.99 CAD with a valid SPURTAN promotional code). SPUR facilitates the routing and reservation of the specialist's chair; however, payment for the service is currently settled directly between you and the independent specialist at the studio location." data-fr="Lors du lancement pilote de SPUR, toutes les demandes de dispatche sont proposées à un tarif fixe de 39,99 $ CA (ou 29,99 $ CA avec un code SPURTAN valide). SPUR facilite le routage et la réservation du fauteuil du spécialiste ; cependant, le paiement du service est actuellement réglé directement entre vous et le spécialiste indépendant au studio.">During the SPUR pilot launch, all dispatch requests are offered at a flat rate of $39.99 CAD (or $29.99 CAD with a valid SPURTAN promotional code). SPUR facilitates the routing and reservation of the specialist's chair; however, payment for the service is currently settled directly between you and the independent specialist at the studio location.</p>
 
         <h2 data-en="3. Dispatch and Readiness Guarantees" data-fr="3. Garanties de dispatche et de préparation">3. Dispatch and Readiness Guarantees</h2>
-        <p data-en="While SPUR targets an estimated matching time of 3 to 5 minutes, exact dispatch times and specialist availability are subject to local demand and operating hours (9:00 AM – 8:00 PM local time). SPUR does not guarantee the availability of specific requested specialists but will prioritize requests for previous specialists when feasible." data-fr="Bien que SPUR vise un temps de mise en relation estimé de 3 à 5 minutes, les délais exacts et la disponibilité dépendent de la demande locale et des heures d'ouverture (de 9h00 à 20h00, heure locale). SPUR ne garantit pas la disponibilité de spécialistes spécifiques, mais donnera la priorité aux demandes de spécialistes précédents lorsque cela est possible.">While SPUR targets...</p>
+        <p data-en="While SPUR targets an estimated matching time of 3 to 5 minutes, exact dispatch times and specialist availability are subject to local demand and operating hours (9:00 AM – 8:00 PM local time). SPUR does not guarantee the availability of specific requested specialists but will prioritize requests for previous specialists when feasible." data-fr="Bien que SPUR vise un temps de mise en relation estimé de 3 à 5 minutes, les délais exacts et la disponibilité dépendent de la demande locale et des heures d'ouverture (de 9h00 à 20h00, heure locale). SPUR ne garantit pas la disponibilité de spécialistes spécifiques, mais donnera la priorité aux demandes de spécialistes précédents lorsque cela est possible.">While SPUR targets an estimated matching time of 3 to 5 minutes, exact dispatch times and specialist availability are subject to local demand and operating hours (9:00 AM – 8:00 PM local time). SPUR does not guarantee the availability of specific requested specialists but will prioritize requests for previous specialists when feasible.</p>
 
         <h2 data-en="4. Cancellations and Modifications" data-fr="4. Annulations et modifications">4. Cancellations and Modifications</h2>
-        <p data-en="Because SPUR reserves high-demand chairs in premium studios, excessive cancellations disrupt our specialist network. If you need to modify or cancel a dispatch request, you must do so immediately by contacting the SPUR Concierge via the WhatsApp link provided on your confirmation screen. SPUR reserves the right to suspend or ban users who repeatedly abandon confirmed dispatches." data-fr="Parce que SPUR réserve des fauteuils très demandés dans des studios haut de gamme, les annulations excessives perturbent notre réseau. Si vous devez modifier ou annuler une demande, vous devez le faire immédiatement en contactant le Concierge SPUR via le lien WhatsApp fourni sur votre écran de confirmation. SPUR se réserve le droit de suspendre ou de bannir les utilisateurs qui abandonnent de façon répétée des réservations.">Because SPUR reserves...</p>
+        <p data-en="Because SPUR reserves high-demand chairs in premium studios, excessive cancellations disrupt our specialist network. If you need to modify or cancel a dispatch request, you must do so immediately by contacting the SPUR Concierge via the WhatsApp link provided on your confirmation screen. SPUR reserves the right to suspend or ban users who repeatedly abandon confirmed dispatches." data-fr="Parce que SPUR réserve des fauteuils très demandés dans des studios haut de gamme, les annulations excessives perturbent notre réseau. Si vous devez modifier ou annuler une demande, vous devez le faire immédiatement en contactant le Concierge SPUR via le lien WhatsApp fourni sur votre écran de confirmation. SPUR se réserve le droit de suspendre ou de bannir les utilisateurs qui abandonnent de façon répétée des réservations.">Because SPUR reserves high-demand chairs in premium studios, excessive cancellations disrupt our specialist network. If you need to modify or cancel a dispatch request, you must do so immediately by contacting the SPUR Concierge via the WhatsApp link provided on your confirmation screen. SPUR reserves the right to suspend or ban users who repeatedly abandon confirmed dispatches.</p>
 
         <h2 data-en="5. Governing Law" data-fr="5. Droit applicable">5. Governing Law</h2>
-        <p data-en="These Terms of Service are governed by the laws of the Province of British Columbia and the federal laws of Canada applicable therein, with specific accommodations made for users residing in Quebec under provincial consumer protection frameworks." data-fr="Ces conditions d'utilisation sont régies par les lois de la province de la Colombie-Britannique et les lois fédérales du Canada qui s'y appliquent, avec des adaptations spécifiques pour les utilisateurs résidant au Québec en vertu des cadres de protection des consommateurs de la province.">These Terms of Service are governed by...</p>
+        <p data-en="These Terms of Service are governed by the laws of the Province of British Columbia and the federal laws of Canada applicable therein, with specific accommodations made for users residing in Quebec under provincial consumer protection frameworks." data-fr="Ces conditions d'utilisation sont régies par les lois de la province de la Colombie-Britannique et les lois fédérales du Canada qui s'y appliquent, avec des adaptations spécifiques pour les utilisateurs résidant au Québec en vertu des cadres de protection des consommateurs de la province.">These Terms of Service are governed by the laws of the Province of British Columbia and the federal laws of Canada applicable therein, with specific accommodations made for users residing in Quebec under provincial consumer protection frameworks.</p>
     </div>
 
     <script>
         function switchLanguage(lang) {
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+            document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
+
             document.querySelectorAll('[data-en]').forEach(el => {
                 if (lang === 'fr' && el.hasAttribute('data-fr')) {
-                    el.innerText = el.getAttribute('data-fr');
+                    el.innerHTML = el.getAttribute('data-fr');
                 } else if (lang === 'en' && el.hasAttribute('data-en')) {
-                    el.innerText = el.getAttribute('data-en');
+                    el.innerHTML = el.getAttribute('data-en');
                 }
             });
+            localStorage.setItem('spur_lang', lang);
         }
 
         window.addEventListener('DOMContentLoaded', () => {
