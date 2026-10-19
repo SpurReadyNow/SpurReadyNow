@@ -487,18 +487,6 @@
             font-weight: bold;
         }
 
-        /* Tier Dropdown Specific Animations */
-        .tier-dropdown {
-            border-color: var(--gold);
-            background: rgba(212, 175, 55, 0.05) !important;
-            animation: slideDown 0.3s ease-out forwards;
-        }
-
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
         .modal-input:-webkit-autofill,
         .modal-input:-webkit-autofill:hover, 
         .modal-input:-webkit-autofill:focus {
@@ -588,7 +576,7 @@
             text-align: center;
         }
 
-        /* Final Request Received Card View */
+        /* Final Request Received Card View & WhatsApp Buttons */
         #finalSuccessView {
             display: none;
             width: 100%;
@@ -952,20 +940,13 @@
                 <input type="hidden" name="dispatch_channel" value="SMS / WhatsApp Priority Ready">
                 <input type="hidden" name="requested_specialist" class="specialistHiddenField" value="Any Available">
                 
-                <!-- OCCASION DROPDOWN & DYNAMIC TIER MENU -->
-                <select class="modal-input" name="service_context" onchange="toggleTierDropdown(this)">
+                <!-- OCCASION DROPDOWN (No Tier logic) -->
+                <select class="modal-input" name="service_context">
                     <option value="" disabled selected data-en="What's the occasion? (Optional)" data-fr="Quelle est l'occasion ? (Optionnel)">What's the occasion? (Optional)</option>
                     <option value="Just for Me" class="opt-white" data-en="Just for Me™" data-fr="Juste pour moi™">Just for Me™</option>
                     <option value="Professional" class="opt-gold" data-en="Professional" data-fr="Professionnel">Professional</option>
                     <option value="Social" class="opt-gold" data-en="Social" data-fr="Social">Social</option>
                     <option value="Life" class="opt-gold" data-en="Life" data-fr="Vie personnelle">Life</option>
-                </select>
-
-                <select class="modal-input tier-dropdown" name="service_tier" style="display: none;">
-                    <option value="" disabled selected data-en="Select Intervention Level" data-fr="Sélectionnez le niveau d'intervention">Select Intervention Level</option>
-                    <option value="SPUR Refresh" data-en="SPUR Refresh™ (Quick Tune-up)" data-fr="SPUR Refresh™ (Mise au point rapide)">SPUR Refresh™ (Quick Tune-up)</option>
-                    <option value="SPUR Cut" data-en="SPUR Cut™ (Standard Reset)" data-fr="SPUR Cut™ (Coupe standard)">SPUR Cut™ (Standard Reset)</option>
-                    <option value="SPUR Reset" data-en="SPUR Reset™ (Complete Overhaul)" data-fr="SPUR Reset™ (Refonte complète)">SPUR Reset™ (Complete Overhaul)</option>
                 </select>
 
                 <input type="text" class="modal-input" name="client_name" id="nameInputNow" required placeholder="First Name" data-en-placeholder="First Name" data-fr-placeholder="Prénom">
@@ -997,20 +978,13 @@
                 <input type="hidden" name="dispatch_channel" value="Scheduled Request">
                 <input type="hidden" name="requested_specialist" class="specialistHiddenField" value="Any Available">
                 
-                <!-- OCCASION DROPDOWN & DYNAMIC TIER MENU -->
-                <select class="modal-input" name="service_context" onchange="toggleTierDropdown(this)">
+                <!-- OCCASION DROPDOWN (No Tier logic) -->
+                <select class="modal-input" name="service_context">
                     <option value="" disabled selected data-en="What's the occasion? (Optional)" data-fr="Quelle est l'occasion ? (Optionnel)">What's the occasion? (Optional)</option>
                     <option value="Just for Me" class="opt-white" data-en="Just for Me™" data-fr="Juste pour moi™">Just for Me™</option>
                     <option value="Professional" class="opt-gold" data-en="Professional" data-fr="Professionnel">Professional</option>
                     <option value="Social" class="opt-gold" data-en="Social" data-fr="Social">Social</option>
                     <option value="Life" class="opt-gold" data-en="Life" data-fr="Vie personnelle">Life</option>
-                </select>
-
-                <select class="modal-input tier-dropdown" name="service_tier" style="display: none;">
-                    <option value="" disabled selected data-en="Select Intervention Level" data-fr="Sélectionnez le niveau d'intervention">Select Intervention Level</option>
-                    <option value="SPUR Refresh" data-en="SPUR Refresh™ (Quick Tune-up)" data-fr="SPUR Refresh™ (Mise au point rapide)">SPUR Refresh™ (Quick Tune-up)</option>
-                    <option value="SPUR Cut" data-en="SPUR Cut™ (Standard Reset)" data-fr="SPUR Cut™ (Coupe standard)">SPUR Cut™ (Standard Reset)</option>
-                    <option value="SPUR Reset" data-en="SPUR Reset™ (Complete Overhaul)" data-fr="SPUR Reset™ (Refonte complète)">SPUR Reset™ (Complete Overhaul)</option>
                 </select>
 
                 <input type="text" class="modal-input" name="client_name" required placeholder="First Name" data-en-placeholder="First Name" data-fr-placeholder="Prénom">
@@ -1256,19 +1230,6 @@
             }
         }
 
-        /* DYNAMIC TIER DROPDOWN LOGIC */
-        function toggleTierDropdown(selectElement) {
-            const tierDropdown = selectElement.parentElement.querySelector('.tier-dropdown');
-            if (selectElement.value === "Just for Me") {
-                tierDropdown.style.display = "block";
-                tierDropdown.setAttribute("required", "true");
-            } else {
-                tierDropdown.style.display = "none";
-                tierDropdown.removeAttribute("required");
-                tierDropdown.value = "";
-            }
-        }
-
         /* --- STANDARD MODAL & "WELCOME BACK" LOGIC --- */
         function openModal(id) {
             const savedName = localStorage.getItem('spur_user_name');
@@ -1282,11 +1243,9 @@
             const phoneInputs = modal.querySelectorAll('input[name="client_phone"]');
             const resetBtns = modal.querySelectorAll('.reset-user-link');
             const occasionSelects = modal.querySelectorAll('select[name="service_context"]');
-            const tierDropdowns = modal.querySelectorAll('.tier-dropdown');
             
             // Clean up dropdowns on fresh modal open
             occasionSelects.forEach(s => s.value = "");
-            tierDropdowns.forEach(t => { t.style.display = 'none'; t.value = ""; t.removeAttribute("required"); });
 
             if (savedName && savedPhone) {
                 nameInputs.forEach(i => { i.value = savedName; i.style.display = 'none'; i.removeAttribute('required'); });
@@ -1366,8 +1325,8 @@
                     usedCodes.push(codeVal);
                     localStorage.setItem('spur_used_codes', JSON.stringify(usedCodes));
 
-                    document.getElementById('displayPrice').innerText = "$29.99 CAD";
-                    document.getElementById('finalReceiptPrice').innerText = "$29.99";
+                    document.getElementById('displayPrice').innerText = "$39.99 CAD";
+                    document.getElementById('finalReceiptPrice').innerText = "$39.99";
                     
                     const codeLink = document.getElementById('codeLinkText');
                     codeLink.innerText = lang === 'fr' ? "✓ CODE APPLIQUÉ" : "✓ CODE APPLIED";
