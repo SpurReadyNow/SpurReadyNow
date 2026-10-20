@@ -12,8 +12,7 @@
     <style>
         :root {
             --bg-color: #0d0d0d;
-            --gold: #d4af37;
-            --gold-light: #f3e5ab; /* Soft Champagne Gold for luxury text */
+            --gold: #d4af37; /* EXACT SINGLE GOLD ACCENT */
             --text-main: #ffffff;
             --text-muted: #a0a0a0;
             --card-bg: #141414;
@@ -38,12 +37,12 @@
             position: relative;
         }
 
-        /* 1. REFINED LUXURY VIP TOP PILL (Champagne & Clean Borders) */
+        /* 1. UNIFIED VIP TOP PILL */
         .vip-top-pill {
             width: 100%;
             max-width: 440px;
-            background: rgba(212, 175, 55, 0.03);
-            border: 1px solid rgba(212, 175, 55, 0.25);
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
             border-radius: 30px;
             padding: 10px 16px;
             margin-bottom: 24px;
@@ -55,8 +54,7 @@
         }
 
         .vip-top-pill:hover {
-            background: rgba(212, 175, 55, 0.07);
-            border-color: var(--gold-light);
+            border-color: var(--gold);
         }
 
         .vip-pill-left {
@@ -66,7 +64,7 @@
             font-size: 10px;
             font-weight: 700;
             letter-spacing: 1.2px;
-            color: var(--gold-light); /* Soft Champagne instead of harsh yellow */
+            color: var(--text-muted);
             text-transform: uppercase;
         }
 
@@ -79,7 +77,7 @@
             font-size: 10px;
             font-weight: 800;
             letter-spacing: 1px;
-            color: var(--text-main); /* Pure white for high-end contrast */
+            color: var(--gold);
             text-transform: uppercase;
         }
 
@@ -167,7 +165,7 @@
         }
 
         .toggle-capsule button.active {
-            color: var(--gold-light);
+            color: var(--gold);
         }
 
         .toggle-capsule span {
@@ -206,7 +204,7 @@
             line-height: 1.35;
             letter-spacing: -0.5px;
             margin-bottom: 30px;
-            color: var(--gold-light); /* Softened from bright yellow to champagne */
+            color: var(--text-muted); /* Clean muted grey to stop yellow clash */
         }
 
         /* 4 Steps List */
@@ -291,7 +289,7 @@
         .pilot-price {
             font-size: 22px;
             font-weight: 700;
-            color: var(--gold-light);
+            color: var(--gold);
             margin-bottom: 4px;
         }
 
@@ -314,12 +312,12 @@
         /* Core Tagline */
         .brand-philosophy {
             font-size: 15px;
-            color: var(--gold-light);
+            color: var(--text-muted);
             font-style: italic;
             letter-spacing: 0.5px;
             text-align: center;
             margin-bottom: 25px;
-            font-weight: 600;
+            font-weight: 400;
         }
 
         /* Call To Action Area */
@@ -334,7 +332,7 @@
 
         @keyframes breathing {
             0% { transform: scale(1); box-shadow: 0 0 20px rgba(212, 175, 55, 0.2); }
-            50% { transform: scale(1.04); box-shadow: 0 0 30px rgba(212, 175, 55, 0.4); }
+            50% { transform: scale(1.04); box-shadow: 0 0 35px rgba(212, 175, 55, 0.4); }
             100% { transform: scale(1); box-shadow: 0 0 20px rgba(212, 175, 55, 0.2); }
         }
 
@@ -342,7 +340,7 @@
             width: 150px;
             height: 150px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #f3e5ab 0%, #aa8c2c 100%); /* Softer champagne gradient */
+            background: var(--gold); /* Clean uniform gold */
             color: #0d0d0d;
             display: flex;
             flex-direction: column;
@@ -396,8 +394,8 @@
 
         .ready-later-btn {
             background: transparent;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            color: var(--gold-light);
+            border: 1px solid var(--border-color);
+            color: var(--gold);
             padding: 14px 28px;
             border-radius: 30px;
             font-size: 12px;
@@ -411,11 +409,15 @@
             gap: 10px;
         }
 
+        .ready-later-btn:hover {
+            border-color: var(--gold);
+        }
+
         .ready-later-btn:active {
             background: rgba(212, 175, 55, 0.1);
         }
 
-        /* Footer with Muted Gold Links */
+        /* Footer with Clean Muted Links */
         .site-footer {
             width: 100%;
             text-align: center;
@@ -428,7 +430,7 @@
         }
 
         .site-footer a {
-            color: var(--gold-light);
+            color: var(--text-muted);
             text-decoration: none;
             margin: 0 6px;
             transition: color 0.2s;
@@ -437,7 +439,7 @@
         }
 
         .site-footer a:hover {
-            color: var(--text-main);
+            color: var(--gold);
             text-decoration: underline;
         }
 
@@ -469,7 +471,7 @@
         }
 
         .modal-card h3 {
-            color: var(--gold-light); /* Softened from bright yellow */
+            color: var(--text-main);
             font-size: 22px;
             margin-bottom: 10px;
             font-weight: 600;
@@ -512,7 +514,7 @@
         }
 
         .modal-capsule-btn {
-            background: linear-gradient(135deg, #f3e5ab 0%, #aa8c2c 100%);
+            background: var(--gold);
             color: #0d0d0d;
             border: none;
             padding: 14px 24px;
@@ -528,11 +530,11 @@
         
         .modal-circle-btn {
             width: 95px; height: 95px; border-radius: 50%;
-            background: linear-gradient(135deg, #f3e5ab 0%, #aa8c2c 100%);
+            background: var(--gold);
             color: #0d0d0d; border: none; font-weight: 800; font-size: 10px;
             cursor: pointer; margin: 10px auto 16px auto; display: flex;
             justify-content: center; align-items: center; text-align: center;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3); padding: 5px;
+            padding: 5px; line-height: 1.2;
         }
 
         .modal-close {
@@ -541,7 +543,7 @@
         }
 
         .reset-user-link {
-            display: none; background: none; border: none; color: var(--gold-light);
+            display: none; background: none; border: none; color: var(--gold);
             font-size: 10px; font-weight: 700; text-transform: uppercase;
             cursor: pointer; text-decoration: underline; margin: 15px auto 5px auto; width: 100%;
         }
@@ -551,7 +553,7 @@
             border-top: 1px solid rgba(255, 255, 255, 0.06); font-size: 11px; color: var(--text-muted);
         }
         .code-modal-bridge button {
-            background: none; border: none; color: var(--gold-light); font-weight: 700;
+            background: none; border: none; color: var(--gold); font-weight: 700;
             text-decoration: underline; cursor: pointer; font-size: 11px; margin-top: 4px;
         }
 
@@ -569,14 +571,14 @@
             border-bottom: 1px solid rgba(255,255,255,0.06);
         }
         .how-step-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-        .how-step-title { font-size: 13px; font-weight: 700; color: var(--gold-light); margin-bottom: 4px; }
+        .how-step-title { font-size: 13px; font-weight: 700; color: var(--gold); margin-bottom: 4px; }
         .how-step-text { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
 
-        /* Success Screen */
+        /* Final Confirmation Screen */
         #finalSuccessView { display: none; width: 100%; max-width: 440px; text-align: center; }
         .success-header-tag {
-            display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 2px; color: var(--gold-light);
-            background: rgba(212, 175, 55, 0.08); border: 1px solid rgba(212, 175, 55, 0.25);
+            display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 2px; color: var(--gold);
+            background: rgba(212, 175, 55, 0.1); border: 1px solid rgba(212, 175, 55, 0.3);
             padding: 6px 14px; border-radius: 20px; text-transform: uppercase; margin-bottom: 20px;
         }
         .success-main-title { font-size: 32px; font-weight: 700; color: var(--text-main); margin-bottom: 8px; }
@@ -588,9 +590,9 @@
         .success-receipt-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--gold); }
         .receipt-top-row { display: flex; justify-content: space-between; margin-bottom: 20px; }
         .receipt-title { font-size: 20px; font-weight: 600; margin-bottom: 4px; }
-        .receipt-updates-tag { font-size: 11px; font-weight: 700; color: var(--gold-light); }
+        .receipt-updates-tag { font-size: 11px; font-weight: 700; color: var(--gold); }
         .receipt-price-box { text-align: right; }
-        .receipt-price { font-size: 22px; font-weight: 700; color: var(--gold-light); margin-bottom: 4px; }
+        .receipt-price { font-size: 22px; font-weight: 700; color: var(--gold); margin-bottom: 4px; }
         .receipt-price-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; }
         .receipt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
         .receipt-grid-box {
@@ -604,7 +606,7 @@
             border-top: 1px solid rgba(255, 255, 255, 0.06); padding-top: 16px; text-align: center;
         }
         .receipt-action-btn {
-            background: linear-gradient(135deg, #f3e5ab 0%, #aa8c2c 100%); color: #0d0d0d;
+            background: var(--gold); color: #0d0d0d;
             padding: 14px 24px; border-radius: 30px; font-size: 12px; font-weight: 800;
             display: flex; justify-content: center; gap: 8px; margin-top: 20px; text-decoration: none;
         }
@@ -619,7 +621,7 @@
     <!-- MAIN APP SCREEN -->
     <div class="main-content" id="mainAppContainer">
         
-        <!-- 1. LUXURY VIP TOP PILL: Founding Spurtan Access -->
+        <!-- 1. VIP TOP PILL -->
         <div class="vip-top-pill" onclick="openModal('spurtanModal')">
             <div class="vip-pill-left">
                 <span class="vip-star">✦</span>
@@ -1263,7 +1265,7 @@
             
             const codeLink = document.getElementById('codeLinkText');
             codeLink.innerText = lang === 'fr' ? "✓ ACCÈS FONDATEUR ACTIF" : "✓ FOUNDING RATE ACTIVE";
-            codeLink.style.color = "var(--gold-light)";
+            codeLink.style.color = "var(--text-main)";
             codeLink.style.pointerEvents = "none";
 
             closeModals();
@@ -1302,7 +1304,7 @@
                     
                     const codeLink = document.getElementById('codeLinkText');
                     codeLink.innerText = lang === 'fr' ? "✓ CODE APPLIQUÉ" : "✓ CODE APPLIED";
-                    codeLink.style.color = "var(--gold-light)";
+                    codeLink.style.color = "var(--text-main)";
                     codeLink.style.pointerEvents = "none";
                     codeLink.style.border = "none";
                     codeLink.style.background = "none";
