@@ -421,6 +421,14 @@
         }
         .perks-mini-box strong { color: var(--text-main); font-weight: 600; }
 
+        .how-step-item {
+            text-align: left; margin-bottom: 14px; padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .how-step-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .how-step-title { font-size: 13px; font-weight: 700; color: var(--gold); margin-bottom: 4px; }
+        .how-step-text { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
+
         /* Success Screen */
         #finalSuccessView { display: none; width: 100%; max-width: 440px; text-align: center; }
         .success-header-tag {
@@ -466,7 +474,7 @@
     <div class="main-content" id="mainAppContainer">
         
         <!-- TOP VIP PILL -->
-        <div class="vip-top-pill" onclick="openModal('spurtanModal')">
+        <div class="vip-top-pill" onclick="safeOpenModal('spurtanModal')">
             <div class="vip-pill-left">
                 <span class="vip-star">✦</span>
                 <span data-en="Founding Spurtan Access" data-fr="Accès Spurtan Fondateur">Founding Spurtan Access</span>
@@ -519,7 +527,7 @@
         <div class="cta-container">
             <div class="inline-pricing">
                 <span id="displayPrice">$49.99 CAD</span> Priority Flat Rate<br>
-                <button type="button" onclick="openModal('codeModal')" style="background:none; border:none; color:var(--text-muted); font-size:10px; font-weight:700; text-decoration:underline; cursor:pointer; margin-top:8px;">HAVE SPURTAN CODE?</button>
+                <button type="button" onclick="safeOpenModal('codeModal')" style="background:none; border:none; color:var(--text-muted); font-size:10px; font-weight:700; text-decoration:underline; cursor:pointer; margin-top:8px;">HAVE SPURTAN CODE?</button>
             </div>
 
             <div>
@@ -550,7 +558,7 @@
         <div class="site-footer">
             <span data-en="© 2026 SPUR. All rights reserved." data-fr="© 2026 SPUR. Tous droits réservés.">© 2026 SPUR. All rights reserved.</span>
             <br><br>
-            <a onclick="openModal('howItWorksModal')" data-en="How It Works" data-fr="Comment ça marche">How It Works</a> | 
+            <a onclick="safeOpenModal('howItWorksModal')" data-en="How It Works" data-fr="Comment ça marche">How It Works</a> | 
             <a href="terms.html" data-en="Terms of Service" data-fr="Conditions d'utilisation">Terms of Service</a> | 
             <a href="privacy.html" data-en="Privacy Policy" data-fr="Politique de confidentialité">Privacy Policy</a>
         </div>
@@ -610,11 +618,11 @@
                 <input type="hidden" name="requested_specialist" class="specialistHiddenField" value="Fastest Available">
 
                 <select class="modal-input" name="service_context">
-                    <option value="" disabled selected>What's the occasion? (Optional)</option>
-                    <option value="Just for You" class="opt-silver" style="color: var(--silver);">JUST FOR YOU™ — The occasion is me</option>
-                    <option value="Professional" class="opt-gold" style="color: var(--gold);">PROFESSIONAL — Meeting · Interview · Presentation</option>
-                    <option value="Social" class="opt-gold" style="color: var(--gold);">SOCIAL — Date · Wedding · Night Out · Event</option>
-                    <option value="Life" class="opt-gold" style="color: var(--gold);">LIFE — Travel · Celebration · Personal Milestone</option>
+                    <option value="" disabled selected data-en="What's the occasion? (Optional)" data-fr="Quelle est l'occasion ? (Optionnel)">What's the occasion? (Optional)</option>
+                    <option value="Just for You" class="opt-silver" style="color: var(--silver);" data-en="JUST FOR YOU™ — The Occasion is Me" data-fr="JUSTE POUR VOUS™ — L'occasion, c'est moi">JUST FOR YOU™ — The Occasion is Me</option>
+                    <option value="Professional" class="opt-gold" style="color: var(--gold);" data-en="PROFESSIONAL — Meeting · Interview · Presentation" data-fr="PROFESSIONNEL — Réunion · Entretien · Présentation">PROFESSIONAL — Meeting · Interview · Presentation</option>
+                    <option value="Social" class="opt-gold" style="color: var(--gold);" data-en="SOCIAL — Date · Wedding · Night Out · Event" data-fr="SOCIAL — Rencontre · Mariage · Sortie · Événement">SOCIAL — Date · Wedding · Night Out · Event</option>
+                    <option value="Life" class="opt-gold" style="color: var(--gold);" data-en="LIFE — Travel · Celebration · Personal Milestone" data-fr="VIE — Voyage · Célébration · Étape personnelle">LIFE — Travel · Celebration · Personal Milestone</option>
                 </select>
                 
                 <div id="inputFieldsWrapper">
@@ -641,11 +649,11 @@
                 <input type="hidden" name="requested_specialist" class="specialistHiddenField" value="Fastest Available">
                 
                 <select class="modal-input" name="service_context">
-                    <option value="" disabled selected>What's the occasion? (Optional)</option>
-                    <option value="Just for You" class="opt-silver" style="color: var(--silver);">JUST FOR YOU™ — The occasion is me</option>
-                    <option value="Professional" class="opt-gold" style="color: var(--gold);">PROFESSIONAL — Meeting · Interview · Presentation</option>
-                    <option value="Social" class="opt-gold" style="color: var(--gold);">SOCIAL — Date · Wedding · Night Out · Event</option>
-                    <option value="Life" class="opt-gold" style="color: var(--gold);">LIFE — Travel · Celebration · Personal Milestone</option>
+                    <option value="" disabled selected data-en="What's the occasion? (Optional)" data-fr="Quelle est l'occasion ? (Optionnel)">What's the occasion? (Optional)</option>
+                    <option value="Just for You" class="opt-silver" style="color: var(--silver);" data-en="JUST FOR YOU™ — The Occasion is Me" data-fr="JUSTE POUR VOUS™ — L'occasion, c'est moi">JUST FOR YOU™ — The Occasion is Me</option>
+                    <option value="Professional" class="opt-gold" style="color: var(--gold);" data-en="PROFESSIONAL — Meeting · Interview · Presentation" data-fr="PROFESSIONNEL — Réunion · Entretien · Présentation">PROFESSIONAL — Meeting · Interview · Presentation</option>
+                    <option value="Social" class="opt-gold" style="color: var(--gold);" data-en="SOCIAL — Date · Wedding · Night Out · Event" data-fr="SOCIAL — Rencontre · Mariage · Sortie · Événement">SOCIAL — Date · Wedding · Night Out · Event</option>
+                    <option value="Life" class="opt-gold" style="color: var(--gold);" data-en="LIFE — Travel · Celebration · Personal Milestone" data-fr="VIE — Voyage · Célébration · Étape personnelle">LIFE — Travel · Celebration · Personal Milestone</option>
                 </select>
                 
                 <div id="inputFieldsWrapperLater">
@@ -657,9 +665,17 @@
                 <select class="modal-input" name="requested_time" required>
                     <option value="" disabled selected>Select Preferred Time</option>
                     <option value="9:00 AM">9:00 AM</option>
+                    <option value="10:00 AM">10:00 AM</option>
+                    <option value="11:00 AM">11:00 AM</option>
                     <option value="12:00 PM">12:00 PM</option>
+                    <option value="1:00 PM">1:00 PM</option>
+                    <option value="2:00 PM">2:00 PM</option>
                     <option value="3:00 PM">3:00 PM</option>
+                    <option value="4:00 PM">4:00 PM</option>
+                    <option value="5:00 PM">5:00 PM</option>
                     <option value="6:00 PM">6:00 PM</option>
+                    <option value="7:00 PM">7:00 PM</option>
+                    <option value="8:00 PM">8:00 PM</option>
                 </select>
                 <button type="submit" class="modal-capsule-btn">REQUEST SCHEDULED COMMITMENT</button>
             </form>
@@ -972,20 +988,14 @@
             let name = localStorage.getItem('spur_user_name');
             let phone = localStorage.getItem('spur_user_phone');
 
-            const nameInput = form.querySelector('input[name="client_name"]');
-            const phoneInput = form.querySelector('input[name="client_phone"]');
-
-            if (nameInput && nameInput.value.trim()) {
-                name = nameInput.value.trim();
-                localStorage.setItem('spur_user_name', name);
+            if (!name || !phone) {
+                name = form.querySelector('input[name="client_name"]')?.value || 'Valued Client';
+                phone = form.querySelector('input[name="client_phone"]')?.value || 'Saved Profile';
+                if (phone && phone.length >= 10) {
+                    localStorage.setItem('spur_user_name', name);
+                    localStorage.setItem('spur_user_phone', phone);
+                }
             }
-            if (phoneInput && phoneInput.value.trim().length >= 10) {
-                phone = phoneInput.value.trim();
-                localStorage.setItem('spur_user_phone', phone);
-            }
-
-            if (!name) name = 'Valued Client';
-            if (!phone) phone = '6040000000';
 
             const city = form.querySelector('.formCityField').value;
             const contextRaw = form.querySelector('select[name="service_context"]').value;
