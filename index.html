@@ -33,8 +33,52 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 25px 20px 35px 20px;
+            padding: 20px 20px 35px 20px;
             position: relative;
+        }
+
+        /* 1. RESTORED VIP TOP PILL (Founding Spurtan Access) */
+        .vip-top-pill {
+            width: 100%;
+            max-width: 440px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 30px;
+            padding: 10px 16px;
+            margin-bottom: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .vip-top-pill:hover {
+            border-color: var(--gold);
+        }
+
+        .vip-pill-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .vip-star {
+            color: var(--gold);
+            font-size: 11px;
+        }
+
+        .vip-pill-right {
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: var(--gold);
+            text-transform: uppercase;
         }
 
         /* Top Header Layout */
@@ -227,7 +271,7 @@
             font-weight: 400;
         }
 
-        /* CALL TO ACTION AREA (THE ICONIC READY NOW BUTTON) */
+        /* Call To Action Area */
         .cta-container {
             display: flex;
             flex-direction: column;
@@ -492,6 +536,17 @@
     <!-- MAIN APP SCREEN -->
     <div class="main-content" id="mainAppContainer">
         
+        <!-- RESTORED TOP VIP PILL -->
+        <div class="vip-top-pill" onclick="openModal('spurtanModal')">
+            <div class="vip-pill-left">
+                <span class="vip-star">✦</span>
+                <span data-en="Founding Spurtan Access" data-fr="Accès Spurtan Fondateur">Founding Spurtan Access</span>
+            </div>
+            <div class="vip-pill-right" data-en="Own the Hour Before →" data-fr="Maîtrisez votre heure →">
+                Own the Hour Before →
+            </div>
+        </div>
+
         <!-- Header Section -->
         <div class="header-container">
             <div class="logo-area">
@@ -531,7 +586,7 @@
             </div>
         </div>
 
-        <!-- Pilot Box Pricing with First Visit Guarantee -->
+        <!-- Pilot Box Pricing -->
         <div class="pilot-box">
             <div>
                 <div class="pilot-label-top" data-en="Priority Flat Rate" data-fr="Tarif Fixe Prioritaire">Priority Flat Rate</div>
@@ -645,10 +700,10 @@
                 <input type="hidden" name="dispatch_channel" value="Priority Ready">
                 <select class="modal-input" name="service_context">
                     <option value="" disabled selected data-en="What's the occasion? (Optional)" data-fr="Quelle est l'occasion ? (Optionnel)">What's the occasion? (Optional)</option>
-                    <option value="Just for Me" data-en="Just for Me™" data-fr="Juste pour moi™">Just for Me™</option>
-                    <option value="Professional" data-en="Professional" data-fr="Professionnel">Professional</option>
-                    <option value="Social" data-en="Social" data-fr="Social">Social</option>
-                    <option value="Life" data-en="Life" data-fr="Vie personnelle">Life</option>
+                    <option value="Just for Me" class="opt-white" data-en="Just for Me™" data-fr="Juste pour moi™">Just for Me™</option>
+                    <option value="Professional" class="opt-gold" data-en="Professional" data-fr="Professionnel">Professional</option>
+                    <option value="Social" class="opt-gold" data-en="Social" data-fr="Social">Social</option>
+                    <option value="Life" class="opt-gold" data-en="Life" data-fr="Vie personnelle">Life</option>
                 </select>
                 <input type="text" class="modal-input" name="client_name" id="nameInputNow" required placeholder="First Name">
                 <input type="tel" class="modal-input" name="client_phone" placeholder="10 Digit Mobile" required pattern="[0-9]{10}">
@@ -670,10 +725,10 @@
                 <input type="hidden" name="dispatch_channel" value="Scheduled Request">
                 <select class="modal-input" name="service_context">
                     <option value="" disabled selected data-en="What's the occasion? (Optional)" data-fr="Quelle est l'occasion ? (Optionnel)">What's the occasion? (Optional)</option>
-                    <option value="Just for Me" data-en="Just for Me™" data-fr="Juste pour moi™">Just for Me™</option>
-                    <option value="Professional" data-en="Professional" data-fr="Professionnel">Professional</option>
-                    <option value="Social" data-en="Social" data-fr="Social">Social</option>
-                    <option value="Life" data-en="Life" data-fr="Vie personnelle">Life</option>
+                    <option value="Just for Me" class="opt-white" data-en="Just for Me™" data-fr="Juste pour moi™">Just for Me™</option>
+                    <option value="Professional" class="opt-gold" data-en="Professional" data-fr="Professionnel">Professional</option>
+                    <option value="Social" class="opt-gold" data-en="Social" data-fr="Social">Social</option>
+                    <option value="Life" class="opt-gold" data-en="Life" data-fr="Vie personnelle">Life</option>
                 </select>
                 <input type="text" class="modal-input" name="client_name" required placeholder="First Name">
                 <input type="tel" class="modal-input" name="client_phone" placeholder="10 Digit Mobile" required pattern="[0-9]{10}">
