@@ -37,7 +37,7 @@
             position: relative;
         }
 
-        /* 1. RESTORED VIP TOP PILL (Founding Spurtan Access) */
+        /* 1. VIP TOP PILL */
         .vip-top-pill {
             width: 100%;
             max-width: 440px;
@@ -536,7 +536,7 @@
     <!-- MAIN APP SCREEN -->
     <div class="main-content" id="mainAppContainer">
         
-        <!-- RESTORED TOP VIP PILL -->
+        <!-- TOP VIP PILL -->
         <div class="vip-top-pill" onclick="openModal('spurtanModal')">
             <div class="vip-pill-left">
                 <span class="vip-star">✦</span>
@@ -656,7 +656,7 @@
         
     </div>
 
-    <!-- HOW IT WORKS MODAL -->
+    <!-- HOW IT WORKS MODAL (Binary Refresh / Reset - No Times) -->
     <div id="howItWorksModal" class="modal-overlay">
         <div class="modal-card">
             <h3 data-en="How SPUR Works" data-fr="Comment fonctionne SPUR">How SPUR Works</h3>
@@ -664,10 +664,10 @@
                 The hour before is yours. Here is the work we do behind the scenes.
             </p>
             <div class="perks-mini-box" style="text-align: left;">
-                <p style="margin-bottom: 8px;"><strong>01. Zero Menus:</strong> You state your life moment. No service lists[cite: 3].</p>
+                <p style="margin-bottom: 8px;"><strong>01. Zero Menus:</strong> You state your life moment. No service lists.</p>
                 <p style="margin-bottom: 8px;"><strong>02. Verified Dispatch:</strong> We coordinate availability through a verified concierge process.</p>
-                <p style="margin-bottom: 8px;"><strong>03. Assess & Approve:</strong> The specialist recommends either a <strong>Refresh™</strong> (15–20 min) or <strong>Reset™</strong> (30–35 min). You approve before execution.</p>
-                <p style="margin-bottom: 0;"><strong>04. First Visit Guarantee:</strong> Full refund if not completely ready after your first visit[cite: 3].</p>
+                <p style="margin-bottom: 8px;"><strong>03. Assess & Approve:</strong> The specialist recommends either a <strong>Refresh™</strong> (to maintain your baseline) or <strong>Reset™</strong> (to restore your shape). You approve before execution.</p>
+                <p style="margin-bottom: 0;"><strong>04. First Visit Guarantee:</strong> Full refund if not completely ready after your first visit.</p>
             </div>
             <button class="modal-capsule-btn" onclick="closeModals()" data-en="GOT IT" data-fr="COMPRIS">GOT IT</button>
         </div>
@@ -681,14 +681,14 @@
                 Your concierge is coordinating availability for you...
             </p>
             <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; margin: 24px 0; overflow: hidden;">
-                <div id="interceptProgressBar" style="width: 100%; height: 100%; background: var(--gold); transition: width 10s linear;"></div>
+                <div id="interceptProgressBar" style="width: 100%; height: 100%; background: var(--gold); transition: width 5s linear;"></div>
             </div>
             <button class="modal-capsule-btn" onclick="skipIntercept()" data-en="PROCEED TO REQUEST" data-fr="PROCÉDER À LA DEMANDE">PROCEED TO REQUEST</button>
             <button class="modal-close" onclick="closeModals()" data-en="CANCEL" data-fr="ANNULER">CANCEL</button>
         </div>
     </div>
 
-    <!-- READY NOW MODAL -->
+    <!-- READY NOW MODAL (Fixed Memory Recognition) -->
     <div id="verifyModal" class="modal-overlay">
         <div class="modal-card">
             <h3 class="dynamic-header" data-en="Get Ready Now" data-fr="Préparez-vous Maintenant">Get Ready Now</h3>
@@ -705,11 +705,17 @@
                     <option value="Social" class="opt-gold" data-en="Social" data-fr="Social">Social</option>
                     <option value="Life" class="opt-gold" data-en="Life" data-fr="Vie personnelle">Life</option>
                 </select>
-                <input type="text" class="modal-input" name="client_name" id="nameInputNow" required placeholder="First Name">
-                <input type="tel" class="modal-input" name="client_phone" placeholder="10 Digit Mobile" required pattern="[0-9]{10}">
-                <button type="submit" class="modal-capsule-btn" data-en="SEND REQUEST" data-fr="ENVOYER LA DEMANDE">SEND REQUEST</button>
+                
+                <div id="inputFieldsWrapper">
+                    <input type="text" class="modal-input" name="client_name" id="nameInputNow" placeholder="First Name">
+                    <input type="tel" class="modal-input" name="client_phone" id="phoneInputNow" placeholder="10 Digit Mobile" pattern="[0-9]{10}">
+                </div>
+
+                <button type="submit" class="modal-capsule-btn" id="nowSubmitBtn" data-en="SEND REQUEST" data-fr="ENVOYER LA DEMANDE">SEND REQUEST</button>
             </form>
             <button class="modal-close" onclick="closeModals()" data-en="CANCEL" data-fr="ANNULER">CANCEL</button>
+            <br>
+            <button type="button" class="reset-user-link" id="resetUserBtn" onclick="resetUser()" data-en="Not you? Reset details" data-fr="Pas vous ? Réinitialiser">Not you? Reset details</button>
         </div>
     </div>
 
@@ -730,8 +736,12 @@
                     <option value="Social" class="opt-gold" data-en="Social" data-fr="Social">Social</option>
                     <option value="Life" class="opt-gold" data-en="Life" data-fr="Vie personnelle">Life</option>
                 </select>
-                <input type="text" class="modal-input" name="client_name" required placeholder="First Name">
-                <input type="tel" class="modal-input" name="client_phone" placeholder="10 Digit Mobile" required pattern="[0-9]{10}">
+                
+                <div id="inputFieldsWrapperLater">
+                    <input type="text" class="modal-input" name="client_name" placeholder="First Name">
+                    <input type="tel" class="modal-input" name="client_phone" placeholder="10 Digit Mobile" pattern="[0-9]{10}">
+                </div>
+
                 <input type="date" class="modal-input" name="requested_date" required>
                 <select class="modal-input" name="requested_time" required>
                     <option value="" disabled selected>Select Preferred Time</option>
@@ -770,10 +780,10 @@
     <div id="spurtanModal" class="modal-overlay">
         <div class="modal-card">
             <h3>Founding Spurtan Access</h3>
-            <p>Own the hour before[cite: 3]. Join the private pilot and lock in preferred rates[cite: 3].</p>
+            <p>Own the hour before. Join the private pilot and lock in preferred rates.</p>
             <div class="perks-mini-box">
-                • <strong>$39.99 CAD All-In</strong> for your first 3 visits (Standard: $49.99)[cite: 3].<br>
-                • <strong>First Visit Guarantee:</strong> Full refund if not completely ready[cite: 3].
+                • <strong>$39.99 CAD All-In</strong> for your first 3 visits (Standard: $49.99).<br>
+                • <strong>First Visit Guarantee:</strong> Full refund if not completely ready.
             </div>
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleSpurtanRegister(event)">
                 <input type="text" class="modal-input" name="client_name" required placeholder="First Name">
@@ -789,7 +799,7 @@
         </div>
     </div>
 
-    <!-- SUCCESS SCREEN -->
+    <!-- SUCCESS SCREEN (With Auto-Ready WhatsApp Link) -->
     <div id="finalSuccessView">
         <div class="success-header-tag" id="receiptHeaderTag">Verified Dispatch</div>
         <div class="success-main-title">Request Received.</div>
@@ -818,13 +828,15 @@
             <div class="receipt-footer-desc">
                 Your concierge is coordinating with our network.<br>You pay directly at the studio.
             </div>
-            <a href="https://wa.me/14387251010" class="receipt-action-btn" target="_blank">💬 CONFIRM VIA WHATSAPP</a>
+            <a href="#" id="whatsappAutoBtn" class="receipt-action-btn" target="_blank">💬 CONFIRM VIA WHATSAPP (READY)</a>
             <a href="https://wa.me/14387251010" class="cancel-link" target="_blank">Need to modify or cancel? Message Concierge.</a>
         </div>
     </div>
 
     <script>
         let currentCity = 'yvr';
+        const SPUR_WHATSAPP_NUMBER = '14387251010'; // Configured WhatsApp Business Number
+
         const cityData = {
             yvr: { enBadge: "Vancouver • Yaletown • Live", frBadge: "Vancouver • Yaletown • En Direct", areaName: "Yaletown, Vancouver" },
             yyz: { enBadge: "Toronto • Financial District • Live", frBadge: "Toronto • Quartier Financier • En Direct", areaName: "Financial District, Toronto" },
@@ -878,7 +890,6 @@
         function openReturningModal() {
             const savedName = localStorage.getItem('spur_user_name');
             if (savedName) {
-                alert("Welcome back, " + savedName + "! Recognizing your profile preferences.");
                 openIntercept('now');
             } else {
                 openModal('verifyModal');
@@ -894,9 +905,9 @@
             const bar = document.getElementById('interceptProgressBar');
             bar.style.transition = 'none'; bar.style.width = '100%';
             void bar.offsetWidth;
-            bar.style.transition = 'width 5s linear'; bar.style.width = '0%';
+            bar.style.transition = 'width 3s linear'; bar.style.width = '0%';
             clearTimeout(interceptTimer);
-            interceptTimer = setTimeout(() => { skipIntercept(); }, 5000);
+            interceptTimer = setTimeout(() => { skipIntercept(); }, 3000);
         }
 
         function skipIntercept() {
@@ -906,7 +917,32 @@
         }
 
         function openModal(id) {
-            document.getElementById(id).style.display = 'flex';
+            const modal = document.getElementById(id);
+            if (id === 'verifyModal' || id === 'laterModal') {
+                const savedName = localStorage.getItem('spur_user_name');
+                const savedPhone = localStorage.getItem('spur_user_phone');
+                const wrapper = id === 'verifyModal' ? document.getElementById('inputFieldsWrapper') : document.getElementById('inputFieldsWrapperLater');
+                const resetBtn = document.getElementById('resetUserBtn');
+                
+                if (savedName && savedPhone) {
+                    wrapper.style.display = 'none';
+                    if(resetBtn) resetBtn.style.display = 'block';
+                    modal.querySelector('.dynamic-header').innerText = "Welcome back, " + savedName.split(' ')[0];
+                } else {
+                    wrapper.style.display = 'block';
+                    if(resetBtn) resetBtn.style.display = 'none';
+                    wrapper.querySelectorAll('input').forEach(i => i.required = true);
+                }
+            }
+            modal.style.display = 'flex';
+        }
+
+        function resetUser() {
+            localStorage.removeItem('spur_user_name');
+            localStorage.removeItem('spur_user_phone');
+            alert("Profile reset. Please enter your details.");
+            closeModals();
+            openModal('verifyModal');
         }
 
         function closeModals() {
@@ -917,13 +953,17 @@
         async function handleSpurtanRegister(event) {
             event.preventDefault();
             const form = event.target;
+            const name = form.querySelector('input[name="client_name"]').value;
+            const phone = form.querySelector('input[name="client_phone"]').value;
+            
+            localStorage.setItem('spur_user_name', name);
+            localStorage.setItem('spur_user_phone', phone);
+
             try { await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } }); } catch (e) {}
             alert("✓ Founding Spurtan Access confirmed! Your $39.99 rate is now active[cite: 3].");
             document.getElementById('displayPrice').innerText = "$39.99 CAD";
             document.getElementById('finalReceiptPrice').innerText = "$39.99";
-            document.getElementById('codeLinkText').innerText = "✓ FOUNDING RATE ACTIVE";
-            document.getElementById('codeLinkText').style.color = "var(--gold)";
-            closeModals(); form.reset();
+            document.closeModals(); form.reset();
         }
 
         async function handleCodeSubmit(event) {
@@ -932,7 +972,6 @@
             if (codeVal.includes('SPUR')) {
                 document.getElementById('displayPrice').innerText = "$39.99 CAD";
                 document.getElementById('finalReceiptPrice').innerText = "$39.99";
-                document.getElementById('codeLinkText').innerText = "✓ CODE APPLIED";
                 alert("✓ Code applied! (-$10.00)");
                 closeModals(); event.target.reset();
             } else {
@@ -943,19 +982,29 @@
         async function handleSubmit(event, type) {
             event.preventDefault();
             const form = event.target;
-            const phoneInput = form.querySelector('input[name="client_phone"]');
-            const nameInput = form.querySelector('input[name="client_name"]');
-            if (phoneInput.value.trim().length >= 10) {
-                localStorage.setItem('spur_user_phone', phoneInput.value.trim());
-                localStorage.setItem('spur_user_name', nameInput.value.trim());
-                try { await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } }); } catch (e) {}
-                closeModals(); showSuccessScreen(type);
-            } else {
-                alert("Please enter a valid 10-digit mobile number.");
-            }
-        }
+            let name = localStorage.getItem('spur_user_name');
+            let phone = localStorage.getItem('spur_user_phone');
 
-        function showSuccessScreen(type) {
+            if (!name || !phone) {
+                name = form.querySelector('input[name="client_name"]').value;
+                phone = form.querySelector('input[name="client_phone"]').value;
+                if (phone && phone.length >= 10) {
+                    localStorage.setItem('spur_user_name', name);
+                    localStorage.setItem('spur_user_phone', phone);
+                }
+            }
+
+            const city = form.querySelector('.formCityField').value;
+            const context = form.querySelector('select[name="service_context"]').value || 'Standard Readiness';
+
+            // Automatically prepare WhatsApp message string
+            const waMessage = `Hello SPUR — I would like to request a visit.\n\nType: ${type.toUpperCase()}\nCity: ${city}\nName: ${name}\nMobile: ${phone}\nContext: ${context}\n\nPlease coordinate availability.`;
+            const encodedWaUrl = `https://wa.me/${SPUR_WHATSAPP_NUMBER}?text=${encodeURIComponent(waMessage)}`;
+            document.getElementById('whatsappAutoBtn').href = encodedWaUrl;
+
+            try { await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } }); } catch (e) {}
+
+            closeModals();
             document.getElementById('mainAppContainer').style.display = 'none';
             document.getElementById('finalSuccessView').style.display = 'block';
             window.scrollTo({ top: 0, behavior: 'smooth' });
