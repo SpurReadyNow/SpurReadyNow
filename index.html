@@ -42,11 +42,11 @@
         .vip-top-pill {
             width: 100%;
             max-width: 440px;
-            background: rgba(212, 175, 55, 0.05);
-            border: 1px solid rgba(212, 175, 55, 0.3);
+            background: rgba(212, 175, 55, 0.04);
+            border: 1px solid rgba(212, 175, 55, 0.2);
             border-radius: 30px;
             padding: 10px 16px;
-            margin-bottom: 22px;
+            margin-bottom: 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -55,7 +55,7 @@
         }
 
         .vip-top-pill:hover {
-            background: rgba(212, 175, 55, 0.1);
+            background: rgba(212, 175, 55, 0.08);
             border-color: var(--gold);
         }
 
@@ -66,7 +66,7 @@
             font-size: 10px;
             font-weight: 700;
             letter-spacing: 1.2px;
-            color: var(--gold-light);
+            color: var(--text-main);
             text-transform: uppercase;
         }
 
@@ -79,7 +79,7 @@
             font-size: 10px;
             font-weight: 800;
             letter-spacing: 1px;
-            color: var(--gold);
+            color: var(--gold-light);
             text-transform: uppercase;
         }
 
@@ -611,12 +611,12 @@
             margin-top: 4px;
         }
 
-        /* Perks Box inside Modals */
+        /* Perks Box inside Modals (Fixed text hierarchy) */
         .perks-mini-box {
-            background: rgba(212, 175, 55, 0.05);
-            border: 1px solid rgba(212, 175, 55, 0.25);
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
             border-radius: 12px;
-            padding: 12px;
+            padding: 14px;
             margin-bottom: 16px;
             text-align: left;
             font-size: 12px;
@@ -625,7 +625,12 @@
         }
 
         .perks-mini-box strong {
-            color: var(--gold-light);
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        .perks-mini-box span {
+            color: var(--text-muted);
         }
 
         .how-step-item {
@@ -737,7 +742,7 @@
     <!-- MAIN APP SCREEN -->
     <div class="main-content" id="mainAppContainer">
         
-        <!-- 1. LUXURY VIP TOP PILL: Founding Spurtan Access ("Own the Hour Before") -->
+        <!-- 1. LUXURY VIP TOP PILL: Founding Spurtan Access -->
         <div class="vip-top-pill" onclick="openModal('spurtanModal')">
             <div class="vip-pill-left">
                 <span class="vip-star">✦</span>
@@ -876,7 +881,7 @@
         
     </div>
 
-    <!-- HOW IT WORKS MODAL -->
+    <!-- HOW IT WORKS MODAL (Binary Refresh / Reset Framework) -->
     <div id="howItWorksModal" class="modal-overlay">
         <div class="modal-card">
             <h3 data-en="How SPUR Works" data-fr="Comment fonctionne SPUR">How SPUR Works</h3>
