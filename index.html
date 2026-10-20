@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>SPUR | Show Up Ready</title>
-    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#0d0d0d">
@@ -849,7 +848,8 @@
             });
             const savedName = localStorage.getItem('spur_user_name');
             if (savedName) {
-                document.getElementById('brandPhilosophyText').innerHTML = lang === 'fr' ? "Bon retour, " + savedName.split(' ')[0] + "." : "Welcome back, " + savedName.split(' ')[0] + ".";
+                const sub = document.getElementById('dynamicHeroSubtitle');
+                if (sub) sub.innerHTML = lang === 'fr' ? "Bon retour, " + savedName.split(' ')[0] + "." : "Welcome back, " + savedName.split(' ')[0] + ".";
             }
             localStorage.setItem('spur_lang', lang);
             updateBadgeText();
@@ -962,9 +962,9 @@
             document.getElementById('displayPrice').innerText = "$39.99 CAD";
             document.getElementById('finalReceiptPrice').innerText = "$39.99";
             
-            const dynamicSubtitle = document.getElementById('brandPhilosophyText');
-            if (dynamicSubtitle) {
-                dynamicSubtitle.innerHTML = localStorage.getItem('spur_lang') === 'fr' ? "Bon retour, " + name.split(' ')[0] + "." : "Welcome back, " + name.split(' ')[0] + ".";
+            const sub = document.getElementById('dynamicHeroSubtitle');
+            if (sub) {
+                sub.innerHTML = localStorage.getItem('spur_lang') === 'fr' ? "Bon retour, " + name.split(' ')[0] + "." : "Welcome back, " + name.split(' ')[0] + ".";
             }
 
             closeModals(); form.reset();
@@ -989,14 +989,20 @@
             let name = localStorage.getItem('spur_user_name');
             let phone = localStorage.getItem('spur_user_phone');
 
-            if (!name || !phone) {
-                name = form.querySelector('input[name="client_name"]')?.value || 'Valued Client';
-                phone = form.querySelector('input[name="client_phone"]')?.value || 'Saved Profile';
-                if (phone && phone.length >= 10) {
-                    localStorage.setItem('spur_user_name', name);
-                    localStorage.setItem('spur_user_phone', phone);
-                }
+            const nameInput = form.querySelector('input[name="client_name"]');
+            const phoneInput = form.querySelector('input[name="client_phone"]');
+
+            if (nameInput && nameInput.value.trim()) {
+                name = nameInput.value.trim();
+                localStorage.setItem('spur_user_name', name);
             }
+            if (phoneInput && phoneInput.value.trim().length >= 10) {
+                phone = phoneInput.value.trim();
+                localStorage.setItem('spur_user_phone', phone);
+            }
+
+            if (!name) name = 'Valued Client';
+            if (!phone) phone = '6040000000';
 
             const city = form.querySelector('.formCityField').value;
             const contextRaw = form.querySelector('select[name="service_context"]').value;
@@ -1023,10 +1029,10 @@
             await checkReturningUserRealtime();
             
             const savedName = localStorage.getItem('spur_user_name');
-            const dynamicSubtitle = document.getElementById('brandPhilosophyText');
-            if (savedName && dynamicSubtitle) {
+            const sub = document.getElementById('dynamicHeroSubtitle');
+            if (savedName && sub) {
                 const lang = localStorage.getItem('spur_lang') || 'en';
-                dynamicSubtitle.innerHTML = lang === 'fr' ? "Bon retour, " + savedName.split(' ')[0] + "." : "Welcome back, " + savedName.split(' ')[0] + ".";
+                sub.innerHTML = lang === 'fr' ? "Bon retour, " + savedName.split(' ')[0] + "." : "Welcome back, " + savedName.split(' ')[0] + ".";
             }
         });
     </script>
