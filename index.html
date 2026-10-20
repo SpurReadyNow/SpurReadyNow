@@ -38,15 +38,15 @@
             position: relative;
         }
 
-        /* 1. VELVET ROPE TOP PILL (Founding Spurtan Hook) */
+        /* 1. LUXURY VIP TOP PILL (Founding Spurtan Access) */
         .vip-top-pill {
             width: 100%;
             max-width: 440px;
-            background: rgba(212, 175, 55, 0.07);
-            border: 1px solid rgba(212, 175, 55, 0.35);
+            background: rgba(212, 175, 55, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.3);
             border-radius: 30px;
-            padding: 9px 16px;
-            margin-bottom: 24px;
+            padding: 10px 16px;
+            margin-bottom: 22px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -55,7 +55,7 @@
         }
 
         .vip-top-pill:hover {
-            background: rgba(212, 175, 55, 0.12);
+            background: rgba(212, 175, 55, 0.1);
             border-color: var(--gold);
         }
 
@@ -72,7 +72,7 @@
 
         .vip-star {
             color: var(--gold);
-            font-size: 12px;
+            font-size: 11px;
         }
 
         .vip-pill-right {
@@ -415,26 +415,6 @@
             background: rgba(212, 175, 55, 0.1);
         }
 
-        .returning-btn {
-            background: none;
-            border: none;
-            color: var(--gold);
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            cursor: pointer;
-            text-decoration: underline;
-            text-decoration-color: rgba(212, 175, 55, 0.4);
-            text-underline-offset: 4px;
-            margin-top: 15px;
-            transition: color 0.2s ease;
-        }
-        
-        .returning-btn:hover {
-            color: var(--gold-light);
-        }
-
         /* Footer with Gold Tabs */
         .site-footer {
             width: 100%;
@@ -515,7 +495,6 @@
             letter-spacing: 1px;
             margin-bottom: 12px;
             outline: none;
-            -webkit-appearance: none;
             appearance: none;
         }
         
@@ -534,14 +513,6 @@
         .opt-gold {
             color: var(--gold) !important;
             font-weight: bold;
-        }
-
-        .modal-input:-webkit-autofill,
-        .modal-input:-webkit-autofill:hover, 
-        .modal-input:-webkit-autofill:focus {
-            -webkit-text-fill-color: #ffffff !important;
-            -webkit-box-shadow: 0 0 0px 1000px #141414 inset !important;
-            transition: background-color 5000s ease-in-out 0s;
         }
 
         .modal-input:focus {
@@ -589,7 +560,6 @@
             align-items: center;
             text-align: center;
             box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
-            transition: transform 0.1s ease;
             padding: 5px;
             line-height: 1.2;
         }
@@ -617,11 +587,8 @@
             text-transform: uppercase;
             cursor: pointer;
             text-decoration: underline;
-            text-decoration-color: rgba(212, 175, 55, 0.4);
-            text-underline-offset: 4px;
             margin: 15px auto 5px auto;
             width: 100%;
-            text-align: center;
         }
 
         /* Bridge Link inside Code Modal */
@@ -734,139 +701,34 @@
         .success-receipt-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: var(--gold);
+            top: 0; left: 0; width: 4px; height: 100%; background: var(--gold);
         }
 
-        .receipt-top-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 20px;
-        }
-
-        .receipt-title {
-            font-size: 20px;
-            font-weight: 600;
-            color: var(--text-main);
-            margin-bottom: 4px;
-        }
-
-        .receipt-updates-tag {
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--gold);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .receipt-price-box {
-            text-align: right;
-        }
-
-        .receipt-price {
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--gold);
-            margin-bottom: 4px;
-        }
-
-        .receipt-price-label {
-            font-size: 10px;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .receipt-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-
+        .receipt-top-row { display: flex; justify-content: space-between; margin-bottom: 20px; }
+        .receipt-title { font-size: 20px; font-weight: 600; margin-bottom: 4px; }
+        .receipt-updates-tag { font-size: 11px; font-weight: 700; color: var(--gold); }
+        .receipt-price-box { text-align: right; }
+        .receipt-price { font-size: 22px; font-weight: 700; color: var(--gold); }
+        .receipt-price-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; }
+        .receipt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
         .receipt-grid-box {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 14px;
-            padding: 16px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 80px;
+            background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 14px; padding: 16px; text-align: center;
         }
-
-        .grid-box-val {
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--text-main);
-            margin-bottom: 4px;
-            line-height: 1.2;
-            text-align: center;
-        }
-
-        .grid-box-lbl {
-            font-size: 10px;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
+        .grid-box-val { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+        .grid-box-lbl { font-size: 10px; color: var(--text-muted); text-transform: uppercase; }
         .receipt-footer-desc {
-            font-size: 12px;
-            color: var(--text-muted);
-            line-height: 1.5;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-            padding-top: 16px;
-            text-align: center;
+            font-size: 12px; color: var(--text-muted); line-height: 1.5;
+            border-top: 1px solid rgba(255, 255, 255, 0.06); padding-top: 16px; text-align: center;
         }
-
         .receipt-action-btn {
-            background: linear-gradient(135deg, #d4af37 0%, #aa8c2c 100%);
-            color: #0d0d0d;
-            border: none;
-            padding: 14px 24px;
-            border-radius: 30px;
-            font-size: 12px;
-            font-weight: 800;
-            letter-spacing: 1px;
-            cursor: pointer;
-            width: 100%;
-            text-transform: uppercase;
-            text-decoration: none;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-            margin-top: 20px;
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
-            transition: transform 0.1s ease;
+            background: linear-gradient(135deg, #d4af37 0%, #aa8c2c 100%); color: #0d0d0d;
+            padding: 14px 24px; border-radius: 30px; font-size: 12px; font-weight: 800;
+            display: flex; justify-content: center; gap: 8px; margin-top: 20px; text-decoration: none;
         }
-
-        .receipt-action-btn:active {
-            transform: scale(0.96);
-        }
-
         .cancel-link {
-            display: block;
-            text-align: center;
-            font-size: 11px;
-            color: var(--text-muted);
-            text-decoration: underline;
-            text-decoration-color: rgba(255, 255, 255, 0.2);
-            text-underline-offset: 4px;
-            margin-top: 15px;
-            transition: color 0.2s;
-        }
-
-        .cancel-link:hover {
-            color: var(--gold-light);
-            text-decoration-color: var(--gold-light);
+            display: block; text-align: center; font-size: 11px; color: var(--text-muted);
+            text-decoration: underline; margin-top: 15px;
         }
     </style>
 </head>
@@ -875,14 +737,14 @@
     <!-- MAIN APP SCREEN -->
     <div class="main-content" id="mainAppContainer">
         
-        <!-- 1. VELVET ROPE TOP PILL (Above the Fold Registration Hook) -->
+        <!-- 1. LUXURY VIP TOP PILL: Founding Spurtan Access ("Own the Hour Before") -->
         <div class="vip-top-pill" onclick="openModal('spurtanModal')">
             <div class="vip-pill-left">
                 <span class="vip-star">✦</span>
-                <span data-en="Founding Spurtan Pilot" data-fr="Pilote Spurtan Fondateur">Founding Spurtan Pilot</span>
+                <span data-en="Founding Spurtan Access" data-fr="Accès Spurtan Fondateur">Founding Spurtan Access</span>
             </div>
-            <div class="vip-pill-right" data-en="Claim $39.99 Access →" data-fr="Accès à 39,99 $ →">
-                Claim $39.99 Access →
+            <div class="vip-pill-right" data-en="Own the Hour Before →" data-fr="Maîtrisez votre heure →">
+                Own the Hour Before →
             </div>
         </div>
 
@@ -1002,7 +864,7 @@
             </div>
         </div>
         
-        <!-- Legal Footer with Gold Color Coding -->
+        <!-- Legal Footer -->
         <div class="site-footer">
             <span data-en="© 2026 SPUR. All rights reserved." data-fr="© 2026 SPUR. Tous droits réservés.">© 2026 SPUR. All rights reserved.</span>
             <br><br>
@@ -1014,7 +876,7 @@
         
     </div>
 
-    <!-- HOW IT WORKS MODAL (With Binary Refresh / Reset Framework) -->
+    <!-- HOW IT WORKS MODAL -->
     <div id="howItWorksModal" class="modal-overlay">
         <div class="modal-card">
             <h3 data-en="How SPUR Works" data-fr="Comment fonctionne SPUR">How SPUR Works</h3>
@@ -1032,11 +894,11 @@
                 </div>
                 <div class="how-step-item">
                     <div class="how-step-title" data-en="03. Assess, Recommend & Approve" data-fr="03. Évaluer, Recommander et Approuver">03. Assess, Recommend & Approve</div>
-                    <div class="how-step-text" data-en="The specialist assesses your look and recommends either a SPUR Refresh™ (15–20 min tune-up to maintain your look) or a SPUR Reset™ (30–35 min full restoration). You approve before they execute." data-fr="Le spécialiste évalue votre look et recommande un SPUR Refresh™ (15–20 min) ou un SPUR Reset™ (30–35 min). Vous approuvez avant qu'il n'exécute.">The specialist assesses your look and recommends either a <strong>SPUR Refresh™</strong> (15–20 min tune-up to maintain your look) or a <strong>SPUR Reset™</strong> (30–35 min full restoration). You approve before they execute.</div>
+                    <div class="how-step-text" data-en="The specialist assesses your look and recommends either a SPUR Refresh™ (15–20 min tune-up) or a SPUR Reset™ (30–35 min restoration). You approve before execution." data-fr="Le spécialiste évalue votre look et recommande un SPUR Refresh™ ou un SPUR Reset™. Vous approuvez avant l'exécution.">The specialist assesses your look and recommends either a <strong>SPUR Refresh™</strong> (15–20 min tune-up) or a <strong>SPUR Reset™</strong> (30–35 min restoration). You approve before execution.</div>
                 </div>
                 <div class="how-step-item">
                     <div class="how-step-title" data-en="04. Complete Readiness" data-fr="04. Préparation Complète">04. Complete Readiness</div>
-                    <div class="how-step-text" data-en="One predictable $49.99 CAD Priority Flat Rate. Zero hidden add-ons, zero tipping anxiety. Pay directly at the studio." data-fr="Un tarif fixe de 49,99 $ CAD. Aucun frais caché, aucun pourboire attendu. Payez au studio.">One predictable $49.99 CAD Priority Flat Rate. Zero hidden add-ons, zero tipping anxiety. Pay directly at the studio.</div>
+                    <div class="how-step-text" data-en="One predictable $49.99 CAD Priority Flat Rate. Zero hidden add-ons, zero tipping anxiety. Pay directly at the studio." data-fr="Un tarif fixe de 49,99 $ CAD. Aucun frais caché, aucun pourboire. Payez au studio.">One predictable $49.99 CAD Priority Flat Rate. Zero hidden add-ons, zero tipping anxiety. Pay directly at the studio.</div>
                 </div>
             </div>
             <button class="modal-capsule-btn" onclick="closeModals()" data-en="GOT IT" data-fr="COMPRIS">GOT IT</button>
@@ -1166,7 +1028,7 @@
         </div>
     </div>
 
-    <!-- 2. SPURTAN CODE MODAL (With Bridge to Registration) -->
+    <!-- SPURTAN CODE MODAL -->
     <div id="codeModal" class="modal-overlay">
         <div class="modal-card">
             <h3 data-en="Enter SPURTAN Code" data-fr="Entrez le code SPURTAN">Enter SPURTAN Code</h3>
@@ -1181,8 +1043,8 @@
 
             <div class="code-modal-bridge">
                 <span data-en="Don't have a code yet?" data-fr="Vous n'avez pas encore de code ?">Don't have a code yet?</span><br>
-                <button type="button" onclick="switchModal('codeModal', 'spurtanModal')" data-en="Request Founding Spurtan Status →" data-fr="Demander le statut Spurtan Fondateur →">
-                    Request Founding Spurtan Status →
+                <button type="button" onclick="switchModal('codeModal', 'spurtanModal')" data-en="Request Founding Spurtan Access →" data-fr="Demander l'accès Spurtan Fondateur →">
+                    Request Founding Spurtan Access →
                 </button>
             </div>
             
@@ -1190,17 +1052,17 @@
         </div>
     </div>
 
-    <!-- 3. FOUNDING SPURTAN REGISTRATION MODAL -->
+    <!-- FOUNDING SPURTAN REGISTRATION MODAL -->
     <div id="spurtanModal" class="modal-overlay">
         <div class="modal-card">
-            <h3 data-en="Founding Spurtan Status" data-fr="Statut Spurtan Fondateur">Founding Spurtan Status</h3>
-            <p data-en="Join the private pilot and lock in preferred Founding Spurtan rates." data-fr="Rejoignez le pilote privé et bloquez les tarifs préférentiels.">
-                Join the private pilot and lock in preferred Founding Spurtan rates.
+            <h3 data-en="Founding Spurtan Access" data-fr="Accès Spurtan Fondateur">Founding Spurtan Access</h3>
+            <p data-en="Own the hour before. Join the private pilot and lock in preferred rates." data-fr="Maîtrisez votre heure. Rejoignez le pilote privé et bloquez les tarifs préférentiels.">
+                Own the hour before. Join the private pilot and lock in preferred rates.
             </p>
 
             <div class="perks-mini-box">
-                • <strong data-en="$39.99 CAD All-In" data-fr="39,99 $ CAD Tout Inclus">$39.99 CAD All-In</strong> <span data-en="for your first 3 visits (Standard: $49.99)." data-fr="pour vos 3 premières visites (Standard : 49,99 $).">for your first 3 visits (Standard: $49.99).</span><br>
-                • <strong data-en="First Visit Guarantee:" data-fr="Garantie 1ère Visite :">First Visit Guarantee:</strong> <span data-en="Full refund if not completely ready." data-fr="Remboursement intégral si non satisfait.">Full refund if not completely ready.</span>
+                • <strong data-en="$39.99 CAD All-In" data-fr="39,99 $ CAD Tout Inclus">$39.99 CAD All-In</strong> <span data-en="for your first 3 visits (Standard: $49.99)." data-fr="pour vos 3 premières visites (Standard : 49,99 $).">for your first 3 visits (Standard: $49.99)[cite: 3].</span><br>
+                • <strong data-en="First Visit Guarantee:" data-fr="Garantie 1ère Visite :">First Visit Guarantee:</strong> <span data-en="Full refund if not completely ready." data-fr="Remboursement intégral si non satisfait.">Full refund if not completely ready[cite: 3].</span>
             </div>
 
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleSpurtanRegister(event)">
@@ -1214,7 +1076,7 @@
                     <option value="Financial District, Toronto">Financial District, Toronto (Waitlist)</option>
                 </select>
 
-                <button type="submit" class="modal-capsule-btn" data-en="CLAIM FOUNDING STATUS" data-fr="RÉCLAMER MON STATUT">CLAIM FOUNDING STATUS</button>
+                <button type="submit" class="modal-capsule-btn" data-en="CLAIM FOUNDING ACCESS" data-fr="RÉCLAMER MON ACCÈS">CLAIM FOUNDING ACCESS</button>
             </form>
 
             <div class="legal-consent-text" data-en="We will text your personal SPURTAN code via SMS/WhatsApp." data-fr="Nous vous enverrons votre code SPURTAN par SMS/WhatsApp.">
@@ -1512,13 +1374,13 @@
                 console.log("Fallback active");
             }
 
-            alert(lang === 'fr' ? "✓ Statut Spurtan Fondateur confirmé ! Votre tarif de 39,99 $ est actif." : "✓ Founding Spurtan Status confirmed! Your $39.99 rate is now active.");
+            alert(lang === 'fr' ? "✓ Accès Spurtan Fondateur confirmé ! Votre tarif de 39,99 $ est actif." : "✓ Founding Spurtan Access confirmed! Your $39.99 rate is now active.");
             
             document.getElementById('displayPrice').innerText = "$39.99 CAD";
             document.getElementById('finalReceiptPrice').innerText = "$39.99";
             
             const codeLink = document.getElementById('codeLinkText');
-            codeLink.innerText = lang === 'fr' ? "✓ STATUT FONDATEUR ACTIF" : "✓ FOUNDING RATE ACTIVE";
+            codeLink.innerText = lang === 'fr' ? "✓ ACCÈS FONDATEUR ACTIF" : "✓ FOUNDING RATE ACTIVE";
             codeLink.style.color = "var(--gold)";
             codeLink.style.pointerEvents = "none";
 
