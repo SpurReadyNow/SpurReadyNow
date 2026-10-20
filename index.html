@@ -38,7 +38,7 @@
             position: relative;
         }
 
-        /* TOP VIP PILL */
+        /* 1. VIP TOP PILL */
         .vip-top-pill {
             width: 100%;
             max-width: 440px;
@@ -181,12 +181,13 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            flex-grow: 1; 
         }
 
         .hero-section {
             width: 100%;
-            text-align: left;
-            margin-bottom: 20px;
+            text-align: center;
+            margin-bottom: 45px;
         }
 
         .hero-title {
@@ -199,77 +200,29 @@
         }
 
         .hero-title-gold {
-            font-size: 26px;
+            font-size: 20px;
             font-weight: 400;
             line-height: 1.35;
             letter-spacing: -0.5px;
-            margin-bottom: 25px;
-            color: var(--text-muted);
+            color: var(--gold);
+            font-style: italic;
         }
 
-        /* Pilot Box Pricing */
-        .pilot-box {
-            width: 100%;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 18px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 22px;
-        }
-
-        .pilot-label-top {
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 1px;
+        /* Inline Minimalist Pricing */
+        .inline-pricing {
+            font-size: 12px;
+            font-weight: 600;
             color: var(--text-muted);
             text-transform: uppercase;
-            margin-bottom: 4px;
-        }
-
-        .pilot-label-sub {
-            font-size: 12px;
-            color: var(--text-muted);
-        }
-
-        .pilot-price-area {
-            text-align: right;
-        }
-
-        .pilot-price {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--gold);
-            margin-bottom: 4px;
-        }
-
-        .pilot-code-link {
-            font-size: 10px;
-            font-weight: 700;
-            color: var(--gold);
-            text-decoration: none;
-            letter-spacing: 0.5px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0;
-        }
-
-        .pilot-code-link:hover {
-            text-decoration: underline;
-        }
-
-        /* Core Tagline */
-        .brand-philosophy {
-            font-size: 14px;
-            color: var(--text-muted);
-            font-style: italic;
-            letter-spacing: 0.5px;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
             text-align: center;
-            margin-bottom: 25px;
-            font-weight: 400;
+        }
+
+        .inline-pricing span {
+            color: var(--gold);
+            font-size: 14px;
+            font-weight: 700;
         }
 
         /* CALL TO ACTION AREA */
@@ -278,7 +231,7 @@
             flex-direction: column;
             align-items: center;
             width: 100%;
-            gap: 18px;
+            gap: 20px;
             margin-bottom: 30px;
         }
 
@@ -289,8 +242,8 @@
         }
 
         .ready-circle-btn {
-            width: 150px;
-            height: 150px;
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
             background: var(--gold);
             color: #0d0d0d;
@@ -301,7 +254,7 @@
             border: none;
             cursor: pointer;
             animation: breathing 3s infinite ease-in-out;
-            margin: 5px auto;
+            margin: 0 auto;
             text-align: center;
             transition: transform 0.1s ease;
         }
@@ -311,14 +264,14 @@
         }
 
         .ready-line-1 {
-            font-size: 17px;
+            font-size: 19px;
             font-weight: 800;
             letter-spacing: 2px;
             line-height: 1.1;
         }
 
         .ready-line-2 {
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 800;
             letter-spacing: 1.5px;
             line-height: 1.1;
@@ -329,7 +282,7 @@
             color: var(--text-muted);
             letter-spacing: 0.5px;
             text-align: center;
-            margin-top: 6px;
+            margin-top: 5px;
             max-width: 260px;
             line-height: 1.4;
         }
@@ -355,55 +308,13 @@
             border-color: var(--gold);
         }
 
-        /* Returning User Anchor */
-        .returning-box {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.015);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 14px;
-            padding: 15px 18px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-            text-align: left;
-        }
-
-        .returning-box strong {
-            display: block;
-            font-size: 11px;
-            letter-spacing: 1px;
-            color: var(--text-main);
-            margin-bottom: 2px;
-        }
-
-        .returning-box p {
-            font-size: 11px;
-            color: var(--text-muted);
-            margin: 0;
-        }
-
-        .returning-action-btn {
-            background: transparent;
-            border: 1px solid var(--border-color);
-            color: var(--text-main);
-            padding: 8px 14px;
-            border-radius: 20px;
-            font-size: 10px;
-            font-weight: 700;
-            text-transform: uppercase;
-            cursor: pointer;
-            flex-shrink: 0;
-        }
-
         .active-hours-note {
             font-size: 10px;
-            color: #666;
+            color: #555;
             letter-spacing: 1px;
             text-transform: uppercase;
             text-align: center;
-            margin-top: 5px;
-            margin-bottom: 15px;
+            margin-top: 10px;
         }
 
         /* Footer */
@@ -411,7 +322,7 @@
             width: 100%;
             text-align: center;
             padding-top: 25px;
-            margin-top: 10px;
+            margin-top: auto;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             font-size: 11px;
             color: #777;
@@ -468,20 +379,10 @@
             font-size: 15px; text-align: center; letter-spacing: 1px; margin-bottom: 12px; outline: none; appearance: none;
         }
         select.modal-input { text-align-last: center; }
+        select.modal-input option { background: #141414; color: #ffffff; }
+        select.modal-input option.opt-silver { color: var(--silver); }
+        select.modal-input option.opt-gold { color: var(--gold); font-weight: bold; }
         
-        /* Dropdown options custom coloring */
-        select.modal-input option {
-            background: #141414;
-            color: #ffffff;
-        }
-        select.modal-input option.opt-silver {
-            color: var(--silver);
-        }
-        select.modal-input option.opt-gold {
-            color: var(--gold);
-            font-weight: bold;
-        }
-
         .modal-input:focus { border-color: var(--gold); }
 
         .legal-consent-text { font-size: 9px; color: #666; line-height: 1.3; text-align: center; margin-top: 15px; margin-bottom: 5px; }
@@ -507,6 +408,37 @@
         }
         .perks-mini-box strong { color: var(--text-main); font-weight: 600; }
 
+        .how-step-item {
+            text-align: left; margin-bottom: 14px; padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .how-step-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .how-step-title { font-size: 13px; font-weight: 700; color: var(--gold); margin-bottom: 4px; }
+        .how-step-text { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
+
+        /* Returning User Intercept Prompt */
+        .returning-prompt {
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+        .returning-btn {
+            background: none;
+            border: none;
+            color: var(--gold);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            text-decoration: underline;
+            text-decoration-color: rgba(212, 175, 55, 0.4);
+            text-underline-offset: 4px;
+            margin-top: 5px;
+            transition: color 0.2s ease;
+        }
+        .returning-btn:hover { color: var(--text-main); }
+
         /* Success Screen */
         #finalSuccessView { display: none; width: 100%; max-width: 440px; text-align: center; }
         .success-header-tag {
@@ -519,6 +451,7 @@
         .success-receipt-card {
             background: var(--card-bg); border: 1px solid var(--border-color);
             border-radius: 24px; padding: 28px 24px; text-align: left; position: relative; overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
         }
         .success-receipt-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--gold); }
         .receipt-top-row { display: flex; justify-content: space-between; margin-bottom: 20px; }
@@ -590,44 +523,30 @@
             </div>
         </div>
 
+        <!-- Clean Hero Section -->
         <div class="hero-section">
             <div class="hero-title" data-en="You don't need to know what will make you look better." data-fr="Vous n'avez pas besoin de savoir ce qui vous mettra en valeur.">
                 You don't need to know what will make you look better.
             </div>
-
-            <div class="hero-title-gold" data-en="That's what we're here for." data-fr="C'est exactement pour cela que nous sommes là.">
-                That's what we're here for.
+            <div class="hero-title-gold" id="dynamicHeroSubtitle" data-en="We don't look at menus. We look at you." data-fr="Nous ne regardons pas de menus. Nous vous regardons.">
+                We don't look at menus. We look at you.
             </div>
         </div>
 
-        <!-- Pilot Box Pricing -->
-        <div class="pilot-box">
-            <div>
-                <div class="pilot-label-top" data-en="Priority Flat Rate" data-fr="Tarif Fixe Prioritaire">Priority Flat Rate</div>
-                <div class="pilot-label-sub" data-en="Complete readiness. Zero menus." data-fr="Préparation complète. Zéro menu.">Complete readiness. Zero menus.</div>
-            </div>
-            <div class="pilot-price-area">
-                <div class="pilot-price" id="displayPrice">$49.99 CAD</div>
-                <button class="pilot-code-link" onclick="openModal('codeModal')" id="codeLinkText" data-en="- HAVE SPURTAN CODE?" data-fr="- CODE SPURTAN ?">
-                    - HAVE SPURTAN CODE?
-                </button>
-            </div>
-        </div>
-
-        <!-- Dynamic Brand Philosophy -->
-        <div id="brandPhilosophyText" class="brand-philosophy" data-en="We don't look at menus. We look at you." data-fr="Nous ne regardons pas de menu. Nous vous regardons.">
-            We don't look at menus. We look at you.
-        </div>
-
-        <!-- CALL TO ACTION AREA -->
+        <!-- Inline Pricing & Call To Action Area (TRIGGERS INTERCEPT) -->
         <div class="cta-container">
+            <div class="inline-pricing">
+                <span id="displayPrice">$49.99 CAD</span> Priority Flat Rate<br>
+                <button type="button" onclick="openModal('codeModal')" style="background:none; border:none; color:var(--text-muted); font-size:10px; font-weight:700; text-decoration:underline; cursor:pointer; margin-top:8px;">HAVE SPURTAN CODE?</button>
+            </div>
+
             <div>
                 <button class="ready-circle-btn" onclick="openIntercept('now')">
                     <span class="ready-line-1">READY</span>
                     <span class="ready-line-2">NOW™</span>
                 </button>
-                <div class="cta-footer-note" data-en="A specialist recommends what you need.<br>You just show up." data-fr="Un spécialiste recommande ce dont vous avez besoin.<br>Vous vous présentez, tout simplement.">
-                    A specialist recommends what you need.<br>You just show up.
+                <div class="cta-footer-note" data-en="A specialist assesses what you need.<br>You just show up." data-fr="Un spécialiste évalue ce dont vous avez besoin.<br>Vous vous présentez, tout simplement.">
+                    A specialist assesses what you need.<br>You just show up.
                 </div>
             </div>
 
@@ -640,22 +559,9 @@
                 </svg>
                 <span>READY LATER™</span>
             </button>
-            <div class="cta-footer-note" style="margin-top: -10px;" data-en="Scheduled dispatch.<br>Reserve your readiness." data-fr="Dispatche programmé.<br>Réservez votre préparation.">
-                Scheduled dispatch.<br>Reserve your readiness.
+            <div class="active-hours-note" data-en="Active Dispatch Hours: 9:00 AM – 8:00 PM" data-fr="Heures de dispatche actives : 9h00 – 20h00">
+                Active Dispatch Hours: 9:00 AM – 8:00 PM
             </div>
-        </div>
-
-        <!-- RETURNING USER MEMORY ANCHOR -->
-        <div class="returning-box">
-            <div>
-                <strong data-en="YOUR SPECIALIST. YOUR SPUR." data-fr="VOTRE SPÉCIALISTE. VOTRE SPUR.">YOUR SPECIALIST. YOUR SPUR.</strong>
-                <p data-en="Recognized automatically on return." data-fr="Reconnu automatiquement au retour.">Recognized automatically on return.</p>
-            </div>
-            <button class="returning-action-btn" onclick="openReturningModal()" data-en="Returning →" data-fr="Retour →">Returning →</button>
-        </div>
-
-        <div class="active-hours-note" data-en="Active Dispatch Hours: 9:00 AM – 8:00 PM" data-fr="Heures de dispatche actives : 9h00 – 20h00">
-            Active Dispatch Hours: 9:00 AM – 8:00 PM
         </div>
         
         <!-- Legal Footer -->
@@ -663,14 +569,13 @@
             <span data-en="© 2026 SPUR. All rights reserved." data-fr="© 2026 SPUR. Tous droits réservés.">© 2026 SPUR. All rights reserved.</span>
             <br><br>
             <a onclick="openModal('howItWorksModal')" data-en="How It Works" data-fr="Comment ça marche">How It Works</a> | 
-            <a onclick="openModal('spurtanModal')" data-en="Founding Spurtan" data-fr="Spurtan Fondateur">Founding Spurtan</a> | 
             <a href="terms.html" data-en="Terms of Service" data-fr="Conditions d'utilisation">Terms of Service</a> | 
             <a href="privacy.html" data-en="Privacy Policy" data-fr="Politique de confidentialité">Privacy Policy</a>
         </div>
         
     </div>
 
-    <!-- HOW IT WORKS MODAL -->
+    <!-- HOW IT WORKS MODAL (Binary Refresh / Reset - No Times) -->
     <div id="howItWorksModal" class="modal-overlay">
         <div class="modal-card">
             <h3 data-en="How SPUR Works" data-fr="Comment fonctionne SPUR">How SPUR Works</h3>
@@ -699,7 +604,22 @@
                 <div id="interceptProgressBar" style="width: 100%; height: 100%; background: var(--gold); transition: width 3s linear;"></div>
             </div>
 
-            <button class="modal-capsule-btn" onclick="skipIntercept()" data-en="PROCEED TO REQUEST" data-fr="PROCÉDER À LA DEMANDE">PROCEED TO REQUEST</button>
+            <div id="interceptDefaultView">
+                <button class="modal-capsule-btn" onclick="skipIntercept()" data-en="FASTEST AVAILABLE SPECIALIST" data-fr="SPÉCIALISTE LE PLUS RAPIDE">FASTEST AVAILABLE SPECIALIST</button>
+                
+                <div class="returning-prompt">
+                    <p style="font-weight: 600;" data-en="YOUR SPECIALIST. YOUR SPUR." data-fr="VOTRE SPÉCIALISTE. VOTRE SPUR.">YOUR SPECIALIST. YOUR SPUR.</p>
+                    <button class="returning-btn" onclick="showSpecialistInput()" data-en="WAIT, I WANT MY PREVIOUS SPECIALIST" data-fr="ATTENDEZ, JE VEUX MON ANCIEN SPÉCIALISTE">
+                        WAIT, I WANT MY PREVIOUS SPECIALIST
+                    </button>
+                </div>
+            </div>
+
+            <div id="interceptInputView" style="display: none;">
+                <input type="text" class="modal-input" id="specificSpecialistName" placeholder="Specialist's Name" data-en-placeholder="Specialist's Name" data-fr-placeholder="Nom du Spécialiste">
+                <button class="modal-capsule-btn" onclick="confirmSpecificSpecialist()" data-en="CONFIRM SPECIALIST" data-fr="CONFIRMER LE SPÉCIALISTE">CONFIRM SPECIALIST</button>
+            </div>
+            
             <button class="modal-close" onclick="closeModals()" data-en="CANCEL" data-fr="ANNULER">CANCEL</button>
         </div>
     </div>
@@ -715,16 +635,13 @@
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleSubmit(event, 'now')">
                 <input type="hidden" name="city_location" class="formCityField" value="Yaletown, Vancouver">
                 <input type="hidden" name="dispatch_channel" value="Priority Ready">
-                
+                <input type="hidden" name="requested_specialist" class="specialistHiddenField" value="Any Available">
+
                 <select class="modal-input" name="service_context">
                     <option value="" disabled selected data-en="What's the occasion? (Optional)" data-fr="Quelle est l'occasion ? (Optionnel)">What's the occasion? (Optional)</option>
-                    <!-- JUST FOR ME (Silver/Grey) -->
                     <option value="Just for Me" class="opt-silver" style="color: var(--silver);" data-en="JUST FOR YOU™ — No special occasion needed" data-fr="JUSTE POUR MOI™ — Aucun événement spécial requis">JUST FOR YOU™ — No special occasion needed</option>
-                    <!-- PROFESSIONAL (Gold) -->
                     <option value="Professional" class="opt-gold" style="color: var(--gold);" data-en="PROFESSIONAL — Meeting · Interview · Presentation" data-fr="PROFESSIONNEL — Réunion · Entretien · Présentation">PROFESSIONAL — Meeting · Interview · Presentation</option>
-                    <!-- SOCIAL (Gold) -->
                     <option value="Social" class="opt-gold" style="color: var(--gold);" data-en="SOCIAL — Date · Wedding · Night Out · Event" data-fr="SOCIAL — Rencontre · Mariage · Sortie · Événement">SOCIAL — Date · Wedding · Night Out · Event</option>
-                    <!-- LIFE (Gold) -->
                     <option value="Life" class="opt-gold" style="color: var(--gold);" data-en="LIFE — Travel · Celebration · Personal Milestone" data-fr="VIE — Voyage · Célébration · Étape personnelle">LIFE — Travel · Celebration · Personal Milestone</option>
                 </select>
                 
@@ -735,7 +652,6 @@
 
                 <button type="submit" class="modal-capsule-btn" id="nowSubmitBtn" data-en="SEND REQUEST" data-fr="ENVOYER LA DEMANDE">SEND REQUEST</button>
             </form>
-            
             <button class="modal-close" onclick="closeModals()" data-en="CANCEL" data-fr="ANNULER">CANCEL</button>
             <br>
             <button type="button" class="reset-user-link" id="resetUserBtn" onclick="resetUser()" data-en="Not you? Reset details" data-fr="Pas vous ? Réinitialiser">Not you? Reset details</button>
@@ -749,10 +665,10 @@
             <p class="dynamic-desc" data-en="Commit to a scheduled visit. We'll coordinate availability." data-fr="Engagez-vous pour une visite planifiée.">
                 Commit to a scheduled visit. We'll coordinate availability.
             </p>
-            
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleSubmit(event, 'later')">
                 <input type="hidden" name="city_location" class="formCityField" value="Yaletown, Vancouver">
                 <input type="hidden" name="dispatch_channel" value="Scheduled Request">
+                <input type="hidden" name="requested_specialist" class="specialistHiddenField" value="Any Available">
                 
                 <select class="modal-input" name="service_context">
                     <option value="" disabled selected data-en="What's the occasion? (Optional)" data-fr="Quelle est l'occasion ? (Optionnel)">What's the occasion? (Optional)</option>
@@ -777,7 +693,6 @@
                 </select>
                 <button type="submit" class="modal-capsule-btn" data-en="REQUEST SCHEDULED COMMITMENT" data-fr="DEMANDER UNE VISITE PLANIFIÉE">REQUEST SCHEDULED COMMITMENT</button>
             </form>
-            
             <button class="modal-close" onclick="closeModals()" data-en="CANCEL" data-fr="ANNULER">CANCEL</button>
         </div>
     </div>
@@ -787,58 +702,49 @@
         <div class="modal-card">
             <h3 data-en="Enter SPURTAN Code" data-fr="Entrez le code SPURTAN">Enter SPURTAN Code</h3>
             <p data-en="Please enter your unique membership code." data-fr="Veuillez entrer votre code d'adhésion unique.">Please enter your unique membership code.</p>
-            
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleCodeSubmit(event)">
                 <input type="hidden" name="city_location" class="formCityField" value="Yaletown, Vancouver">
                 <input type="text" class="modal-input" name="spurtan_code" placeholder="e.g., SPURTAN" id="spurInput" required>
-                <button type="submit" class="modal-circle-btn" data-en="APPLY" data-fr="APPLIQUER">APPLY</button>
+                <button type="submit" class="modal-capsule-btn" data-en="APPLY" data-fr="APPLIQUER">APPLY</button>
             </form>
-
             <div class="code-modal-bridge">
                 <span data-en="Don't have a code yet?" data-fr="Vous n'avez pas encore de code ?">Don't have a code yet?</span><br>
                 <button type="button" onclick="switchModal('codeModal', 'spurtanModal')" data-en="Request Founding Spurtan Access →" data-fr="Demander l'accès Spurtan Fondateur →">
                     Request Founding Spurtan Access →
                 </button>
             </div>
-            
             <button class="modal-close" onclick="closeModals()" data-en="CANCEL" data-fr="ANNULER">CANCEL</button>
         </div>
     </div>
 
-    <!-- FOUNDING SPURTAN REGISTRATION MODAL (Cleaned Citations) -->
+    <!-- FOUNDING SPURTAN REGISTRATION MODAL -->
     <div id="spurtanModal" class="modal-overlay">
         <div class="modal-card">
             <h3>Founding Spurtan Access</h3>
             <p>Own the hour before. Join the private pilot and lock in preferred rates.</p>
-
-            <div class="perks-mini-box" style="text-align: left;">
+            <div class="perks-mini-box">
                 • <strong>$39.99 CAD All-In</strong> for your first 3 visits (Standard: $49.99).<br>
                 • <strong>First Visit Guarantee:</strong> Full refund if not completely ready.
             </div>
-
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleSpurtanRegister(event)">
                 <input type="text" class="modal-input" name="client_name" required placeholder="First Name">
                 <input type="tel" class="modal-input" name="client_phone" required placeholder="10 Digit Mobile" pattern="[0-9]{10}">
-                
                 <select class="modal-input" name="launch_node" id="spurtanNodeSelect" required>
                     <option value="Yaletown, Vancouver">Yaletown, Vancouver (Live)</option>
                     <option value="Le Plateau, Montreal">Le Plateau, Montreal (Live)</option>
                     <option value="Financial District, Toronto">Financial District, Toronto (Waitlist)</option>
                 </select>
-
                 <button type="submit" class="modal-capsule-btn">CLAIM FOUNDING ACCESS</button>
             </form>
-
             <button class="modal-close" onclick="closeModals()">CANCEL</button>
         </div>
     </div>
 
-    <!-- SUCCESS SCREEN -->
+    <!-- SUCCESS SCREEN (With Auto-Ready WhatsApp Link) -->
     <div id="finalSuccessView">
         <div class="success-header-tag" id="receiptHeaderTag">Verified Dispatch</div>
         <div class="success-main-title">Request Received.</div>
         <div class="success-sub-title">We are coordinating your specialist match.</div>
-
         <div class="success-receipt-card">
             <div class="receipt-top-row">
                 <div>
@@ -850,7 +756,6 @@
                     <div class="receipt-price-label">Flat Rate</div>
                 </div>
             </div>
-
             <div class="receipt-grid">
                 <div class="receipt-grid-box">
                     <div class="grid-box-val">Verified</div>
@@ -861,11 +766,9 @@
                     <div class="grid-box-lbl">Location</div>
                 </div>
             </div>
-
             <div class="receipt-footer-desc">
                 Your concierge is coordinating with our network.<br>You pay directly at the studio.
             </div>
-
             <a href="#" id="whatsappAutoBtn" class="receipt-action-btn" target="_blank">💬 CONFIRM VIA WHATSAPP (READY)</a>
             <a href="https://wa.me/14387251010" class="cancel-link" target="_blank">Need to modify or cancel? Message Concierge.</a>
         </div>
@@ -913,25 +816,18 @@
         function switchLanguage(lang) {
             document.getElementById('btn-en').classList.toggle('active', lang === 'en');
             document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
-            document.querySelectorAll('[data-en]').forEach(el => {
-                if (el.id === 'brandPhilosophyText' && localStorage.getItem('spur_user_name')) return;
-                el.innerHTML = lang === 'fr' && el.hasAttribute('data-fr') ? el.getAttribute('data-fr') : el.getAttribute('data-en');
-            });
+            
             const savedName = localStorage.getItem('spur_user_name');
-            if (savedName) {
-                document.getElementById('brandPhilosophyText').innerHTML = lang === 'fr' ? "Bon retour, " + savedName.split(' ')[0] + "." : "Welcome back, " + savedName.split(' ')[0] + ".";
+            const dynamicSubtitle = document.getElementById('dynamicHeroSubtitle');
+            
+            if (savedName && dynamicSubtitle) {
+                dynamicSubtitle.innerHTML = lang === 'fr' ? "Bon retour, " + savedName.split(' ')[0] + ". Nous sommes prêts quand vous l'êtes." : "Welcome back, " + savedName.split(' ')[0] + ". We're ready when you are.";
+            } else if (dynamicSubtitle) {
+                dynamicSubtitle.innerHTML = lang === 'fr' ? dynamicSubtitle.getAttribute('data-fr') : dynamicSubtitle.getAttribute('data-en');
             }
+            
             localStorage.setItem('spur_lang', lang);
             updateBadgeText();
-        }
-
-        function openReturningModal() {
-            const savedName = localStorage.getItem('spur_user_name');
-            if (savedName) {
-                openIntercept('now');
-            } else {
-                openModal('verifyModal');
-            }
         }
 
         let interceptTimer;
@@ -939,17 +835,49 @@
 
         function openIntercept(type) {
             currentInterceptType = type;
+            document.getElementById('interceptDefaultView').style.display = 'block';
+            document.getElementById('interceptInputView').style.display = 'none';
+            document.getElementById('specificSpecialistName').value = '';
+            
             document.getElementById('interceptModal').style.display = 'flex';
+            
             const bar = document.getElementById('interceptProgressBar');
-            bar.style.transition = 'none'; bar.style.width = '100%';
+            bar.style.transition = 'none';
+            bar.style.width = '100%';
+            
             void bar.offsetWidth;
-            bar.style.transition = 'width 3s linear'; bar.style.width = '0%';
+            
+            bar.style.transition = 'width 3s linear';
+            bar.style.width = '0%';
+            
             clearTimeout(interceptTimer);
-            interceptTimer = setTimeout(() => { skipIntercept(); }, 3000);
+            interceptTimer = setTimeout(() => {
+                if (document.getElementById('interceptModal').style.display === 'flex' && 
+                    document.getElementById('interceptDefaultView').style.display === 'block') {
+                    skipIntercept();
+                }
+            }, 3000);
         }
 
         function skipIntercept() {
             clearTimeout(interceptTimer);
+            document.querySelectorAll('.specialistHiddenField').forEach(el => el.value = "Fastest Available");
+            document.getElementById('interceptModal').style.display = 'none';
+            openModal(currentInterceptType === 'now' ? 'verifyModal' : 'laterModal');
+        }
+
+        function showSpecialistInput() {
+            clearTimeout(interceptTimer);
+            const bar = document.getElementById('interceptProgressBar');
+            bar.style.width = bar.offsetWidth + 'px';
+            
+            document.getElementById('interceptDefaultView').style.display = 'none';
+            document.getElementById('interceptInputView').style.display = 'block';
+        }
+
+        function confirmSpecificSpecialist() {
+            const specName = document.getElementById('specificSpecialistName').value.trim() || 'Fastest Available';
+            document.querySelectorAll('.specialistHiddenField').forEach(el => el.value = specName);
             document.getElementById('interceptModal').style.display = 'none';
             openModal(currentInterceptType === 'now' ? 'verifyModal' : 'laterModal');
         }
@@ -971,6 +899,7 @@
                     wrapper.style.display = 'block';
                     if(resetBtn) resetBtn.style.display = 'none';
                     wrapper.querySelectorAll('input').forEach(i => i.required = true);
+                    modal.querySelector('.dynamic-header').innerText = id === 'verifyModal' ? "Get Ready Now" : "Plan Ahead";
                 }
             }
             modal.style.display = 'flex';
@@ -1000,8 +929,21 @@
 
             try { await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } }); } catch (e) {}
             alert("✓ Founding Spurtan Access confirmed! Your $39.99 rate is now active.");
+            
             document.getElementById('displayPrice').innerText = "$39.99 CAD";
             document.getElementById('finalReceiptPrice').innerText = "$39.99";
+            
+            const codeLink = document.getElementById('codeLinkText');
+            codeLink.innerText = "✓ FOUNDING RATE ACTIVE";
+            codeLink.style.color = "var(--text-main)";
+            codeLink.style.pointerEvents = "none";
+            codeLink.style.textDecoration = "none";
+
+            const dynamicSubtitle = document.getElementById('dynamicHeroSubtitle');
+            if (dynamicSubtitle) {
+                dynamicSubtitle.innerHTML = localStorage.getItem('spur_lang') === 'fr' ? "Bon retour, " + name.split(' ')[0] + ". Nous sommes prêts quand vous l'êtes." : "Welcome back, " + name.split(' ')[0] + ". We're ready when you are.";
+            }
+
             closeModals(); form.reset();
         }
 
@@ -1034,11 +976,12 @@
             }
 
             const city = form.querySelector('.formCityField').value;
-            const context = form.querySelector('select[name="service_context"]').value || 'Standard Readiness';
+            const contextRaw = form.querySelector('select[name="service_context"]').value;
+            const context = contextRaw ? contextRaw.split('—')[0].trim() : 'Standard Readiness';
 
             // Automatically prepare WhatsApp message string
             const waMessage = `Hello SPUR — I would like to request a visit.\n\nType: ${type.toUpperCase()}\nCity: ${city}\nName: ${name}\nMobile: ${phone}\nContext: ${context}\n\nPlease coordinate availability.`;
-            const encodedWaUrl = `https://wa.me/${SPUR_WHATSAPP_NUMBER}?text=${encodeURIComponent(encodedWaUrl ? '' : encodeURIComponent(waMessage))}`.replace(/&text=.*$/, `&text=${encodeURIComponent(waMessage)}`);
+            const encodedWaUrl = `https://wa.me/${SPUR_WHATSAPP_NUMBER}?text=${encodeURIComponent(waMessage)}`;
             document.getElementById('whatsappAutoBtn').href = encodedWaUrl;
 
             try { await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } }); } catch (e) {}
@@ -1052,6 +995,13 @@
         window.addEventListener('DOMContentLoaded', () => {
             setCity(localStorage.getItem('spur_active_city') || 'yvr');
             switchLanguage(localStorage.getItem('spur_lang') || 'en');
+            
+            const savedName = localStorage.getItem('spur_user_name');
+            const dynamicSubtitle = document.getElementById('dynamicHeroSubtitle');
+            if (savedName && dynamicSubtitle) {
+                const lang = localStorage.getItem('spur_lang') || 'en';
+                dynamicSubtitle.innerHTML = lang === 'fr' ? "Bon retour, " + savedName.split(' ')[0] + ". Nous sommes prêts quand vous l'êtes." : "Welcome back, " + savedName.split(' ')[0] + ". We're ready when you are.";
+            }
         });
     </script>
 </body>
