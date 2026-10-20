@@ -671,6 +671,8 @@
                 <button type="submit" class="modal-capsule-btn" data-en="REQUEST SCHEDULED COMMITMENT" data-fr="DEMANDER UNE VISITE PLANIFIÉE">REQUEST SCHEDULED COMMITMENT</button>
             </form>
             <button class="modal-close" onclick="closeModals()" data-en="CANCEL" data-fr="ANNULER">CANCEL</button>
+            <br>
+            <button type="button" class="reset-user-link" id="resetUserBtnLater" onclick="resetUser()" data-en="Not you? Reset details" data-fr="Pas vous ? Réinitialiser" style="display:none;">Not you? Reset details</button>
         </div>
     </div>
 
@@ -761,12 +763,10 @@
             yul: { enBadge: "Montreal • Plateau • Live", frBadge: "Montréal • Le Plateau • En Direct", areaName: "Le Plateau, Montréal" }
         };
 
-        // Initialize Supabase Live Client (Credentials Connected)
         const SUPABASE_URL = 'https://quqcgjkbvajcltwuoqvz.supabase.co';
         const SUPABASE_ANON_KEY = 'sb_publishable_h-5S_3VCTLKsN8iVUc_LxQ_T7rn1HlJ';
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-        // Real-time lookup on page load using cached phone number
         async function checkReturningUserRealtime() {
             const savedPhone = localStorage.getItem('spur_user_phone');
             if (!savedPhone) return;
@@ -992,10 +992,8 @@
             const context = contextRaw ? contextRaw.split('—')[0].trim() : 'Standard Readiness';
             const specialist = form.querySelector('input[name="requested_specialist"]')?.value || 'Fastest Available';
 
-            // Sync this session back to Supabase live database
             await syncClientToSupabase(name, phone, specialist);
 
-            // Automatically prepare WhatsApp message string
             const waMessage = `Hello SPUR — I would like to request a visit.\n\nType: ${type.toUpperCase()}\nCity: ${city}\nName: ${name}\nMobile: ${phone}\nContext: ${context}\nSpecialist: ${specialist}\n\nPlease coordinate verified availability.`;
             const encodedWaUrl = `https://wa.me/${SPUR_WHATSAPP_NUMBER}?text=${encodeURIComponent(waMessage)}`;
             document.getElementById('whatsappAutoBtn').href = encodedWaUrl;
