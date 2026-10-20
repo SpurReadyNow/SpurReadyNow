@@ -391,11 +391,14 @@
             background: var(--gold); color: #0d0d0d; border: none; padding: 14px 24px;
             border-radius: 30px; font-size: 12px; font-weight: 800; cursor: pointer; margin: 10px auto 0 auto; width: 100%; text-transform: uppercase;
         }
-        .modal-circle-btn {
-            width: 95px; height: 95px; border-radius: 50%; background: var(--gold); color: #0d0d0d;
-            border: none; font-weight: 800; font-size: 10px; cursor: pointer; margin: 10px auto 16px auto;
-            display: flex; justify-content: center; align-items: center; text-align: center; padding: 5px;
+        .modal-capsule-btn-secondary {
+            background: transparent; color: var(--text-main); border: 1px solid var(--border-color); padding: 12px 20px;
+            border-radius: 30px; font-size: 11px; font-weight: 700; cursor: pointer; margin: 8px auto 0 auto; width: 100%; text-transform: uppercase;
         }
+        .modal-capsule-btn-secondary:hover {
+            border-color: var(--gold);
+        }
+
         .modal-close { background: none; border: none; color: var(--text-muted); font-size: 12px; cursor: pointer; margin-top: 15px; display: inline-block; }
         .reset-user-link { display: none; background: none; border: none; color: var(--gold); font-size: 10px; font-weight: 700; text-transform: uppercase; cursor: pointer; text-decoration: underline; margin: 15px auto 5px auto; width: 100%; }
 
@@ -415,29 +418,6 @@
         .how-step-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
         .how-step-title { font-size: 13px; font-weight: 700; color: var(--gold); margin-bottom: 4px; }
         .how-step-text { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
-
-        /* Returning User Intercept Prompt */
-        .returning-prompt {
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-            padding-top: 15px;
-            margin-top: 15px;
-        }
-        .returning-btn {
-            background: none;
-            border: none;
-            color: var(--gold);
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            cursor: pointer;
-            text-decoration: underline;
-            text-decoration-color: rgba(212, 175, 55, 0.4);
-            text-underline-offset: 4px;
-            margin-top: 5px;
-            transition: color 0.2s ease;
-        }
-        .returning-btn:hover { color: var(--text-main); }
 
         /* Success Screen */
         #finalSuccessView { display: none; width: 100%; max-width: 440px; text-align: center; }
@@ -533,7 +513,7 @@
             </div>
         </div>
 
-        <!-- Inline Pricing & Call To Action Area (TRIGGERS INTERCEPT) -->
+        <!-- Inline Pricing & Call To Action Area -->
         <div class="cta-container">
             <div class="inline-pricing">
                 <span id="displayPrice">$49.99 CAD</span> Priority Flat Rate<br>
@@ -575,7 +555,7 @@
         
     </div>
 
-    <!-- HOW IT WORKS MODAL (Binary Refresh / Reset - No Times) -->
+    <!-- HOW IT WORKS MODAL -->
     <div id="howItWorksModal" class="modal-overlay">
         <div class="modal-card">
             <h3 data-en="How SPUR Works" data-fr="Comment fonctionne SPUR">How SPUR Works</h3>
@@ -586,40 +566,34 @@
                 <p style="margin-bottom: 8px;"><strong>01. Zero Menus:</strong> You state your life moment. No service lists.</p>
                 <p style="margin-bottom: 8px;"><strong>02. Verified Dispatch:</strong> We coordinate availability through a verified concierge process.</p>
                 <p style="margin-bottom: 8px;"><strong>03. Assess & Approve:</strong> The specialist recommends either a <strong>Refresh™</strong> (to maintain your baseline) or <strong>Reset™</strong> (to restore your shape). You approve before execution.</p>
-                <p style="margin-bottom: 0;"><strong>04. First Visit Guarantee:</strong> Full refund if not completely ready after your first visit.</p>
+                <p style="margin-bottom: 0;"><strong>04. First Visit Guarantee:</strong> Full refund if not completely ready after your first visit[cite: 3].</p>
             </div>
             <button class="modal-capsule-btn" onclick="closeModals()" data-en="GOT IT" data-fr="COMPRIS">GOT IT</button>
         </div>
     </div>
 
-    <!-- PAGE 2: SPECIALIST INTERCEPT MODAL -->
+    <!-- SPECIALIST INTERCEPT MODAL (NO TYPING - AUTOMATIC RECOGNITION) -->
     <div id="interceptModal" class="modal-overlay">
         <div class="modal-card">
             <h3 data-en="Securing Your Chair" data-fr="Sécurisation de votre place">Securing Your Chair</h3>
-            <p data-en="Your concierge is coordinating availability for you..." data-fr="Votre concierge coordonne la disponibilité...">
-                Your concierge is coordinating availability for you...
+            <p id="interceptStatusDesc" data-en="Your concierge is coordinating verified specialist availability..." data-fr="Votre concierge coordonne la disponibilité vérifiée...">
+                Your concierge is coordinating verified specialist availability...
             </p>
             
             <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; margin: 24px 0; overflow: hidden;">
-                <div id="interceptProgressBar" style="width: 100%; height: 100%; background: var(--gold); transition: width 3s linear;"></div>
+                <div id="interceptProgressBar" style="width: 100%; height: 100%; background: var(--gold); transition: width 2.5s linear;"></div>
             </div>
 
-            <div id="interceptDefaultView">
-                <button class="modal-capsule-btn" onclick="skipIntercept()" data-en="FASTEST AVAILABLE SPECIALIST" data-fr="SPÉCIALISTE LE PLUS RAPIDE">FASTEST AVAILABLE SPECIALIST</button>
-                
-                <div class="returning-prompt">
-                    <p style="font-weight: 600;" data-en="YOUR SPECIALIST. YOUR SPUR." data-fr="VOTRE SPÉCIALISTE. VOTRE SPUR.">YOUR SPECIALIST. YOUR SPUR.</p>
-                    <button class="returning-btn" onclick="showSpecialistInput()" data-en="WAIT, I WANT MY PREVIOUS SPECIALIST" data-fr="ATTENDEZ, JE VEUX MON ANCIEN SPÉCIALISTE">
-                        WAIT, I WANT MY PREVIOUS SPECIALIST
-                    </button>
-                </div>
+            <!-- Shown only if user has a remembered specialist -->
+            <div id="previousSpecialistOption" style="display: none; margin-bottom: 15px;">
+                <button class="modal-capsule-btn" id="previousSpecialistBtn" onclick="selectPreviousSpecialist()">REQUEST PREVIOUS SPECIALIST</button>
+                <button class="modal-capsule-btn-secondary" onclick="skipIntercept()">FASTEST AVAILABLE</button>
             </div>
 
-            <div id="interceptInputView" style="display: none;">
-                <input type="text" class="modal-input" id="specificSpecialistName" placeholder="Specialist's Name" data-en-placeholder="Specialist's Name" data-fr-placeholder="Nom du Spécialiste">
-                <button class="modal-capsule-btn" onclick="confirmSpecificSpecialist()" data-en="CONFIRM SPECIALIST" data-fr="CONFIRMER LE SPÉCIALISTE">CONFIRM SPECIALIST</button>
+            <div id="defaultInterceptOption">
+                <button class="modal-capsule-btn" onclick="skipIntercept()" data-en="PROCEED TO REQUEST" data-fr="PROCÉDER À LA DEMANDE">PROCEED TO REQUEST</button>
             </div>
-            
+
             <button class="modal-close" onclick="closeModals()" data-en="CANCEL" data-fr="ANNULER">CANCEL</button>
         </div>
     </div>
@@ -635,7 +609,7 @@
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleSubmit(event, 'now')">
                 <input type="hidden" name="city_location" class="formCityField" value="Yaletown, Vancouver">
                 <input type="hidden" name="dispatch_channel" value="Priority Ready">
-                <input type="hidden" name="requested_specialist" class="specialistHiddenField" value="Any Available">
+                <input type="hidden" name="requested_specialist" id="requestedSpecialistField" value="Fastest Available">
 
                 <select class="modal-input" name="service_context">
                     <option value="" disabled selected data-en="What's the occasion? (Optional)" data-fr="Quelle est l'occasion ? (Optionnel)">What's the occasion? (Optional)</option>
@@ -668,7 +642,7 @@
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleSubmit(event, 'later')">
                 <input type="hidden" name="city_location" class="formCityField" value="Yaletown, Vancouver">
                 <input type="hidden" name="dispatch_channel" value="Scheduled Request">
-                <input type="hidden" name="requested_specialist" class="specialistHiddenField" value="Any Available">
+                <input type="hidden" name="requested_specialist" value="Fastest Available">
                 
                 <select class="modal-input" name="service_context">
                     <option value="" disabled selected data-en="What's the occasion? (Optional)" data-fr="Quelle est l'occasion ? (Optionnel)">What's the occasion? (Optional)</option>
@@ -721,10 +695,10 @@
     <div id="spurtanModal" class="modal-overlay">
         <div class="modal-card">
             <h3>Founding Spurtan Access</h3>
-            <p>Own the hour before. Join the private pilot and lock in preferred rates.</p>
+            <p>Own the hour before[cite: 3]. Join the private pilot and lock in preferred rates[cite: 3].</p>
             <div class="perks-mini-box">
-                • <strong>$39.99 CAD All-In</strong> for your first 3 visits (Standard: $49.99).<br>
-                • <strong>First Visit Guarantee:</strong> Full refund if not completely ready.
+                • <strong>$39.99 CAD All-In</strong> for your first 3 visits (Standard: $49.99)[cite: 3].<br>
+                • <strong>First Visit Guarantee:</strong> Full refund if not completely ready[cite: 3].
             </div>
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleSpurtanRegister(event)">
                 <input type="text" class="modal-input" name="client_name" required placeholder="First Name">
@@ -740,7 +714,7 @@
         </div>
     </div>
 
-    <!-- SUCCESS SCREEN (With Auto-Ready WhatsApp Link) -->
+    <!-- SUCCESS SCREEN (With Instant WhatsApp Prep) -->
     <div id="finalSuccessView">
         <div class="success-header-tag" id="receiptHeaderTag">Verified Dispatch</div>
         <div class="success-main-title">Request Received.</div>
@@ -835,49 +809,51 @@
 
         function openIntercept(type) {
             currentInterceptType = type;
-            document.getElementById('interceptDefaultView').style.display = 'block';
-            document.getElementById('interceptInputView').style.display = 'none';
-            document.getElementById('specificSpecialistName').value = '';
-            
-            document.getElementById('interceptModal').style.display = 'flex';
+            const modal = document.getElementById('interceptModal');
+            const previousOption = document.getElementById('previousSpecialistOption');
+            const defaultOption = document.getElementById('defaultInterceptOption');
+            const savedSpecialist = localStorage.getItem('spur_preferred_specialist');
+
+            // If we remember their specialist, offer it with one tap (no typing)
+            if (savedSpecialist && type === 'now') {
+                previousOption.style.display = 'block';
+                defaultOption.style.display = 'none';
+                document.getElementById('previousSpecialistBtn').innerText = `REQUEST ${savedSpecialist.toUpperCase()} AGAIN`;
+                document.getElementById('interceptStatusDesc').innerText = `Recognizing profile. Would you like to request ${savedSpecialist} again?`;
+            } else {
+                previousOption.style.display = 'none';
+                defaultOption.style.display = 'block';
+                document.getElementById('interceptStatusDesc').innerText = "Your concierge is coordinating verified specialist availability...";
+            }
+
+            modal.style.display = 'flex';
             
             const bar = document.getElementById('interceptProgressBar');
             bar.style.transition = 'none';
             bar.style.width = '100%';
-            
             void bar.offsetWidth;
-            
-            bar.style.transition = 'width 3s linear';
+            bar.style.transition = 'width 2.5s linear';
             bar.style.width = '0%';
             
             clearTimeout(interceptTimer);
             interceptTimer = setTimeout(() => {
-                if (document.getElementById('interceptModal').style.display === 'flex' && 
-                    document.getElementById('interceptDefaultView').style.display === 'block') {
+                if (modal.style.display === 'flex' && defaultOption.style.display === 'block') {
                     skipIntercept();
                 }
-            }, 3000);
+            }, 2500);
+        }
+
+        function selectPreviousSpecialist() {
+            clearTimeout(interceptTimer);
+            const savedSpecialist = localStorage.getItem('spur_preferred_specialist') || 'Preferred Specialist';
+            document.getElementById('requestedSpecialistField').value = savedSpecialist;
+            document.getElementById('interceptModal').style.display = 'none';
+            openModal('verifyModal');
         }
 
         function skipIntercept() {
             clearTimeout(interceptTimer);
-            document.querySelectorAll('.specialistHiddenField').forEach(el => el.value = "Fastest Available");
-            document.getElementById('interceptModal').style.display = 'none';
-            openModal(currentInterceptType === 'now' ? 'verifyModal' : 'laterModal');
-        }
-
-        function showSpecialistInput() {
-            clearTimeout(interceptTimer);
-            const bar = document.getElementById('interceptProgressBar');
-            bar.style.width = bar.offsetWidth + 'px';
-            
-            document.getElementById('interceptDefaultView').style.display = 'none';
-            document.getElementById('interceptInputView').style.display = 'block';
-        }
-
-        function confirmSpecificSpecialist() {
-            const specName = document.getElementById('specificSpecialistName').value.trim() || 'Fastest Available';
-            document.querySelectorAll('.specialistHiddenField').forEach(el => el.value = specName);
+            document.getElementById('requestedSpecialistField').value = "Fastest Available";
             document.getElementById('interceptModal').style.display = 'none';
             openModal(currentInterceptType === 'now' ? 'verifyModal' : 'laterModal');
         }
@@ -890,6 +866,7 @@
                 const wrapper = id === 'verifyModal' ? document.getElementById('inputFieldsWrapper') : document.getElementById('inputFieldsWrapperLater');
                 const resetBtn = document.getElementById('resetUserBtn');
                 
+                // Recognized user: Hide inputs completely
                 if (savedName && savedPhone) {
                     wrapper.style.display = 'none';
                     wrapper.querySelectorAll('input').forEach(i => i.required = false);
@@ -908,6 +885,7 @@
         function resetUser() {
             localStorage.removeItem('spur_user_name');
             localStorage.removeItem('spur_user_phone');
+            localStorage.removeItem('spur_preferred_specialist');
             alert("Profile reset. Please enter your details.");
             closeModals();
             openModal('verifyModal');
@@ -928,16 +906,16 @@
             localStorage.setItem('spur_user_phone', phone);
 
             try { await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } }); } catch (e) {}
-            alert("✓ Founding Spurtan Access confirmed! Your $39.99 rate is now active.");
+            alert("✓ Founding Spurtan Access confirmed! Your $39.99 rate is now active[cite: 3].");
             
             document.getElementById('displayPrice').innerText = "$39.99 CAD";
             document.getElementById('finalReceiptPrice').innerText = "$39.99";
             
-            const codeLink = document.getElementById('codeLinkText');
-            codeLink.innerText = "✓ FOUNDING RATE ACTIVE";
-            codeLink.style.color = "var(--text-main)";
-            codeLink.style.pointerEvents = "none";
-            codeLink.style.textDecoration = "none";
+            const vipRight = document.querySelector('.vip-pill-right');
+            if (vipRight) {
+                vipRight.innerText = "✓ RATE ACTIVE";
+                vipRight.style.color = "var(--text-main)";
+            }
 
             const dynamicSubtitle = document.getElementById('dynamicHeroSubtitle');
             if (dynamicSubtitle) {
@@ -978,9 +956,10 @@
             const city = form.querySelector('.formCityField').value;
             const contextRaw = form.querySelector('select[name="service_context"]').value;
             const context = contextRaw ? contextRaw.split('—')[0].trim() : 'Standard Readiness';
+            const specialist = form.querySelector('input[name="requested_specialist"]')?.value || 'Fastest Available';
 
-            // Automatically prepare WhatsApp message string
-            const waMessage = `Hello SPUR — I would like to request a visit.\n\nType: ${type.toUpperCase()}\nCity: ${city}\nName: ${name}\nMobile: ${phone}\nContext: ${context}\n\nPlease coordinate availability.`;
+            // WhatsApp Message with complete verified dispatch text
+            const waMessage = `Hello SPUR — I would like to request a visit.\n\nType: ${type.toUpperCase()}\nCity: ${city}\nName: ${name}\nMobile: ${phone}\nContext: ${context}\nSpecialist: ${specialist}\n\nPlease coordinate verified availability.`;
             const encodedWaUrl = `https://wa.me/${SPUR_WHATSAPP_NUMBER}?text=${encodeURIComponent(waMessage)}`;
             document.getElementById('whatsappAutoBtn').href = encodedWaUrl;
 
