@@ -382,7 +382,6 @@
             font-size: 15px; text-align: center; letter-spacing: 1px; margin-bottom: 12px; outline: none; appearance: none;
         }
 
-        /* FIX AUTOFILL BLUE BACKGROUND OVERRIDE */
         .modal-input:-webkit-autofill,
         .modal-input:-webkit-autofill:hover, 
         .modal-input:-webkit-autofill:focus {
@@ -421,14 +420,6 @@
             border-radius: 12px; padding: 14px; margin-bottom: 16px; text-align: left; font-size: 12px; color: var(--text-muted); line-height: 1.5;
         }
         .perks-mini-box strong { color: var(--text-main); font-weight: 600; }
-
-        .how-step-item {
-            text-align: left; margin-bottom: 14px; padding-bottom: 12px;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-        }
-        .how-step-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-        .how-step-title { font-size: 13px; font-weight: 700; color: var(--gold); margin-bottom: 4px; }
-        .how-step-text { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
 
         /* Success Screen */
         #finalSuccessView { display: none; width: 100%; max-width: 440px; text-align: center; }
@@ -620,7 +611,7 @@
 
                 <select class="modal-input" name="service_context">
                     <option value="" disabled selected>What's the occasion? (Optional)</option>
-                    <option value="Just for Me" class="opt-silver" style="color: var(--silver);">JUST FOR YOU™ — No special occasion needed</option>
+                    <option value="Just for You" class="opt-silver" style="color: var(--silver);">JUST FOR YOU™ — The occasion is me</option>
                     <option value="Professional" class="opt-gold" style="color: var(--gold);">PROFESSIONAL — Meeting · Interview · Presentation</option>
                     <option value="Social" class="opt-gold" style="color: var(--gold);">SOCIAL — Date · Wedding · Night Out · Event</option>
                     <option value="Life" class="opt-gold" style="color: var(--gold);">LIFE — Travel · Celebration · Personal Milestone</option>
@@ -651,7 +642,7 @@
                 
                 <select class="modal-input" name="service_context">
                     <option value="" disabled selected>What's the occasion? (Optional)</option>
-                    <option value="Just for Me" class="opt-silver" style="color: var(--silver);">JUST FOR YOU™ — No special occasion needed</option>
+                    <option value="Just for You" class="opt-silver" style="color: var(--silver);">JUST FOR YOU™ — The occasion is me</option>
                     <option value="Professional" class="opt-gold" style="color: var(--gold);">PROFESSIONAL — Meeting · Interview · Presentation</option>
                     <option value="Social" class="opt-gold" style="color: var(--gold);">SOCIAL — Date · Wedding · Night Out · Event</option>
                     <option value="Life" class="opt-gold" style="color: var(--gold);">LIFE — Travel · Celebration · Personal Milestone</option>
@@ -700,10 +691,10 @@
     <div id="spurtanModal" class="modal-overlay">
         <div class="modal-card">
             <h3>Founding Spurtan Access</h3>
-            <p>Own the hour before[cite: 3]. Join the private pilot and lock in preferred rates[cite: 3].</p>
+            <p>Own the hour before. Join the private pilot and lock in preferred rates.</p>
             <div class="perks-mini-box">
-                • <strong>$39.99 CAD All-In</strong> for your first 3 visits (Standard: $49.99)[cite: 3].<br>
-                • <strong>First Visit Guarantee:</strong> Full refund if not completely ready[cite: 3].
+                • <strong>$39.99 CAD All-In</strong> for your first 3 visits (Standard: $49.99).<br>
+                • <strong>First Visit Guarantee:</strong> Full refund if not completely ready.
             </div>
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleSpurtanRegister(event)">
                 <input type="text" class="modal-input" name="client_name" required placeholder="First Name">
@@ -981,14 +972,20 @@
             let name = localStorage.getItem('spur_user_name');
             let phone = localStorage.getItem('spur_user_phone');
 
-            if (!name || !phone) {
-                name = form.querySelector('input[name="client_name"]')?.value || 'Valued Client';
-                phone = form.querySelector('input[name="client_phone"]')?.value || 'Saved Profile';
-                if (phone && phone.length >= 10) {
-                    localStorage.setItem('spur_user_name', name);
-                    localStorage.setItem('spur_user_phone', phone);
-                }
+            const nameInput = form.querySelector('input[name="client_name"]');
+            const phoneInput = form.querySelector('input[name="client_phone"]');
+
+            if (nameInput && nameInput.value.trim()) {
+                name = nameInput.value.trim();
+                localStorage.setItem('spur_user_name', name);
             }
+            if (phoneInput && phoneInput.value.trim().length >= 10) {
+                phone = phoneInput.value.trim();
+                localStorage.setItem('spur_user_phone', phone);
+            }
+
+            if (!name) name = 'Valued Client';
+            if (!phone) phone = '6040000000';
 
             const city = form.querySelector('.formCityField').value;
             const contextRaw = form.querySelector('select[name="service_context"]').value;
