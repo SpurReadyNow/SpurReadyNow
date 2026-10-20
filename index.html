@@ -4,13 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>SPUR | Show Up Ready</title>
-    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#0d0d0d">
     <link rel="manifest" href="manifest.json">
     
-    <!-- Load Supabase JS SDK safely -->
+    <!-- Load Supabase JS SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <style>
@@ -382,6 +381,16 @@
             border: 1px solid var(--border-color); padding: 14px; border-radius: 12px;
             font-size: 15px; text-align: center; letter-spacing: 1px; margin-bottom: 12px; outline: none; appearance: none;
         }
+
+        /* FIX AUTOFILL BLUE BACKGROUND OVERRIDE */
+        .modal-input:-webkit-autofill,
+        .modal-input:-webkit-autofill:hover, 
+        .modal-input:-webkit-autofill:focus {
+            -webkit-text-fill-color: #ffffff !important;
+            -webkit-box-shadow: 0 0 0px 1000px #141414 inset !important;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+
         select.modal-input { text-align-last: center; }
         select.modal-input option { background: #141414; color: #ffffff; }
         select.modal-input option.opt-silver { color: var(--silver); }
@@ -412,6 +421,14 @@
             border-radius: 12px; padding: 14px; margin-bottom: 16px; text-align: left; font-size: 12px; color: var(--text-muted); line-height: 1.5;
         }
         .perks-mini-box strong { color: var(--text-main); font-weight: 600; }
+
+        .how-step-item {
+            text-align: left; margin-bottom: 14px; padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .how-step-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .how-step-title { font-size: 13px; font-weight: 700; color: var(--gold); margin-bottom: 4px; }
+        .how-step-text { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
 
         /* Success Screen */
         #finalSuccessView { display: none; width: 100%; max-width: 440px; text-align: center; }
@@ -669,7 +686,7 @@
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleCodeSubmit(event)">
                 <input type="hidden" name="city_location" class="formCityField" value="Yaletown, Vancouver">
                 <input type="text" class="modal-input" name="spurtan_code" placeholder="e.g., SPURTAN" id="spurInput" required>
-                <button type="submit" class="modal-capsule-btn">APPLY</button>
+                <button type="submit" class="modal-circle-btn">APPLY</button>
             </form>
             <div class="code-modal-bridge">
                 <span>Don't have a code yet?</span><br>
@@ -683,10 +700,10 @@
     <div id="spurtanModal" class="modal-overlay">
         <div class="modal-card">
             <h3>Founding Spurtan Access</h3>
-            <p>Own the hour before. Join the private pilot and lock in preferred rates.</p>
+            <p>Own the hour before[cite: 3]. Join the private pilot and lock in preferred rates[cite: 3].</p>
             <div class="perks-mini-box">
-                • <strong>$39.99 CAD All-In</strong> for your first 3 visits (Standard: $49.99).<br>
-                • <strong>First Visit Guarantee:</strong> Full refund if not completely ready.
+                • <strong>$39.99 CAD All-In</strong> for your first 3 visits (Standard: $49.99)[cite: 3].<br>
+                • <strong>First Visit Guarantee:</strong> Full refund if not completely ready[cite: 3].
             </div>
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleSpurtanRegister(event)">
                 <input type="text" class="modal-input" name="client_name" required placeholder="First Name">
