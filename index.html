@@ -13,6 +13,7 @@
         :root {
             --bg-color: #0d0d0d;
             --gold: #d4af37;
+            --silver: #a0a0a0;
             --text-main: #ffffff;
             --text-muted: #a0a0a0;
             --card-bg: #141414;
@@ -37,7 +38,7 @@
             position: relative;
         }
 
-        /* 1. VIP TOP PILL */
+        /* TOP VIP PILL */
         .vip-top-pill {
             width: 100%;
             max-width: 440px;
@@ -271,7 +272,7 @@
             font-weight: 400;
         }
 
-        /* Call To Action Area */
+        /* CALL TO ACTION AREA */
         .cta-container {
             display: flex;
             flex-direction: column;
@@ -467,7 +468,20 @@
             font-size: 15px; text-align: center; letter-spacing: 1px; margin-bottom: 12px; outline: none; appearance: none;
         }
         select.modal-input { text-align-last: center; }
-        select.modal-input option { background: #141414; color: #ffffff; }
+        
+        /* Dropdown options custom coloring */
+        select.modal-input option {
+            background: #141414;
+            color: #ffffff;
+        }
+        select.modal-input option.opt-silver {
+            color: var(--silver);
+        }
+        select.modal-input option.opt-gold {
+            color: var(--gold);
+            font-weight: bold;
+        }
+
         .modal-input:focus { border-color: var(--gold); }
 
         .legal-consent-text { font-size: 9px; color: #666; line-height: 1.3; text-align: center; margin-top: 15px; margin-bottom: 5px; }
@@ -656,7 +670,7 @@
         
     </div>
 
-    <!-- HOW IT WORKS MODAL (Binary Refresh / Reset - No Times) -->
+    <!-- HOW IT WORKS MODAL -->
     <div id="howItWorksModal" class="modal-overlay">
         <div class="modal-card">
             <h3 data-en="How SPUR Works" data-fr="Comment fonctionne SPUR">How SPUR Works</h3>
@@ -673,37 +687,45 @@
         </div>
     </div>
 
-    <!-- SPECIALIST INTERCEPT MODAL -->
+    <!-- PAGE 2: SPECIALIST INTERCEPT MODAL -->
     <div id="interceptModal" class="modal-overlay">
         <div class="modal-card">
             <h3 data-en="Securing Your Chair" data-fr="Sécurisation de votre place">Securing Your Chair</h3>
             <p data-en="Your concierge is coordinating availability for you..." data-fr="Votre concierge coordonne la disponibilité...">
                 Your concierge is coordinating availability for you...
             </p>
+            
             <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; margin: 24px 0; overflow: hidden;">
-                <div id="interceptProgressBar" style="width: 100%; height: 100%; background: var(--gold); transition: width 5s linear;"></div>
+                <div id="interceptProgressBar" style="width: 100%; height: 100%; background: var(--gold); transition: width 3s linear;"></div>
             </div>
+
             <button class="modal-capsule-btn" onclick="skipIntercept()" data-en="PROCEED TO REQUEST" data-fr="PROCÉDER À LA DEMANDE">PROCEED TO REQUEST</button>
             <button class="modal-close" onclick="closeModals()" data-en="CANCEL" data-fr="ANNULER">CANCEL</button>
         </div>
     </div>
 
-    <!-- READY NOW MODAL (Fixed Memory Recognition) -->
+    <!-- READY NOW MODAL -->
     <div id="verifyModal" class="modal-overlay">
         <div class="modal-card">
             <h3 class="dynamic-header" data-en="Get Ready Now" data-fr="Préparez-vous Maintenant">Get Ready Now</h3>
             <p class="dynamic-desc" data-en="Enter your details. We will coordinate your match." data-fr="Entrez vos coordonnées. Nous coordonnerons votre match.">
                 Enter your details. We will coordinate your match.
             </p>
+            
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleSubmit(event, 'now')">
                 <input type="hidden" name="city_location" class="formCityField" value="Yaletown, Vancouver">
                 <input type="hidden" name="dispatch_channel" value="Priority Ready">
+                
                 <select class="modal-input" name="service_context">
                     <option value="" disabled selected data-en="What's the occasion? (Optional)" data-fr="Quelle est l'occasion ? (Optionnel)">What's the occasion? (Optional)</option>
-                    <option value="Just for Me" class="opt-white" data-en="Just for Me™" data-fr="Juste pour moi™">Just for Me™</option>
-                    <option value="Professional" class="opt-gold" data-en="Professional" data-fr="Professionnel">Professional</option>
-                    <option value="Social" class="opt-gold" data-en="Social" data-fr="Social">Social</option>
-                    <option value="Life" class="opt-gold" data-en="Life" data-fr="Vie personnelle">Life</option>
+                    <!-- JUST FOR ME (Silver/Grey) -->
+                    <option value="Just for Me" class="opt-silver" style="color: var(--silver);" data-en="JUST FOR YOU™ — No special occasion needed" data-fr="JUSTE POUR MOI™ — Aucun événement spécial requis">JUST FOR YOU™ — No special occasion needed</option>
+                    <!-- PROFESSIONAL (Gold) -->
+                    <option value="Professional" class="opt-gold" style="color: var(--gold);" data-en="PROFESSIONAL — Meeting · Interview · Presentation" data-fr="PROFESSIONNEL — Réunion · Entretien · Présentation">PROFESSIONAL — Meeting · Interview · Presentation</option>
+                    <!-- SOCIAL (Gold) -->
+                    <option value="Social" class="opt-gold" style="color: var(--gold);" data-en="SOCIAL — Date · Wedding · Night Out · Event" data-fr="SOCIAL — Rencontre · Mariage · Sortie · Événement">SOCIAL — Date · Wedding · Night Out · Event</option>
+                    <!-- LIFE (Gold) -->
+                    <option value="Life" class="opt-gold" style="color: var(--gold);" data-en="LIFE — Travel · Celebration · Personal Milestone" data-fr="VIE — Voyage · Célébration · Étape personnelle">LIFE — Travel · Celebration · Personal Milestone</option>
                 </select>
                 
                 <div id="inputFieldsWrapper">
@@ -713,6 +735,7 @@
 
                 <button type="submit" class="modal-capsule-btn" id="nowSubmitBtn" data-en="SEND REQUEST" data-fr="ENVOYER LA DEMANDE">SEND REQUEST</button>
             </form>
+            
             <button class="modal-close" onclick="closeModals()" data-en="CANCEL" data-fr="ANNULER">CANCEL</button>
             <br>
             <button type="button" class="reset-user-link" id="resetUserBtn" onclick="resetUser()" data-en="Not you? Reset details" data-fr="Pas vous ? Réinitialiser">Not you? Reset details</button>
@@ -726,15 +749,17 @@
             <p class="dynamic-desc" data-en="Commit to a scheduled visit. We'll coordinate availability." data-fr="Engagez-vous pour une visite planifiée.">
                 Commit to a scheduled visit. We'll coordinate availability.
             </p>
+            
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleSubmit(event, 'later')">
                 <input type="hidden" name="city_location" class="formCityField" value="Yaletown, Vancouver">
                 <input type="hidden" name="dispatch_channel" value="Scheduled Request">
+                
                 <select class="modal-input" name="service_context">
                     <option value="" disabled selected data-en="What's the occasion? (Optional)" data-fr="Quelle est l'occasion ? (Optionnel)">What's the occasion? (Optional)</option>
-                    <option value="Just for Me" class="opt-white" data-en="Just for Me™" data-fr="Juste pour moi™">Just for Me™</option>
-                    <option value="Professional" class="opt-gold" data-en="Professional" data-fr="Professionnel">Professional</option>
-                    <option value="Social" class="opt-gold" data-en="Social" data-fr="Social">Social</option>
-                    <option value="Life" class="opt-gold" data-en="Life" data-fr="Vie personnelle">Life</option>
+                    <option value="Just for Me" class="opt-silver" style="color: var(--silver);" data-en="JUST FOR YOU™ — No special occasion needed" data-fr="JUSTE POUR MOI™ — Aucun événement spécial requis">JUST FOR YOU™ — No special occasion needed</option>
+                    <option value="Professional" class="opt-gold" style="color: var(--gold);" data-en="PROFESSIONAL — Meeting · Interview · Presentation" data-fr="PROFESSIONNEL — Réunion · Entretien · Présentation">PROFESSIONAL — Meeting · Interview · Presentation</option>
+                    <option value="Social" class="opt-gold" style="color: var(--gold);" data-en="SOCIAL — Date · Wedding · Night Out · Event" data-fr="SOCIAL — Rencontre · Mariage · Sortie · Événement">SOCIAL — Date · Wedding · Night Out · Event</option>
+                    <option value="Life" class="opt-gold" style="color: var(--gold);" data-en="LIFE — Travel · Celebration · Personal Milestone" data-fr="VIE — Voyage · Célébration · Étape personnelle">LIFE — Travel · Celebration · Personal Milestone</option>
                 </select>
                 
                 <div id="inputFieldsWrapperLater">
@@ -752,6 +777,7 @@
                 </select>
                 <button type="submit" class="modal-capsule-btn" data-en="REQUEST SCHEDULED COMMITMENT" data-fr="DEMANDER UNE VISITE PLANIFIÉE">REQUEST SCHEDULED COMMITMENT</button>
             </form>
+            
             <button class="modal-close" onclick="closeModals()" data-en="CANCEL" data-fr="ANNULER">CANCEL</button>
         </div>
     </div>
@@ -761,49 +787,58 @@
         <div class="modal-card">
             <h3 data-en="Enter SPURTAN Code" data-fr="Entrez le code SPURTAN">Enter SPURTAN Code</h3>
             <p data-en="Please enter your unique membership code." data-fr="Veuillez entrer votre code d'adhésion unique.">Please enter your unique membership code.</p>
+            
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleCodeSubmit(event)">
                 <input type="hidden" name="city_location" class="formCityField" value="Yaletown, Vancouver">
                 <input type="text" class="modal-input" name="spurtan_code" placeholder="e.g., SPURTAN" id="spurInput" required>
                 <button type="submit" class="modal-circle-btn" data-en="APPLY" data-fr="APPLIQUER">APPLY</button>
             </form>
+
             <div class="code-modal-bridge">
                 <span data-en="Don't have a code yet?" data-fr="Vous n'avez pas encore de code ?">Don't have a code yet?</span><br>
                 <button type="button" onclick="switchModal('codeModal', 'spurtanModal')" data-en="Request Founding Spurtan Access →" data-fr="Demander l'accès Spurtan Fondateur →">
                     Request Founding Spurtan Access →
                 </button>
             </div>
+            
             <button class="modal-close" onclick="closeModals()" data-en="CANCEL" data-fr="ANNULER">CANCEL</button>
         </div>
     </div>
 
-    <!-- FOUNDING SPURTAN REGISTRATION MODAL -->
+    <!-- FOUNDING SPURTAN REGISTRATION MODAL (Cleaned Citations) -->
     <div id="spurtanModal" class="modal-overlay">
         <div class="modal-card">
             <h3>Founding Spurtan Access</h3>
             <p>Own the hour before. Join the private pilot and lock in preferred rates.</p>
-            <div class="perks-mini-box">
+
+            <div class="perks-mini-box" style="text-align: left;">
                 • <strong>$39.99 CAD All-In</strong> for your first 3 visits (Standard: $49.99).<br>
                 • <strong>First Visit Guarantee:</strong> Full refund if not completely ready.
             </div>
+
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleSpurtanRegister(event)">
                 <input type="text" class="modal-input" name="client_name" required placeholder="First Name">
                 <input type="tel" class="modal-input" name="client_phone" required placeholder="10 Digit Mobile" pattern="[0-9]{10}">
+                
                 <select class="modal-input" name="launch_node" id="spurtanNodeSelect" required>
                     <option value="Yaletown, Vancouver">Yaletown, Vancouver (Live)</option>
                     <option value="Le Plateau, Montreal">Le Plateau, Montreal (Live)</option>
                     <option value="Financial District, Toronto">Financial District, Toronto (Waitlist)</option>
                 </select>
+
                 <button type="submit" class="modal-capsule-btn">CLAIM FOUNDING ACCESS</button>
             </form>
+
             <button class="modal-close" onclick="closeModals()">CANCEL</button>
         </div>
     </div>
 
-    <!-- SUCCESS SCREEN (With Auto-Ready WhatsApp Link) -->
+    <!-- SUCCESS SCREEN -->
     <div id="finalSuccessView">
         <div class="success-header-tag" id="receiptHeaderTag">Verified Dispatch</div>
         <div class="success-main-title">Request Received.</div>
         <div class="success-sub-title">We are coordinating your specialist match.</div>
+
         <div class="success-receipt-card">
             <div class="receipt-top-row">
                 <div>
@@ -815,6 +850,7 @@
                     <div class="receipt-price-label">Flat Rate</div>
                 </div>
             </div>
+
             <div class="receipt-grid">
                 <div class="receipt-grid-box">
                     <div class="grid-box-val">Verified</div>
@@ -825,9 +861,11 @@
                     <div class="grid-box-lbl">Location</div>
                 </div>
             </div>
+
             <div class="receipt-footer-desc">
                 Your concierge is coordinating with our network.<br>You pay directly at the studio.
             </div>
+
             <a href="#" id="whatsappAutoBtn" class="receipt-action-btn" target="_blank">💬 CONFIRM VIA WHATSAPP (READY)</a>
             <a href="https://wa.me/14387251010" class="cancel-link" target="_blank">Need to modify or cancel? Message Concierge.</a>
         </div>
@@ -835,7 +873,7 @@
 
     <script>
         let currentCity = 'yvr';
-        const SPUR_WHATSAPP_NUMBER = '14387251010'; // Configured WhatsApp Business Number
+        const SPUR_WHATSAPP_NUMBER = '14387251010';
 
         const cityData = {
             yvr: { enBadge: "Vancouver • Yaletown • Live", frBadge: "Vancouver • Yaletown • En Direct", areaName: "Yaletown, Vancouver" },
@@ -926,6 +964,7 @@
                 
                 if (savedName && savedPhone) {
                     wrapper.style.display = 'none';
+                    wrapper.querySelectorAll('input').forEach(i => i.required = false);
                     if(resetBtn) resetBtn.style.display = 'block';
                     modal.querySelector('.dynamic-header').innerText = "Welcome back, " + savedName.split(' ')[0];
                 } else {
@@ -960,10 +999,10 @@
             localStorage.setItem('spur_user_phone', phone);
 
             try { await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } }); } catch (e) {}
-            alert("✓ Founding Spurtan Access confirmed! Your $39.99 rate is now active[cite: 3].");
+            alert("✓ Founding Spurtan Access confirmed! Your $39.99 rate is now active.");
             document.getElementById('displayPrice').innerText = "$39.99 CAD";
             document.getElementById('finalReceiptPrice').innerText = "$39.99";
-            document.closeModals(); form.reset();
+            closeModals(); form.reset();
         }
 
         async function handleCodeSubmit(event) {
@@ -986,8 +1025,8 @@
             let phone = localStorage.getItem('spur_user_phone');
 
             if (!name || !phone) {
-                name = form.querySelector('input[name="client_name"]').value;
-                phone = form.querySelector('input[name="client_phone"]').value;
+                name = form.querySelector('input[name="client_name"]')?.value || 'Valued Client';
+                phone = form.querySelector('input[name="client_phone"]')?.value || 'Saved Profile';
                 if (phone && phone.length >= 10) {
                     localStorage.setItem('spur_user_name', name);
                     localStorage.setItem('spur_user_phone', phone);
@@ -999,7 +1038,7 @@
 
             // Automatically prepare WhatsApp message string
             const waMessage = `Hello SPUR — I would like to request a visit.\n\nType: ${type.toUpperCase()}\nCity: ${city}\nName: ${name}\nMobile: ${phone}\nContext: ${context}\n\nPlease coordinate availability.`;
-            const encodedWaUrl = `https://wa.me/${SPUR_WHATSAPP_NUMBER}?text=${encodeURIComponent(waMessage)}`;
+            const encodedWaUrl = `https://wa.me/${SPUR_WHATSAPP_NUMBER}?text=${encodeURIComponent(encodedWaUrl ? '' : encodeURIComponent(waMessage))}`.replace(/&text=.*$/, `&text=${encodeURIComponent(waMessage)}`);
             document.getElementById('whatsappAutoBtn').href = encodedWaUrl;
 
             try { await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } }); } catch (e) {}
