@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>SPUR | Show Up Ready</title>
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#0d0d0d">
@@ -412,14 +413,6 @@
         }
         .perks-mini-box strong { color: var(--text-main); font-weight: 600; }
 
-        .how-step-item {
-            text-align: left; margin-bottom: 14px; padding-bottom: 12px;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-        }
-        .how-step-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-        .how-step-title { font-size: 13px; font-weight: 700; color: var(--gold); margin-bottom: 4px; }
-        .how-step-text { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
-
         /* Success Screen */
         #finalSuccessView { display: none; width: 100%; max-width: 440px; text-align: center; }
         .success-header-tag {
@@ -465,7 +458,7 @@
     <div class="main-content" id="mainAppContainer">
         
         <!-- TOP VIP PILL -->
-        <div class="vip-top-pill" onclick="safeOpenModal('spurtanModal')">
+        <div class="vip-top-pill" onclick="openModal('spurtanModal')">
             <div class="vip-pill-left">
                 <span class="vip-star">✦</span>
                 <span data-en="Founding Spurtan Access" data-fr="Accès Spurtan Fondateur">Founding Spurtan Access</span>
@@ -518,7 +511,7 @@
         <div class="cta-container">
             <div class="inline-pricing">
                 <span id="displayPrice">$49.99 CAD</span> Priority Flat Rate<br>
-                <button type="button" onclick="safeOpenModal('codeModal')" style="background:none; border:none; color:var(--text-muted); font-size:10px; font-weight:700; text-decoration:underline; cursor:pointer; margin-top:8px;">HAVE SPURTAN CODE?</button>
+                <button type="button" onclick="openModal('codeModal')" style="background:none; border:none; color:var(--text-muted); font-size:10px; font-weight:700; text-decoration:underline; cursor:pointer; margin-top:8px;">HAVE SPURTAN CODE?</button>
             </div>
 
             <div>
@@ -549,7 +542,7 @@
         <div class="site-footer">
             <span data-en="© 2026 SPUR. All rights reserved." data-fr="© 2026 SPUR. Tous droits réservés.">© 2026 SPUR. All rights reserved.</span>
             <br><br>
-            <a onclick="safeOpenModal('howItWorksModal')" data-en="How It Works" data-fr="Comment ça marche">How It Works</a> | 
+            <a onclick="openModal('howItWorksModal')" data-en="How It Works" data-fr="Comment ça marche">How It Works</a> | 
             <a href="terms.html" data-en="Terms of Service" data-fr="Conditions d'utilisation">Terms of Service</a> | 
             <a href="privacy.html" data-en="Privacy Policy" data-fr="Politique de confidentialité">Privacy Policy</a>
         </div>
@@ -663,6 +656,8 @@
                 <button type="submit" class="modal-capsule-btn">REQUEST SCHEDULED COMMITMENT</button>
             </form>
             <button class="modal-close" onclick="closeModals()">CANCEL</button>
+            <br>
+            <button type="button" class="reset-user-link" id="resetUserBtnLater" onclick="resetUser()" style="display:none;">Not you? Reset details</button>
         </div>
     </div>
 
@@ -674,7 +669,7 @@
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleCodeSubmit(event)">
                 <input type="hidden" name="city_location" class="formCityField" value="Yaletown, Vancouver">
                 <input type="text" class="modal-input" name="spurtan_code" placeholder="e.g., SPURTAN" id="spurInput" required>
-                <button type="submit" class="modal-circle-btn">APPLY</button>
+                <button type="submit" class="modal-capsule-btn">APPLY</button>
             </form>
             <div class="code-modal-bridge">
                 <span>Don't have a code yet?</span><br>
@@ -753,14 +748,14 @@
 
         const SUPABASE_URL = 'https://quqcgjkbvajcltwuoqvz.supabase.co';
         const SUPABASE_ANON_KEY = 'sb_publishable_h-5S_3VCTLKsN8iVUc_LxQ_T7rn1HlJ';
-        const supabase = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+        const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
 
         async function checkReturningUserRealtime() {
-            if (!supabase) return;
+            if (!supabaseClient) return;
             const savedPhone = localStorage.getItem('spur_user_phone');
             if (!savedPhone) return;
             try {
-                const { data } = await supabase
+                const { data } = await supabaseClient
                     .from('clients')
                     .select('name, last_specialist')
                     .eq('phone', savedPhone)
@@ -776,9 +771,9 @@
         }
 
         async function syncClientToSupabase(name, phone, specialist) {
-            if (!supabase) return;
+            if (!supabaseClient) return;
             try {
-                await supabase
+                await supabaseClient
                     .from('clients')
                     .upsert({ 
                         phone: phone, 
