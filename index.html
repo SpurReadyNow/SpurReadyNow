@@ -9,6 +9,9 @@
     <meta name="theme-color" content="#0d0d0d">
     <link rel="manifest" href="manifest.json">
     
+    <!-- Load Supabase JS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <style>
         :root {
             --bg-color: #0d0d0d;
@@ -38,7 +41,7 @@
             position: relative;
         }
 
-        /* 1. VIP TOP PILL */
+        /* TOP VIP PILL */
         .vip-top-pill {
             width: 100%;
             max-width: 440px;
@@ -393,11 +396,9 @@
         }
         .modal-capsule-btn-secondary {
             background: transparent; color: var(--text-main); border: 1px solid var(--border-color); padding: 12px 20px;
-            border-radius: 30px; font-size: 11px; font-weight: 700; cursor: pointer; margin: 8px auto 0 auto; width: 100%; text-transform: uppercase;
+            border-radius: 30px; font-size: 11px; font-weight: 700; cursor: pointer; margin: 8px auto 0 auto; width: 100%; text-transform: uppercase; letter-spacing: 1px;
         }
-        .modal-capsule-btn-secondary:hover {
-            border-color: var(--gold);
-        }
+        .modal-capsule-btn-secondary:hover { border-color: var(--gold); }
 
         .modal-close { background: none; border: none; color: var(--text-muted); font-size: 12px; cursor: pointer; margin-top: 15px; display: inline-block; }
         .reset-user-link { display: none; background: none; border: none; color: var(--gold); font-size: 10px; font-weight: 700; text-transform: uppercase; cursor: pointer; text-decoration: underline; margin: 15px auto 5px auto; width: 100%; }
@@ -566,13 +567,13 @@
                 <p style="margin-bottom: 8px;"><strong>01. Zero Menus:</strong> You state your life moment. No service lists.</p>
                 <p style="margin-bottom: 8px;"><strong>02. Verified Dispatch:</strong> We coordinate availability through a verified concierge process.</p>
                 <p style="margin-bottom: 8px;"><strong>03. Assess & Approve:</strong> The specialist recommends either a <strong>Refresh™</strong> (to maintain your baseline) or <strong>Reset™</strong> (to restore your shape). You approve before execution.</p>
-                <p style="margin-bottom: 0;"><strong>04. First Visit Guarantee:</strong> Full refund if not completely ready after your first visit[cite: 3].</p>
+                <p style="margin-bottom: 0;"><strong>04. First Visit Guarantee:</strong> Full refund if not completely ready after your first visit.</p>
             </div>
             <button class="modal-capsule-btn" onclick="closeModals()" data-en="GOT IT" data-fr="COMPRIS">GOT IT</button>
         </div>
     </div>
 
-    <!-- SPECIALIST INTERCEPT MODAL (NO TYPING - AUTOMATIC RECOGNITION) -->
+    <!-- SPECIALIST INTERCEPT MODAL -->
     <div id="interceptModal" class="modal-overlay">
         <div class="modal-card">
             <h3 data-en="Securing Your Chair" data-fr="Sécurisation de votre place">Securing Your Chair</h3>
@@ -581,19 +582,21 @@
             </p>
             
             <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; margin: 24px 0; overflow: hidden;">
-                <div id="interceptProgressBar" style="width: 100%; height: 100%; background: var(--gold); transition: width 2.5s linear;"></div>
+                <div id="interceptProgressBar" style="width: 100%; height: 100%; background: var(--gold); transition: width 3s linear;"></div>
             </div>
 
-            <!-- Shown only if user has a remembered specialist -->
-            <div id="previousSpecialistOption" style="display: none; margin-bottom: 15px;">
-                <button class="modal-capsule-btn" id="previousSpecialistBtn" onclick="selectPreviousSpecialist()">REQUEST PREVIOUS SPECIALIST</button>
+            <div id="interceptRecognizedView" style="display: none; margin-bottom: 10px;">
+                <div style="margin-bottom: 20px;">
+                    <strong style="color: var(--text-main); font-size: 16px;" id="recognizedSpecialistText">Book with [Name] again?</strong>
+                </div>
+                <button class="modal-capsule-btn" onclick="confirmPreviousSpecialist()">YES</button>
                 <button class="modal-capsule-btn-secondary" onclick="skipIntercept()">FASTEST AVAILABLE</button>
             </div>
 
-            <div id="defaultInterceptOption">
-                <button class="modal-capsule-btn" onclick="skipIntercept()" data-en="PROCEED TO REQUEST" data-fr="PROCÉDER À LA DEMANDE">PROCEED TO REQUEST</button>
+            <div id="interceptDefaultView">
+                <button class="modal-capsule-btn" onclick="skipIntercept()" data-en="FASTEST AVAILABLE SPECIALIST" data-fr="SPÉCIALISTE LE PLUS RAPIDE">FASTEST AVAILABLE SPECIALIST</button>
             </div>
-
+            
             <button class="modal-close" onclick="closeModals()" data-en="CANCEL" data-fr="ANNULER">CANCEL</button>
         </div>
     </div>
@@ -609,7 +612,7 @@
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleSubmit(event, 'now')">
                 <input type="hidden" name="city_location" class="formCityField" value="Yaletown, Vancouver">
                 <input type="hidden" name="dispatch_channel" value="Priority Ready">
-                <input type="hidden" name="requested_specialist" id="requestedSpecialistField" value="Fastest Available">
+                <input type="hidden" name="requested_specialist" class="specialistHiddenField" value="Fastest Available">
 
                 <select class="modal-input" name="service_context">
                     <option value="" disabled selected data-en="What's the occasion? (Optional)" data-fr="Quelle est l'occasion ? (Optionnel)">What's the occasion? (Optional)</option>
@@ -642,7 +645,7 @@
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleSubmit(event, 'later')">
                 <input type="hidden" name="city_location" class="formCityField" value="Yaletown, Vancouver">
                 <input type="hidden" name="dispatch_channel" value="Scheduled Request">
-                <input type="hidden" name="requested_specialist" value="Fastest Available">
+                <input type="hidden" name="requested_specialist" class="specialistHiddenField" value="Fastest Available">
                 
                 <select class="modal-input" name="service_context">
                     <option value="" disabled selected data-en="What's the occasion? (Optional)" data-fr="Quelle est l'occasion ? (Optionnel)">What's the occasion? (Optional)</option>
@@ -679,7 +682,7 @@
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleCodeSubmit(event)">
                 <input type="hidden" name="city_location" class="formCityField" value="Yaletown, Vancouver">
                 <input type="text" class="modal-input" name="spurtan_code" placeholder="e.g., SPURTAN" id="spurInput" required>
-                <button type="submit" class="modal-capsule-btn" data-en="APPLY" data-fr="APPLIQUER">APPLY</button>
+                <button type="submit" class="modal-circle-btn" data-en="APPLY" data-fr="APPLIQUER">APPLY</button>
             </form>
             <div class="code-modal-bridge">
                 <span data-en="Don't have a code yet?" data-fr="Vous n'avez pas encore de code ?">Don't have a code yet?</span><br>
@@ -695,10 +698,10 @@
     <div id="spurtanModal" class="modal-overlay">
         <div class="modal-card">
             <h3>Founding Spurtan Access</h3>
-            <p>Own the hour before[cite: 3]. Join the private pilot and lock in preferred rates[cite: 3].</p>
+            <p>Own the hour before. Join the private pilot and lock in preferred rates.</p>
             <div class="perks-mini-box">
-                • <strong>$39.99 CAD All-In</strong> for your first 3 visits (Standard: $49.99)[cite: 3].<br>
-                • <strong>First Visit Guarantee:</strong> Full refund if not completely ready[cite: 3].
+                • <strong>$39.99 CAD All-In</strong> for your first 3 visits (Standard: $49.99).<br>
+                • <strong>First Visit Guarantee:</strong> Full refund if not completely ready.
             </div>
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleSpurtanRegister(event)">
                 <input type="text" class="modal-input" name="client_name" required placeholder="First Name">
@@ -714,7 +717,7 @@
         </div>
     </div>
 
-    <!-- SUCCESS SCREEN (With Instant WhatsApp Prep) -->
+    <!-- SUCCESS SCREEN -->
     <div id="finalSuccessView">
         <div class="success-header-tag" id="receiptHeaderTag">Verified Dispatch</div>
         <div class="success-main-title">Request Received.</div>
@@ -744,7 +747,7 @@
                 Your concierge is coordinating with our network.<br>You pay directly at the studio.
             </div>
             <a href="#" id="whatsappAutoBtn" class="receipt-action-btn" target="_blank">💬 CONFIRM VIA WHATSAPP (READY)</a>
-            <a href="https://wa.me/14387251010" class="cancel-link" target="_blank">Need to modify or cancel? Message Concierge.</a>
+            <a href="#" class="cancel-link" onclick="location.reload(); return false;">Need to modify or cancel? Message Concierge.</a>
         </div>
     </div>
 
@@ -757,6 +760,45 @@
             yyz: { enBadge: "Toronto • Financial District • Live", frBadge: "Toronto • Quartier Financier • En Direct", areaName: "Financial District, Toronto" },
             yul: { enBadge: "Montreal • Plateau • Live", frBadge: "Montréal • Le Plateau • En Direct", areaName: "Le Plateau, Montréal" }
         };
+
+        // Initialize Supabase Live Client (Credentials Connected)
+        const SUPABASE_URL = 'https://quqcgjkbvajcltwuoqvz.supabase.co';
+        const SUPABASE_ANON_KEY = 'sb_publishable_h-5S_3VCTLKsN8iVUc_LxQ_T7rn1HlJ';
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // Real-time lookup on page load using cached phone number
+        async function checkReturningUserRealtime() {
+            const savedPhone = localStorage.getItem('spur_user_phone');
+            if (!savedPhone) return;
+            try {
+                const { data, error } = await supabase
+                    .from('clients')
+                    .select('name, last_specialist')
+                    .eq('phone', savedPhone)
+                    .single();
+
+                if (data) {
+                    if (data.name) localStorage.setItem('spur_user_name', data.name);
+                    if (data.last_specialist) localStorage.setItem('spur_last_specialist', data.last_specialist);
+                }
+            } catch (err) {
+                console.log("Supabase sync fallback active");
+            }
+        }
+
+        async function syncClientToSupabase(name, phone, specialist) {
+            try {
+                await supabase
+                    .from('clients')
+                    .upsert({ 
+                        phone: phone, 
+                        name: name, 
+                        last_specialist: specialist 
+                    }, { onConflict: 'phone' });
+            } catch (err) {
+                console.error("Supabase write error:", err);
+            }
+        }
 
         function alertCity(cityCode) {
             if (cityCode === 'yyz') {
@@ -790,16 +832,14 @@
         function switchLanguage(lang) {
             document.getElementById('btn-en').classList.toggle('active', lang === 'en');
             document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
-            
+            document.querySelectorAll('[data-en]').forEach(el => {
+                if (el.id === 'brandPhilosophyText' && localStorage.getItem('spur_user_name')) return;
+                el.innerHTML = lang === 'fr' && el.hasAttribute('data-fr') ? el.getAttribute('data-fr') : el.getAttribute('data-en');
+            });
             const savedName = localStorage.getItem('spur_user_name');
-            const dynamicSubtitle = document.getElementById('dynamicHeroSubtitle');
-            
-            if (savedName && dynamicSubtitle) {
-                dynamicSubtitle.innerHTML = lang === 'fr' ? "Bon retour, " + savedName.split(' ')[0] + ". Nous sommes prêts quand vous l'êtes." : "Welcome back, " + savedName.split(' ')[0] + ". We're ready when you are.";
-            } else if (dynamicSubtitle) {
-                dynamicSubtitle.innerHTML = lang === 'fr' ? dynamicSubtitle.getAttribute('data-fr') : dynamicSubtitle.getAttribute('data-en');
+            if (savedName) {
+                document.getElementById('brandPhilosophyText').innerHTML = lang === 'fr' ? "Bon retour, " + savedName.split(' ')[0] + "." : "Welcome back, " + savedName.split(' ')[0] + ".";
             }
-            
             localStorage.setItem('spur_lang', lang);
             updateBadgeText();
         }
@@ -810,50 +850,48 @@
         function openIntercept(type) {
             currentInterceptType = type;
             const modal = document.getElementById('interceptModal');
-            const previousOption = document.getElementById('previousSpecialistOption');
-            const defaultOption = document.getElementById('defaultInterceptOption');
-            const savedSpecialist = localStorage.getItem('spur_preferred_specialist');
+            const defaultView = document.getElementById('interceptDefaultView');
+            const recognizedView = document.getElementById('interceptRecognizedView');
+            const savedSpecialist = localStorage.getItem('spur_last_specialist');
 
-            // If we remember their specialist, offer it with one tap (no typing)
-            if (savedSpecialist && type === 'now') {
-                previousOption.style.display = 'block';
-                defaultOption.style.display = 'none';
-                document.getElementById('previousSpecialistBtn').innerText = `REQUEST ${savedSpecialist.toUpperCase()} AGAIN`;
-                document.getElementById('interceptStatusDesc').innerText = `Recognizing profile. Would you like to request ${savedSpecialist} again?`;
+            if (savedSpecialist && savedSpecialist !== 'Fastest Available') {
+                defaultView.style.display = 'none';
+                recognizedView.style.display = 'block';
+                document.getElementById('recognizedSpecialistText').innerText = `Book with ${savedSpecialist} again?`;
+                document.getElementById('interceptStatusDesc').innerText = "Recognizing profile preferences...";
+                clearTimeout(interceptTimer);
             } else {
-                previousOption.style.display = 'none';
-                defaultOption.style.display = 'block';
+                defaultView.style.display = 'block';
+                recognizedView.style.display = 'none';
                 document.getElementById('interceptStatusDesc').innerText = "Your concierge is coordinating verified specialist availability...";
+                
+                clearTimeout(interceptTimer);
+                interceptTimer = setTimeout(() => {
+                    if (modal.style.display === 'flex' && defaultView.style.display === 'block') {
+                        skipIntercept();
+                    }
+                }, 3000);
             }
 
             modal.style.display = 'flex';
             
             const bar = document.getElementById('interceptProgressBar');
-            bar.style.transition = 'none';
-            bar.style.width = '100%';
+            bar.style.transition = 'none'; bar.style.width = '100%';
             void bar.offsetWidth;
-            bar.style.transition = 'width 2.5s linear';
-            bar.style.width = '0%';
-            
-            clearTimeout(interceptTimer);
-            interceptTimer = setTimeout(() => {
-                if (modal.style.display === 'flex' && defaultOption.style.display === 'block') {
-                    skipIntercept();
-                }
-            }, 2500);
+            bar.style.transition = 'width 3s linear'; bar.style.width = '0%';
         }
 
-        function selectPreviousSpecialist() {
+        function confirmPreviousSpecialist() {
             clearTimeout(interceptTimer);
-            const savedSpecialist = localStorage.getItem('spur_preferred_specialist') || 'Preferred Specialist';
-            document.getElementById('requestedSpecialistField').value = savedSpecialist;
+            const savedSpecialist = localStorage.getItem('spur_last_specialist') || 'Fastest Available';
+            document.querySelectorAll('.specialistHiddenField').forEach(el => el.value = savedSpecialist);
             document.getElementById('interceptModal').style.display = 'none';
-            openModal('verifyModal');
+            openModal(currentInterceptType === 'now' ? 'verifyModal' : 'laterModal');
         }
 
         function skipIntercept() {
             clearTimeout(interceptTimer);
-            document.getElementById('requestedSpecialistField').value = "Fastest Available";
+            document.querySelectorAll('.specialistHiddenField').forEach(el => el.value = "Fastest Available");
             document.getElementById('interceptModal').style.display = 'none';
             openModal(currentInterceptType === 'now' ? 'verifyModal' : 'laterModal');
         }
@@ -864,9 +902,8 @@
                 const savedName = localStorage.getItem('spur_user_name');
                 const savedPhone = localStorage.getItem('spur_user_phone');
                 const wrapper = id === 'verifyModal' ? document.getElementById('inputFieldsWrapper') : document.getElementById('inputFieldsWrapperLater');
-                const resetBtn = document.getElementById('resetUserBtn');
+                const resetBtn = id === 'verifyModal' ? document.getElementById('resetUserBtn') : document.getElementById('resetUserBtnLater');
                 
-                // Recognized user: Hide inputs completely
                 if (savedName && savedPhone) {
                     wrapper.style.display = 'none';
                     wrapper.querySelectorAll('input').forEach(i => i.required = false);
@@ -885,7 +922,7 @@
         function resetUser() {
             localStorage.removeItem('spur_user_name');
             localStorage.removeItem('spur_user_phone');
-            localStorage.removeItem('spur_preferred_specialist');
+            localStorage.removeItem('spur_last_specialist');
             alert("Profile reset. Please enter your details.");
             closeModals();
             openModal('verifyModal');
@@ -904,22 +941,19 @@
             
             localStorage.setItem('spur_user_name', name);
             localStorage.setItem('spur_user_phone', phone);
+            await syncClientToSupabase(name, phone, 'Fastest Available');
 
-            try { await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } }); } catch (e) {}
-            alert("✓ Founding Spurtan Access confirmed! Your $39.99 rate is now active[cite: 3].");
+            alert("✓ Founding Spurtan Access confirmed! Your $39.99 rate is now active.");
             
             document.getElementById('displayPrice').innerText = "$39.99 CAD";
             document.getElementById('finalReceiptPrice').innerText = "$39.99";
             
             const vipRight = document.querySelector('.vip-pill-right');
-            if (vipRight) {
-                vipRight.innerText = "✓ RATE ACTIVE";
-                vipRight.style.color = "var(--text-main)";
-            }
+            if (vipRight) { vipRight.innerText = "✓ RATE ACTIVE"; vipRight.style.color = "var(--text-main)"; }
 
-            const dynamicSubtitle = document.getElementById('dynamicHeroSubtitle');
+            const dynamicSubtitle = document.getElementById('brandPhilosophyText');
             if (dynamicSubtitle) {
-                dynamicSubtitle.innerHTML = localStorage.getItem('spur_lang') === 'fr' ? "Bon retour, " + name.split(' ')[0] + ". Nous sommes prêts quand vous l'êtes." : "Welcome back, " + name.split(' ')[0] + ". We're ready when you are.";
+                dynamicSubtitle.innerHTML = localStorage.getItem('spur_lang') === 'fr' ? "Bon retour, " + name.split(' ')[0] + "." : "Welcome back, " + name.split(' ')[0] + ".";
             }
 
             closeModals(); form.reset();
@@ -958,7 +992,10 @@
             const context = contextRaw ? contextRaw.split('—')[0].trim() : 'Standard Readiness';
             const specialist = form.querySelector('input[name="requested_specialist"]')?.value || 'Fastest Available';
 
-            // WhatsApp Message with complete verified dispatch text
+            // Sync this session back to Supabase live database
+            await syncClientToSupabase(name, phone, specialist);
+
+            // Automatically prepare WhatsApp message string
             const waMessage = `Hello SPUR — I would like to request a visit.\n\nType: ${type.toUpperCase()}\nCity: ${city}\nName: ${name}\nMobile: ${phone}\nContext: ${context}\nSpecialist: ${specialist}\n\nPlease coordinate verified availability.`;
             const encodedWaUrl = `https://wa.me/${SPUR_WHATSAPP_NUMBER}?text=${encodeURIComponent(waMessage)}`;
             document.getElementById('whatsappAutoBtn').href = encodedWaUrl;
@@ -971,15 +1008,16 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        window.addEventListener('DOMContentLoaded', () => {
+        window.addEventListener('DOMContentLoaded', async () => {
             setCity(localStorage.getItem('spur_active_city') || 'yvr');
             switchLanguage(localStorage.getItem('spur_lang') || 'en');
+            await checkReturningUserRealtime();
             
             const savedName = localStorage.getItem('spur_user_name');
-            const dynamicSubtitle = document.getElementById('dynamicHeroSubtitle');
+            const dynamicSubtitle = document.getElementById('brandPhilosophyText');
             if (savedName && dynamicSubtitle) {
                 const lang = localStorage.getItem('spur_lang') || 'en';
-                dynamicSubtitle.innerHTML = lang === 'fr' ? "Bon retour, " + savedName.split(' ')[0] + ". Nous sommes prêts quand vous l'êtes." : "Welcome back, " + savedName.split(' ')[0] + ". We're ready when you are.";
+                dynamicSubtitle.innerHTML = lang === 'fr' ? "Bon retour, " + savedName.split(' ')[0] + "." : "Welcome back, " + savedName.split(' ')[0] + ".";
             }
         });
     </script>
