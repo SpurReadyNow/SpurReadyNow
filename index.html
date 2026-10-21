@@ -397,8 +397,6 @@
         
         .modal-input:focus { border-color: var(--gold); }
 
-        .legal-consent-text { font-size: 9px; color: #666; line-height: 1.3; text-align: center; margin-top: 15px; margin-bottom: 5px; }
-
         .modal-capsule-btn {
             background: var(--gold); color: #0d0d0d; border: none; padding: 14px 24px;
             border-radius: 30px; font-size: 12px; font-weight: 800; cursor: pointer; margin: 10px auto 0 auto; width: 100%; text-transform: uppercase;
@@ -428,14 +426,6 @@
             border-radius: 12px; padding: 14px; margin-bottom: 16px; text-align: left; font-size: 12px; color: var(--text-muted); line-height: 1.5;
         }
         .perks-mini-box strong { color: var(--text-main); font-weight: 600; }
-
-        .how-step-item {
-            text-align: left; margin-bottom: 14px; padding-bottom: 12px;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-        }
-        .how-step-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-        .how-step-title { font-size: 13px; font-weight: 700; color: var(--gold); margin-bottom: 4px; }
-        .how-step-text { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
 
         /* Success Screen */
         #finalSuccessView { display: none; width: 100%; max-width: 440px; text-align: center; }
@@ -531,11 +521,11 @@
             </div>
         </div>
 
-        <!-- Inline Pricing & Call To Action Area -->
+        <!-- Inline Pricing & Call To Action Area (SPURREADYNOW FLOW) -->
         <div class="cta-container">
             <div class="inline-pricing">
-                <span id="displayPrice">$49.99 CAD</span> Priority Flat Rate<br>
-                <button type="button" onclick="safeOpenModal('codeModal')" style="background:none; border:none; color:var(--text-muted); font-size:10px; font-weight:700; text-decoration:underline; cursor:pointer; margin-top:8px;">HAVE SPURTAN CODE?</button>
+                <span id="displayPrice">$49.99 CAD</span> <span data-en="Priority Flat Rate" data-fr="Tarif Fixe Prioritaire">Priority Flat Rate</span><br>
+                <button type="button" onclick="safeOpenModal('codeModal')" style="background:none; border:none; color:var(--text-muted); font-size:10px; font-weight:700; text-decoration:underline; cursor:pointer; margin-top:8px;" data-en="HAVE SPURTAN CODE?" data-fr="AVEZ-UN CODE SPURTAN ?">HAVE SPURTAN CODE?</button>
             </div>
 
             <div>
@@ -573,105 +563,77 @@
         
     </div>
 
-    <!-- HOW IT WORKS MODAL -->
+    <!-- HOW IT WORKS MODAL (FULLY BILINGUAL) -->
     <div id="howItWorksModal" class="modal-overlay">
         <div class="modal-card">
-            <h3>How SPUR Works</h3>
-            <p>The hour before is yours. Here is the work we do behind the scenes.</p>
+            <h3 data-en="How SPUR Works" data-fr="Comment fonctionne SPUR">How SPUR Works</h3>
+            <p data-en="The hour before is yours. Here is the work we do behind the scenes." data-fr="L'heure qui précède est à vous. Voici ce que nous faisons en coulisses.">The hour before is yours. Here is the work we do behind the scenes.</p>
             <div class="perks-mini-box" style="text-align: left;">
-                <p style="margin-bottom: 8px;"><strong>01. Zero Menus:</strong> You state your life moment. No service lists.</p>
-                <p style="margin-bottom: 8px;"><strong>02. Verified Dispatch:</strong> We coordinate availability through a verified concierge process.</p>
-                <p style="margin-bottom: 8px;"><strong>03. Assess & Approve:</strong> The SPUR Specialist assesses and recommends either a <strong>Refresh™</strong> or <strong>Reset™</strong>. You approve before execution.</p>
-                <p style="margin-bottom: 0;"><strong>04. First Visit Guarantee:</strong> Full refund if not completely ready after your first visit.</p>
+                <p style="margin-bottom: 8px;"><strong data-en="01. Zero Menus:" data-fr="01. Zéro Menu :">01. Zero Menus:</strong> <span data-en="You state your life moment. No service lists." data-fr="Vous indiquez votre moment. Pas de liste de services.">You state your life moment. No service lists.</span></p>
+                <p style="margin-bottom: 8px;"><strong data-en="02. Verified Dispatch:" data-fr="02. Dispatche Vérifié :">02. Verified Dispatch:</strong> <span data-en="We coordinate availability through a verified concierge process." data-fr="Nous coordonnons la disponibilité via un processus de conciergerie vérifié.">We coordinate availability through a verified concierge process.</span></p>
+                <p style="margin-bottom: 8px;"><strong data-en="03. Assess & Approve:" data-fr="03. Évaluer et Approuver :">03. Assess & Approve:</strong> <span data-en="The SPUR Specialist assesses and recommends either a <strong>Refresh™</strong> or <strong>Reset™</strong>. You approve before execution." data-fr="Le spécialiste SPUR évalue et recommande un <strong>Refresh™</strong> ou un <strong>Reset™</strong>. Vous approuvez avant l'exécution.">The SPUR Specialist assesses and recommends either a <strong>Refresh™</strong> or <strong>Reset™</strong>. You approve before execution.</span></p>
+                <p style="margin-bottom: 0;"><strong data-en="04. First Visit Guarantee:" data-fr="04. Garantie 1ère Visite :">04. First Visit Guarantee:</strong> <span data-en="Full refund if not completely Ready after your first visit." data-fr="Remboursement intégral si vous n'êtes pas complètement Prêt après votre première visite.">Full refund if not completely Ready after your first visit.[cite: 3]</span></p>
             </div>
-            <button class="modal-capsule-btn" onclick="closeModals()">GOT IT</button>
+            <button class="modal-capsule-btn" onclick="closeModals()" data-en="GOT IT" data-fr="COMPRIS">GOT IT</button>
         </div>
     </div>
 
     <!-- SPECIALIST INTERCEPT MODAL -->
     <div id="interceptModal" class="modal-overlay">
         <div class="modal-card">
-            <h3>Securing Your Chair</h3>
-            <p id="interceptStatusDesc">Your concierge is coordinating verified specialist availability...</p>
-            
-            <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; margin: 24px 0; overflow: hidden;">
-                <div id="interceptProgressBar" style="width: 100%; height: 100%; background: var(--gold); transition: width 3s linear;"></div>
+            <h3 data-en="Securing Your Chair" data-fr="Sécurisation de votre place">Securing Your Chair</h3>
+            <p id="interceptStatusDesc" data-en="Recognizing your profile preferences..." data-fr="Reconnaissance de vos préférences de profil...">Recognizing your profile preferences...</p>
+            <div style="margin: 20px 0;">
+                <strong style="color: var(--text-main); font-size: 16px;" id="recognizedSpecialistText">Book with [Name] again?</strong>
             </div>
-
-            <div id="interceptRecognizedView" style="display: none; margin-bottom: 10px;">
-                <div style="margin-bottom: 20px;">
-                    <strong style="color: var(--text-main); font-size: 16px;" id="recognizedSpecialistText">Book with [Name] again?</strong>
-                </div>
-                <button class="modal-capsule-btn" onclick="confirmPreviousSpecialist()">YES</button>
-                <button class="modal-capsule-btn-secondary" onclick="skipIntercept()">FASTEST AVAILABLE</button>
-            </div>
-
-            <div id="interceptDefaultView">
-                <button class="modal-capsule-btn" onclick="skipIntercept()">FASTEST AVAILABLE SPECIALIST</button>
-            </div>
-            
-            <button class="modal-close" onclick="closeModals()">CANCEL</button>
+            <button class="modal-capsule-btn" onclick="confirmPreviousSpecialist()" data-en="YES" data-fr="OUI">YES</button>
+            <button class="modal-capsule-btn-secondary" onclick="skipIntercept()" data-en="FASTEST AVAILABLE" data-fr="LE PLUS RAPIDE">FASTEST AVAILABLE</button>
+            <button class="modal-close" onclick="closeModals()" data-en="CANCEL" data-fr="ANNULER">CANCEL</button>
         </div>
     </div>
 
-    <!-- READY NOW MODAL -->
+    <!-- READY NOW MODAL (NO OCCASION DROPDOWN - LEAN) -->
     <div id="verifyModal" class="modal-overlay">
         <div class="modal-card">
-            <h3 class="dynamic-header">Get Ready Now</h3>
-            <p class="dynamic-desc">Enter your details. We will coordinate your match.</p>
+            <h3 class="dynamic-header" data-en="Get Ready Now" data-fr="Préparez-vous Maintenant">Get Ready Now</h3>
+            <p class="dynamic-desc" data-en="Enter your details. We will coordinate your match." data-fr="Entrez vos coordonnées. Nous coordonnerons votre match.">Enter your details. We will coordinate your match.</p>
             
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleSubmit(event, 'now')">
                 <input type="hidden" name="city_location" class="formCityField" value="Yaletown, Vancouver">
                 <input type="hidden" name="dispatch_channel" value="Priority Ready">
                 <input type="hidden" name="requested_specialist" class="specialistHiddenField" value="Fastest Available">
-
-                <select class="modal-input" name="service_context">
-                    <option value="" disabled selected data-en="What's the occasion? (Optional)" data-fr="Quelle est l'occasion ? (Optionnel)">What's the occasion? (Optional)</option>
-                    <option value="Just for You" class="opt-silver" style="color: var(--silver);" data-en="JUST FOR YOU™ — The Occasion is Me" data-fr="JUSTE POUR VOUS™ — L'occasion, c'est moi">JUST FOR YOU™ — The Occasion is Me</option>
-                    <option value="Professional" class="opt-gold" style="color: var(--gold);" data-en="PROFESSIONAL — Meeting · Interview · Presentation" data-fr="PROFESSIONNEL — Réunion · Entretien · Présentation">PROFESSIONAL — Meeting · Interview · Presentation</option>
-                    <option value="Social" class="opt-gold" style="color: var(--gold);" data-en="SOCIAL — Date · Wedding · Night Out · Event" data-fr="SOCIAL — Rencontre · Mariage · Sortie · Événement">SOCIAL — Date · Wedding · Night Out · Event</option>
-                    <option value="Life" class="opt-gold" style="color: var(--gold);" data-en="LIFE — Travel · Celebration · Personal Milestone" data-fr="VIE — Voyage · Célébration · Étape personnelle">LIFE — Travel · Celebration · Personal Milestone</option>
-                </select>
                 
                 <div id="inputFieldsWrapper">
-                    <input type="text" class="modal-input" name="client_name" id="nameInputNow" placeholder="First Name">
-                    <input type="tel" class="modal-input" name="client_phone" id="phoneInputNow" placeholder="10 Digit Mobile" pattern="[0-9]{10}">
+                    <input type="text" class="modal-input" name="client_name" id="nameInputNow" placeholder="First Name" data-en-placeholder="First Name" data-fr-placeholder="Prénom" required>
+                    <input type="tel" class="modal-input" name="client_phone" id="phoneInputNow" placeholder="10 Digit Mobile" data-en-placeholder="10 Digit Mobile" data-fr-placeholder="Mobile à 10 chiffres" pattern="[0-9]{10}" required>
                 </div>
 
-                <button type="submit" class="modal-capsule-btn" id="nowSubmitBtn">SEND REQUEST</button>
+                <button type="submit" class="modal-capsule-btn" id="nowSubmitBtn" data-en="SEND REQUEST" data-fr="ENVOYER LA DEMANDE">SEND REQUEST</button>
             </form>
-            <button class="modal-close" onclick="closeModals()">CANCEL</button>
+            <button class="modal-close" onclick="closeModals()" data-en="CANCEL" data-fr="ANNULER">CANCEL</button>
             <br>
-            <button type="button" class="reset-user-link" id="resetUserBtn" onclick="resetUser()">Not you? Reset details</button>
+            <button type="button" class="reset-user-link" id="resetUserBtn" onclick="resetUser()" data-en="Not you? Reset details" data-fr="Pas vous ? Réinitialiser">Not you? Reset details</button>
         </div>
     </div>
 
-    <!-- READY LATER MODAL -->
+    <!-- READY LATER MODAL (NO OCCASION DROPDOWN - HOURLY SLOTS) -->
     <div id="laterModal" class="modal-overlay">
         <div class="modal-card">
-            <h3 class="dynamic-header">Plan Ahead</h3>
-            <p class="dynamic-desc">Commit to a scheduled visit. We'll coordinate availability.</p>
+            <h3 class="dynamic-header" data-en="Plan Ahead" data-fr="Planifier à L'avance">Plan Ahead</h3>
+            <p class="dynamic-desc" data-en="Commit to a scheduled visit. We'll coordinate availability." data-fr="Engagez-vous pour une visite planifiée.">Commit to a scheduled visit. We'll coordinate availability.</p>
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleSubmit(event, 'later')">
                 <input type="hidden" name="city_location" class="formCityField" value="Yaletown, Vancouver">
                 <input type="hidden" name="dispatch_channel" value="Scheduled Request">
                 <input type="hidden" name="requested_specialist" class="specialistHiddenField" value="Fastest Available">
                 
-                <select class="modal-input" name="service_context">
-                    <option value="" disabled selected data-en="What's the occasion? (Optional)" data-fr="Quelle est l'occasion ? (Optionnel)">What's the occasion? (Optional)</option>
-                    <option value="Just for You" class="opt-silver" style="color: var(--silver);" data-en="JUST FOR YOU™ — The Occasion is Me" data-fr="JUSTE POUR VOUS™ — L'occasion, c'est moi">JUST FOR YOU™ — The Occasion is Me</option>
-                    <option value="Professional" class="opt-gold" style="color: var(--gold);" data-en="PROFESSIONAL — Meeting · Interview · Presentation" data-fr="PROFESSIONNEL — Réunion · Entretien · Présentation">PROFESSIONAL — Meeting · Interview · Presentation</option>
-                    <option value="Social" class="opt-gold" style="color: var(--gold);" data-en="SOCIAL — Date · Wedding · Night Out · Event" data-fr="SOCIAL — Rencontre · Mariage · Sortie · Événement">SOCIAL — Date · Wedding · Night Out · Event</option>
-                    <option value="Life" class="opt-gold" style="color: var(--gold);" data-en="LIFE — Travel · Celebration · Personal Milestone" data-fr="VIE — Voyage · Célébration · Étape personnelle">LIFE — Travel · Celebration · Personal Milestone</option>
-                </select>
-                
                 <div id="inputFieldsWrapperLater">
-                    <input type="text" class="modal-input" name="client_name" placeholder="First Name">
-                    <input type="tel" class="modal-input" name="client_phone" placeholder="10 Digit Mobile" pattern="[0-9]{10}">
+                    <input type="text" class="modal-input" name="client_name" placeholder="First Name" data-en-placeholder="First Name" data-fr-placeholder="Prénom" required>
+                    <input type="tel" class="modal-input" name="client_phone" placeholder="10 Digit Mobile" data-en-placeholder="10 Digit Mobile" data-fr-placeholder="Mobile à 10 chiffres" pattern="[0-9]{10}" required>
                 </div>
 
                 <input type="date" class="modal-input" name="requested_date" required>
                 <select class="modal-input" name="requested_time" required>
-                    <option value="" disabled selected>Select Preferred Time</option>
+                    <option value="" disabled selected data-en="Select Preferred Time" data-fr="Sélectionnez l'heure">Select Preferred Time</option>
                     <option value="9:00 AM">9:00 AM</option>
                     <option value="10:00 AM">10:00 AM</option>
                     <option value="11:00 AM">11:00 AM</option>
@@ -685,86 +647,88 @@
                     <option value="7:00 PM">7:00 PM</option>
                     <option value="8:00 PM">8:00 PM</option>
                 </select>
-                <button type="submit" class="modal-capsule-btn">REQUEST SCHEDULED COMMITMENT</button>
+                <button type="submit" class="modal-capsule-btn" data-en="REQUEST SCHEDULED COMMITMENT" data-fr="DEMANDER UNE VISITE PLANIFIÉE">REQUEST SCHEDULED COMMITMENT</button>
             </form>
-            <button class="modal-close" onclick="closeModals()">CANCEL</button>
+            <button class="modal-close" onclick="closeModals()" data-en="CANCEL" data-fr="ANNULER">CANCEL</button>
             <br>
-            <button type="button" class="reset-user-link" id="resetUserBtnLater" onclick="resetUser()" style="display:none;">Not you? Reset details</button>
+            <button type="button" class="reset-user-link" id="resetUserBtnLater" onclick="resetUser()" data-en="Not you? Reset details" data-fr="Pas vous ? Réinitialiser" style="display:none;">Not you? Reset details</button>
         </div>
     </div>
 
     <!-- CODE MODAL -->
     <div id="codeModal" class="modal-overlay">
         <div class="modal-card">
-            <h3>Enter SPURTAN Code</h3>
-            <p>Please enter your unique membership code.</p>
+            <h3 data-en="Enter SPURTAN Code" data-fr="Entrez le code SPURTAN">Enter SPURTAN Code</h3>
+            <p data-en="Please enter your unique membership code." data-fr="Veuillez entrer votre code d'adhésion unique.">Please enter your unique membership code.</p>
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleCodeSubmit(event)">
                 <input type="hidden" name="city_location" class="formCityField" value="Yaletown, Vancouver">
                 <input type="text" class="modal-input" name="spurtan_code" placeholder="e.g., SPURTAN" id="spurInput" required>
-                <button type="submit" class="modal-circle-btn">APPLY</button>
+                <button type="submit" class="modal-circle-btn" data-en="APPLY" data-fr="APPLIQUER">APPLY</button>
             </form>
             <div class="code-modal-bridge">
-                <span>Don't have a code yet?</span><br>
-                <button type="button" onclick="switchModal('codeModal', 'spurtanModal')">Request Founding Spurtan Access →</button>
+                <span data-en="Don't have a code yet?" data-fr="Vous n'avez pas encore de code ?">Don't have a code yet?</span><br>
+                <button type="button" onclick="switchModal('codeModal', 'spurtanModal')" data-en="Request Founding Spurtan Access →" data-fr="Demander l'accès Spurtan Fondateur →">Request Founding Spurtan Access →</button>
             </div>
-            <button class="modal-close" onclick="closeModals()">CANCEL</button>
+            <button class="modal-close" onclick="closeModals()" data-en="CANCEL" data-fr="ANNULER">CANCEL</button>
         </div>
     </div>
 
     <!-- FOUNDING SPURTAN REGISTRATION MODAL -->
     <div id="spurtanModal" class="modal-overlay">
         <div class="modal-card">
-            <h3>Founding Spurtan Access</h3>
-            <p>Own the hour before. Join the private pilot and lock in preferred rates.</p>
-            <div class="perks-mini-box">
-                • <strong>$39.99 CAD All-In</strong> for your first 3 visits (Standard: $49.99).<br>
-                • <strong>First Visit Guarantee:</strong> Full refund if not completely ready.
+            <h3 data-en="Founding Spurtan Access" data-fr="Accès Spurtan Fondateur">Founding Spurtan Access</h3>
+            <p data-en="Own the hour before. Join the private pilot and lock in preferred rates." data-fr="Maîtrisez votre heure. Rejoignez le pilote privé et bloquez les tarifs préférentiels.">Own the hour before. Join the private pilot and lock in preferred rates.</p>
+            <div class="perks-mini-box" style="text-align: left;">
+                • <strong data-en="$39.99 CAD All-In" data-fr="39,99 $ CAD Tout Inclus">$39.99 CAD All-In</strong> <span data-en="for your first 3 visits (Standard: $49.99)." data-fr="pour vos 3 premières visites (Standard : 49,99 $).">for your first 3 visits (Standard: $49.99).[cite: 3]</span><br>
+                • <strong data-en="First Visit Guarantee:" data-fr="Garantie 1ère Visite :">First Visit Guarantee:</strong> <span data-en="Full refund if not completely Ready after your first visit." data-fr="Remboursement intégral si vous n'êtes pas complètement Prêt après votre première visite.">Full refund if not completely Ready after your first visit.[cite: 3]</span>
             </div>
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleSpurtanRegister(event)">
-                <input type="text" class="modal-input" name="client_name" required placeholder="First Name">
-                <input type="tel" class="modal-input" name="client_phone" required placeholder="10 Digit Mobile" pattern="[0-9]{10}">
+                <input type="text" class="modal-input" name="client_name" required placeholder="First Name" data-en-placeholder="First Name" data-fr-placeholder="Prénom">
+                <input type="tel" class="modal-input" name="client_phone" required placeholder="10 Digit Mobile" data-en-placeholder="10 Digit Mobile" data-fr-placeholder="Mobile à 10 chiffres" pattern="[0-9]{10}">
                 <select class="modal-input" name="launch_node" id="spurtanNodeSelect" required>
                     <option value="Yaletown, Vancouver">Yaletown, Vancouver (Live)</option>
                     <option value="Le Plateau, Montreal">Le Plateau, Montreal (Live)</option>
                     <option value="Financial District, Toronto">Financial District, Toronto (Waitlist)</option>
                 </select>
-                <button type="submit" class="modal-capsule-btn">CLAIM FOUNDING ACCESS</button>
+                <button type="submit" class="modal-capsule-btn" data-en="CLAIM FOUNDING ACCESS" data-fr="RÉCLAMER MON ACCÈS">CLAIM FOUNDING ACCESS</button>
             </form>
-            <button class="modal-close" onclick="closeModals()">CANCEL</button>
+            <button class="modal-close" onclick="closeModals()" data-en="CANCEL" data-fr="ANNULER">CANCEL</button>
         </div>
     </div>
 
     <!-- SUCCESS SCREEN -->
     <div id="finalSuccessView">
         <div class="success-header-tag" id="receiptHeaderTag">Verified Dispatch</div>
-        <div class="success-main-title">Request Received.</div>
-        <div class="success-sub-title">We are coordinating your specialist match.</div>
+        <div class="success-main-title" data-en="Request Received." data-fr="Demande Reçue.">Request Received.</div>
+        <div class="success-sub-title" data-en="We are coordinating your specialist match." data-fr="Nous coordonnons votre match de spécialiste.">We are coordinating your specialist match.</div>
         <div class="success-receipt-card">
             <div class="receipt-top-row">
                 <div>
-                    <div class="receipt-title">Check your messages</div>
+                    <div class="receipt-title" data-en="Check your messages" data-fr="Vérifiez vos messages">Check your messages</div>
                     <div class="receipt-updates-tag" id="displayPhoneLine">DISPATCH LINE: ACTIVE</div>
                 </div>
                 <div class="receipt-price-box">
                     <div class="receipt-price" id="finalReceiptPrice">$49.99</div>
-                    <div class="receipt-price-label">Flat Rate</div>
+                    <div class="receipt-price-label" data-en="Flat Rate" data-fr="Prix Fixe">Flat Rate</div>
                 </div>
             </div>
             <div class="receipt-grid">
                 <div class="receipt-grid-box">
                     <div class="grid-box-val">Verified</div>
-                    <div class="grid-box-lbl">Coordination</div>
+                    <div class="grid-box-lbl" data-en="Coordination" data-fr="Coordination">Coordination</div>
                 </div>
                 <div class="receipt-grid-box">
                     <div class="grid-box-val" id="receiptTargetArea">Yaletown, Vancouver</div>
-                    <div class="grid-box-lbl">Location</div>
+                    <div class="grid-box-lbl" data-en="Location" data-fr="Lieu">Location</div>
                 </div>
             </div>
-            <div class="receipt-footer-desc">
+            <div class="receipt-footer-desc" data-en="Your concierge is coordinating with our network.<br>You pay directly at the studio." data-fr="Votre concierge coordonne avec notre réseau.<br>Vous payez directement au studio.">
                 Your concierge is coordinating with our network.<br>You pay directly at the studio.
             </div>
-            <a href="#" id="whatsappAutoBtn" class="receipt-action-btn" target="_blank">💬 CONFIRM VIA WHATSAPP (READY)</a>
-            <a href="#" class="cancel-link" onclick="location.reload(); return false;">Need to modify or cancel? Message Concierge.</a>
+            <a href="#" id="whatsappAutoBtn" class="receipt-action-btn" target="_blank">
+                <span data-en="💬 CONFIRM VIA WHATSAPP (READY)" data-fr="💬 CONFIRMER VIA WHATSAPP (PRÊT)">💬 CONFIRM VIA WHATSAPP (READY)</span>
+            </a>
+            <a href="#" class="cancel-link" onclick="location.reload(); return false;" data-en="Need to modify or cancel? Message Concierge." data-fr="Besoin de modifier ou d'annuler ? Contactez le Concierge.">Need to modify or cancel? Message Concierge.</a>
         </div>
     </div>
 
@@ -851,9 +815,19 @@
             document.getElementById('btn-en').classList.toggle('active', lang === 'en');
             document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
             document.querySelectorAll('[data-en]').forEach(el => {
-                if (el.id === 'brandPhilosophyText' && localStorage.getItem('spur_user_name')) return;
-                el.innerHTML = lang === 'fr' && el.hasAttribute('data-fr') ? el.getAttribute('data-fr') : el.getAttribute('data-en');
+                if (el.hasAttribute('data-fr')) {
+                    el.innerHTML = lang === 'fr' ? el.getAttribute('data-fr') : el.getAttribute('data-en');
+                }
             });
+
+            document.querySelectorAll('[data-en-placeholder]').forEach(el => {
+                if (lang === 'fr' && el.hasAttribute('data-fr-placeholder')) {
+                    el.placeholder = el.getAttribute('data-fr-placeholder');
+                } else if (lang === 'en' && el.hasAttribute('data-en-placeholder')) {
+                    el.placeholder = el.getAttribute('data-en-placeholder');
+                }
+            });
+
             const savedName = localStorage.getItem('spur_user_name');
             if (savedName) {
                 const sub = document.getElementById('dynamicHeroSubtitle');
@@ -863,45 +837,25 @@
             updateBadgeText();
         }
 
-        let interceptTimer;
         let currentInterceptType = 'now';
 
-        function openIntercept(type) {
+        function initiateBooking(type) {
             currentInterceptType = type;
-            const modal = document.getElementById('interceptModal');
-            const defaultView = document.getElementById('interceptDefaultView');
-            const recognizedView = document.getElementById('interceptRecognizedView');
             const savedSpecialist = localStorage.getItem('last_specialist');
 
+            // ONLY show the in-between page if an existing specialist is remembered
             if (savedSpecialist && savedSpecialist !== 'Fastest Available') {
-                defaultView.style.display = 'none';
-                recognizedView.style.display = 'block';
-                document.getElementById('recognizedSpecialistText').innerText = `Book with ${savedSpecialist} again?`;
-                document.getElementById('interceptStatusDesc').innerText = "Recognizing profile preferences...";
-                clearTimeout(interceptTimer);
+                const lang = localStorage.getItem('spur_lang') || 'en';
+                const questionText = lang === 'fr' ? `Réserver avec ${savedSpecialist} à nouveau ?` : `Book with ${savedSpecialist} again?`;
+                document.getElementById('recognizedSpecialistText').innerText = questionText;
+                document.getElementById('interceptModal').style.display = 'flex';
             } else {
-                defaultView.style.display = 'block';
-                recognizedView.style.display = 'none';
-                document.getElementById('interceptStatusDesc').innerText = "Your concierge is coordinating verified specialist availability...";
-                
-                clearTimeout(interceptTimer);
-                interceptTimer = setTimeout(() => {
-                    if (modal.style.display === 'flex' && defaultView.style.display === 'block') {
-                        skipIntercept();
-                    }
-                }, 3000);
+                // Otherwise, go straight to booking form
+                safeOpenModal(type === 'now' ? 'verifyModal' : 'laterModal');
             }
-
-            modal.style.display = 'flex';
-            
-            const bar = document.getElementById('interceptProgressBar');
-            bar.style.transition = 'none'; bar.style.width = '100%';
-            void bar.offsetWidth;
-            bar.style.transition = 'width 3s linear'; bar.style.width = '0%';
         }
 
         function confirmPreviousSpecialist() {
-            clearTimeout(interceptTimer);
             const savedSpecialist = localStorage.getItem('last_specialist') || 'Fastest Available';
             document.querySelectorAll('.specialistHiddenField').forEach(el => el.value = savedSpecialist);
             document.getElementById('interceptModal').style.display = 'none';
@@ -909,8 +863,7 @@
         }
 
         function skipIntercept() {
-            clearTimeout(interceptTimer);
-            document.querySelectorAll('.specialistHiddenField').forEach(el => el.value = "Fastest Available");
+            document.querySelectorAll('.specialistHiddenField').forEach(el => el.value = 'Fastest Available');
             document.getElementById('interceptModal').style.display = 'none';
             safeOpenModal(currentInterceptType === 'now' ? 'verifyModal' : 'laterModal');
         }
@@ -935,7 +888,8 @@
                     if(resetBtn) resetBtn.style.display = 'none';
                     if(wrapper) wrapper.querySelectorAll('input').forEach(i => i.required = true);
                     const header = modal.querySelector('.dynamic-header');
-                    if(header) header.innerText = id === 'verifyModal' ? "Get Ready Now" : "Plan Ahead";
+                    const lang = localStorage.getItem('spur_lang') || 'en';
+                    if(header) header.innerText = id === 'verifyModal' ? (lang === 'fr' ? "Préparez-vous Maintenant" : "Get Ready Now") : (lang === 'fr' ? "Planifier à L'avance" : "Plan Ahead");
                 }
             }
             modal.style.display = 'flex';
@@ -951,7 +905,6 @@
         }
 
         function closeModals() {
-            clearTimeout(interceptTimer);
             document.querySelectorAll('.modal-overlay').forEach(el => el.style.display = 'none');
         }
 
@@ -965,14 +918,15 @@
             localStorage.setItem('spur_user_phone', phone);
             await syncClientToSupabase(name, phone, 'Fastest Available');
 
-            alert("✓ Founding Spurtan Access confirmed! Your $39.99 rate is now active.");
+            const lang = localStorage.getItem('spur_lang') || 'en';
+            alert(lang === 'fr' ? "✓ Accès Spurtan Fondateur confirmé ! Votre tarif de 39,99 $ est actif." : "✓ Founding Spurtan Access confirmed! Your $39.99 rate is now active.");
             
             document.getElementById('displayPrice').innerText = "$39.99 CAD";
             document.getElementById('finalReceiptPrice').innerText = "$39.99";
             
             const sub = document.getElementById('dynamicHeroSubtitle');
             if (sub) {
-                sub.innerHTML = localStorage.getItem('spur_lang') === 'fr' ? "Bon retour, " + name.split(' ')[0] + "." : "Welcome back, " + name.split(' ')[0] + ".";
+                sub.innerHTML = lang === 'fr' ? "Bon retour, " + name.split(' ')[0] + "." : "Welcome back, " + name.split(' ')[0] + ".";
             }
 
             closeModals(); form.reset();
@@ -984,10 +938,12 @@
             if (codeVal.includes('SPUR')) {
                 document.getElementById('displayPrice').innerText = "$39.99 CAD";
                 document.getElementById('finalReceiptPrice').innerText = "$39.99";
-                alert("✓ Code applied! (-$10.00)");
+                const lang = localStorage.getItem('spur_lang') || 'en';
+                alert(lang === 'fr' ? "✓ Remise appliquée !" : "✓ Code applied! (-$10.00)");
                 closeModals(); event.target.reset();
             } else {
-                alert("Please enter a valid code.");
+                const lang = localStorage.getItem('spur_lang') || 'en';
+                alert(lang === 'fr' ? "Veuillez entrer un code valide." : "Please enter a valid code.");
             }
         }
 
@@ -1013,14 +969,12 @@
             if (!phone) phone = '6040000000';
 
             const city = form.querySelector('.formCityField').value;
-            const contextRaw = form.querySelector('select[name="service_context"]').value;
-            const context = contextRaw ? contextRaw.split('—')[0].trim() : 'Standard Readiness';
             const specialist = form.querySelector('input[name="requested_specialist"]')?.value || 'Fastest Available';
 
             localStorage.setItem('last_specialist', specialist);
             await syncClientToSupabase(name, phone, specialist);
 
-            const waMessage = `Hello SPUR — I would like to request a visit.\n\nType: ${type.toUpperCase()}\nCity: ${city}\nName: ${name}\nMobile: ${phone}\nContext: ${context}\nSpecialist: ${specialist}\n\nPlease coordinate verified availability.`;
+            const waMessage = `Hello SPUR — I would like to request a visit.\n\nType: ${type.toUpperCase()}\nCity: ${city}\nName: ${name}\nMobile: ${phone}\nSpecialist: ${specialist}\n\nPlease coordinate verified availability.`;
             const encodedWaUrl = `https://wa.me/${SPUR_WHATSAPP_NUMBER}?text=${encodeURIComponent(waMessage)}`;
             document.getElementById('whatsappAutoBtn').href = encodedWaUrl;
 
