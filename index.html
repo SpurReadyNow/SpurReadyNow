@@ -409,6 +409,15 @@
         }
         .modal-capsule-btn-secondary:hover { border-color: var(--gold); }
 
+        /* FIXED: Force Gold Color on Code Modal Apply Button */
+        #codeModal .modal-circle-btn {
+            width: 95px; height: 95px; border-radius: 50%;
+            background: var(--gold) !important; color: #0d0d0d !important;
+            border: none; font-weight: 800; font-size: 10px; cursor: pointer;
+            margin: 10px auto 16px auto; display: flex; justify-content: center;
+            align-items: center; text-align: center; padding: 5px;
+        }
+
         .modal-close { background: none; border: none; color: var(--text-muted); font-size: 12px; cursor: pointer; margin-top: 15px; display: inline-block; }
         .reset-user-link { display: none; background: none; border: none; color: var(--gold); font-size: 10px; font-weight: 700; text-transform: uppercase; cursor: pointer; text-decoration: underline; margin: 15px auto 5px auto; width: 100%; }
 
@@ -535,8 +544,8 @@
                     <span class="ready-line-1">READY</span>
                     <span class="ready-line-2">NOW™</span>
                 </button>
-                <div class="cta-footer-note" data-en="A specialist assesses what you need.<br>You just show up." data-fr="Un spécialiste évalue ce dont vous avez besoin.<br>Vous vous présentez, tout simplement.">
-                    A specialist assesses what you need.<br>You just show up.
+                <div class="cta-footer-note" data-en="A SPUR Specialist assesses what you need.<br>You just show up." data-fr="Un spécialiste SPUR évalue ce dont vous avez besoin.<br>Vous vous présentez, tout simplement.">
+                    A SPUR Specialist assesses what you need.<br>You just show up.
                 </div>
             </div>
 
@@ -573,7 +582,7 @@
             <div class="perks-mini-box" style="text-align: left;">
                 <p style="margin-bottom: 8px;"><strong>01. Zero Menus:</strong> You state your life moment. No service lists.</p>
                 <p style="margin-bottom: 8px;"><strong>02. Verified Dispatch:</strong> We coordinate availability through a verified concierge process.</p>
-                <p style="margin-bottom: 8px;"><strong>03. Assess & Approve:</strong> The specialist recommends either a <strong>Refresh™</strong> or <strong>Reset™</strong>. You approve before execution.</p>
+                <p style="margin-bottom: 8px;"><strong>03. Assess & Approve:</strong> The SPUR Specialist assesses and recommends either a <strong>Refresh™</strong> or <strong>Reset™</strong>. You approve before execution.</p>
                 <p style="margin-bottom: 0;"><strong>04. First Visit Guarantee:</strong> Full refund if not completely ready after your first visit.</p>
             </div>
             <button class="modal-capsule-btn" onclick="closeModals()">GOT IT</button>
