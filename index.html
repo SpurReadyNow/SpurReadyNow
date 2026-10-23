@@ -12,6 +12,7 @@
       --muted: #64748b;
       --primary: #2563eb;
       --primary-hover: #1d4ed8;
+      --danger: #ef4444;
       --border: #e2e8f0;
     }
 
@@ -42,25 +43,26 @@
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
     }
 
-    .loading {
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    .banner {
+    .state-container {
       display: flex;
       flex-direction: column;
       gap: 1rem;
+      text-align: center;
     }
 
-    .banner h2 {
+    .state-container h2 {
       font-size: 1.25rem;
       font-weight: 600;
     }
 
-    .banner p {
+    .state-container p {
       color: var(--muted);
-      font-size: 0.9rem;
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    .error-text {
+      color: var(--danger) !important;
     }
 
     .btn {
@@ -73,6 +75,8 @@
       font-weight: 500;
       cursor: pointer;
       transition: background-color 0.2s ease;
+      width: 100%;
+      margin-top: 0.5rem;
     }
 
     .btn:hover {
@@ -80,7 +84,7 @@
     }
 
     .hidden {
-      display: none;
+      display: none !important;
     }
   </style>
 
@@ -90,89 +94,137 @@
 <body>
 
   <div class="card">
-    <!-- State 1: Loading -->
-    <div id="loading-state" class="loading">Loading your bookings...</div>
-
-    <!-- State 2: Dynamic Re-booking Banner -->
-    <div id="rebook-banner" class="banner hidden">
-      <h2 id="banner-title"></h2>
-      <p id="banner-description"></p>
-      <button id="rebook-button" class="btn">Book Again</button>
+    <!-- 1. Loading State -->
+    <div id="loading-state" class="state-container">
+      <p>Loading your bookings...</p>
     </div>
 
-    <!-- State 3: Empty State (No previous bookings found) -->
-    <div id="empty-state" class="banner hidden">
+    <!-- 2. Configuration Error State (Fires if keys are missing) -->
+    <div id="config-error-state" class="state-container hidden">
+      <h2 class="error-text">Setup Required</h2>
+      <p>Please enter your Supabase URL and Anon Key in the code to connect to your database.</p>
+    </div>
+
+    <!-- 3. Auth Error State (Fires if user is not logged in) -->
+    <div id="auth-error-state" class="state-container hidden">
+      <h2>Not Logged In</h2>
+      <p>You must be logged in to view your bookings.</p>
+      <button class="btn" onclick="location.href='/login'">Go to Login</button>
+    </div>
+
+    <!-- 4. Empty State (Fires if database returns no records) -->
+    <div id="empty-state" class="state-container hidden">
       <h2>Welcome back!</h2>
       <p>You don't have any previous bookings yet.</p>
       <button class="btn" onclick="location.href='/book'">Find a Provider</button>
     </div>
+
+    <!-- 5. Dynamic Data State (Fires on success, NO hardcoding) -->
+    <div id="rebook-banner" class="state-container hidden">
+      <h2 id="banner-title"></h2>
+      <p id="banner-description"></p>
+      <button id="rebook-button" class="btn">Book Again</button>
+    </div>
   </div>
 
   <script>
-    // 1. Initialize Supabase Client dynamically
+    // ==========================================
+    // 1. ADD YOUR SUPABASE CREDENTIALS HERE
+    // ==========================================
     const SUPABASE_URL = "YOUR_SUPABASE_URL";
     const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY";
-    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-    async function loadLatestBooking() {
-      const loadingEl = document.getElementById("loading-state");
-      const bannerEl = document.getElementById("rebook-banner");
-      const emptyEl = document.getElementById("empty-state");
-      const titleEl = document.getElementById("banner-title");
-      const descEl = document.getElementById("banner-description");
-      const buttonEl = document.getElementById("rebook-button");
+    // Helper function to handle UI switching safely
+    function showState(stateIdToShow) {
+      const states = [
+        "loading-state", 
+        "config-error-state", 
+        "auth-error-state", 
+        "empty-state", 
+        "rebook-banner"
+      ];
+      
+      states.forEach(id => {
+        const el = document.getElementById(id);
+        if (id === stateIdToShow) {
+          el.classList.remove("hidden");
+        } else {
+          el.classList.add("hidden");
+        }
+      });
+    }
+
+    async function initializeDashboard() {
+      // Check if user forgot to update the keys
+      if (SUPABASE_URL === "YOUR_SUPABASE_URL" || SUPABASE_ANON_KEY === "YOUR_SUPABASE_ANON_KEY") {
+        showState("config-error-state");
+        return;
+      }
 
       try {
-        // 2. Fetch active user session
+        // Initialize Supabase Client
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // Fetch active user session
         const { data: { user }, error: authError } = await supabase.auth.getUser();
 
         if (authError || !user) {
-          showEmptyState(loadingEl, emptyEl);
+          console.warn("User is not logged in.");
+          showState("auth-error-state");
           return;
         }
 
-        // 3. Fetch latest booking dynamically from DB
-        const { data: bookings, error } = await supabase
+        // Fetch latest booking dynamically (Strictly getting data, no hardcoded fallback)
+        const { data: bookings, error: dbError } = await supabase
           .from("bookings")
           .select("provider_name, provider_id, created_at")
           .eq("user_id", user.id)
           .order("created_at", { ascending: false })
           .limit(1);
 
-        // Hide loading state
-        loadingEl.classList.add("hidden");
-
-        if (error || !bookings || bookings.length === 0) {
-          // No records found in Supabase -> Display empty state
-          emptyEl.classList.remove("hidden");
+        if (dbError) {
+          console.error("Database query error:", dbError.message);
+          showState("empty-state"); // Fallback to empty state on DB error
           return;
         }
 
-        // 4. Render dynamically using actual database values (No hardcoding)
+        // If the array is empty, the user has never booked before
+        if (!bookings || bookings.length === 0) {
+          showState("empty-state");
+          return;
+        }
+
+        // Render dynamically using actual database values
         const latestBooking = bookings[0];
+        
+        // Safety check: ensure provider_name actually exists in the row
+        if (!latestBooking.provider_name) {
+          showState("empty-state");
+          return;
+        }
+
         const providerName = latestBooking.provider_name;
 
-        titleEl.textContent = `Book with ${providerName} again?`;
-        descEl.textContent = `Schedule your next session with ${providerName}.`;
-        buttonEl.onclick = () => {
+        // Inject dynamic text into HTML
+        document.getElementById("banner-title").textContent = `Book with ${providerName} again?`;
+        document.getElementById("banner-description").textContent = `Schedule your next session with ${providerName}.`;
+        
+        document.getElementById("rebook-button").onclick = () => {
+          // Adjust this URL structure to match your actual booking page setup
           window.location.href = `/book?provider_id=${latestBooking.provider_id}`;
         };
 
-        bannerEl.classList.remove("hidden");
+        // Show the banner now that data is injected
+        showState("rebook-banner");
 
       } catch (err) {
-        console.error("Failed to load booking data:", err);
-        showEmptyState(loadingEl, emptyEl);
+        console.error("Unexpected script error:", err);
+        showState("empty-state");
       }
     }
 
-    function showEmptyState(loadingEl, emptyEl) {
-      loadingEl.classList.add("hidden");
-      emptyEl.classList.remove("hidden");
-    }
-
-    // Run fetching on DOM ready
-    document.addEventListener("DOMContentLoaded", loadLatestBooking);
+    // Run fetching automatically when the page loads
+    document.addEventListener("DOMContentLoaded", initializeDashboard);
   </script>
 </body>
 </html>
