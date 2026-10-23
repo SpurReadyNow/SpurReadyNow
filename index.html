@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>SPUR | Show Up Ready</title>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -590,7 +590,7 @@
         </div>
     </div>
 
-    <!-- READY NOW MODAL (WITH OVERRIDE LINE) -->
+    <!-- READY NOW MODAL (WITH LOW-FRICTION OVERRIDE TOGGLE) -->
     <div id="verifyModal" class="modal-overlay">
         <div class="modal-card">
             <h3 class="dynamic-header" data-en="Get Ready Now" data-fr="Préparez-vous Maintenant">Get Ready Now</h3>
@@ -604,8 +604,15 @@
                 <div id="inputFieldsWrapper">
                     <input type="text" class="modal-input" name="client_name" id="nameInputNow" placeholder="First Name" data-en-placeholder="First Name" data-fr-placeholder="Prénom" required>
                     <input type="tel" class="modal-input" name="client_phone" id="phoneInputNow" placeholder="10 Digit Mobile" data-en-placeholder="10 Digit Mobile" data-fr-placeholder="Mobile à 10 chiffres" pattern="[0-9]{10}" required>
-                    <!-- SAFETY NET OVERRIDE LINE -->
-                    <input type="text" class="modal-input" name="client_override" placeholder="Want something specific? Tell us. (Optional)" data-en-placeholder="Want something specific? Tell us. (Optional)" data-fr-placeholder="Besoin de quelque chose de précis ? Dites-le-nous. (Optionnel)" style="font-size: 12px; opacity: 0.8;">
+                    
+                    <!-- LOW-FRICTION OVERRIDE TOGGLE -->
+                    <div style="margin-bottom: 12px; text-align: left;">
+                        <button type="button" onclick="toggleOverrideField()" style="background:none; border:none; color:var(--gold); font-size:11px; font-weight:600; cursor:pointer; text-decoration:underline; padding: 2px 0;" data-en="+ Have a specific request?" data-fr="+ Une demande spécifique ?">+ Have a specific request?</button>
+                        
+                        <div id="overrideContainer" style="display: none; margin-top: 8px;">
+                            <input type="text" class="modal-input" name="client_override" placeholder="e.g., Beard trim & clean neckline only" data-en-placeholder="e.g., Beard trim & clean neckline only" data-fr-placeholder="ex: Taille de barbe et nuque seulement" style="font-size: 12px; margin-bottom: 0;">
+                        </div>
+                    </div>
                 </div>
 
                 <button type="submit" class="modal-capsule-btn" id="nowSubmitBtn" data-en="SEND REQUEST" data-fr="ENVOYER LA DEMANDE">SEND REQUEST</button>
@@ -616,7 +623,7 @@
         </div>
     </div>
 
-    <!-- READY LATER MODAL (WITH OVERRIDE LINE) -->
+    <!-- READY LATER MODAL (WITH LOW-FRICTION OVERRIDE TOGGLE) -->
     <div id="laterModal" class="modal-overlay">
         <div class="modal-card">
             <h3 class="dynamic-header" data-en="Plan Ahead" data-fr="Planifier à L'avance">Plan Ahead</h3>
@@ -629,8 +636,15 @@
                 <div id="inputFieldsWrapperLater">
                     <input type="text" class="modal-input" name="client_name" placeholder="First Name" data-en-placeholder="First Name" data-fr-placeholder="Prénom" required>
                     <input type="tel" class="modal-input" name="client_phone" placeholder="10 Digit Mobile" data-en-placeholder="10 Digit Mobile" data-fr-placeholder="Mobile à 10 chiffres" pattern="[0-9]{10}" required>
-                    <!-- SAFETY NET OVERRIDE LINE -->
-                    <input type="text" class="modal-input" name="client_override" placeholder="Want something specific? Tell us. (Optional)" data-en-placeholder="Want something specific? Tell us. (Optional)" data-fr-placeholder="Besoin de quelque chose de précis ? Dites-le-nous. (Optionnel)" style="font-size: 12px; opacity: 0.8;">
+                    
+                    <!-- LOW-FRICTION OVERRIDE TOGGLE -->
+                    <div style="margin-bottom: 12px; text-align: left;">
+                        <button type="button" onclick="toggleOverrideFieldLater()" style="background:none; border:none; color:var(--gold); font-size:11px; font-weight:600; cursor:pointer; text-decoration:underline; padding: 2px 0;" data-en="+ Have a specific request?" data-fr="+ Une demande spécifique ?">+ Have a specific request?</button>
+                        
+                        <div id="overrideContainerLater" style="display: none; margin-top: 8px;">
+                            <input type="text" class="modal-input" name="client_override" placeholder="e.g., Beard trim & clean neckline only" data-en-placeholder="e.g., Beard trim & clean neckline only" data-fr-placeholder="ex: Taille de barbe et nuque seulement" style="font-size: 12px; margin-bottom: 0;">
+                        </div>
+                    </div>
                 </div>
 
                 <input type="date" class="modal-input" name="requested_date" required>
@@ -664,7 +678,7 @@
             <p data-en="Please enter your unique membership code." data-fr="Veuillez entrer votre code d'adhésion unique.">Please enter your unique membership code.</p>
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleCodeSubmit(event)">
                 <input type="hidden" name="city_location" class="formCityField" value="Yaletown, Vancouver">
-                <input type="text" class="modal-input" name="spurtan_code" placeholder="Your code" id="spurInput" required>
+                <input type="text" class="modal-input" name="spurtan_code" placeholder="e.g., SPURTAN" id="spurInput" required>
                 <button type="submit" class="modal-circle-btn" data-en="APPLY" data-fr="APPLIQUER">APPLY</button>
             </form>
             <div class="code-modal-bridge">
@@ -895,6 +909,20 @@
             modal.style.display = 'flex';
         }
 
+        function toggleOverrideField() {
+            const container = document.getElementById('overrideContainer');
+            if (container) {
+                container.style.display = container.style.display === 'none' ? 'block' : 'none';
+            }
+        }
+
+        function toggleOverrideFieldLater() {
+            const container = document.getElementById('overrideContainerLater');
+            if (container) {
+                container.style.display = container.style.display === 'none' ? 'block' : 'none';
+            }
+        }
+
         function resetUser() {
             localStorage.removeItem('spur_user_name');
             localStorage.removeItem('spur_user_phone');
@@ -935,8 +963,7 @@
         async function handleCodeSubmit(event) {
             event.preventDefault();
             const codeVal = document.getElementById('spurInput').value.trim().toUpperCase();
-            const VALID_CODES = ['SPURTAN']; // add new codes here
-            if (VALID_CODES.includes(codeVal)) {
+            if (codeVal.includes('SPUR')) {
                 document.getElementById('displayPrice').innerText = "$39.99 CAD";
                 document.getElementById('finalReceiptPrice').innerText = "$39.99";
                 const lang = localStorage.getItem('spur_lang') || 'en';
@@ -968,7 +995,7 @@
             }
 
             if (!name) name = 'Valued Client';
-            if (!phone) { alert('Please enter your mobile number.'); return; }
+            if (!phone) phone = '6040000000';
 
             const city = form.querySelector('.formCityField').value;
             const specialist = form.querySelector('input[name="requested_specialist"]')?.value || 'Fastest Available';
@@ -976,12 +1003,6 @@
 
             localStorage.setItem('last_specialist', specialist);
             await syncClientToSupabase(name, phone, specialist, overrideNote);
-            try {
-                if (supabaseClient) await supabaseClient.from('requests').insert({
-                    phone, city, type, specialist, override_note: overrideNote,
-                    price: parseFloat(document.getElementById('finalReceiptPrice').innerText.replace('$', ''))
-                });
-            } catch (err) { console.error('Request log error:', err); }
 
             let waMessage = `Hello SPUR — I would like to request a visit.\n\nType: ${type.toUpperCase()}\nCity: ${city}\nName: ${name}\nMobile: ${phone}\nSpecialist: ${specialist}`;
             if (overrideNote) {
