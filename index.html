@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SPUR | Show Up Ready</title>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -570,7 +570,7 @@
                 <p style="margin-bottom: 8px;"><strong data-en="01. Zero Menus:" data-fr="01. Zéro Menu :">01. Zero Menus:</strong> <span data-en="You state your life moment. No service lists." data-fr="Vous indiquez votre moment. Pas de liste de services.">You state your life moment. No service lists.</span></p>
                 <p style="margin-bottom: 8px;"><strong data-en="02. Verified Dispatch:" data-fr="02. Dispatche Vérifié :">02. Verified Dispatch:</strong> <span data-en="We coordinate availability through a verified concierge process." data-fr="Nous coordonnons la disponibilité via un processus de conciergerie vérifié.">We coordinate availability through a verified concierge process.</span></p>
                 <p style="margin-bottom: 8px;"><strong data-en="03. Assess & Approve:" data-fr="03. Évaluer et Approuver :">03. Assess & Approve:</strong> <span data-en="The SPUR Specialist assesses and recommends either a <strong>Refresh™</strong> or <strong>Reset™</strong>. You approve before execution." data-fr="Le spécialiste SPUR évalue et recommande un <strong>Refresh™</strong> ou un <strong>Reset™</strong>. Vous approuvez avant l'exécution.">The SPUR Specialist assesses and recommends either a <strong>Refresh™</strong> or <strong>Reset™</strong>. You approve before execution.</span></p>
-                <p style="margin-bottom: 0;"><strong data-en="04. First Visit Guarantee:" data-fr="04. Garantie 1ère Visite :">04. First Visit Guarantee:</strong> <span data-en="Full refund if not completely Ready after your first visit." data-fr="Remboursement intégral si vous n'êtes pas complètement Prêt après votre première visite.">Full refund if not completely Ready after your first visit[cite: 3].</span></p>
+                <p style="margin-bottom: 0;"><strong data-en="04. First Visit Guarantee:" data-fr="04. Garantie 1ère Visite :">04. First Visit Guarantee:</strong> <span data-en="Full refund if not completely Ready after your first visit." data-fr="Remboursement intégral si vous n'êtes pas complètement Prêt après votre première visite.">Full refund if not completely Ready after your first visit.</span></p>
             </div>
             <button class="modal-capsule-btn" onclick="closeModals()" data-en="GOT IT" data-fr="COMPRIS">GOT IT</button>
         </div>
@@ -664,7 +664,7 @@
             <p data-en="Please enter your unique membership code." data-fr="Veuillez entrer votre code d'adhésion unique.">Please enter your unique membership code.</p>
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleCodeSubmit(event)">
                 <input type="hidden" name="city_location" class="formCityField" value="Yaletown, Vancouver">
-                <input type="text" class="modal-input" name="spurtan_code" placeholder="e.g., SPURTAN" id="spurInput" required>
+                <input type="text" class="modal-input" name="spurtan_code" placeholder="Your code" id="spurInput" required>
                 <button type="submit" class="modal-circle-btn" data-en="APPLY" data-fr="APPLIQUER">APPLY</button>
             </form>
             <div class="code-modal-bridge">
@@ -681,8 +681,8 @@
             <h3 data-en="Founding Spurtan Access" data-fr="Accès Spurtan Fondateur">Founding Spurtan Access</h3>
             <p data-en="Own the hour before. Join the private pilot and lock in preferred rates." data-fr="Maîtrisez votre heure. Rejoignez le pilote privé et bloquez les tarifs préférentiels.">Own the hour before. Join the private pilot and lock in preferred rates.</p>
             <div class="perks-mini-box" style="text-align: left;">
-                • <strong data-en="$39.99 CAD All-In" data-fr="39,99 $ CAD Tout Inclus">$39.99 CAD All-In</strong> <span data-en="for your first 3 visits (Standard: $49.99)." data-fr="pour vos 3 premières visites (Standard : 49,99 $).">for your first 3 visits (Standard: $49.99)[cite: 3].</span><br>
-                • <strong data-en="First Visit Guarantee:" data-fr="Garantie 1ère Visite :">First Visit Guarantee:</strong> <span data-en="Full refund if not completely Ready after your first visit." data-fr="Remboursement intégral si vous n'êtes pas complètement Prêt après votre première visite.">Full refund if not completely Ready after your first visit[cite: 3].</span>
+                • <strong data-en="$39.99 CAD All-In" data-fr="39,99 $ CAD Tout Inclus">$39.99 CAD All-In</strong> <span data-en="for your first 3 visits (Standard: $49.99)." data-fr="pour vos 3 premières visites (Standard : 49,99 $).">for your first 3 visits (Standard: $49.99).</span><br>
+                • <strong data-en="First Visit Guarantee:" data-fr="Garantie 1ère Visite :">First Visit Guarantee:</strong> <span data-en="Full refund if not completely Ready after your first visit." data-fr="Remboursement intégral si vous n'êtes pas complètement Prêt après votre première visite.">Full refund if not completely Ready after your first visit.</span>
             </div>
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleSpurtanRegister(event)">
                 <input type="text" class="modal-input" name="client_name" required placeholder="First Name" data-en-placeholder="First Name" data-fr-placeholder="Prénom">
@@ -935,7 +935,8 @@
         async function handleCodeSubmit(event) {
             event.preventDefault();
             const codeVal = document.getElementById('spurInput').value.trim().toUpperCase();
-            if (codeVal.includes('SPUR')) {
+            const VALID_CODES = ['SPURTAN']; // add new codes here
+            if (VALID_CODES.includes(codeVal)) {
                 document.getElementById('displayPrice').innerText = "$39.99 CAD";
                 document.getElementById('finalReceiptPrice').innerText = "$39.99";
                 const lang = localStorage.getItem('spur_lang') || 'en';
@@ -967,7 +968,7 @@
             }
 
             if (!name) name = 'Valued Client';
-            if (!phone) phone = '6040000000';
+            if (!phone) { alert('Please enter your mobile number.'); return; }
 
             const city = form.querySelector('.formCityField').value;
             const specialist = form.querySelector('input[name="requested_specialist"]')?.value || 'Fastest Available';
@@ -975,6 +976,12 @@
 
             localStorage.setItem('last_specialist', specialist);
             await syncClientToSupabase(name, phone, specialist, overrideNote);
+            try {
+                if (supabaseClient) await supabaseClient.from('requests').insert({
+                    phone, city, type, specialist, override_note: overrideNote,
+                    price: parseFloat(document.getElementById('finalReceiptPrice').innerText.replace('$', ''))
+                });
+            } catch (err) { console.error('Request log error:', err); }
 
             let waMessage = `Hello SPUR — I would like to request a visit.\n\nType: ${type.toUpperCase()}\nCity: ${city}\nName: ${name}\nMobile: ${phone}\nSpecialist: ${specialist}`;
             if (overrideNote) {
