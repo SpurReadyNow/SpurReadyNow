@@ -401,6 +401,9 @@
             background: var(--gold); color: #0d0d0d; border: none; padding: 14px 24px;
             border-radius: 30px; font-size: 12px; font-weight: 800; cursor: pointer; margin: 10px auto 0 auto; width: 100%; text-transform: uppercase;
         }
+        .modal-capsule-btn:disabled {
+            background: #555; color: #888; cursor: not-allowed;
+        }
         .modal-capsule-btn-secondary {
             background: transparent; color: var(--text-main); border: 1px solid var(--border-color); padding: 12px 20px;
             border-radius: 30px; font-size: 11px; font-weight: 700; cursor: pointer; margin: 8px auto 0 auto; width: 100%; text-transform: uppercase; letter-spacing: 1px;
@@ -721,6 +724,12 @@
     <div id="spurtanModal" class="modal-overlay">
         <div class="modal-card">
             <h3 data-en="Founding Spurtan Access" data-fr="Accès Spurtan Fondateur">Founding Spurtan Access</h3>
+            
+            <!-- LIVE COUNTER BADGE -->
+            <div id="spotsRemainingBadge" style="background: rgba(212,175,55,0.1); color: var(--gold); border: 1px solid rgba(212,175,55,0.3); padding: 8px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 15px; display: inline-block;">
+                Calculating spots remaining...
+            </div>
+            
             <p data-en="Own the hour before. Join the private pilot and lock in preferred rates." data-fr="Maîtrisez votre heure. Rejoignez le pilote privé et bloquez les tarifs préférentiels.">Own the hour before. Join the private pilot and lock in preferred rates.</p>
             <div class="perks-mini-box" style="text-align: left;">
                 • <strong data-en="$39.99 CAD All-In" data-fr="39,99 $ CAD Tout Inclus">$39.99 CAD All-In</strong> <span data-en="for your first 3 visits (Standard: $49.99)." data-fr="pour vos 3 premières visites (Standard : 49,99 $).">for your first 3 visits (Standard: $49.99).</span><br>
@@ -734,7 +743,7 @@
                     <option value="Le Plateau, Montreal">Le Plateau, Montreal (Live)</option>
                     <option value="Financial District, Toronto">Financial District, Toronto (Waitlist)</option>
                 </select>
-                <button type="submit" class="modal-capsule-btn" data-en="CLAIM FOUNDING ACCESS" data-fr="RÉCLAMER MON ACCÈS">CLAIM FOUNDING ACCESS</button>
+                <button type="submit" class="modal-capsule-btn" id="spurtanSubmitBtn" data-en="CLAIM FOUNDING ACCESS" data-fr="RÉCLAMER MON ACCÈS">CLAIM FOUNDING ACCESS</button>
             </form>
             <button class="modal-close" onclick="closeModals()" data-en="CANCEL" data-fr="ANNULER">CANCEL</button>
         </div>
@@ -790,6 +799,37 @@
         const SUPABASE_ANON_KEY = 'sb_publishable_h-5S_3VCTLKsN8iVUc_LxQ_T7rn1HlJ';
         const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
 
+        async function updateLiveCounter() {
+            if (!supabaseClient) return;
+            try {
+                const { count, error } = await supabaseClient
+                    .from('clients')
+                    .select('*', { count: 'exact', head: true })
+                    .not('spurtan_code', 'is', null);
+
+                if (error) throw error;
+
+                const usedCodes = count || 0;
+                const remainingCodes = 100 - usedCodes;
+                
+                const badge = document.getElementById('spotsRemainingBadge');
+                const lang = localStorage.getItem('spur_lang') || 'en';
+
+                if (remainingCodes <= 0) {
+                    badge.innerText = lang === 'fr' ? "LISTE D'ATTENTE SEULEMENT" : "WAITLIST ONLY";
+                    badge.style.color = "#ff4757";
+                    badge.style.borderColor = "rgba(255, 71, 87, 0.3)";
+                    badge.style.background = "rgba(255, 71, 87, 0.1)";
+                    document.getElementById('spurtanSubmitBtn').disabled = true;
+                } else {
+                    badge.innerText = lang === 'fr' ? `Seulement ${remainingCodes} places restantes` : `Only ${remainingCodes} spots remaining`;
+                }
+            } catch (err) {
+                console.error("Counter error:", err);
+                document.getElementById('spotsRemainingBadge').style.display = 'none';
+            }
+        }
+
         async function checkReturningUserRealtime() {
             try {
                 if (!supabaseClient) return;
@@ -822,7 +862,6 @@
                     last_specialist: specialist 
                 };
 
-                // Link the validated SPURTAN code to the user profile when they book
                 if (appliedCode) {
                     payload.spurtan_code = appliedCode;
                 }
@@ -889,6 +928,7 @@
             }
             localStorage.setItem('spur_lang', lang);
             updateBadgeText();
+            updateLiveCounter();
         }
 
         let currentInterceptType = 'now';
@@ -1018,7 +1058,8 @@
             if (sub) {
                 sub.innerHTML = lang === 'fr' ? "Bon retour, " + name.split(' ')[0] + "." : "Welcome back, " + name.split(' ')[0] + ".";
             }
-
+            
+            await updateLiveCounter();
             closeModals(); form.reset();
         }
 
@@ -1026,14 +1067,12 @@
             event.preventDefault();
             const codeVal = document.getElementById('spurInput').value.trim().toUpperCase();
             
-            // 1. Math-based Code Validation (Validates SPURTAN & SPUR0009 through SPUR0900)
             let isMathValid = false;
             
             if (codeVal === 'SPURTAN') {
-                isMathValid = true; // Master Override
+                isMathValid = true; 
             } else if (codeVal.startsWith('SPUR') && codeVal.length === 8) {
                 const num = parseInt(codeVal.substring(4), 10);
-                // Validates if it's a multiple of 9, between 9 and 900 (Exactly 100 codes generated)
                 if (!isNaN(num) && num > 0 && num <= 900 && num % 9 === 0) {
                     isMathValid = true;
                 }
@@ -1046,7 +1085,6 @@
                 return;
             }
 
-            // 2. Database Check (Ensure code hasn't been claimed by another user)
             if (supabaseClient) {
                 const { data, error } = await supabaseClient
                     .from('clients')
@@ -1056,7 +1094,6 @@
                 
                 if (data) {
                     const currentPhone = localStorage.getItem('spur_user_phone');
-                    // Block if the code exists in DB and is owned by a different phone number
                     if (!currentPhone || data.phone !== currentPhone) {
                         alert(lang === 'fr' ? "Ce code a déjà été utilisé." : "This code has already been claimed.");
                         return;
@@ -1064,7 +1101,6 @@
                 }
             }
 
-            // 3. Success: Apply visual discount & Save to local storage pending the booking
             localStorage.setItem('spur_applied_code', codeVal);
             document.getElementById('displayPrice').innerText = "$39.99 CAD";
             document.getElementById('finalReceiptPrice').innerText = "$39.99";
@@ -1134,6 +1170,8 @@
                 switchLanguage(localStorage.getItem('spur_lang') || 'en');
                 await checkReturningUserRealtime();
                 
+                await updateLiveCounter();
+                
                 const savedName = localStorage.getItem('spur_user_name');
                 const sub = document.getElementById('dynamicHeroSubtitle');
                 if (savedName && sub) {
@@ -1144,4 +1182,4 @@
         });
     </script>
 </body>
-</html>55
+</html>
