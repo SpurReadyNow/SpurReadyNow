@@ -527,7 +527,7 @@
             </div>
 
             <div>
-                <button class="ready-circle-btn" onclick="openIntercept('now')">
+                <button class="ready-circle-btn" onclick="initiateBooking('now')">
                     <span class="ready-line-1">READY</span>
                     <span class="ready-line-2">NOW™</span>
                 </button>
@@ -536,7 +536,7 @@
                 </div>
             </div>
 
-            <button class="ready-later-btn" onclick="openIntercept('later')">
+            <button class="ready-later-btn" onclick="initiateBooking('later')">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
                     <line x1="16" y1="2" x2="16" y2="6"></line>
@@ -570,7 +570,7 @@
                 <p style="margin-bottom: 8px;"><strong data-en="01. Zero Menus:" data-fr="01. Zéro Menu :">01. Zero Menus:</strong> <span data-en="You state your life moment. No service lists." data-fr="Vous indiquez votre moment. Pas de liste de services.">You state your life moment. No service lists.</span></p>
                 <p style="margin-bottom: 8px;"><strong data-en="02. Verified Dispatch:" data-fr="02. Dispatche Vérifié :">02. Verified Dispatch:</strong> <span data-en="We coordinate availability through a verified concierge process." data-fr="Nous coordonnons la disponibilité via un processus de conciergerie vérifié.">We coordinate availability through a verified concierge process.</span></p>
                 <p style="margin-bottom: 8px;"><strong data-en="03. Assess & Approve:" data-fr="03. Évaluer et Approuver :">03. Assess & Approve:</strong> <span data-en="The SPUR Specialist assesses and recommends either a <strong>Refresh™</strong> or <strong>Reset™</strong>. You approve before execution." data-fr="Le spécialiste SPUR évalue et recommande un <strong>Refresh™</strong> ou un <strong>Reset™</strong>. Vous approuvez avant l'exécution.">The SPUR Specialist assesses and recommends either a <strong>Refresh™</strong> or <strong>Reset™</strong>. You approve before execution.</span></p>
-                <p style="margin-bottom: 0;"><strong data-en="04. First Visit Guarantee:" data-fr="04. Garantie 1ère Visite :">04. First Visit Guarantee:</strong> <span data-en="Full refund if not completely Ready after your first visit." data-fr="Remboursement intégral si vous n'êtes pas complètement Prêt après votre première visite.">Full refund if not completely Ready after your first visit[cite: 3].</span></p>
+                <p style="margin-bottom: 0;"><strong data-en="04. First Visit Guarantee:" data-fr="04. Garantie 1ère Visite :">04. First Visit Guarantee:</strong> <span data-en="Full refund if not completely Ready after your first visit." data-fr="Remboursement intégral si vous n'êtes pas complètement Prêt après votre première visite.">Full refund if not completely Ready after your first visit.[cite: 3]</span></p>
             </div>
             <button class="modal-capsule-btn" onclick="closeModals()" data-en="GOT IT" data-fr="COMPRIS">GOT IT</button>
         </div>
@@ -590,7 +590,7 @@
         </div>
     </div>
 
-    <!-- READY NOW MODAL (WITH OVERRIDE LINE) -->
+    <!-- READY NOW MODAL -->
     <div id="verifyModal" class="modal-overlay">
         <div class="modal-card">
             <h3 class="dynamic-header" data-en="Get Ready Now" data-fr="Préparez-vous Maintenant">Get Ready Now</h3>
@@ -604,8 +604,6 @@
                 <div id="inputFieldsWrapper">
                     <input type="text" class="modal-input" name="client_name" id="nameInputNow" placeholder="First Name" data-en-placeholder="First Name" data-fr-placeholder="Prénom" required>
                     <input type="tel" class="modal-input" name="client_phone" id="phoneInputNow" placeholder="10 Digit Mobile" data-en-placeholder="10 Digit Mobile" data-fr-placeholder="Mobile à 10 chiffres" pattern="[0-9]{10}" required>
-                    <!-- SAFETY NET OVERRIDE LINE -->
-                    <input type="text" class="modal-input" name="client_override" placeholder="Want something specific? Tell us. (Optional)" data-en-placeholder="Want something specific? Tell us. (Optional)" data-fr-placeholder="Besoin de quelque chose de précis ? Dites-le-nous. (Optionnel)" style="font-size: 12px; opacity: 0.8;">
                 </div>
 
                 <button type="submit" class="modal-capsule-btn" id="nowSubmitBtn" data-en="SEND REQUEST" data-fr="ENVOYER LA DEMANDE">SEND REQUEST</button>
@@ -616,7 +614,7 @@
         </div>
     </div>
 
-    <!-- READY LATER MODAL (WITH OVERRIDE LINE) -->
+    <!-- READY LATER MODAL -->
     <div id="laterModal" class="modal-overlay">
         <div class="modal-card">
             <h3 class="dynamic-header" data-en="Plan Ahead" data-fr="Planifier à L'avance">Plan Ahead</h3>
@@ -629,8 +627,6 @@
                 <div id="inputFieldsWrapperLater">
                     <input type="text" class="modal-input" name="client_name" placeholder="First Name" data-en-placeholder="First Name" data-fr-placeholder="Prénom" required>
                     <input type="tel" class="modal-input" name="client_phone" placeholder="10 Digit Mobile" data-en-placeholder="10 Digit Mobile" data-fr-placeholder="Mobile à 10 chiffres" pattern="[0-9]{10}" required>
-                    <!-- SAFETY NET OVERRIDE LINE -->
-                    <input type="text" class="modal-input" name="client_override" placeholder="Want something specific? Tell us. (Optional)" data-en-placeholder="Want something specific? Tell us. (Optional)" data-fr-placeholder="Besoin de quelque chose de précis ? Dites-le-nous. (Optionnel)" style="font-size: 12px; opacity: 0.8;">
                 </div>
 
                 <input type="date" class="modal-input" name="requested_date" required>
@@ -681,8 +677,8 @@
             <h3 data-en="Founding Spurtan Access" data-fr="Accès Spurtan Fondateur">Founding Spurtan Access</h3>
             <p data-en="Own the hour before. Join the private pilot and lock in preferred rates." data-fr="Maîtrisez votre heure. Rejoignez le pilote privé et bloquez les tarifs préférentiels.">Own the hour before. Join the private pilot and lock in preferred rates.</p>
             <div class="perks-mini-box" style="text-align: left;">
-                • <strong data-en="$39.99 CAD All-In" data-fr="39,99 $ CAD Tout Inclus">$39.99 CAD All-In</strong> <span data-en="for your first 3 visits (Standard: $49.99)." data-fr="pour vos 3 premières visites (Standard : 49,99 $).">for your first 3 visits (Standard: $49.99)[cite: 3].</span><br>
-                • <strong data-en="First Visit Guarantee:" data-fr="Garantie 1ère Visite :">First Visit Guarantee:</strong> <span data-en="Full refund if not completely Ready after your first visit." data-fr="Remboursement intégral si vous n'êtes pas complètement Prêt après votre première visite.">Full refund if not completely Ready after your first visit[cite: 3].</span>
+                • <strong data-en="$39.99 CAD All-In" data-fr="39,99 $ CAD Tout Inclus">$39.99 CAD All-In</strong> <span data-en="for your first 3 visits (Standard: $49.99)." data-fr="pour vos 3 premières visites (Standard : 49,99 $).">for your first 3 visits (Standard: $49.99).[cite: 3]</span><br>
+                • <strong data-en="First Visit Guarantee:" data-fr="Garantie 1ère Visite :">First Visit Guarantee:</strong> <span data-en="Full refund if not completely Ready after your first visit." data-fr="Remboursement intégral si vous n'êtes pas complètement Prêt après votre première visite.">Full refund if not completely Ready after your first visit.[cite: 3]</span>
             </div>
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleSpurtanRegister(event)">
                 <input type="text" class="modal-input" name="client_name" required placeholder="First Name" data-en-placeholder="First Name" data-fr-placeholder="Prénom">
@@ -768,7 +764,7 @@
             }
         }
 
-        async function syncClientToSupabase(name, phone, specialist, overrideNote = '') {
+        async function syncClientToSupabase(name, phone, specialist) {
             if (!supabaseClient) return;
             try {
                 await supabaseClient
@@ -839,9 +835,7 @@
             updateBadgeText();
         }
 
-        let currentInterceptType = 'now';
-
-        function openIntercept(type) {
+        function initiateBooking(type) {
             currentInterceptType = type;
             const savedSpecialist = localStorage.getItem('last_specialist');
 
@@ -854,6 +848,8 @@
                 safeOpenModal(type === 'now' ? 'verifyModal' : 'laterModal');
             }
         }
+
+        let currentInterceptType = 'now';
 
         function confirmPreviousSpecialist() {
             const savedSpecialist = localStorage.getItem('last_specialist') || 'Fastest Available';
@@ -955,7 +951,6 @@
 
             const nameInput = form.querySelector('input[name="client_name"]');
             const phoneInput = form.querySelector('input[name="client_phone"]');
-            const overrideInput = form.querySelector('input[name="client_override"]');
 
             if (nameInput && nameInput.value.trim()) {
                 name = nameInput.value.trim();
@@ -971,17 +966,11 @@
 
             const city = form.querySelector('.formCityField').value;
             const specialist = form.querySelector('input[name="requested_specialist"]')?.value || 'Fastest Available';
-            const overrideNote = overrideInput ? overrideInput.value.trim() : '';
 
             localStorage.setItem('last_specialist', specialist);
-            await syncClientToSupabase(name, phone, specialist, overrideNote);
+            await syncClientToSupabase(name, phone, specialist);
 
-            let waMessage = `Hello SPUR — I would like to request a visit.\n\nType: ${type.toUpperCase()}\nCity: ${city}\nName: ${name}\nMobile: ${phone}\nSpecialist: ${specialist}`;
-            if (overrideNote) {
-                waMessage += `\nSpecific Request (Override): ${overrideNote}`;
-            }
-            waMessage += `\n\nPlease coordinate verified availability.`;
-
+            const waMessage = `Hello SPUR — I would like to request a visit.\n\nType: ${type.toUpperCase()}\nCity: ${city}\nName: ${name}\nMobile: ${phone}\nSpecialist: ${specialist}\n\nPlease coordinate verified availability.`;
             const encodedWaUrl = `https://wa.me/${SPUR_WHATSAPP_NUMBER}?text=${encodeURIComponent(waMessage)}`;
             document.getElementById('whatsappAutoBtn').href = encodedWaUrl;
 
