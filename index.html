@@ -529,7 +529,6 @@
             </div>
 
             <div>
-                <!-- REVERTED BUTTON NAME FOR MAXIMUM STABILITY -->
                 <button class="ready-circle-btn" onclick="openIntercept('now')">
                     <span class="ready-line-1">READY</span>
                     <span class="ready-line-2">NOW™</span>
@@ -605,28 +604,30 @@
                 <input type="hidden" name="requested_specialist" class="specialistHiddenField" value="Fastest Available">
                 
                 <div id="inputFieldsWrapper">
-                    <input type="text" class="modal-input" name="client_name" id="nameInputNow" placeholder="First Name" data-en-placeholder="First Name" data-fr-placeholder="Prénom" required>
-                    <input type="tel" class="modal-input" name="client_phone" id="phoneInputNow" placeholder="10 Digit Mobile" data-en-placeholder="10 Digit Mobile" data-fr-placeholder="Mobile à 10 chiffres" pattern="[0-9]{10}" required>
-                    
-                    <!-- OPTIONAL OCCASIONS WITH VISUAL SEPARATION -->
-                    <select class="modal-input" name="client_occasion" id="occasionSelectNow" onchange="checkCustomOccasion('now')">
-                        <option value="" disabled selected data-en="Occasion / Moment (Optional)" data-fr="Occasion / Moment (Optionnel)">Occasion / Moment (Optional)</option>
-                        
-                        <!-- VIP Gold Highlight for Core Philosophy -->
-                        <option value="Just for You" class="gold-tier" data-en="Just for You™ — The occasion is me" data-fr="Juste pour vous — Je suis l'occasion">Just for You™ — The occasion is me</option>
-                        <option disabled class="separator">──────────────────</option>
-                        
-                        <!-- EXACT CLAUDE OCCASIONS -->
-                        <option value="Professional" data-en="Professional — Meeting / Interview / Stage" data-fr="Professionnel — Réunion / Entretien / Scène">Professional — Meeting / Interview / Stage</option>
-                        <option value="Social" data-en="Social — Date / Wedding / Night Out" data-fr="Social — Date / Mariage / Sortie">Social — Date / Wedding / Night Out</option>
-                        <option value="Life" data-en="Life — Travel / Celebration / Milestone" data-fr="Vie — Voyage / Célébration / Étape">Life — Travel / Celebration / Milestone</option>
-                        <option value="Custom Request" data-en="Custom Request..." data-fr="Demande spécifique...">Custom Request...</option>
-                    </select>
-
-                    <!-- OPTIONAL CUSTOM REQUEST FIELD -->
-                    <div id="customOccasionWrapperNow" style="display: none; margin-bottom: 12px;">
-                        <input type="text" class="modal-input" name="client_custom_request" placeholder="Specify your custom request (Optional)..." data-en-placeholder="Specify your custom request (Optional)..." data-fr-placeholder="Précisez votre demande (Optionnel)..." style="font-size: 13px; margin-bottom: 0;">
+                    <div class="contact-fields">
+                        <input type="text" class="modal-input" name="client_name" id="nameInputNow" placeholder="First Name" data-en-placeholder="First Name" data-fr-placeholder="Prénom" required>
+                        <input type="tel" class="modal-input" name="client_phone" id="phoneInputNow" placeholder="10 Digit Mobile" data-en-placeholder="10 Digit Mobile" data-fr-placeholder="Mobile à 10 chiffres" pattern="[0-9]{10}" required>
                     </div>
+                </div>
+
+                <!-- OPTIONAL OCCASIONS WITH VISUAL SEPARATION (VISIBLE FOR RETURNING USERS) -->
+                <select class="modal-input" name="client_occasion" id="occasionSelectNow" onchange="checkCustomOccasion('now')">
+                    <option value="" disabled selected data-en="Occasion / Moment (Optional)" data-fr="Occasion / Moment (Optionnel)">Occasion / Moment (Optional)</option>
+                    
+                    <!-- VIP Gold Highlight for Core Philosophy -->
+                    <option value="Just for You" class="gold-tier" data-en="Just for You™ — The Occasion is Me" data-fr="Juste pour vous — Je suis l'occasion">Just for You™ — The Occasion is Me</option>
+                    <option disabled class="separator">──────────────────</option>
+                    
+                    <!-- Exact Options -->
+                    <option value="Professional" data-en="Professional — Meeting / Interview / Stage" data-fr="Professionnel — Réunion / Entretien / Scène">Professional — Meeting / Interview / Stage</option>
+                    <option value="Social" data-en="Social — Date / Wedding / Night Out" data-fr="Social — Date / Mariage / Sortie">Social — Date / Wedding / Night Out</option>
+                    <option value="Life" data-en="Life — Travel / Celebration / Milestone" data-fr="Vie — Voyage / Célébration / Étape">Life — Travel / Celebration / Milestone</option>
+                    <option value="Custom Request" data-en="Custom Request..." data-fr="Demande spécifique...">Custom Request...</option>
+                </select>
+
+                <!-- OPTIONAL CUSTOM REQUEST FIELD -->
+                <div id="customOccasionWrapperNow" style="display: none; margin-bottom: 12px;">
+                    <input type="text" class="modal-input" name="client_custom_request" placeholder="Specify your custom request (Optional)..." data-en-placeholder="Specify your custom request (Optional)..." data-fr-placeholder="Précisez votre demande (Optionnel)..." style="font-size: 13px; margin-bottom: 0;">
                 </div>
 
                 <button type="submit" class="modal-capsule-btn" id="nowSubmitBtn" data-en="SEND REQUEST" data-fr="ENVOYER LA DEMANDE">SEND REQUEST</button>
@@ -648,28 +649,30 @@
                 <input type="hidden" name="requested_specialist" class="specialistHiddenField" value="Fastest Available">
                 
                 <div id="inputFieldsWrapperLater">
-                    <input type="text" class="modal-input" name="client_name" placeholder="First Name" data-en-placeholder="First Name" data-fr-placeholder="Prénom" required>
-                    <input type="tel" class="modal-input" name="client_phone" placeholder="10 Digit Mobile" data-en-placeholder="10 Digit Mobile" data-fr-placeholder="Mobile à 10 chiffres" pattern="[0-9]{10}" required>
-                    
-                    <!-- OPTIONAL OCCASIONS WITH VISUAL SEPARATION -->
-                    <select class="modal-input" name="client_occasion" id="occasionSelectLater" onchange="checkCustomOccasion('later')">
-                        <option value="" disabled selected data-en="Occasion / Moment (Optional)" data-fr="Occasion / Moment (Optionnel)">Occasion / Moment (Optional)</option>
-                        
-                        <!-- VIP Gold Highlight for Core Philosophy -->
-                        <option value="Just for You" class="gold-tier" data-en="Just for You™ — The occasion is me" data-fr="Juste pour vous — Je suis l'occasion">Just for You™ — The occasion is me</option>
-                        <option disabled class="separator">──────────────────</option>
-                        
-                        <!-- EXACT CLAUDE OCCASIONS -->
-                        <option value="Professional" data-en="Professional — Meeting / Interview / Stage" data-fr="Professionnel — Réunion / Entretien / Scène">Professional — Meeting / Interview / Stage</option>
-                        <option value="Social" data-en="Social — Date / Wedding / Night Out" data-fr="Social — Date / Mariage / Sortie">Social — Date / Wedding / Night Out</option>
-                        <option value="Life" data-en="Life — Travel / Celebration / Milestone" data-fr="Vie — Voyage / Célébration / Étape">Life — Travel / Celebration / Milestone</option>
-                        <option value="Custom Request" data-en="Custom Request..." data-fr="Demande spécifique...">Custom Request...</option>
-                    </select>
-
-                    <!-- OPTIONAL CUSTOM REQUEST FIELD -->
-                    <div id="customOccasionWrapperLater" style="display: none; margin-bottom: 12px;">
-                        <input type="text" class="modal-input" name="client_custom_request" placeholder="Specify your custom request (Optional)..." data-en-placeholder="Specify your custom request (Optional)..." data-fr-placeholder="Précisez votre demande (Optionnel)..." style="font-size: 13px; margin-bottom: 0;">
+                    <div class="contact-fields">
+                        <input type="text" class="modal-input" name="client_name" placeholder="First Name" data-en-placeholder="First Name" data-fr-placeholder="Prénom" required>
+                        <input type="tel" class="modal-input" name="client_phone" placeholder="10 Digit Mobile" data-en-placeholder="10 Digit Mobile" data-fr-placeholder="Mobile à 10 chiffres" pattern="[0-9]{10}" required>
                     </div>
+                </div>
+
+                <!-- OPTIONAL OCCASIONS WITH VISUAL SEPARATION (VISIBLE FOR RETURNING USERS) -->
+                <select class="modal-input" name="client_occasion" id="occasionSelectLater" onchange="checkCustomOccasion('later')">
+                    <option value="" disabled selected data-en="Occasion / Moment (Optional)" data-fr="Occasion / Moment (Optionnel)">Occasion / Moment (Optional)</option>
+                    
+                    <!-- VIP Gold Highlight for Core Philosophy -->
+                    <option value="Just for You" class="gold-tier" data-en="Just for You™ — The Occasion is Me" data-fr="Juste pour vous — Je suis l'occasion">Just for You™ — The Occasion is Me</option>
+                    <option disabled class="separator">──────────────────</option>
+                    
+                    <!-- Exact Options -->
+                    <option value="Professional" data-en="Professional — Meeting / Interview / Stage" data-fr="Professionnel — Réunion / Entretien / Scène">Professional — Meeting / Interview / Stage</option>
+                    <option value="Social" data-en="Social — Date / Wedding / Night Out" data-fr="Social — Date / Mariage / Sortie">Social — Date / Wedding / Night Out</option>
+                    <option value="Life" data-en="Life — Travel / Celebration / Milestone" data-fr="Vie — Voyage / Célébration / Étape">Life — Travel / Celebration / Milestone</option>
+                    <option value="Custom Request" data-en="Custom Request..." data-fr="Demande spécifique...">Custom Request...</option>
+                </select>
+
+                <!-- OPTIONAL CUSTOM REQUEST FIELD -->
+                <div id="customOccasionWrapperLater" style="display: none; margin-bottom: 12px;">
+                    <input type="text" class="modal-input" name="client_custom_request" placeholder="Specify your custom request (Optional)..." data-en-placeholder="Specify your custom request (Optional)..." data-fr-placeholder="Précisez votre demande (Optionnel)..." style="font-size: 13px; margin-bottom: 0;">
                 </div>
 
                 <input type="date" class="modal-input" name="requested_date" required>
@@ -703,7 +706,7 @@
             <p data-en="Please enter your unique membership code." data-fr="Veuillez entrer votre code d'adhésion unique.">Please enter your unique membership code.</p>
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleCodeSubmit(event)">
                 <input type="hidden" name="city_location" class="formCityField" value="Yaletown, Vancouver">
-                <input type="text" class="modal-input" name="spurtan_code" placeholder="Your code" id="spurInput" required>
+                <input type="text" class="modal-input" name="spurtan_code" placeholder="Your code" id="spurInput" required style="text-transform: uppercase;">
                 <button type="submit" class="modal-circle-btn" data-en="APPLY" data-fr="APPLIQUER">APPLY</button>
             </form>
             <div class="code-modal-bridge">
@@ -902,7 +905,6 @@
                 }
             } catch (err) {
                 console.error(err);
-                // Emergency Fallback
                 safeOpenModal(type === 'now' ? 'verifyModal' : 'laterModal');
             }
         }
@@ -928,22 +930,25 @@
                 if (id === 'verifyModal' || id === 'laterModal') {
                     const savedName = localStorage.getItem('spur_user_name');
                     const savedPhone = localStorage.getItem('spur_user_phone');
-                    const wrapper = id === 'verifyModal' ? document.getElementById('inputFieldsWrapper') : document.getElementById('inputFieldsWrapperLater');
+                    
+                    // We only hide the .contact-fields, leaving the Occasions dropdown visible
+                    const contactFields = modal.querySelector('.contact-fields');
                     const resetBtn = id === 'verifyModal' ? document.getElementById('resetUserBtn') : document.getElementById('resetUserBtnLater');
                     
                     if (savedName && savedPhone) {
-                        if(wrapper) wrapper.style.display = 'none';
-                        if(wrapper) wrapper.querySelectorAll('input, select').forEach(i => i.required = false);
+                        if(contactFields) {
+                            contactFields.style.display = 'none';
+                            contactFields.querySelectorAll('input').forEach(i => i.required = false);
+                        }
                         if(resetBtn) resetBtn.style.display = 'block';
                         const header = modal.querySelector('.dynamic-header');
                         if(header) header.innerText = "Welcome back, " + savedName.split(' ')[0];
                     } else {
-                        if(wrapper) wrapper.style.display = 'block';
-                        if(resetBtn) resetBtn.style.display = 'none';
-                        if(wrapper) {
-                            wrapper.querySelector('input[name="client_name"]').required = true;
-                            wrapper.querySelector('input[name="client_phone"]').required = true;
+                        if(contactFields) {
+                            contactFields.style.display = 'block';
+                            contactFields.querySelectorAll('input').forEach(i => i.required = true);
                         }
+                        if(resetBtn) resetBtn.style.display = 'none';
                         const header = modal.querySelector('.dynamic-header');
                         const lang = localStorage.getItem('spur_lang') || 'en';
                         if(header) header.innerText = id === 'verifyModal' ? (lang === 'fr' ? "Préparez-vous Maintenant" : "Get Ready Now") : (lang === 'fr' ? "Planifier à L'avance" : "Plan Ahead");
@@ -952,7 +957,6 @@
                 modal.style.display = 'flex';
             } catch (e) {
                 console.error(e);
-                // Emergency Fallback
                 document.getElementById(id).style.display = 'flex';
             }
         }
@@ -1013,8 +1017,9 @@
         async function handleCodeSubmit(event) {
             event.preventDefault();
             const codeVal = document.getElementById('spurInput').value.trim().toUpperCase();
-            const VALID_CODES = ['SPURTAN']; 
-            if (VALID_CODES.includes(codeVal)) {
+            
+            // ACCEPTS 'SPURTAN' OR ANY UNIQUE CODE STARTING WITH 'SPUR' (e.g. SPUR0018)
+            if (codeVal === 'SPURTAN' || codeVal.startsWith('SPUR')) {
                 document.getElementById('displayPrice').innerText = "$39.99 CAD";
                 document.getElementById('finalReceiptPrice').innerText = "$39.99";
                 const lang = localStorage.getItem('spur_lang') || 'en';
