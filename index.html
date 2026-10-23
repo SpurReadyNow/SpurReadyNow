@@ -587,7 +587,7 @@
             <h3 data-en="Securing Your Chair" data-fr="Sécurisation de votre place">Securing Your Chair</h3>
             <p id="interceptStatusDesc" data-en="Recognizing your profile preferences..." data-fr="Reconnaissance de vos préférences de profil...">Recognizing your profile preferences...</p>
             <div style="margin: 20px 0;">
-                <strong style="color: var(--text-main); font-size: 16px;" id="recognizedSpecialistText">Book with Rex again?</strong>
+                <strong style="color: var(--text-main); font-size: 16px;" id="recognizedSpecialistText">Book again?</strong>
             </div>
             <button class="modal-capsule-btn" onclick="confirmPreviousSpecialist()" data-en="YES" data-fr="OUI">YES</button>
             <button class="modal-capsule-btn-secondary" onclick="skipIntercept()" data-en="FASTEST AVAILABLE" data-fr="LE PLUS RAPIDE">FASTEST AVAILABLE</button>
@@ -810,7 +810,7 @@
                 if (error) throw error;
 
                 const usedCodes = count || 0;
-                const remainingCodes = 100 - usedCodes;
+                const remainingCodes = 99 - usedCodes;
                 
                 const badge = document.getElementById('spotsRemainingBadge');
                 const lang = localStorage.getItem('spur_lang') || 'en';
@@ -939,14 +939,9 @@
                 const savedSpecialist = localStorage.getItem('last_specialist');
                 const savedName = localStorage.getItem('spur_user_name');
 
-                let specNameToDisplay = 'Rex';
-                if (savedSpecialist && savedSpecialist !== 'Fastest Available' && savedSpecialist !== 'undefined') {
-                    specNameToDisplay = savedSpecialist;
-                }
-
-                if (savedName) {
+                if (savedName && savedSpecialist && savedSpecialist !== 'Fastest Available' && savedSpecialist !== 'undefined') {
                     const lang = localStorage.getItem('spur_lang') || 'en';
-                    const questionText = lang === 'fr' ? `Réserver avec ${specNameToDisplay} à nouveau ?` : `Book with ${specNameToDisplay} again?`;
+                    const questionText = lang === 'fr' ? `Réserver avec ${savedSpecialist} à nouveau ?` : `Book with ${savedSpecialist} again?`;
                     document.getElementById('recognizedSpecialistText').innerText = questionText;
                     document.getElementById('interceptModal').style.display = 'flex';
                 } else {
@@ -959,7 +954,7 @@
         }
 
         function confirmPreviousSpecialist() {
-            const savedSpecialist = localStorage.getItem('last_specialist') || 'Rex';
+            const savedSpecialist = localStorage.getItem('last_specialist') || 'Fastest Available';
             document.querySelectorAll('.specialistHiddenField').forEach(el => el.value = savedSpecialist);
             document.getElementById('interceptModal').style.display = 'none';
             safeOpenModal(currentInterceptType === 'now' ? 'verifyModal' : 'laterModal');
@@ -1045,8 +1040,8 @@
             
             localStorage.setItem('spur_user_name', name);
             localStorage.setItem('spur_user_phone', phone);
-            localStorage.setItem('last_specialist', 'Rex');
-            await syncClientToSupabase(name, phone, 'Rex');
+            localStorage.setItem('last_specialist', 'Fastest Available');
+            await syncClientToSupabase(name, phone, 'Fastest Available');
 
             const lang = localStorage.getItem('spur_lang') || 'en';
             alert(lang === 'fr' ? "✓ Accès Spurtan Fondateur confirmé ! Votre tarif de 39,99 $ est actif." : "✓ Founding Spurtan Access confirmed! Your $39.99 rate is now active.");
@@ -1073,7 +1068,7 @@
                 isMathValid = true; 
             } else if (codeVal.startsWith('SPUR') && codeVal.length === 8) {
                 const num = parseInt(codeVal.substring(4), 10);
-                if (!isNaN(num) && num > 0 && num <= 900 && num % 9 === 0) {
+                if (!isNaN(num) && num > 0 && num <= 891 && num % 9 === 0) {
                     isMathValid = true;
                 }
             }
@@ -1133,7 +1128,7 @@
             if (!phone) { alert('Please enter your mobile number.'); return; }
 
             const city = form.querySelector('.formCityField').value;
-            const specialist = form.querySelector('input[name="requested_specialist"]')?.value || 'Rex';
+            const specialist = form.querySelector('input[name="requested_specialist"]')?.value || 'Fastest Available';
             
             const occasion = occasionSelect && occasionSelect.value ? occasionSelect.value : 'Undefined (Fast Track)';
             const customReq = customInput && customInput.value.trim() ? customInput.value.trim() : null;
