@@ -572,7 +572,7 @@
                 <p style="margin-bottom: 8px;"><strong data-en="01. Zero Menus:" data-fr="01. Zéro Menu :">01. Zero Menus:</strong> <span data-en="You state your life moment. No service lists." data-fr="Vous indiquez votre moment. Pas de liste de services.">You state your life moment. No service lists.</span></p>
                 <p style="margin-bottom: 8px;"><strong data-en="02. Verified Dispatch:" data-fr="02. Dispatche Vérifié :">02. Verified Dispatch:</strong> <span data-en="We coordinate availability through a verified concierge process." data-fr="Nous coordonnons la disponibilité via un processus de conciergerie vérifié.">We coordinate availability through a verified concierge process.</span></p>
                 <p style="margin-bottom: 8px;"><strong data-en="03. Assess & Approve:" data-fr="03. Évaluer et Approuver :">03. Assess & Approve:</strong> <span data-en="The SPUR Specialist assesses and recommends either a <strong>Refresh™</strong> or <strong>Reset™</strong>. You approve before execution." data-fr="Le spécialiste SPUR évalue et recommande un <strong>Refresh™</strong> ou un <strong>Reset™</strong>. Vous approuvez avant l'exécution.">The SPUR Specialist assesses and recommends either a <strong>Refresh™</strong> or <strong>Reset™</strong>. You approve before execution.</span></p>
-                <p style="margin-bottom: 0;"><strong data-en="04. First Visit Guarantee:" data-fr="04. Garantie 1ère Visite :">04. First Visit Guarantee:</strong> <span data-en="Full refund if not completely Ready after your first visit." data-fr="Remboursement intégral si vous n'êtes pas complètement Prêt après votre première visite.">Full refund if not completely Ready after your first visit.</span></p>
+                <p style="margin-bottom: 0;"><strong data-en="04. The SPUR Guarantee:" data-fr="04. La Garantie SPUR :">04. The SPUR Guarantee:</strong> <span data-en="Not completely Ready? We cover a complimentary second visit with a new specialist—or issue a 100% refund." data-fr="Pas complètement Prêt ? Nous offrons une 2ème visite gratuite avec un autre spécialiste—ou un remboursement à 100%.">Not completely Ready? We cover a complimentary second visit with a new specialist—or issue a 100% refund.</span></p>
             </div>
             <button class="modal-capsule-btn" onclick="closeModals()" data-en="GOT IT" data-fr="COMPRIS">GOT IT</button>
         </div>
@@ -610,7 +610,7 @@
                     </div>
                 </div>
 
-                <!-- OPTIONAL OCCASIONS WITH VISUAL SEPARATION (VISIBLE FOR RETURNING USERS) -->
+                <!-- OPTIONAL OCCASIONS WITH VISUAL SEPARATION -->
                 <select class="modal-input" name="client_occasion" id="occasionSelectNow" onchange="checkCustomOccasion('now')">
                     <option value="" disabled selected data-en="Occasion / Moment (Optional)" data-fr="Occasion / Moment (Optionnel)">Occasion / Moment (Optional)</option>
                     
@@ -655,7 +655,7 @@
                     </div>
                 </div>
 
-                <!-- OPTIONAL OCCASIONS WITH VISUAL SEPARATION (VISIBLE FOR RETURNING USERS) -->
+                <!-- OPTIONAL OCCASIONS WITH VISUAL SEPARATION -->
                 <select class="modal-input" name="client_occasion" id="occasionSelectLater" onchange="checkCustomOccasion('later')">
                     <option value="" disabled selected data-en="Occasion / Moment (Optional)" data-fr="Occasion / Moment (Optionnel)">Occasion / Moment (Optional)</option>
                     
@@ -724,7 +724,7 @@
             <p data-en="Own the hour before. Join the private pilot and lock in preferred rates." data-fr="Maîtrisez votre heure. Rejoignez le pilote privé et bloquez les tarifs préférentiels.">Own the hour before. Join the private pilot and lock in preferred rates.</p>
             <div class="perks-mini-box" style="text-align: left;">
                 • <strong data-en="$39.99 CAD All-In" data-fr="39,99 $ CAD Tout Inclus">$39.99 CAD All-In</strong> <span data-en="for your first 3 visits (Standard: $49.99)." data-fr="pour vos 3 premières visites (Standard : 49,99 $).">for your first 3 visits (Standard: $49.99).</span><br>
-                • <strong data-en="First Visit Guarantee:" data-fr="Garantie 1ère Visite :">First Visit Guarantee:</strong> <span data-en="Full refund if not completely Ready after your first visit." data-fr="Remboursement intégral si vous n'êtes pas complètement Prêt après votre première visite.">Full refund if not completely Ready after your first visit.</span>
+                • <strong data-en="The SPUR Guarantee:" data-fr="La Garantie SPUR :">The SPUR Guarantee:</strong> <span data-en="Not completely Ready? We cover a complimentary second visit with a new specialist—or issue a 100% refund." data-fr="Pas complètement Prêt ? Nous offrons une 2ème visite gratuite avec un autre spécialiste—ou un remboursement à 100%.">Not completely Ready? We cover a complimentary second visit with a new specialist—or issue a 100% refund.</span>
             </div>
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleSpurtanRegister(event)">
                 <input type="text" class="modal-input" name="client_name" required placeholder="First Name" data-en-placeholder="First Name" data-fr-placeholder="Prénom">
@@ -814,13 +814,22 @@
         async function syncClientToSupabase(name, phone, specialist) {
             try {
                 if (!supabaseClient) return;
+                const appliedCode = localStorage.getItem('spur_applied_code') || null;
+
+                const payload = { 
+                    phone: phone, 
+                    name: name, 
+                    last_specialist: specialist 
+                };
+
+                // Link the validated SPURTAN code to the user profile when they book
+                if (appliedCode) {
+                    payload.spurtan_code = appliedCode;
+                }
+
                 await supabaseClient
                     .from('clients')
-                    .upsert({ 
-                        phone: phone, 
-                        name: name, 
-                        last_specialist: specialist 
-                    }, { onConflict: 'phone' });
+                    .upsert(payload, { onConflict: 'phone' });
             } catch (err) {
                 console.error("Supabase write error:", err);
             }
@@ -931,7 +940,6 @@
                     const savedName = localStorage.getItem('spur_user_name');
                     const savedPhone = localStorage.getItem('spur_user_phone');
                     
-                    // We only hide the .contact-fields, leaving the Occasions dropdown visible
                     const contactFields = modal.querySelector('.contact-fields');
                     const resetBtn = id === 'verifyModal' ? document.getElementById('resetUserBtn') : document.getElementById('resetUserBtnLater');
                     
@@ -1018,17 +1026,51 @@
             event.preventDefault();
             const codeVal = document.getElementById('spurInput').value.trim().toUpperCase();
             
-            // ACCEPTS 'SPURTAN' OR ANY UNIQUE CODE STARTING WITH 'SPUR' (e.g. SPUR0018)
-            if (codeVal === 'SPURTAN' || codeVal.startsWith('SPUR')) {
-                document.getElementById('displayPrice').innerText = "$39.99 CAD";
-                document.getElementById('finalReceiptPrice').innerText = "$39.99";
-                const lang = localStorage.getItem('spur_lang') || 'en';
-                alert(lang === 'fr' ? "✓ Remise appliquée !" : "✓ Code applied! (-$10.00)");
-                closeModals(); event.target.reset();
-            } else {
-                const lang = localStorage.getItem('spur_lang') || 'en';
-                alert(lang === 'fr' ? "Veuillez entrer un code valide." : "Please enter a valid code.");
+            // 1. Math-based Code Validation (Validates SPURTAN & SPUR0009 through SPUR0900)
+            let isMathValid = false;
+            
+            if (codeVal === 'SPURTAN') {
+                isMathValid = true; // Master Override
+            } else if (codeVal.startsWith('SPUR') && codeVal.length === 8) {
+                const num = parseInt(codeVal.substring(4), 10);
+                // Validates if it's a multiple of 9, between 9 and 900 (Exactly 100 codes generated)
+                if (!isNaN(num) && num > 0 && num <= 900 && num % 9 === 0) {
+                    isMathValid = true;
+                }
             }
+
+            const lang = localStorage.getItem('spur_lang') || 'en';
+
+            if (!isMathValid) {
+                alert(lang === 'fr' ? "Veuillez entrer un code valide." : "Please enter a valid code.");
+                return;
+            }
+
+            // 2. Database Check (Ensure code hasn't been claimed by another user)
+            if (supabaseClient) {
+                const { data, error } = await supabaseClient
+                    .from('clients')
+                    .select('phone')
+                    .eq('spurtan_code', codeVal)
+                    .single();
+                
+                if (data) {
+                    const currentPhone = localStorage.getItem('spur_user_phone');
+                    // Block if the code exists in DB and is owned by a different phone number
+                    if (!currentPhone || data.phone !== currentPhone) {
+                        alert(lang === 'fr' ? "Ce code a déjà été utilisé." : "This code has already been claimed.");
+                        return;
+                    }
+                }
+            }
+
+            // 3. Success: Apply visual discount & Save to local storage pending the booking
+            localStorage.setItem('spur_applied_code', codeVal);
+            document.getElementById('displayPrice').innerText = "$39.99 CAD";
+            document.getElementById('finalReceiptPrice').innerText = "$39.99";
+            
+            alert(lang === 'fr' ? "✓ Remise appliquée !" : "✓ Code applied! (-$10.00)");
+            closeModals(); event.target.reset();
         }
 
         async function handleSubmit(event, type) {
@@ -1102,4 +1144,4 @@
         });
     </script>
 </body>
-</html>
+</html>55
