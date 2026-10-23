@@ -605,14 +605,14 @@
                     <input type="text" class="modal-input" name="client_name" id="nameInputNow" placeholder="First Name" data-en-placeholder="First Name" data-fr-placeholder="Prénom" required>
                     <input type="tel" class="modal-input" name="client_phone" id="phoneInputNow" placeholder="10 Digit Mobile" data-en-placeholder="10 Digit Mobile" data-fr-placeholder="Mobile à 10 chiffres" pattern="[0-9]{10}" required>
                     
-                    <!-- RECOMMENDED OCCASIONS TAB -->
+                    <!-- EXACT OCCASION MOMENTS RECOMMENDATION -->
                     <select class="modal-input" name="client_occasion" id="occasionSelectNow" required onchange="checkCustomOccasion('now')">
-                        <option value="" disabled selected data-en="Select Occasion / Moment" data-fr="Sélectionnez le moment">Select Occasion / Moment</option>
-                        <option value="Just for You" data-en="Just for You" data-fr="Juste pour vous">Just for You</option>
-                        <option value="Professional" data-en="Professional" data-fr="Professionnel">Professional</option>
-                        <option value="Social" data-en="Social" data-fr="Social">Social</option>
-                        <option value="Life" data-en="Life" data-fr="Vie">Life</option>
-                        <option value="Custom Request" data-en="Custom Request" data-fr="Demande spécifique">Custom Request</option>
+                        <option value="" disabled selected data-en="Occasion / Moment" data-fr="Occasion / Moment">Occasion / Moment</option>
+                        <option value="Just for You™" data-en="Just for You™ — I am the Occasion" data-fr="Just for You™ — Je suis l'occasion">Just for You™ — I am the Occasion</option>
+                        <option value="Professional" data-en="Professional — Meeting / Interview" data-fr="Professionnel — Réunion / Entretien">Professional — Meeting / Interview</option>
+                        <option value="Social" data-en="Social — Night Out / Wedding" data-fr="Social — Sortie / Mariage">Social — Night Out / Wedding</option>
+                        <option value="Life" data-en="Life — Routine Reset" data-fr="Vie — Réinitialisation de routine">Life — Routine Reset</option>
+                        <option value="Custom Request" data-en="Custom Request..." data-fr="Demande spécifique...">Custom Request...</option>
                     </select>
 
                     <div id="customOccasionWrapperNow" style="display: none; margin-bottom: 12px;">
@@ -642,14 +642,14 @@
                     <input type="text" class="modal-input" name="client_name" placeholder="First Name" data-en-placeholder="First Name" data-fr-placeholder="Prénom" required>
                     <input type="tel" class="modal-input" name="client_phone" placeholder="10 Digit Mobile" data-en-placeholder="10 Digit Mobile" data-fr-placeholder="Mobile à 10 chiffres" pattern="[0-9]{10}" required>
                     
-                    <!-- RECOMMENDED OCCASIONS TAB -->
+                    <!-- EXACT OCCASION MOMENTS RECOMMENDATION -->
                     <select class="modal-input" name="client_occasion" id="occasionSelectLater" required onchange="checkCustomOccasion('later')">
-                        <option value="" disabled selected data-en="Select Occasion / Moment" data-fr="Sélectionnez le moment">Select Occasion / Moment</option>
-                        <option value="Just for You" data-en="Just for You" data-fr="Juste pour vous">Just for You</option>
-                        <option value="Professional" data-en="Professional" data-fr="Professionnel">Professional</option>
-                        <option value="Social" data-en="Social" data-fr="Social">Social</option>
-                        <option value="Life" data-en="Life" data-fr="Vie">Life</option>
-                        <option value="Custom Request" data-en="Custom Request" data-fr="Demande spécifique">Custom Request</option>
+                        <option value="" disabled selected data-en="Occasion / Moment" data-fr="Occasion / Moment">Occasion / Moment</option>
+                        <option value="Just for You™" data-en="Just for You™ — I am the Occasion" data-fr="Just for You™ — Je suis l'occasion">Just for You™ — I am the Occasion</option>
+                        <option value="Professional" data-en="Professional — Meeting / Interview" data-fr="Professionnel — Réunion / Entretien">Professional — Meeting / Interview</option>
+                        <option value="Social" data-en="Social — Night Out / Wedding" data-fr="Social — Sortie / Mariage">Social — Night Out / Wedding</option>
+                        <option value="Life" data-en="Life — Routine Reset" data-fr="Vie — Réinitialisation de routine">Life — Routine Reset</option>
+                        <option value="Custom Request" data-en="Custom Request..." data-fr="Demande spécifique...">Custom Request...</option>
                     </select>
 
                     <div id="customOccasionWrapperLater" style="display: none; margin-bottom: 12px;">
@@ -930,7 +930,7 @@
             const wrapper = document.getElementById(type === 'now' ? 'customOccasionWrapperNow' : 'customOccasionWrapperLater');
             const customInput = wrapper.querySelector('input');
             
-            if (select.value === 'Custom') {
+            if (select.value === 'Custom Request') {
                 wrapper.style.display = 'block';
                 customInput.required = true;
             } else {
