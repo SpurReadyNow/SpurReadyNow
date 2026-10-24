@@ -577,10 +577,10 @@
             <h3 data-en="Securing Your Chair" data-fr="Sécurisation de votre place">Securing Your Chair</h3>
             <p id="interceptStatusDesc" data-en="Recognizing your profile preferences..." data-fr="Reconnaissance de vos préférences de profil...">Recognizing your profile preferences...</p>
             <div style="margin: 20px 0;">
-                <strong style="color: var(--text-main); font-size: 16px;" id="recognizedSpecialistText">Book again?</strong>
+                <strong style="color: var(--text-main); font-size: 16px;" id="recognizedSpecialistText">Request again?</strong>
             </div>
             <button class="modal-capsule-btn" onclick="confirmPreviousSpecialist()" data-en="YES" data-fr="OUI">YES</button>
-            <button class="modal-capsule-btn-secondary" onclick="skipIntercept()" data-en="FASTEST AVAILABLE" data-fr="LE PLUS RAPIDE">FASTEST AVAILABLE</button>
+            <button class="modal-capsule-btn-secondary" onclick="skipIntercept()" data-en="PRIORITY MATCH" data-fr="MATCH PRIORITAIRE">PRIORITY MATCH</button>
             <button class="modal-close" onclick="closeModals()" data-en="CANCEL" data-fr="ANNULER">CANCEL</button>
         </div>
     </div>
@@ -593,10 +593,9 @@
             
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleSubmit(event, 'now')">
                 <input type="text" name="_gotcha" style="display:none">
-                
                 <input type="hidden" name="city_location" class="formCityField" value="Yaletown, Vancouver">
                 <input type="hidden" name="dispatch_channel" value="Priority Ready">
-                <input type="hidden" name="requested_specialist" class="specialistHiddenField" value="Fastest Available">
+                <input type="hidden" name="requested_specialist" class="specialistHiddenField" value="Priority Match">
                 
                 <div id="inputFieldsWrapper">
                     <div class="contact-fields">
@@ -636,10 +635,9 @@
             
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleSubmit(event, 'later')">
                 <input type="text" name="_gotcha" style="display:none">
-                
                 <input type="hidden" name="city_location" class="formCityField" value="Yaletown, Vancouver">
                 <input type="hidden" name="dispatch_channel" value="Scheduled Request">
-                <input type="hidden" name="requested_specialist" class="specialistHiddenField" value="Fastest Available">
+                <input type="hidden" name="requested_specialist" class="specialistHiddenField" value="Priority Match">
                 
                 <div id="inputFieldsWrapperLater">
                     <div class="contact-fields">
@@ -936,9 +934,9 @@
                 const savedSpecialist = localStorage.getItem('last_specialist');
                 const savedName = localStorage.getItem('spur_user_name');
 
-                if (savedName && savedSpecialist && savedSpecialist !== 'Fastest Available' && savedSpecialist !== 'undefined') {
+                if (savedName && savedSpecialist && savedSpecialist !== 'Priority Match' && savedSpecialist !== 'undefined') {
                     const lang = localStorage.getItem('spur_lang') || 'en';
-                    const questionText = lang === 'fr' ? `Réserver avec ${savedSpecialist} à nouveau ?` : `Book with ${savedSpecialist} again?`;
+                    const questionText = lang === 'fr' ? `Demander ${savedSpecialist} à nouveau ?` : `Request ${savedSpecialist} again?`;
                     document.getElementById('recognizedSpecialistText').textContent = questionText;
                     document.getElementById('interceptModal').style.display = 'flex';
                 } else {
@@ -951,14 +949,14 @@
         }
 
         function confirmPreviousSpecialist() {
-            const savedSpecialist = localStorage.getItem('last_specialist') || 'Fastest Available';
+            const savedSpecialist = localStorage.getItem('last_specialist') || 'Priority Match';
             document.querySelectorAll('.specialistHiddenField').forEach(el => el.value = savedSpecialist);
             document.getElementById('interceptModal').style.display = 'none';
             safeOpenModal(currentInterceptType === 'now' ? 'verifyModal' : 'laterModal');
         }
 
         function skipIntercept() {
-            document.querySelectorAll('.specialistHiddenField').forEach(el => el.value = 'Fastest Available');
+            document.querySelectorAll('.specialistHiddenField').forEach(el => el.value = 'Priority Match');
             document.getElementById('interceptModal').style.display = 'none';
             safeOpenModal(currentInterceptType === 'now' ? 'verifyModal' : 'laterModal');
         }
@@ -1022,8 +1020,8 @@
             
             localStorage.setItem('spur_user_name', name);
             localStorage.setItem('spur_user_phone', phone);
-            localStorage.setItem('last_specialist', 'Fastest Available');
-            await syncClientToSupabase(name, phone, 'Fastest Available');
+            localStorage.setItem('last_specialist', 'Priority Match');
+            await syncClientToSupabase(name, phone, 'Priority Match');
 
             const lang = localStorage.getItem('spur_lang') || 'en';
             alert(lang === 'fr' ? "✓ Accès Spurtan Fondateur confirmé ! Votre tarif de 39,99 $ est actif." : "✓ Founding Spurtan Access confirmed! Your $39.99 rate is now active.");
@@ -1109,7 +1107,7 @@
             if (!phone) { alert(lang === 'fr' ? 'Veuillez entrer un numéro valide.' : 'Please enter a valid mobile number.'); return; }
 
             const city = form.querySelector('.formCityField').value;
-            const specialist = form.querySelector('input[name="requested_specialist"]')?.value || 'Fastest Available';
+            const specialist = form.querySelector('input[name="requested_specialist"]')?.value || 'Priority Match';
             
             // Handle Optional Select Submission gracefully
             const occasion = occasionSelect && occasionSelect.value ? occasionSelect.value : 'Standard Refresh';
