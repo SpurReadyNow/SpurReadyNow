@@ -2,15 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Removed user-scalable=no for accessibility compliance (Claude A8) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SPUR | Show Up Ready</title>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#0d0d0d">
     <link rel="manifest" href="manifest.json">
     
-    <!-- Load Supabase JS SDK -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Pinned Supabase JS SDK (Claude A10) -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.38.4/dist/umd/supabase.min.js"></script>
 
     <style>
         :root {
@@ -93,23 +94,6 @@
             justify-content: space-between;
             align-items: flex-start;
             margin-bottom: 35px;
-        }
-
-        .logo-area h1 {
-            font-size: 32px;
-            font-weight: 700;
-            letter-spacing: 6px;
-            color: var(--text-main);
-            line-height: 1;
-            margin-bottom: 6px;
-        }
-
-        .logo-area span {
-            font-size: 10px;
-            font-weight: 600;
-            letter-spacing: 3px;
-            color: var(--gold);
-            text-transform: uppercase;
         }
 
         .top-right-group {
@@ -394,6 +378,7 @@
         select.modal-input option { background: #141414; color: #ffffff; }
         select.modal-input option.gold-tier { color: var(--gold); font-weight: bold; }
         select.modal-input option.separator { color: rgba(255,255,255,0.2); }
+        select.modal-input option.reset-tier { color: #ff6b6b; font-weight: bold; }
         
         .modal-input:focus { border-color: var(--gold); }
 
@@ -485,15 +470,26 @@
             </div>
         </div>
 
-        <!-- Header Section -->
+        <!-- Header Section with 10/10 Custom Logo -->
         <div class="header-container">
-            <div class="logo-area">
-                <h1>SPUR</h1>
-                <span>SHOW UP READY™</span>
+            <div class="logo-area" style="display: flex; flex-direction: column; align-items: flex-start;">
+                <!-- SPUR 10/10 Concept Simulation SVG -->
+                <svg width="170" height="40" viewBox="0 0 170 40" xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 4px;">
+                    <!-- SPU in stark sans-serif -->
+                    <text x="0" y="26" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="28" font-weight="800" letter-spacing="4" fill="#ffffff">SPU</text>
+                    <!-- R base in an elegant serif -->
+                    <text x="66" y="26" font-family="Georgia, 'Times New Roman', serif" font-size="30" font-weight="bold" fill="var(--gold)">R</text>
+                    <!-- Custom coded sweeping tail -->
+                    <path d="M 83 26 Q 95 26 105 35 Q 112 40 125 32" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round"/>
+                    <!-- Floating precision sparkle ✦ -->
+                    <path d="M 125 8 Q 128 8 128 5 Q 128 8 131 8 Q 128 8 128 11 Q 128 8 125 8 Z" fill="var(--gold)"/>
+                </svg>
+                <span style="font-size: 8px; font-weight: 700; letter-spacing: 2.5px; color: var(--gold); text-transform: uppercase;">SHOW UP READY™</span>
             </div>
+            
             <div class="top-right-group">
                 <div class="live-badge">
-                    <div class="live-dot"></div>
+                    <div class="live-dot" id="liveDotIndicator"></div>
                     <span id="liveBadgeText">Vancouver • Yaletown • Live</span>
                 </div>
                 
@@ -550,8 +546,8 @@
                 </svg>
                 <span>READY LATER™</span>
             </button>
-            <div class="active-hours-note" data-en="Active Dispatch Hours: 9:00 AM – 8:00 PM" data-fr="Heures de dispatche actives : 9h00 – 20h00">
-                Active Dispatch Hours: 9:00 AM – 8:00 PM
+            <div class="active-hours-note" data-en="Active Dispatch Hours: 9:00 AM – 8:00 PM (PT)" data-fr="Heures de dispatche actives : 9h00 – 20h00 (HP)">
+                Active Dispatch Hours: 9:00 AM – 8:00 PM (PT)
             </div>
         </div>
         
@@ -575,7 +571,7 @@
                 <p style="margin-bottom: 8px;"><strong data-en="01. Zero Menus:" data-fr="01. Zéro Menu :">01. Zero Menus:</strong> <span data-en="You state your life moment. No service lists." data-fr="Vous indiquez votre moment. Pas de liste de services.">You state your life moment. No service lists.</span></p>
                 <p style="margin-bottom: 8px;"><strong data-en="02. Verified Dispatch:" data-fr="02. Dispatche Vérifié :">02. Verified Dispatch:</strong> <span data-en="We coordinate availability through a verified concierge process." data-fr="Nous coordonnons la disponibilité via un processus de conciergerie vérifié.">We coordinate availability through a verified concierge process.</span></p>
                 <p style="margin-bottom: 8px;"><strong data-en="03. Assess & Approve:" data-fr="03. Évaluer et Approuver :">03. Assess & Approve:</strong> <span data-en="The SPUR Specialist assesses and recommends either a <strong>Refresh™</strong> or <strong>Reset™</strong>. You approve before execution." data-fr="Le spécialiste SPUR évalue et recommande un <strong>Refresh™</strong> ou un <strong>Reset™</strong>. Vous approuvez avant l'exécution.">The SPUR Specialist assesses and recommends either a <strong>Refresh™</strong> or <strong>Reset™</strong>. You approve before execution.</span></p>
-                <p style="margin-bottom: 0;"><strong data-en="04. The SPUR Guarantee:" data-fr="04. La Garantie SPUR :">04. The SPUR Guarantee:</strong> <span data-en="Not completely Ready? We cover a complimentary second visit with a new specialist—or issue a 100% refund." data-fr="Pas complètement Prêt ? Nous offrons une 2ème visite gratuite avec un autre spécialiste—ou un remboursement à 100%.">Not completely Ready? We cover a complimentary second visit with a new specialist—or issue a 100% refund.</span></p>
+                <p style="margin-bottom: 0;"><strong data-en="04. The SPUR Guarantee:" data-fr="04. La Garantie SPUR :">04. The SPUR Guarantee:</strong> <span data-en="Not ready? We redo it free. Still not happy? Full refund." data-fr="Pas prêt ? Nous recommençons gratuitement. Toujours pas satisfait ? Remboursement complet.">Not ready? We redo it free. Still not happy? Full refund.</span></p>
             </div>
             <button class="modal-capsule-btn" onclick="closeModals()" data-en="GOT IT" data-fr="COMPRIS">GOT IT</button>
         </div>
@@ -602,6 +598,9 @@
             <p class="dynamic-desc" data-en="Enter your details. We will coordinate your match." data-fr="Entrez vos coordonnées. Nous coordonnerons votre match.">Enter your details. We will coordinate your match.</p>
             
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleSubmit(event, 'now')">
+                <!-- Security Honeypot (Claude A7) -->
+                <input type="text" name="_gotcha" style="display:none">
+                
                 <input type="hidden" name="city_location" class="formCityField" value="Yaletown, Vancouver">
                 <input type="hidden" name="dispatch_channel" value="Priority Ready">
                 <input type="hidden" name="requested_specialist" class="specialistHiddenField" value="Fastest Available">
@@ -613,25 +612,20 @@
                     </div>
                 </div>
 
-                <!-- OPTIONAL OCCASIONS WITH VISUAL SEPARATION -->
-                <select class="modal-input" name="client_occasion" id="occasionSelectNow" onchange="checkCustomOccasion('now')">
-                    <option value="" disabled selected data-en="Occasion / Moment (Optional)" data-fr="Occasion / Moment (Optionnel)">Occasion / Moment (Optional)</option>
+                <!-- STRATEGIC OCCASION MENU -->
+                <select class="modal-input" name="client_occasion" id="occasionSelectNow" required>
+                    <option value="" disabled selected data-en="Occasion / Moment" data-fr="Occasion / Moment">Occasion / Moment</option>
                     
-                    <!-- VIP Gold Highlight for Core Philosophy -->
-                    <option value="Just for You" class="gold-tier" data-en="Just for You™ — The Occasion is Me" data-fr="Juste pour vous — Je suis l'occasion">Just for You™ — The Occasion is Me</option>
+                    <option value="Just for You" class="gold-tier" data-en="Just for You™ — The Occasion is Me" data-fr="Juste pour vous™ — Je suis l'occasion">Just for You™ — The Occasion is Me</option>
                     <option disabled class="separator">──────────────────</option>
                     
-                    <!-- Exact Options -->
                     <option value="Professional" data-en="Professional — Meeting / Interview / Stage" data-fr="Professionnel — Réunion / Entretien / Scène">Professional — Meeting / Interview / Stage</option>
                     <option value="Social" data-en="Social — Date / Wedding / Night Out" data-fr="Social — Date / Mariage / Sortie">Social — Date / Wedding / Night Out</option>
                     <option value="Life" data-en="Life — Travel / Celebration / Milestone" data-fr="Vie — Voyage / Célébration / Étape">Life — Travel / Celebration / Milestone</option>
-                    <option value="Custom Request" data-en="Custom Request..." data-fr="Demande spécifique...">Custom Request...</option>
+                    
+                    <option disabled class="separator">──────────────────</option>
+                    <option value="SPUR Reset" class="reset-tier" data-en="SPUR Reset™ — Complete Hair & Beard Overhaul ($69.99)" data-fr="SPUR Reset™ — Refonte Complète Cheveux & Barbe (69,99 $)">SPUR Reset™ — Complete Hair & Beard Overhaul ($69.99)</option>
                 </select>
-
-                <!-- OPTIONAL CUSTOM REQUEST FIELD -->
-                <div id="customOccasionWrapperNow" style="display: none; margin-bottom: 12px;">
-                    <input type="text" class="modal-input" name="client_custom_request" placeholder="Specify your custom request (Optional)..." data-en-placeholder="Specify your custom request (Optional)..." data-fr-placeholder="Précisez votre demande (Optionnel)..." style="font-size: 13px; margin-bottom: 0;">
-                </div>
 
                 <button type="submit" class="modal-capsule-btn" id="nowSubmitBtn" data-en="SEND REQUEST" data-fr="ENVOYER LA DEMANDE">SEND REQUEST</button>
             </form>
@@ -646,7 +640,11 @@
         <div class="modal-card">
             <h3 class="dynamic-header" data-en="Plan Ahead" data-fr="Planifier à L'avance">Plan Ahead</h3>
             <p class="dynamic-desc" data-en="Commit to a scheduled visit. We'll coordinate availability." data-fr="Engagez-vous pour une visite planifiée.">Commit to a scheduled visit. We'll coordinate availability.</p>
+            
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleSubmit(event, 'later')">
+                <!-- Security Honeypot (Claude A7) -->
+                <input type="text" name="_gotcha" style="display:none">
+                
                 <input type="hidden" name="city_location" class="formCityField" value="Yaletown, Vancouver">
                 <input type="hidden" name="dispatch_channel" value="Scheduled Request">
                 <input type="hidden" name="requested_specialist" class="specialistHiddenField" value="Fastest Available">
@@ -658,27 +656,22 @@
                     </div>
                 </div>
 
-                <!-- OPTIONAL OCCASIONS WITH VISUAL SEPARATION -->
-                <select class="modal-input" name="client_occasion" id="occasionSelectLater" onchange="checkCustomOccasion('later')">
-                    <option value="" disabled selected data-en="Occasion / Moment (Optional)" data-fr="Occasion / Moment (Optionnel)">Occasion / Moment (Optional)</option>
+                <!-- STRATEGIC OCCASION MENU -->
+                <select class="modal-input" name="client_occasion" id="occasionSelectLater" required>
+                    <option value="" disabled selected data-en="Occasion / Moment" data-fr="Occasion / Moment">Occasion / Moment</option>
                     
-                    <!-- VIP Gold Highlight for Core Philosophy -->
-                    <option value="Just for You" class="gold-tier" data-en="Just for You™ — The Occasion is Me" data-fr="Juste pour vous — Je suis l'occasion">Just for You™ — The Occasion is Me</option>
+                    <option value="Just for You" class="gold-tier" data-en="Just for You™ — The Occasion is Me" data-fr="Juste pour vous™ — Je suis l'occasion">Just for You™ — The Occasion is Me</option>
                     <option disabled class="separator">──────────────────</option>
                     
-                    <!-- Exact Options -->
                     <option value="Professional" data-en="Professional — Meeting / Interview / Stage" data-fr="Professionnel — Réunion / Entretien / Scène">Professional — Meeting / Interview / Stage</option>
                     <option value="Social" data-en="Social — Date / Wedding / Night Out" data-fr="Social — Date / Mariage / Sortie">Social — Date / Wedding / Night Out</option>
                     <option value="Life" data-en="Life — Travel / Celebration / Milestone" data-fr="Vie — Voyage / Célébration / Étape">Life — Travel / Celebration / Milestone</option>
-                    <option value="Custom Request" data-en="Custom Request..." data-fr="Demande spécifique...">Custom Request...</option>
+                    
+                    <option disabled class="separator">──────────────────</option>
+                    <option value="SPUR Reset" class="reset-tier" data-en="SPUR Reset™ — Complete Hair & Beard Overhaul ($69.99)" data-fr="SPUR Reset™ — Refonte Complète Cheveux & Barbe (69,99 $)">SPUR Reset™ — Complete Hair & Beard Overhaul ($69.99)</option>
                 </select>
 
-                <!-- OPTIONAL CUSTOM REQUEST FIELD -->
-                <div id="customOccasionWrapperLater" style="display: none; margin-bottom: 12px;">
-                    <input type="text" class="modal-input" name="client_custom_request" placeholder="Specify your custom request (Optional)..." data-en-placeholder="Specify your custom request (Optional)..." data-fr-placeholder="Précisez votre demande (Optionnel)..." style="font-size: 13px; margin-bottom: 0;">
-                </div>
-
-                <input type="date" class="modal-input" name="requested_date" required>
+                <input type="date" class="modal-input" name="requested_date" id="laterDateInput" required>
                 <select class="modal-input" name="requested_time" required>
                     <option value="" disabled selected data-en="Select Preferred Time" data-fr="Sélectionnez l'heure">Select Preferred Time</option>
                     <option value="9:00 AM">9:00 AM</option>
@@ -708,6 +701,7 @@
             <h3 data-en="Enter SPURTAN Code" data-fr="Entrez le code SPURTAN">Enter SPURTAN Code</h3>
             <p data-en="Please enter your unique membership code." data-fr="Veuillez entrer votre code d'adhésion unique.">Please enter your unique membership code.</p>
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleCodeSubmit(event)">
+                <input type="text" name="_gotcha" style="display:none">
                 <input type="hidden" name="city_location" class="formCityField" value="Yaletown, Vancouver">
                 <input type="text" class="modal-input" name="spurtan_code" placeholder="Your code" id="spurInput" required style="text-transform: uppercase;">
                 <button type="submit" class="modal-circle-btn" data-en="APPLY" data-fr="APPLIQUER">APPLY</button>
@@ -725,22 +719,22 @@
         <div class="modal-card">
             <h3 data-en="Founding Spurtan Access" data-fr="Accès Spurtan Fondateur">Founding Spurtan Access</h3>
             
-            <!-- LIVE COUNTER BADGE -->
             <div id="spotsRemainingBadge" style="background: rgba(212,175,55,0.1); color: var(--gold); border: 1px solid rgba(212,175,55,0.3); padding: 8px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 15px; display: inline-block;">
                 Calculating spots remaining...
             </div>
             
             <p data-en="Own the hour before. Join the private pilot and lock in preferred rates." data-fr="Maîtrisez votre heure. Rejoignez le pilote privé et bloquez les tarifs préférentiels.">Own the hour before. Join the private pilot and lock in preferred rates.</p>
             <div class="perks-mini-box" style="text-align: left;">
-                • <strong data-en="$39.99 CAD All-In" data-fr="39,99 $ CAD Tout Inclus">$39.99 CAD All-In</strong> <span data-en="for your first 3 visits (Standard: $49.99)." data-fr="pour vos 3 premières visites (Standard : 49,99 $).">for your first 3 visits (Standard: $49.99).</span><br>
-                • <strong data-en="The SPUR Guarantee:" data-fr="La Garantie SPUR :">The SPUR Guarantee:</strong> <span data-en="Not completely Ready? We cover a complimentary second visit with a new specialist—or issue a 100% refund." data-fr="Pas complètement Prêt ? Nous offrons une 2ème visite gratuite avec un autre spécialiste—ou un remboursement à 100%.">Not completely Ready? We cover a complimentary second visit with a new specialist—or issue a 100% refund.</span>
+                • <strong data-en="$39.99 CAD All-In" data-fr="39,99 $ CAD Tout Inclus">$39.99 CAD All-In</strong> <span data-en="for your first visit (Standard: $49.99)." data-fr="pour votre 1ère visite (Standard : 49,99 $).">for your first visit (Standard: $49.99).</span><br>
+                • <strong data-en="The SPUR Guarantee:" data-fr="La Garantie SPUR :">The SPUR Guarantee:</strong> <span data-en="Not ready? We redo it free. Still not happy? Full refund." data-fr="Pas prêt ? Nous recommençons gratuitement. Toujours pas satisfait ? Remboursement complet.">Not ready? We redo it free. Still not happy? Full refund.</span>
             </div>
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleSpurtanRegister(event)">
+                <input type="text" name="_gotcha" style="display:none">
                 <input type="text" class="modal-input" name="client_name" required placeholder="First Name" data-en-placeholder="First Name" data-fr-placeholder="Prénom">
                 <input type="tel" class="modal-input" name="client_phone" required placeholder="10 Digit Mobile" data-en-placeholder="10 Digit Mobile" data-fr-placeholder="Mobile à 10 chiffres" pattern="[0-9]{10}">
                 <select class="modal-input" name="launch_node" id="spurtanNodeSelect" required>
                     <option value="Yaletown, Vancouver">Yaletown, Vancouver (Live)</option>
-                    <option value="Le Plateau, Montreal">Le Plateau, Montreal (Live)</option>
+                    <option value="Le Plateau, Montreal">Le Plateau, Montreal (Waitlist)</option>
                     <option value="Financial District, Toronto">Financial District, Toronto (Waitlist)</option>
                 </select>
                 <button type="submit" class="modal-capsule-btn" id="spurtanSubmitBtn" data-en="CLAIM FOUNDING ACCESS" data-fr="RÉCLAMER MON ACCÈS">CLAIM FOUNDING ACCESS</button>
@@ -762,7 +756,7 @@
                 </div>
                 <div class="receipt-price-box">
                     <div class="receipt-price" id="finalReceiptPrice">$49.99</div>
-                    <div class="receipt-price-label" data-en="Flat Rate" data-fr="Prix Fixe">Flat Rate</div>
+                    <div class="receipt-price-label" data-en="Final Total" data-fr="Total Final">Final Total</div>
                 </div>
             </div>
             <div class="receipt-grid">
@@ -775,8 +769,8 @@
                     <div class="grid-box-lbl" data-en="Location" data-fr="Lieu">Location</div>
                 </div>
             </div>
-            <div class="receipt-footer-desc" data-en="Your concierge is coordinating with our network.<br>You pay directly at the studio." data-fr="Votre concierge coordonne avec notre réseau.<br>Vous payez directement au studio.">
-                Your concierge is coordinating with our network.<br>You pay directly at the studio.
+            <div class="receipt-footer-desc" data-en="Pay after your visit with one tap, only once you feel ready." data-fr="Payez après votre visite en un clic, seulement une fois que vous vous sentez prêt.">
+                Pay after your visit with one tap, only once you feel ready.
             </div>
             <a href="#" id="whatsappAutoBtn" class="receipt-action-btn" target="_blank">
                 <span data-en="💬 CONFIRM VIA WHATSAPP (READY)" data-fr="💬 CONFIRMER VIA WHATSAPP (PRÊT)">💬 CONFIRM VIA WHATSAPP (READY)</span>
@@ -790,9 +784,9 @@
         const SPUR_WHATSAPP_NUMBER = '14387251010';
 
         const cityData = {
-            yvr: { enBadge: "Vancouver • Yaletown • Live", frBadge: "Vancouver • Yaletown • En Direct", areaName: "Yaletown, Vancouver" },
-            yyz: { enBadge: "Toronto • Financial District • Live", frBadge: "Toronto • Quartier Financier • En Direct", areaName: "Financial District, Toronto" },
-            yul: { enBadge: "Montreal • Plateau • Live", frBadge: "Montréal • Le Plateau • En Direct", areaName: "Le Plateau, Montréal" }
+            yvr: { enBadge: "Vancouver • Yaletown • Live", frBadge: "Vancouver • Yaletown • En Direct", areaName: "Yaletown, Vancouver", isLive: true },
+            yyz: { enBadge: "Toronto • Financial District • Waitlist", frBadge: "Toronto • Quartier Financier • Liste d'attente", areaName: "Financial District, Toronto", isLive: false },
+            yul: { enBadge: "Montreal • Plateau • Waitlist", frBadge: "Montréal • Le Plateau • Liste d'attente", areaName: "Le Plateau, Montréal", isLive: false }
         };
 
         const SUPABASE_URL = 'https://quqcgjkbvajcltwuoqvz.supabase.co';
@@ -895,6 +889,16 @@
             document.getElementById('btn-yul').classList.toggle('active', city === 'yul');
             document.querySelectorAll('.formCityField').forEach(el => el.value = cityData[city].areaName);
             document.getElementById('receiptTargetArea').innerText = cityData[city].areaName;
+            
+            const liveDot = document.getElementById('liveDotIndicator');
+            if (cityData[city].isLive) {
+                liveDot.style.backgroundColor = "#2ecc71";
+                liveDot.style.boxShadow = "0 0 6px #2ecc71";
+            } else {
+                liveDot.style.backgroundColor = "#f39c12";
+                liveDot.style.boxShadow = "0 0 6px #f39c12";
+            }
+            
             updateBadgeText();
             localStorage.setItem('spur_active_city', city);
         }
@@ -924,7 +928,8 @@
             const savedName = localStorage.getItem('spur_user_name');
             if (savedName) {
                 const sub = document.getElementById('dynamicHeroSubtitle');
-                if (sub) sub.innerHTML = lang === 'fr' ? "Bon retour, " + savedName.split(' ')[0] + "." : "Welcome back, " + savedName.split(' ')[0] + ".";
+                // Security Upgrade: textContent prevents XSS
+                if (sub) sub.textContent = lang === 'fr' ? "Bon retour, " + savedName.split(' ')[0] + "." : "Welcome back, " + savedName.split(' ')[0] + ".";
             }
             localStorage.setItem('spur_lang', lang);
             updateBadgeText();
@@ -942,7 +947,7 @@
                 if (savedName && savedSpecialist && savedSpecialist !== 'Fastest Available' && savedSpecialist !== 'undefined') {
                     const lang = localStorage.getItem('spur_lang') || 'en';
                     const questionText = lang === 'fr' ? `Réserver avec ${savedSpecialist} à nouveau ?` : `Book with ${savedSpecialist} again?`;
-                    document.getElementById('recognizedSpecialistText').innerText = questionText;
+                    document.getElementById('recognizedSpecialistText').textContent = questionText;
                     document.getElementById('interceptModal').style.display = 'flex';
                 } else {
                     safeOpenModal(type === 'now' ? 'verifyModal' : 'laterModal');
@@ -985,7 +990,7 @@
                         }
                         if(resetBtn) resetBtn.style.display = 'block';
                         const header = modal.querySelector('.dynamic-header');
-                        if(header) header.innerText = "Welcome back, " + savedName.split(' ')[0];
+                        if(header) header.textContent = "Welcome back, " + savedName.split(' ')[0];
                     } else {
                         if(contactFields) {
                             contactFields.style.display = 'block';
@@ -994,28 +999,13 @@
                         if(resetBtn) resetBtn.style.display = 'none';
                         const header = modal.querySelector('.dynamic-header');
                         const lang = localStorage.getItem('spur_lang') || 'en';
-                        if(header) header.innerText = id === 'verifyModal' ? (lang === 'fr' ? "Préparez-vous Maintenant" : "Get Ready Now") : (lang === 'fr' ? "Planifier à L'avance" : "Plan Ahead");
+                        if(header) header.textContent = id === 'verifyModal' ? (lang === 'fr' ? "Préparez-vous Maintenant" : "Get Ready Now") : (lang === 'fr' ? "Planifier à L'avance" : "Plan Ahead");
                     }
                 }
                 modal.style.display = 'flex';
             } catch (e) {
                 console.error(e);
                 document.getElementById(id).style.display = 'flex';
-            }
-        }
-
-        function checkCustomOccasion(type) {
-            const select = document.getElementById(type === 'now' ? 'occasionSelectNow' : 'occasionSelectLater');
-            const wrapper = document.getElementById(type === 'now' ? 'customOccasionWrapperNow' : 'customOccasionWrapperLater');
-            const customInput = wrapper.querySelector('input');
-            
-            if (select.value === 'Custom Request') {
-                wrapper.style.display = 'block';
-                customInput.required = false; 
-            } else {
-                wrapper.style.display = 'none';
-                customInput.required = false;
-                customInput.value = '';
             }
         }
 
@@ -1046,12 +1036,11 @@
             const lang = localStorage.getItem('spur_lang') || 'en';
             alert(lang === 'fr' ? "✓ Accès Spurtan Fondateur confirmé ! Votre tarif de 39,99 $ est actif." : "✓ Founding Spurtan Access confirmed! Your $39.99 rate is now active.");
             
-            document.getElementById('displayPrice').innerText = "$39.99 CAD";
-            document.getElementById('finalReceiptPrice').innerText = "$39.99";
+            document.getElementById('displayPrice').textContent = "$39.99 CAD";
             
             const sub = document.getElementById('dynamicHeroSubtitle');
             if (sub) {
-                sub.innerHTML = lang === 'fr' ? "Bon retour, " + name.split(' ')[0] + "." : "Welcome back, " + name.split(' ')[0] + ".";
+                sub.textContent = lang === 'fr' ? "Bon retour, " + name.split(' ')[0] + "." : "Welcome back, " + name.split(' ')[0] + ".";
             }
             
             await updateLiveCounter();
@@ -1097,8 +1086,7 @@
             }
 
             localStorage.setItem('spur_applied_code', codeVal);
-            document.getElementById('displayPrice').innerText = "$39.99 CAD";
-            document.getElementById('finalReceiptPrice').innerText = "$39.99";
+            document.getElementById('displayPrice').textContent = "$39.99 CAD";
             
             alert(lang === 'fr' ? "✓ Remise appliquée !" : "✓ Code applied! (-$10.00)");
             closeModals(); event.target.reset();
@@ -1107,13 +1095,14 @@
         async function handleSubmit(event, type) {
             event.preventDefault();
             const form = event.target;
+            const lang = localStorage.getItem('spur_lang') || 'en';
+            
             let name = localStorage.getItem('spur_user_name');
             let phone = localStorage.getItem('spur_user_phone');
 
             const nameInput = form.querySelector('input[name="client_name"]');
             const phoneInput = form.querySelector('input[name="client_phone"]');
             const occasionSelect = form.querySelector('select[name="client_occasion"]');
-            const customInput = form.querySelector('input[name="client_custom_request"]');
 
             if (nameInput && nameInput.value.trim()) {
                 name = nameInput.value.trim();
@@ -1125,33 +1114,51 @@
             }
 
             if (!name) name = 'Valued Client';
-            if (!phone) { alert('Please enter your mobile number.'); return; }
+            if (!phone) { alert(lang === 'fr' ? 'Veuillez entrer un numéro valide.' : 'Please enter a valid mobile number.'); return; }
 
             const city = form.querySelector('.formCityField').value;
             const specialist = form.querySelector('input[name="requested_specialist"]')?.value || 'Fastest Available';
+            const occasion = occasionSelect && occasionSelect.value ? occasionSelect.value : 'Undefined';
             
-            const occasion = occasionSelect && occasionSelect.value ? occasionSelect.value : 'Undefined (Fast Track)';
-            const customReq = customInput && customInput.value.trim() ? customInput.value.trim() : null;
+            // Strategic Dynamic Pricing Logic
+            let finalPrice = 49.99;
+            let serviceRequested = "SPUR Refresh";
+            
+            const hasCode = localStorage.getItem('spur_applied_code') !== null;
+            if (hasCode) finalPrice = 39.99; // Apply discount to Refresh
+            
+            if (occasion === 'SPUR Reset') {
+                finalPrice = 69.99; // Reset Overrides Discount completely
+                serviceRequested = "SPUR Reset (Hair & Beard Overhaul)";
+            }
+            
+            // Update UI
+            document.getElementById('finalReceiptPrice').textContent = `$${finalPrice.toFixed(2)}`;
 
             localStorage.setItem('last_specialist', specialist);
             await syncClientToSupabase(name, phone, specialist);
+            
             try {
                 if (supabaseClient) await supabaseClient.from('requests').insert({
-                    phone, city, type, specialist, occasion, custom_request: customReq,
-                    price: parseFloat(document.getElementById('finalReceiptPrice').innerText.replace('$', ''))
+                    phone, city, type, specialist, occasion, service: serviceRequested,
+                    price: finalPrice
                 });
             } catch (err) { console.error('Request log error:', err); }
 
-            let waMessage = `Hello SPUR — I would like to request a visit.\n\nType: ${type.toUpperCase()}\nCity: ${city}\nName: ${name}\nMobile: ${phone}\nOccasion: ${occasion}`;
-            if (customReq) {
-                waMessage += `\nSpecific Focus: ${customReq}`;
-            }
-            waMessage += `\nSpecialist: ${specialist}\n\nPlease coordinate verified availability.`;
+            // Enhanced WhatsApp String for Concierge Clarity
+            let waMessage = `Hello SPUR — I would like to request a visit.\n\nType: ${type.toUpperCase()}\nCity: ${city}\nName: ${name}\nMobile: ${phone}\nOccasion: ${occasion}\n\nService: ${serviceRequested}\nTotal: $${finalPrice.toFixed(2)}\nSpecialist: ${specialist}\n\nPlease coordinate verified availability.`;
 
             const encodedWaUrl = `https://wa.me/${SPUR_WHATSAPP_NUMBER}?text=${encodeURIComponent(waMessage)}`;
             document.getElementById('whatsappAutoBtn').href = encodedWaUrl;
 
-            try { await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } }); } catch (e) {}
+            // Security Hardening: Graceful Formspree Failure Catch (Claude A7)
+            try { 
+                const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
+                if (!res.ok) throw new Error('Network error');
+            } catch (e) {
+                alert(lang === 'fr' ? "Erreur de connexion. Veuillez réessayer." : "Connection error. Please try again.");
+                return; // Prevent user from getting stuck on success screen if it failed
+            }
 
             closeModals();
             document.getElementById('mainAppContainer').style.display = 'none';
@@ -1161,6 +1168,11 @@
 
         window.addEventListener('DOMContentLoaded', async () => {
             try {
+                // Security Hardening: Prevent past dates (Claude A9)
+                const today = new Date().toISOString().split('T')[0];
+                const dateInput = document.getElementById('laterDateInput');
+                if (dateInput) dateInput.min = today;
+
                 setCity(localStorage.getItem('spur_active_city') || 'yvr');
                 switchLanguage(localStorage.getItem('spur_lang') || 'en');
                 await checkReturningUserRealtime();
@@ -1171,7 +1183,13 @@
                 const sub = document.getElementById('dynamicHeroSubtitle');
                 if (savedName && sub) {
                     const lang = localStorage.getItem('spur_lang') || 'en';
-                    sub.innerHTML = lang === 'fr' ? "Bon retour, " + savedName.split(' ')[0] + "." : "Welcome back, " + savedName.split(' ')[0] + ".";
+                    // TextContent prevents XSS injection
+                    sub.textContent = lang === 'fr' ? "Bon retour, " + savedName.split(' ')[0] + "." : "Welcome back, " + savedName.split(' ')[0] + ".";
+                }
+                
+                const hasCode = localStorage.getItem('spur_applied_code') !== null;
+                if(hasCode) {
+                    document.getElementById('displayPrice').textContent = "$39.99 CAD";
                 }
             } catch (e) { console.error(e); }
         });
