@@ -377,7 +377,6 @@
         select.modal-input option { background: #141414; color: #ffffff; }
         select.modal-input option.gold-tier { color: var(--gold); font-weight: bold; }
         select.modal-input option.separator { color: rgba(255,255,255,0.2); }
-        select.modal-input option.reset-tier { color: #ff6b6b; font-weight: bold; }
         
         .modal-input:focus { border-color: var(--gold); }
 
@@ -474,11 +473,9 @@
             <div class="logo-area" style="display: flex; flex-direction: column; align-items: flex-start;">
                 <!-- SPUR Concept 01: Classic Luxury (Stable Typography) -->
                 <svg width="150" height="35" viewBox="0 0 150 35" xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 4px;">
-                    <!-- SPU in White, R in Gold -->
                     <text x="0" y="26" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="28" font-weight="800" letter-spacing="5">
                         <tspan fill="#ffffff">SPU</tspan><tspan fill="var(--gold)">R</tspan>
                     </text>
-                    <!-- Gold Precision Sparkle ✦ above/right of R -->
                     <path d="M106 12 Q109 12 109 9 Q109 12 112 12 Q109 12 109 15 Q109 12 106 12 Z" fill="var(--gold)"/>
                 </svg>
                 <span style="font-size: 8px; font-weight: 700; letter-spacing: 2.5px; color: var(--gold); text-transform: uppercase;">SHOW UP READY™</span>
@@ -595,7 +592,6 @@
             <p class="dynamic-desc" data-en="Enter your details. We will coordinate your match." data-fr="Entrez vos coordonnées. Nous coordonnerons votre match.">Enter your details. We will coordinate your match.</p>
             
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleSubmit(event, 'now')">
-                <!-- Security Honeypot -->
                 <input type="text" name="_gotcha" style="display:none">
                 
                 <input type="hidden" name="city_location" class="formCityField" value="Yaletown, Vancouver">
@@ -609,9 +605,9 @@
                     </div>
                 </div>
 
-                <!-- STRATEGIC OCCASION MENU -->
-                <select class="modal-input" name="client_occasion" id="occasionSelectNow" required>
-                    <option value="" disabled selected data-en="Occasion / Moment" data-fr="Occasion / Moment">Occasion / Moment</option>
+                <!-- STRATEGIC OPTIONAL OCCASION MENU -->
+                <select class="modal-input" name="client_occasion" id="occasionSelectNow">
+                    <option value="" disabled selected data-en="Focus / Occasion (Optional)" data-fr="Objectif / Occasion (Optionnel)">Focus / Occasion (Optional)</option>
                     
                     <option value="Just for You" class="gold-tier" data-en="Just for You™ — The Occasion is Me" data-fr="Juste pour vous™ — Je suis l'occasion">Just for You™ — The Occasion is Me</option>
                     <option disabled class="separator">──────────────────</option>
@@ -621,7 +617,7 @@
                     <option value="Life" data-en="Life — Travel / Celebration / Milestone" data-fr="Vie — Voyage / Célébration / Étape">Life — Travel / Celebration / Milestone</option>
                     
                     <option disabled class="separator">──────────────────</option>
-                    <option value="SPUR Reset" class="reset-tier" data-en="SPUR Reset™ — Complete Hair & Beard Overhaul ($69.99)" data-fr="SPUR Reset™ — Refonte Complète Cheveux & Barbe (69,99 $)">SPUR Reset™ — Complete Hair & Beard Overhaul ($69.99)</option>
+                    <option value="SPUR Reset" class="gold-tier" data-en="SPUR Reset™ — Complete Hair & Beard Overhaul ($69.99)" data-fr="SPUR Reset™ — Refonte Complète Cheveux & Barbe (69,99 $)">SPUR Reset™ — Complete Hair & Beard Overhaul ($69.99)</option>
                 </select>
 
                 <button type="submit" class="modal-capsule-btn" id="nowSubmitBtn" data-en="SEND REQUEST" data-fr="ENVOYER LA DEMANDE">SEND REQUEST</button>
@@ -639,7 +635,6 @@
             <p class="dynamic-desc" data-en="Commit to a scheduled visit. We'll coordinate availability." data-fr="Engagez-vous pour une visite planifiée.">Commit to a scheduled visit. We'll coordinate availability.</p>
             
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleSubmit(event, 'later')">
-                <!-- Security Honeypot -->
                 <input type="text" name="_gotcha" style="display:none">
                 
                 <input type="hidden" name="city_location" class="formCityField" value="Yaletown, Vancouver">
@@ -653,9 +648,9 @@
                     </div>
                 </div>
 
-                <!-- STRATEGIC OCCASION MENU -->
-                <select class="modal-input" name="client_occasion" id="occasionSelectLater" required>
-                    <option value="" disabled selected data-en="Occasion / Moment" data-fr="Occasion / Moment">Occasion / Moment</option>
+                <!-- STRATEGIC OPTIONAL OCCASION MENU -->
+                <select class="modal-input" name="client_occasion" id="occasionSelectLater">
+                    <option value="" disabled selected data-en="Focus / Occasion (Optional)" data-fr="Objectif / Occasion (Optionnel)">Focus / Occasion (Optional)</option>
                     
                     <option value="Just for You" class="gold-tier" data-en="Just for You™ — The Occasion is Me" data-fr="Juste pour vous™ — Je suis l'occasion">Just for You™ — The Occasion is Me</option>
                     <option disabled class="separator">──────────────────</option>
@@ -665,7 +660,7 @@
                     <option value="Life" data-en="Life — Travel / Celebration / Milestone" data-fr="Vie — Voyage / Célébration / Étape">Life — Travel / Celebration / Milestone</option>
                     
                     <option disabled class="separator">──────────────────</option>
-                    <option value="SPUR Reset" class="reset-tier" data-en="SPUR Reset™ — Complete Hair & Beard Overhaul ($69.99)" data-fr="SPUR Reset™ — Refonte Complète Cheveux & Barbe (69,99 $)">SPUR Reset™ — Complete Hair & Beard Overhaul ($69.99)</option>
+                    <option value="SPUR Reset" class="gold-tier" data-en="SPUR Reset™ — Complete Hair & Beard Overhaul ($69.99)" data-fr="SPUR Reset™ — Refonte Complète Cheveux & Barbe (69,99 $)">SPUR Reset™ — Complete Hair & Beard Overhaul ($69.99)</option>
                 </select>
 
                 <input type="date" class="modal-input" name="requested_date" id="laterDateInput" required>
@@ -1115,7 +1110,9 @@
 
             const city = form.querySelector('.formCityField').value;
             const specialist = form.querySelector('input[name="requested_specialist"]')?.value || 'Fastest Available';
-            const occasion = occasionSelect && occasionSelect.value ? occasionSelect.value : 'Undefined';
+            
+            // Handle Optional Select Submission gracefully
+            const occasion = occasionSelect && occasionSelect.value ? occasionSelect.value : 'Standard Refresh';
             
             // Strategic Dynamic Pricing Logic
             let finalPrice = 49.99;
