@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- Removed user-scalable=no for accessibility compliance (Claude A8) -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SPUR | Show Up Ready</title>
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -10,7 +9,7 @@
     <meta name="theme-color" content="#0d0d0d">
     <link rel="manifest" href="manifest.json">
     
-    <!-- Pinned Supabase JS SDK (Claude A10) -->
+    <!-- Pinned Supabase JS SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.38.4/dist/umd/supabase.min.js"></script>
 
     <style>
@@ -470,19 +469,17 @@
             </div>
         </div>
 
-        <!-- Header Section with 10/10 Custom Logo -->
+        <!-- Header Section with Stable Concept 01 Logo -->
         <div class="header-container">
             <div class="logo-area" style="display: flex; flex-direction: column; align-items: flex-start;">
-                <!-- SPUR 10/10 Concept Simulation SVG -->
-                <svg width="170" height="40" viewBox="0 0 170 40" xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 4px;">
-                    <!-- SPU in stark sans-serif -->
-                    <text x="0" y="26" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="28" font-weight="800" letter-spacing="4" fill="#ffffff">SPU</text>
-                    <!-- R base in an elegant serif -->
-                    <text x="66" y="26" font-family="Georgia, 'Times New Roman', serif" font-size="30" font-weight="bold" fill="var(--gold)">R</text>
-                    <!-- Custom coded sweeping tail -->
-                    <path d="M 83 26 Q 95 26 105 35 Q 112 40 125 32" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round"/>
-                    <!-- Floating precision sparkle ✦ -->
-                    <path d="M 125 8 Q 128 8 128 5 Q 128 8 131 8 Q 128 8 128 11 Q 128 8 125 8 Z" fill="var(--gold)"/>
+                <!-- SPUR Concept 01: Classic Luxury (Stable Typography) -->
+                <svg width="150" height="35" viewBox="0 0 150 35" xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 4px;">
+                    <!-- SPU in White, R in Gold -->
+                    <text x="0" y="26" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="28" font-weight="800" letter-spacing="5">
+                        <tspan fill="#ffffff">SPU</tspan><tspan fill="var(--gold)">R</tspan>
+                    </text>
+                    <!-- Gold Precision Sparkle ✦ above/right of R -->
+                    <path d="M106 12 Q109 12 109 9 Q109 12 112 12 Q109 12 109 15 Q109 12 106 12 Z" fill="var(--gold)"/>
                 </svg>
                 <span style="font-size: 8px; font-weight: 700; letter-spacing: 2.5px; color: var(--gold); text-transform: uppercase;">SHOW UP READY™</span>
             </div>
@@ -598,7 +595,7 @@
             <p class="dynamic-desc" data-en="Enter your details. We will coordinate your match." data-fr="Entrez vos coordonnées. Nous coordonnerons votre match.">Enter your details. We will coordinate your match.</p>
             
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleSubmit(event, 'now')">
-                <!-- Security Honeypot (Claude A7) -->
+                <!-- Security Honeypot -->
                 <input type="text" name="_gotcha" style="display:none">
                 
                 <input type="hidden" name="city_location" class="formCityField" value="Yaletown, Vancouver">
@@ -642,7 +639,7 @@
             <p class="dynamic-desc" data-en="Commit to a scheduled visit. We'll coordinate availability." data-fr="Engagez-vous pour une visite planifiée.">Commit to a scheduled visit. We'll coordinate availability.</p>
             
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleSubmit(event, 'later')">
-                <!-- Security Honeypot (Claude A7) -->
+                <!-- Security Honeypot -->
                 <input type="text" name="_gotcha" style="display:none">
                 
                 <input type="hidden" name="city_location" class="formCityField" value="Yaletown, Vancouver">
@@ -1151,15 +1148,15 @@
             const encodedWaUrl = `https://wa.me/${SPUR_WHATSAPP_NUMBER}?text=${encodeURIComponent(waMessage)}`;
             document.getElementById('whatsappAutoBtn').href = encodedWaUrl;
 
-            // Security Hardening: Graceful Formspree Failure Catch (Claude A7)
+            // Formspree Silent Backup Delivery
             try { 
                 const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
-                if (!res.ok) throw new Error('Network error');
+                if (!res.ok) console.warn('Formspree limit reached, but Supabase succeeded.');
             } catch (e) {
-                alert(lang === 'fr' ? "Erreur de connexion. Veuillez réessayer." : "Connection error. Please try again.");
-                return; // Prevent user from getting stuck on success screen if it failed
+                console.warn('Formspree network block. Supabase and WhatsApp will handle fulfillment.');
             }
 
+            // Move user to success screen REGARDLESS of Formspree status
             closeModals();
             document.getElementById('mainAppContainer').style.display = 'none';
             document.getElementById('finalSuccessView').style.display = 'block';
@@ -1168,7 +1165,7 @@
 
         window.addEventListener('DOMContentLoaded', async () => {
             try {
-                // Security Hardening: Prevent past dates (Claude A9)
+                // Security Hardening: Prevent past dates
                 const today = new Date().toISOString().split('T')[0];
                 const dateInput = document.getElementById('laterDateInput');
                 if (dateInput) dateInput.min = today;
