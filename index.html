@@ -29,9 +29,9 @@
 
         .vip-top-pill { width: 100%; max-width: 440px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 30px; padding: 10px 16px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: all 0.2s ease; }
         .vip-top-pill:hover { border-color: var(--gold); }
-        .vip-pill-left { display: flex; align-items: center; gap: 8px; font-size: 10px; font-weight: 700; letter-spacing: 1.2px; color: var(--text-muted); text-transform: uppercase; }
+        .vip-pill-left { display: flex; align-items: center; gap: 8px; font-size: 10px; font-weight: 700; letter-spacing: 1.2px; color: var(--text-muted); text-transform: uppercase; white-space: nowrap; }
         .vip-star { color: var(--gold); font-size: 11px; }
-        .vip-pill-right { font-size: 10px; font-weight: 800; letter-spacing: 1px; color: var(--gold); text-transform: uppercase; }
+        .vip-pill-right { font-size: 10px; font-weight: 800; letter-spacing: 1px; color: var(--gold); text-transform: uppercase; white-space: nowrap; }
 
         .header-container { width: 100%; max-width: 440px; display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 35px; }
         .top-right-group { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
@@ -46,7 +46,9 @@
         .main-content { width: 100%; max-width: 440px; display: flex; flex-direction: column; align-items: center; flex-grow: 1; }
         .hero-section { width: 100%; text-align: center; margin-bottom: 40px; }
         .hero-title { font-size: 26px; font-weight: 400; line-height: 1.35; letter-spacing: -0.5px; margin-bottom: 12px; color: var(--text-main); }
-        .hero-title-gold { font-size: 20px; font-weight: 400; line-height: 1.35; letter-spacing: -0.5px; color: var(--gold); font-style: italic; }
+        
+        /* FIXED: Added clamp() and nowrap to perfectly single-line the French text */
+        .hero-title-gold { font-size: clamp(14px, 4.5vw, 20px); font-weight: 400; line-height: 1.35; letter-spacing: -0.5px; color: var(--gold); font-style: italic; white-space: nowrap; }
 
         .inline-pricing { font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; text-align: center; }
         .inline-pricing span { color: var(--gold); font-size: 14px; font-weight: 700; }
@@ -70,7 +72,6 @@
         .ready-later-btn:hover { border-color: var(--gold); }
         .active-hours-note { font-size: 10px; color: #555; letter-spacing: 1px; text-transform: uppercase; text-align: center; margin-top: 5px; }
 
-        /* HOMEPAGE MICRO-GRID (Numbered Timeline Layout 1fr 1fr for strict symmetry) */
         .home-process-grid { display: grid; grid-template-columns: 1fr 1fr; justify-content: center; gap: 14px 16px; width: 100%; max-width: 360px; margin: 25px auto 0 auto; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 25px; }
         .process-item { font-size: 8.5px; font-weight: 600; color: var(--text-muted); display: flex; align-items: center; gap: 6px; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.2; }
         .process-step-num { color: var(--gold); font-size: 10px; font-weight: 800; letter-spacing: 1px; }
@@ -139,7 +140,8 @@
                 <span class="vip-star">✦</span>
                 <span data-en="Founding Spurtan Access" data-fr="Accès Spurtan Fondateur">Founding Spurtan Access</span>
             </div>
-            <div class="vip-pill-right" data-en="Own the Hour Before →" data-fr="Prenez le contrôle de votre temps →">
+            <!-- FIXED: Locked to English to prevent wrapping and preserve brand slogan -->
+            <div class="vip-pill-right" data-en="Own the Hour Before →" data-fr="Own the Hour Before →">
                 Own the Hour Before →
             </div>
         </div>
@@ -488,7 +490,8 @@
             if (!container) return;
 
             if (lang === 'fr') {
-                container.innerHTML = `TARIF FIXE PRIORITAIRE : <span>${price.replace('.', ',')} $ CAD</span><br>
+                /* EXACT CANADIAN FRENCH CURRENCY FORMAT: 49,99 $ CAD */
+                container.innerHTML = `TARIF FIXE PRIORITAIRE : <span>${price.replace('.', ',')}&nbsp;$ CAD</span><br>
                 <button type="button" onclick="safeOpenModal('codeModal')" style="background:none; border:none; color:var(--text-muted); font-size:10px; font-weight:700; text-decoration:underline; cursor:pointer; margin-top:8px;">AVEZ-VOUS UN CODE SPURTAN ?</button>`;
             } else {
                 container.innerHTML = `<span>$${price} CAD</span> PRIORITY FLAT RATE<br>
@@ -618,7 +621,7 @@
             }
             
             updateBadgeText();
-            updateDispatchHours(); // Timezone adjusts instantly
+            updateDispatchHours(); 
             localStorage.setItem('spur_active_city', city);
         }
 
@@ -650,10 +653,18 @@
                 const sub = document.getElementById('dynamicHeroSubtitle');
                 if (sub) sub.textContent = lang === 'fr' ? "Bon retour, " + savedName.split(' ')[0] + "." : "Welcome back, " + savedName.split(' ')[0] + ".";
             }
+            
+            const dynamicHeroSubtitle = document.getElementById('dynamicHeroSubtitle');
+            if (lang === 'fr') {
+                dynamicHeroSubtitle.style.whiteSpace = 'nowrap';
+            } else {
+                dynamicHeroSubtitle.style.whiteSpace = 'normal'; 
+            }
+
             localStorage.setItem('spur_lang', lang);
             updateBadgeText();
-            updatePricingDisplay(); // Refreshes currency grammar
-            updateDispatchHours(); // Refreshes timezone language
+            updatePricingDisplay(); 
+            updateDispatchHours(); 
             updateLiveCounter();
         }
 
