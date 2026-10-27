@@ -64,16 +64,15 @@
         .ready-line-1 { font-size: 19px; font-weight: 800; letter-spacing: 2px; line-height: 1.1; }
         .ready-line-2 { font-size: 18px; font-weight: 800; letter-spacing: 1.5px; line-height: 1.1; }
 
-        /* FIXED: Increased max-width to 300px to prevent the text wrapping issue */
-        .cta-footer-note { font-size: 12px; color: var(--text-muted); letter-spacing: 0.5px; text-align: center; margin-top: 5px; max-width: 300px; line-height: 1.4; }
+        .cta-footer-note { font-size: 12px; color: var(--text-muted); letter-spacing: 0.5px; text-align: center; margin-top: 5px; max-width: 320px; line-height: 1.4; }
         
         .ready-later-btn { background: transparent; border: 1px solid var(--border-color); color: var(--gold); padding: 12px 24px; border-radius: 30px; font-size: 11px; font-weight: 600; letter-spacing: 1.5px; cursor: pointer; text-transform: uppercase; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px; }
         .ready-later-btn:hover { border-color: var(--gold); }
         .active-hours-note { font-size: 10px; color: #555; letter-spacing: 1px; text-transform: uppercase; text-align: center; margin-top: 5px; }
 
-        /* HOMEPAGE MICRO-GRID (Numbered Timeline Layout) */
-        .home-process-grid { display: grid; grid-template-columns: auto auto; justify-content: center; gap: 14px 24px; width: 100%; max-width: 320px; margin: 25px auto 0 auto; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 25px; }
-        .process-item { font-size: 9px; font-weight: 600; color: var(--text-muted); display: flex; align-items: center; gap: 6px; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.2; }
+        /* HOMEPAGE MICRO-GRID (Numbered Timeline Layout 1fr 1fr for strict symmetry) */
+        .home-process-grid { display: grid; grid-template-columns: 1fr 1fr; justify-content: center; gap: 14px 16px; width: 100%; max-width: 360px; margin: 25px auto 0 auto; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 25px; }
+        .process-item { font-size: 8.5px; font-weight: 600; color: var(--text-muted); display: flex; align-items: center; gap: 6px; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.2; }
         .process-step-num { color: var(--gold); font-size: 10px; font-weight: 800; letter-spacing: 1px; }
         .process-item.highlight { color: var(--gold); font-weight: 800; }
 
@@ -140,7 +139,7 @@
                 <span class="vip-star">✦</span>
                 <span data-en="Founding Spurtan Access" data-fr="Accès Spurtan Fondateur">Founding Spurtan Access</span>
             </div>
-            <div class="vip-pill-right" data-en="Own the Hour Before →" data-fr="Maîtrisez votre heure →">
+            <div class="vip-pill-right" data-en="Own the Hour Before →" data-fr="Prenez le contrôle de votre temps →">
                 Own the Hour Before →
             </div>
         </div>
@@ -193,9 +192,11 @@
 
         <!-- Inline Pricing & Call To Action Area -->
         <div class="cta-container">
-            <div class="inline-pricing">
-                <span id="displayPrice">$49.99 CAD</span> <span data-en="Priority Flat Rate" data-fr="Tarif Fixe Prioritaire">Priority Flat Rate</span><br>
-                <button type="button" onclick="safeOpenModal('codeModal')" style="background:none; border:none; color:var(--text-muted); font-size:10px; font-weight:700; text-decoration:underline; cursor:pointer; margin-top:8px;" data-en="HAVE SPURTAN CODE?" data-fr="AVEZ-UN CODE SPURTAN ?">HAVE SPURTAN CODE?</button>
+            
+            <!-- Dynamic Pricing Block for EN/FR Grammar -->
+            <div class="inline-pricing" id="pricingContainer">
+                <span>$49.99 CAD</span> PRIORITY FLAT RATE<br>
+                <button type="button" onclick="safeOpenModal('codeModal')" style="background:none; border:none; color:var(--text-muted); font-size:10px; font-weight:700; text-decoration:underline; cursor:pointer; margin-top:8px;">HAVE SPURTAN CODE?</button>
             </div>
 
             <div>
@@ -203,7 +204,7 @@
                     <span class="ready-line-1">READY</span>
                     <span class="ready-line-2">NOW™</span>
                 </button>
-                <div class="cta-footer-note" data-en="A SPUR Specialist recommends what you need.<br>You just show up." data-fr="Un spécialiste SPUR recommande ce dont vous avez besoin.<br>Vous vous présentez, tout simplement.">
+                <div class="cta-footer-note" data-en="A SPUR Specialist recommends what you need.<br>You just show up." data-fr="Un spécialiste SPUR recommande ce qu'il vous faut.<br>Vous vous présentez, tout simplement.">
                     A SPUR Specialist recommends what you need.<br>You just show up.
                 </div>
             </div>
@@ -215,23 +216,23 @@
                     <line x1="8" y1="2" x2="8" y2="6"></line>
                     <line x1="3" y1="10" x2="21" y2="10"></line>
                 </svg>
-                <span>READY LATER™</span>
+                <span data-en="READY LATER™" data-fr="READY LATER™">READY LATER™</span>
             </button>
             
-            <div class="active-hours-note" data-en="Active Dispatch Hours: 9:00 AM – 8:00 PM (PT)" data-fr="Heures de dispatche actives : 9h00 – 20h00 (HP)">
-                Active Dispatch Hours: 9:00 AM – 8:00 PM (PT)
+            <div class="active-hours-note" id="dispatchHoursText">
+                ACTIVE DISPATCH HOURS: 9:00 AM – 8:00 PM (PT)
             </div>
 
             <!-- HOMEPAGE MICRO-GRID (Numbered Timeline Layout) -->
             <div class="home-process-grid">
-                <div class="process-item"><span class="process-step-num">01.</span> <span data-en="Tap Ready Now" data-fr="Appuyez Sur Prêt">Tap Ready Now</span></div>
+                <div class="process-item"><span class="process-step-num">01.</span> <span data-en="Tap Ready Now" data-fr="Appuyez Sur Ready Now">Tap Ready Now</span></div>
                 <div class="process-item"><span class="process-step-num">02.</span> <span data-en="We Find Your Specialist" data-fr="Nous Trouvons Votre Spécialiste">We Find Your Specialist</span></div>
                 
                 <div class="process-item"><span class="process-step-num">03.</span> <span data-en="They Recommend" data-fr="Ils Recommandent">They Recommend</span></div>
                 <div class="process-item"><span class="process-step-num">04.</span> <span data-en="You Approve" data-fr="Vous Approuvez">You Approve</span></div>
                 
-                <div class="process-item"><span class="process-step-num">05.</span> <span data-en="They Do Their Art" data-fr="Ils Font Leur Art">They Do Their Art</span></div>
-                <div class="process-item highlight"><span class="process-step-num">06.</span> <span data-en="Show Up Ready" data-fr="Soyez Prêt">Show Up Ready</span></div>
+                <div class="process-item"><span class="process-step-num">05.</span> <span data-en="They Do Their Art" data-fr="Ils Font Leur Magie">They Do Their Art</span></div>
+                <div class="process-item highlight"><span class="process-step-num">06.</span> <span data-en="Show Up Ready" data-fr="Show Up Ready">Show Up Ready</span></div>
             </div>
             
         </div>
@@ -255,7 +256,7 @@
             
             <div class="perks-mini-box" style="text-align: left;">
                 <p style="margin-bottom: 10px;"><strong data-en="01. Zero Menus:" data-fr="01. Zéro Menu :">01. Zero Menus:</strong> <span data-en="You state your life moment. No service lists." data-fr="Vous indiquez votre moment. Pas de liste de services.">You state your life moment. No service lists.</span></p>
-                <p style="margin-bottom: 10px;"><strong data-en="02. Verified Dispatch:" data-fr="02. Dispatche Vérifié :">02. Verified Dispatch:</strong> <span data-en="We coordinate availability through a verified concierge process." data-fr="Nous coordonnons la disponibilité via un processus de conciergerie vérifié.">We coordinate availability through a verified concierge process.</span></p>
+                <p style="margin-bottom: 10px;"><strong data-en="02. Verified Dispatch:" data-fr="02. Coordination Vérifiée :">02. Verified Dispatch:</strong> <span data-en="We coordinate availability through a verified concierge process." data-fr="Nous coordonnons la disponibilité via notre réseau de conciergerie.">We coordinate availability through a verified concierge process.</span></p>
                 <p style="margin-bottom: 10px;"><strong data-en="03. Assess & Approve:" data-fr="03. Évaluer et Approuver :">03. Assess & Approve:</strong> <span data-en="The SPUR Specialist recommends either a <strong>Refresh™</strong> or <strong>Reset™</strong>. You approve before execution." data-fr="Le spécialiste SPUR recommande un <strong>Refresh™</strong> ou un <strong>Reset™</strong>. Vous approuvez avant l'exécution.">The SPUR Specialist recommends either a <strong>Refresh™</strong> or <strong>Reset™</strong>. You approve before execution.</span></p>
                 <p style="margin-bottom: 0;"><strong data-en="04. The Guarantee:" data-fr="04. La Garantie :">04. The Guarantee:</strong> <span data-en="Not ready? We redo it free. Still not happy? Full refund." data-fr="Pas prêt ? Nous recommençons gratuitement. Toujours pas satisfait ? Remboursement complet.">Not ready? We redo it free. Still not happy? Full refund.</span></p>
             </div>
@@ -476,6 +477,37 @@
         const SUPABASE_ANON_KEY = 'sb_publishable_h-5S_3VCTLKsN8iVUc_LxQ_T7rn1HlJ';
         const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
 
+        // Dynamic Text Updaters for flawless French formatting
+        function updatePricingDisplay() {
+            const lang = localStorage.getItem('spur_lang') || 'en';
+            const hasCode = localStorage.getItem('spur_applied_code') !== null;
+            const usedCode = localStorage.getItem('spur_discount_used') === 'true';
+            const price = (hasCode && !usedCode) ? '39.99' : '49.99';
+            
+            const container = document.getElementById('pricingContainer');
+            if (!container) return;
+
+            if (lang === 'fr') {
+                container.innerHTML = `TARIF FIXE PRIORITAIRE : <span>${price.replace('.', ',')} $ CAD</span><br>
+                <button type="button" onclick="safeOpenModal('codeModal')" style="background:none; border:none; color:var(--text-muted); font-size:10px; font-weight:700; text-decoration:underline; cursor:pointer; margin-top:8px;">AVEZ-VOUS UN CODE SPURTAN ?</button>`;
+            } else {
+                container.innerHTML = `<span>$${price} CAD</span> PRIORITY FLAT RATE<br>
+                <button type="button" onclick="safeOpenModal('codeModal')" style="background:none; border:none; color:var(--text-muted); font-size:10px; font-weight:700; text-decoration:underline; cursor:pointer; margin-top:8px;">HAVE SPURTAN CODE?</button>`;
+            }
+        }
+
+        function updateDispatchHours() {
+            const lang = localStorage.getItem('spur_lang') || 'en';
+            const tzEN = (currentCity === 'yvr') ? 'PT' : 'ET';
+            const tzFR = (currentCity === 'yvr') ? 'HP' : 'HE';
+            const el = document.getElementById('dispatchHoursText');
+            if(el) {
+                el.textContent = lang === 'fr' 
+                    ? `HEURES D'ACTIVITÉ : 9 h – 20 h (${tzFR})`
+                    : `ACTIVE DISPATCH HOURS: 9:00 AM – 8:00 PM (${tzEN})`;
+            }
+        }
+
         async function updateLiveCounter() {
             if (!supabaseClient) return;
             try {
@@ -485,10 +517,8 @@
                     .not('spurtan_code', 'is', null);
 
                 if (error) throw error;
-
                 const usedCodes = count || 0;
                 const remainingCodes = 99 - usedCodes;
-                
                 const badge = document.getElementById('spotsRemainingBadge');
                 const lang = localStorage.getItem('spur_lang') || 'en';
 
@@ -533,14 +563,11 @@
 
                     if (data.spurtan_code && !hasPastVisits && !localDiscountUsed) {
                         localStorage.setItem('spur_applied_code', data.spurtan_code);
-                        const priceDisplay = document.getElementById('displayPrice');
-                        if (priceDisplay) priceDisplay.textContent = "$39.99 CAD";
                     } else {
                         localStorage.removeItem('spur_applied_code');
                         localStorage.setItem('spur_discount_used', 'true');
-                        const priceDisplay = document.getElementById('displayPrice');
-                        if (priceDisplay) priceDisplay.textContent = "$49.99 CAD";
                     }
+                    updatePricingDisplay();
                 }
             } catch (err) {
                 console.log("Supabase sync fallback active");
@@ -551,20 +578,9 @@
             try {
                 if (!supabaseClient) return;
                 const appliedCode = localStorage.getItem('spur_applied_code') || null;
-
-                const payload = { 
-                    phone: phone, 
-                    name: name, 
-                    last_specialist: specialist 
-                };
-
-                if (appliedCode) {
-                    payload.spurtan_code = appliedCode;
-                }
-
-                await supabaseClient
-                    .from('clients')
-                    .upsert(payload, { onConflict: 'phone' });
+                const payload = { phone: phone, name: name, last_specialist: specialist };
+                if (appliedCode) payload.spurtan_code = appliedCode;
+                await supabaseClient.from('clients').upsert(payload, { onConflict: 'phone' });
             } catch (err) {
                 console.error("Supabase write error:", err);
             }
@@ -602,6 +618,7 @@
             }
             
             updateBadgeText();
+            updateDispatchHours(); // Timezone adjusts instantly
             localStorage.setItem('spur_active_city', city);
         }
 
@@ -613,6 +630,7 @@
         function switchLanguage(lang) {
             document.getElementById('btn-en').classList.toggle('active', lang === 'en');
             document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
+            
             document.querySelectorAll('[data-en]').forEach(el => {
                 if (el.hasAttribute('data-fr')) {
                     el.innerHTML = lang === 'fr' ? el.getAttribute('data-fr') : el.getAttribute('data-en');
@@ -634,6 +652,8 @@
             }
             localStorage.setItem('spur_lang', lang);
             updateBadgeText();
+            updatePricingDisplay(); // Refreshes currency grammar
+            updateDispatchHours(); // Refreshes timezone language
             updateLiveCounter();
         }
 
@@ -716,8 +736,7 @@
             localStorage.removeItem('last_specialist');
             localStorage.removeItem('spur_applied_code');
             localStorage.removeItem('spur_discount_used');
-            const priceDisplay = document.getElementById('displayPrice');
-            if(priceDisplay) priceDisplay.textContent = "$49.99 CAD";
+            updatePricingDisplay();
             alert("Profile reset. Please enter your details.");
             closeModals();
             safeOpenModal('verifyModal');
@@ -741,7 +760,7 @@
             const lang = localStorage.getItem('spur_lang') || 'en';
             alert(lang === 'fr' ? "✓ Accès Spurtan Fondateur confirmé ! Votre tarif de 39,99 $ est actif pour votre première visite." : "✓ Founding Spurtan Access confirmed! Your $39.99 rate is active for your first visit.");
             
-            document.getElementById('displayPrice').textContent = "$39.99 CAD";
+            updatePricingDisplay();
             
             const sub = document.getElementById('dynamicHeroSubtitle');
             if (sub) {
@@ -808,7 +827,7 @@
             }
 
             localStorage.setItem('spur_applied_code', codeVal);
-            document.getElementById('displayPrice').textContent = "$39.99 CAD";
+            updatePricingDisplay();
             
             alert(lang === 'fr' ? "✓ Remise appliquée !" : "✓ Code applied! (-$10.00)");
             closeModals(); event.target.reset();
@@ -920,12 +939,6 @@
                 if (savedName && sub) {
                     const lang = localStorage.getItem('spur_lang') || 'en';
                     sub.textContent = lang === 'fr' ? "Bon retour, " + savedName.split(' ')[0] + "." : "Welcome back, " + savedName.split(' ')[0] + ".";
-                }
-                
-                const hasCode = localStorage.getItem('spur_applied_code') !== null;
-                const usedCode = localStorage.getItem('spur_discount_used') === 'true';
-                if(hasCode && !usedCode) {
-                    document.getElementById('displayPrice').textContent = "$39.99 CAD";
                 }
             } catch (e) { console.error(e); }
         });
