@@ -472,12 +472,10 @@
         <div class="header-container">
             <div class="logo-area" style="display: flex; flex-direction: column; align-items: flex-start;">
                 <!-- SPUR Logo: Absolute Precision Lock -->
-                <div style="line-height: 1; margin-bottom: 6px; display: flex; align-items: flex-end;">
-                    <span style="font-size: 32px; font-weight: 800; letter-spacing: 4px; color: #ffffff;">SPU</span>
-                    <span style="font-size: 32px; font-weight: 800; color: var(--gold); position: relative;">
-                        R
-                        <span style="font-size: 14px; color: var(--gold); position: absolute; top: -2px; right: -12px;">✦</span>
-                    </span>
+                <div style="display: flex; align-items: flex-start; line-height: 1; margin-bottom: 6px;">
+                    <span style="font-size: 32px; font-weight: 800; letter-spacing: 6px; color: #ffffff;">SPU</span>
+                    <span style="font-size: 32px; font-weight: 800; letter-spacing: 2px; color: var(--gold);">R</span>
+                    <span style="font-size: 14px; color: var(--gold); margin-top: 0px; margin-left: 4px;">✦</span>
                 </div>
                 <span style="font-size: 8px; font-weight: 700; letter-spacing: 2.5px; color: var(--gold); text-transform: uppercase;">SHOW UP READY™</span>
             </div>
@@ -560,14 +558,50 @@
     <!-- HOW IT WORKS MODAL -->
     <div id="howItWorksModal" class="modal-overlay">
         <div class="modal-card">
-            <h3 data-en="How SPUR Works" data-fr="Comment fonctionne SPUR">How SPUR Works</h3>
-            <p data-en="The hour before is yours. Here is the work we do behind the scenes." data-fr="L'heure qui précède est à vous. Voici ce que nous faisons en coulisses.">The hour before is yours. Here is the work we do behind the scenes.</p>
-            <div class="perks-mini-box" style="text-align: left;">
-                <p style="margin-bottom: 8px;"><strong data-en="01. Zero Menus:" data-fr="01. Zéro Menu :">01. Zero Menus:</strong> <span data-en="You state your life moment. No service lists." data-fr="Vous indiquez votre moment. Pas de liste de services.">You state your life moment. No service lists.</span></p>
-                <p style="margin-bottom: 8px;"><strong data-en="02. Verified Dispatch:" data-fr="02. Dispatche Vérifié :">02. Verified Dispatch:</strong> <span data-en="We coordinate availability through a verified concierge process." data-fr="Nous coordonnons la disponibilité via un processus de conciergerie vérifié.">We coordinate availability through a verified concierge process.</span></p>
-                <p style="margin-bottom: 8px;"><strong data-en="03. Assess & Approve:" data-fr="03. Évaluer et Approuver :">03. Assess & Approve:</strong> <span data-en="The SPUR Specialist assesses and recommends either a <strong>Refresh™</strong> or <strong>Reset™</strong>. You approve before execution." data-fr="Le spécialiste SPUR évalue et recommande un <strong>Refresh™</strong> ou un <strong>Reset™</strong>. Vous approuvez avant l'exécution.">The SPUR Specialist assesses and recommends either a <strong>Refresh™</strong> or <strong>Reset™</strong>. You approve before execution.</span></p>
-                <p style="margin-bottom: 0;"><strong data-en="04. The SPUR Guarantee:" data-fr="04. La Garantie SPUR :">04. The SPUR Guarantee:</strong> <span data-en="Not ready? We redo it free. Still not happy? Full refund." data-fr="Pas prêt ? Nous recommençons gratuitement. Toujours pas satisfait ? Remboursement complet.">Not ready? We redo it free. Still not happy? Full refund.</span></p>
+            <h3 data-en="The SPUR Standard" data-fr="Le Standard SPUR">The SPUR Standard</h3>
+            
+            <!-- 2x2 Feature Grid -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 24px 0;">
+                
+                <!-- Step 1 -->
+                <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 16px; padding: 18px 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 12px;">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span style="font-size: 11px; font-weight: 500; color: var(--text-main); line-height: 1.4;" data-en="We find your specialist." data-fr="Nous trouvons votre spécialiste.">We find your specialist.</span>
+                </div>
+                
+                <!-- Step 2 -->
+                <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 16px; padding: 18px 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 12px;">
+                        <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <span style="font-size: 11px; font-weight: 500; color: var(--text-main); line-height: 1.4;" data-en="They know exactly what you need." data-fr="Ils savent ce qu'il vous faut.">They know exactly what you need.</span>
+                </div>
+                
+                <!-- Step 3 -->
+                <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 16px; padding: 18px 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 12px;">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span style="font-size: 11px; font-weight: 500; color: var(--text-main); line-height: 1.4;" data-en="You approve." data-fr="Vous approuvez.">You approve.</span>
+                </div>
+                
+                <!-- Step 4 -->
+                <div style="background: rgba(212, 175, 55, 0.05); border: 1px solid var(--gold); border-radius: 16px; padding: 18px 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 12px;">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                    </svg>
+                    <span style="font-size: 12px; font-weight: 700; color: var(--gold); line-height: 1.4; text-transform: uppercase;" data-en="You get ready." data-fr="Vous êtes prêt.">You get ready.</span>
+                </div>
             </div>
+
+            <!-- Keep the Guarantee at the bottom -->
+            <div class="perks-mini-box" style="text-align: center; margin-top: 5px;">
+                <strong data-en="The SPUR Guarantee:" data-fr="La Garantie SPUR :">The SPUR Guarantee:</strong><br>
+                <span data-en="Not ready? We redo it free. Still not happy? Full refund." data-fr="Pas prêt ? Nous recommençons gratuitement. Toujours pas satisfait ? Remboursement complet.">Not ready? We redo it free. Still not happy? Full refund.</span>
+            </div>
+            
             <button class="modal-capsule-btn" onclick="closeModals()" data-en="GOT IT" data-fr="COMPRIS">GOT IT</button>
         </div>
     </div>
