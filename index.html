@@ -23,203 +23,35 @@
             --border-color: rgba(212, 175, 55, 0.25);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px 20px 35px 20px;
-            position: relative;
-        }
+        body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 20px 20px 35px 20px; position: relative; }
 
-        /* TOP VIP PILL */
-        .vip-top-pill {
-            width: 100%;
-            max-width: 440px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--border-color);
-            border-radius: 30px;
-            padding: 10px 16px;
-            margin-bottom: 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
+        .vip-top-pill { width: 100%; max-width: 440px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 30px; padding: 10px 16px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: all 0.2s ease; }
+        .vip-top-pill:hover { border-color: var(--gold); }
+        .vip-pill-left { display: flex; align-items: center; gap: 8px; font-size: 10px; font-weight: 700; letter-spacing: 1.2px; color: var(--text-muted); text-transform: uppercase; }
+        .vip-star { color: var(--gold); font-size: 11px; }
+        .vip-pill-right { font-size: 10px; font-weight: 800; letter-spacing: 1px; color: var(--gold); text-transform: uppercase; }
 
-        .vip-top-pill:hover {
-            border-color: var(--gold);
-        }
+        .header-container { width: 100%; max-width: 440px; display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 35px; }
+        .top-right-group { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
+        .live-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); padding: 5px 10px; border-radius: 20px; font-size: 9px; font-weight: 600; letter-spacing: 1px; color: var(--text-muted); text-transform: uppercase; }
+        .live-dot { width: 5px; height: 5px; background-color: #2ecc71; border-radius: 50%; box-shadow: 0 0 6px #2ecc71; }
+        .controls-row { display: flex; gap: 8px; }
+        .toggle-capsule { display: flex; align-items: center; background: rgba(255, 255, 255, 0.03); padding: 4px 8px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.06); }
+        .toggle-capsule button { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 10px; font-weight: 600; padding: 2px 3px; transition: color 0.2s ease; }
+        .toggle-capsule button.active { color: var(--gold); }
+        .toggle-capsule span { color: #444; margin: 0 3px; font-size: 10px; }
 
-        .vip-pill-left {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 1.2px;
-            color: var(--text-muted);
-            text-transform: uppercase;
-        }
+        .main-content { width: 100%; max-width: 440px; display: flex; flex-direction: column; align-items: center; flex-grow: 1; }
+        .hero-section { width: 100%; text-align: center; margin-bottom: 40px; }
+        .hero-title { font-size: 26px; font-weight: 400; line-height: 1.35; letter-spacing: -0.5px; margin-bottom: 12px; color: var(--text-main); }
+        .hero-title-gold { font-size: 20px; font-weight: 400; line-height: 1.35; letter-spacing: -0.5px; color: var(--gold); font-style: italic; }
 
-        .vip-star {
-            color: var(--gold);
-            font-size: 11px;
-        }
+        .inline-pricing { font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; text-align: center; }
+        .inline-pricing span { color: var(--gold); font-size: 14px; font-weight: 700; }
 
-        .vip-pill-right {
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: 1px;
-            color: var(--gold);
-            text-transform: uppercase;
-        }
-
-        /* Top Header Layout */
-        .header-container {
-            width: 100%;
-            max-width: 440px;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 35px;
-        }
-
-        .top-right-group {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 10px;
-        }
-
-        .live-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 9px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            color: var(--text-muted);
-            text-transform: uppercase;
-        }
-
-        .live-dot {
-            width: 5px;
-            height: 5px;
-            background-color: #2ecc71;
-            border-radius: 50%;
-            box-shadow: 0 0 6px #2ecc71;
-        }
-
-        .controls-row {
-            display: flex;
-            gap: 8px;
-        }
-
-        .toggle-capsule {
-            display: flex;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.03);
-            padding: 4px 8px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-        }
-
-        .toggle-capsule button {
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            cursor: pointer;
-            font-size: 10px;
-            font-weight: 600;
-            padding: 2px 3px;
-            transition: color 0.2s ease;
-        }
-
-        .toggle-capsule button.active {
-            color: var(--gold);
-        }
-
-        .toggle-capsule span {
-            color: #444;
-            margin: 0 3px;
-            font-size: 10px;
-        }
-
-        /* Main Minimalist Content */
-        .main-content {
-            width: 100%;
-            max-width: 440px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            flex-grow: 1; 
-        }
-
-        .hero-section {
-            width: 100%;
-            text-align: center;
-            margin-bottom: 45px;
-        }
-
-        .hero-title {
-            font-size: 26px;
-            font-weight: 400;
-            line-height: 1.35;
-            letter-spacing: -0.5px;
-            margin-bottom: 12px;
-            color: var(--text-main);
-        }
-
-        .hero-title-gold {
-            font-size: 20px;
-            font-weight: 400;
-            line-height: 1.35;
-            letter-spacing: -0.5px;
-            color: var(--gold);
-            font-style: italic;
-        }
-
-        /* Inline Minimalist Pricing */
-        .inline-pricing {
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-
-        .inline-pricing span {
-            color: var(--gold);
-            font-size: 14px;
-            font-weight: 700;
-        }
-
-        /* CALL TO ACTION AREA */
-        .cta-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
+        .cta-container { display: flex; flex-direction: column; align-items: center; width: 100%; gap: 20px; margin-bottom: 25px; }
 
         @keyframes breathing {
             0% { transform: scale(1); box-shadow: 0 0 20px rgba(212, 175, 55, 0.2); }
@@ -227,206 +59,58 @@
             100% { transform: scale(1); box-shadow: 0 0 20px rgba(212, 175, 55, 0.2); }
         }
 
-        .ready-circle-btn {
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            background: var(--gold);
-            color: #0d0d0d;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            border: none;
-            cursor: pointer;
-            animation: breathing 3s infinite ease-in-out;
-            margin: 0 auto;
-            text-align: center;
-            transition: transform 0.1s ease;
-        }
+        .ready-circle-btn { width: 160px; height: 160px; border-radius: 50%; background: var(--gold); color: #0d0d0d; display: flex; flex-direction: column; justify-content: center; align-items: center; border: none; cursor: pointer; animation: breathing 3s infinite ease-in-out; margin: 0 auto; text-align: center; transition: transform 0.1s ease; }
+        .ready-circle-btn:active { transform: scale(0.96); }
+        .ready-line-1 { font-size: 19px; font-weight: 800; letter-spacing: 2px; line-height: 1.1; }
+        .ready-line-2 { font-size: 18px; font-weight: 800; letter-spacing: 1.5px; line-height: 1.1; }
 
-        .ready-circle-btn:active {
-            transform: scale(0.96);
-        }
+        .cta-footer-note { font-size: 12px; color: var(--text-muted); letter-spacing: 0.5px; text-align: center; margin-top: 5px; max-width: 260px; line-height: 1.4; }
+        .ready-later-btn { background: transparent; border: 1px solid var(--border-color); color: var(--gold); padding: 12px 24px; border-radius: 30px; font-size: 11px; font-weight: 600; letter-spacing: 1.5px; cursor: pointer; text-transform: uppercase; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px; }
+        .ready-later-btn:hover { border-color: var(--gold); }
+        .active-hours-note { font-size: 10px; color: #555; letter-spacing: 1px; text-transform: uppercase; text-align: center; margin-top: 5px; }
 
-        .ready-line-1 {
-            font-size: 19px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            line-height: 1.1;
-        }
+        /* HOMEPAGE MICRO-GRID (2x3 Layout) */
+        .home-process-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 10px; width: 100%; max-width: 320px; margin: 25px auto 0 auto; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 25px; }
+        .process-item { font-size: 9px; font-weight: 600; color: var(--text-muted); display: flex; align-items: center; gap: 6px; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.2; }
+        .process-item .dot { color: var(--gold); font-size: 14px; line-height: 0; }
+        .process-item.highlight { color: var(--gold); font-weight: 800; }
 
-        .ready-line-2 {
-            font-size: 18px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            line-height: 1.1;
-        }
+        .site-footer { width: 100%; text-align: center; padding-top: 25px; margin-top: auto; border-top: 1px solid rgba(255, 255, 255, 0.05); font-size: 11px; color: #777; letter-spacing: 0.5px; }
+        .site-footer a { color: var(--text-muted); text-decoration: none; margin: 0 6px; transition: color 0.2s; font-weight: 600; cursor: pointer; }
+        .site-footer a:hover { color: var(--gold); text-decoration: underline; }
 
-        .cta-footer-note {
-            font-size: 12px;
-            color: var(--text-muted);
-            letter-spacing: 0.5px;
-            text-align: center;
-            margin-top: 5px;
-            max-width: 260px;
-            line-height: 1.4;
-        }
-
-        .ready-later-btn {
-            background: transparent;
-            border: 1px solid var(--border-color);
-            color: var(--gold);
-            padding: 12px 24px;
-            border-radius: 30px;
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 1.5px;
-            cursor: pointer;
-            text-transform: uppercase;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .ready-later-btn:hover {
-            border-color: var(--gold);
-        }
-
-        .active-hours-note {
-            font-size: 10px;
-            color: #555;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            text-align: center;
-            margin-top: 10px;
-        }
-
-        /* Footer */
-        .site-footer {
-            width: 100%;
-            text-align: center;
-            padding-top: 25px;
-            margin-top: auto;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            font-size: 11px;
-            color: #777;
-            letter-spacing: 0.5px;
-        }
-
-        .site-footer a {
-            color: var(--text-muted);
-            text-decoration: none;
-            margin: 0 6px;
-            transition: color 0.2s;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .site-footer a:hover {
-            color: var(--gold);
-            text-decoration: underline;
-        }
-
-        /* Interactive Modals */
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(6px);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 100;
-            padding: 20px;
-            overflow-y: auto;
-        }
-
-        .modal-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 28px 24px;
-            width: 100%;
-            max-width: 380px;
-            text-align: center;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
-            margin: auto;
-        }
-
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(6px); display: none; justify-content: center; align-items: center; z-index: 100; padding: 20px; overflow-y: auto; }
+        .modal-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 20px; padding: 28px 24px; width: 100%; max-width: 380px; text-align: center; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6); margin: auto; }
         .modal-card h3 { color: var(--text-main); font-size: 22px; margin-bottom: 10px; font-weight: 600; }
         .modal-card p { color: var(--text-muted); font-size: 13px; margin-bottom: 20px; line-height: 1.4; }
 
-        .modal-input {
-            width: 100%; background-color: #141414 !important; color: #ffffff !important;
-            border: 1px solid var(--border-color); padding: 14px; border-radius: 12px;
-            font-size: 15px; text-align: center; letter-spacing: 1px; margin-bottom: 12px; outline: none; appearance: none;
-        }
-
-        .modal-input:-webkit-autofill,
-        .modal-input:-webkit-autofill:hover, 
-        .modal-input:-webkit-autofill:focus {
-            -webkit-text-fill-color: #ffffff !important;
-            -webkit-box-shadow: 0 0 0px 1000px #141414 inset !important;
-            transition: background-color 5000s ease-in-out 0s;
-        }
-
+        .modal-input { width: 100%; background-color: #141414 !important; color: #ffffff !important; border: 1px solid var(--border-color); padding: 14px; border-radius: 12px; font-size: 15px; text-align: center; letter-spacing: 1px; margin-bottom: 12px; outline: none; appearance: none; }
+        .modal-input:-webkit-autofill { -webkit-text-fill-color: #ffffff !important; -webkit-box-shadow: 0 0 0px 1000px #141414 inset !important; transition: background-color 5000s ease-in-out 0s; }
         select.modal-input { text-align-last: center; }
         select.modal-input option { background: #141414; color: #ffffff; }
         select.modal-input option.gold-tier { color: var(--gold); font-weight: bold; }
         select.modal-input option.separator { color: rgba(255,255,255,0.2); }
-        
         .modal-input:focus { border-color: var(--gold); }
 
-        .modal-capsule-btn {
-            background: var(--gold); color: #0d0d0d; border: none; padding: 14px 24px;
-            border-radius: 30px; font-size: 12px; font-weight: 800; cursor: pointer; margin: 10px auto 0 auto; width: 100%; text-transform: uppercase;
-        }
-        .modal-capsule-btn:disabled {
-            background: #555; color: #888; cursor: not-allowed;
-        }
-        .modal-capsule-btn-secondary {
-            background: transparent; color: var(--text-main); border: 1px solid var(--border-color); padding: 12px 20px;
-            border-radius: 30px; font-size: 11px; font-weight: 700; cursor: pointer; margin: 8px auto 0 auto; width: 100%; text-transform: uppercase; letter-spacing: 1px;
-        }
+        .modal-capsule-btn { background: var(--gold); color: #0d0d0d; border: none; padding: 14px 24px; border-radius: 30px; font-size: 12px; font-weight: 800; cursor: pointer; margin: 10px auto 0 auto; width: 100%; text-transform: uppercase; }
+        .modal-capsule-btn:disabled { background: #555; color: #888; cursor: not-allowed; }
+        .modal-capsule-btn-secondary { background: transparent; color: var(--text-main); border: 1px solid var(--border-color); padding: 12px 20px; border-radius: 30px; font-size: 11px; font-weight: 700; cursor: pointer; margin: 8px auto 0 auto; width: 100%; text-transform: uppercase; letter-spacing: 1px; }
         .modal-capsule-btn-secondary:hover { border-color: var(--gold); }
-
-        #codeModal .modal-circle-btn {
-            width: 95px; height: 95px; border-radius: 50%;
-            background: var(--gold) !important; color: #0d0d0d !important;
-            border: none; font-weight: 800; font-size: 10px; cursor: pointer;
-            margin: 10px auto 16px auto; display: flex; justify-content: center;
-            align-items: center; text-align: center; padding: 5px;
-        }
+        #codeModal .modal-circle-btn { width: 95px; height: 95px; border-radius: 50%; background: var(--gold) !important; color: #0d0d0d !important; border: none; font-weight: 800; font-size: 10px; cursor: pointer; margin: 10px auto 16px auto; display: flex; justify-content: center; align-items: center; text-align: center; padding: 5px; }
 
         .modal-close { background: none; border: none; color: var(--text-muted); font-size: 12px; cursor: pointer; margin-top: 15px; display: inline-block; }
         .reset-user-link { display: none; background: none; border: none; color: var(--gold); font-size: 10px; font-weight: 700; text-transform: uppercase; cursor: pointer; text-decoration: underline; margin: 15px auto 5px auto; width: 100%; }
-
         .code-modal-bridge { margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(255, 255, 255, 0.06); font-size: 11px; color: var(--text-muted); }
         .code-modal-bridge button { background: none; border: none; color: var(--gold); font-weight: 700; text-decoration: underline; cursor: pointer; font-size: 11px; margin-top: 4px; }
-
-        .perks-mini-box {
-            background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color);
-            border-radius: 12px; padding: 14px; margin-bottom: 16px; text-align: left; font-size: 12px; color: var(--text-muted); line-height: 1.5;
-        }
+        .perks-mini-box { background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 12px; padding: 14px; margin-bottom: 16px; text-align: left; font-size: 12px; color: var(--text-muted); line-height: 1.5; }
         .perks-mini-box strong { color: var(--text-main); font-weight: 600; }
 
         /* Success Screen */
         #finalSuccessView { display: none; width: 100%; max-width: 440px; text-align: center; }
-        .success-header-tag {
-            display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 2px; color: var(--gold);
-            background: rgba(212, 175, 55, 0.1); border: 1px solid rgba(212, 175, 55, 0.3);
-            padding: 6px 14px; border-radius: 20px; text-transform: uppercase; margin-bottom: 20px;
-        }
+        .success-header-tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 2px; color: var(--gold); background: rgba(212, 175, 55, 0.1); border: 1px solid rgba(212, 175, 55, 0.3); padding: 6px 14px; border-radius: 20px; text-transform: uppercase; margin-bottom: 20px; }
         .success-main-title { font-size: 32px; font-weight: 700; color: var(--text-main); margin-bottom: 8px; }
         .success-sub-title { font-size: 15px; color: var(--text-muted); margin-bottom: 30px; }
-        .success-receipt-card {
-            background: var(--card-bg); border: 1px solid var(--border-color);
-            border-radius: 24px; padding: 28px 24px; text-align: left; position: relative; overflow: hidden;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
-        }
+        .success-receipt-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 24px; padding: 28px 24px; text-align: left; position: relative; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.6); }
         .success-receipt-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--gold); }
         .receipt-top-row { display: flex; justify-content: space-between; margin-bottom: 20px; }
         .receipt-title { font-size: 20px; font-weight: 600; margin-bottom: 4px; }
@@ -435,54 +119,12 @@
         .receipt-price { font-size: 22px; font-weight: 700; color: var(--gold); margin-bottom: 4px; }
         .receipt-price-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; }
         .receipt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
-        .receipt-grid-box {
-            background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 14px; padding: 16px; text-align: center;
-        }
+        .receipt-grid-box { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 14px; padding: 16px; text-align: center; }
         .grid-box-val { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
         .grid-box-lbl { font-size: 10px; color: var(--text-muted); text-transform: uppercase; }
-        .receipt-footer-desc {
-            font-size: 12px; color: var(--text-muted); line-height: 1.5;
-            border-top: 1px solid rgba(255, 255, 255, 0.06); padding-top: 16px; text-align: center;
-        }
-        .receipt-action-btn {
-            background: var(--gold); color: #0d0d0d; padding: 14px 24px; border-radius: 30px;
-            font-size: 12px; font-weight: 800; display: flex; justify-content: center; gap: 8px; margin-top: 20px; text-decoration: none;
-        }
+        .receipt-footer-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; border-top: 1px solid rgba(255, 255, 255, 0.06); padding-top: 16px; text-align: center; }
+        .receipt-action-btn { background: var(--gold); color: #0d0d0d; padding: 14px 24px; border-radius: 30px; font-size: 12px; font-weight: 800; display: flex; justify-content: center; gap: 8px; margin-top: 20px; text-decoration: none; }
         .cancel-link { display: block; text-align: center; font-size: 11px; color: var(--text-muted); text-decoration: underline; margin-top: 15px; }
-
-        /* Sleek Stacked List Styles */
-        .standards-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin: 24px 0;
-        }
-        .standard-row {
-            background: rgba(255, 255, 255, 0.015);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            padding: 14px 16px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            text-align: left;
-        }
-        .standard-icon-ring {
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-        .standard-row span {
-            font-size: 14px;
-            font-weight: 400;
-            color: var(--text-main);
-        }
     </style>
 </head>
 <body>
@@ -504,7 +146,6 @@
         <!-- Header Section with Absolute Precision Logo -->
         <div class="header-container">
             <div class="logo-area" style="display: flex; flex-direction: column; align-items: flex-start;">
-                <!-- SPUR Logo: Absolute Precision Lock -->
                 <div style="display: flex; align-items: flex-start; line-height: 1; margin-bottom: 6px;">
                     <span style="font-size: 32px; font-weight: 800; letter-spacing: 6px; color: #ffffff;">SPU</span>
                     <span style="font-size: 32px; font-weight: 800; letter-spacing: 2px; color: var(--gold); position: relative;">
@@ -574,9 +215,23 @@
                 </svg>
                 <span>READY LATER™</span>
             </button>
+            
             <div class="active-hours-note" data-en="Active Dispatch Hours: 9:00 AM – 8:00 PM (PT)" data-fr="Heures de dispatche actives : 9h00 – 20h00 (HP)">
                 Active Dispatch Hours: 9:00 AM – 8:00 PM (PT)
             </div>
+
+            <!-- HOMEPAGE MICRO-GRID (Subtle 3x2 Layout) -->
+            <div class="home-process-grid">
+                <div class="process-item"><span class="dot">•</span> <span data-en="Tap Ready Now" data-fr="Appuyez Sur Prêt">Tap Ready Now</span></div>
+                <div class="process-item"><span class="dot">•</span> <span data-en="We Find Your Specialist" data-fr="Nous Trouvons Votre Spécialiste">We Find Your Specialist</span></div>
+                
+                <div class="process-item"><span class="dot">•</span> <span data-en="They Recommend" data-fr="Ils Recommandent">They Recommend</span></div>
+                <div class="process-item"><span class="dot">•</span> <span data-en="You Approve" data-fr="Vous Approuvez">You Approve</span></div>
+                
+                <div class="process-item"><span class="dot">•</span> <span data-en="They Do Their Art" data-fr="Ils Font Leur Art">They Do Their Art</span></div>
+                <div class="process-item highlight"><span class="dot">•</span> <span data-en="Show Up Ready" data-fr="Soyez Prêt">Show Up Ready</span></div>
+            </div>
+            
         </div>
         
         <!-- Legal Footer -->
@@ -590,58 +245,17 @@
         
     </div>
 
-    <!-- HOW IT WORKS MODAL (SLEEK STACKED LIST UI) -->
+    <!-- HOW IT WORKS MODAL (RESTORED DETAILED TEXT) -->
     <div id="howItWorksModal" class="modal-overlay">
         <div class="modal-card">
-            <h3 data-en="The SPUR Standard" data-fr="Le Standard SPUR">The SPUR Standard</h3>
+            <h3 data-en="How SPUR Works" data-fr="Comment fonctionne SPUR">How SPUR Works</h3>
+            <p data-en="The hour before is yours. Here is the work we do behind the scenes." data-fr="L'heure qui précède est à vous. Voici ce que nous faisons en coulisses.">The hour before is yours. Here is the work we do behind the scenes.</p>
             
-            <!-- Sleek Stacked List -->
-            <div class="standards-list">
-                <!-- Step 1 -->
-                <div class="standard-row">
-                    <div class="standard-icon-ring">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle>
-                        </svg>
-                    </div>
-                    <span data-en="We find your specialist." data-fr="Nous trouvons votre spécialiste.">We find your specialist.</span>
-                </div>
-                
-                <!-- Step 2 -->
-                <div class="standard-row">
-                    <div class="standard-icon-ring">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                        </svg>
-                    </div>
-                    <span data-en="They know exactly what you need." data-fr="Ils savent exactement ce qu'il vous faut.">They know exactly what you need.</span>
-                </div>
-                
-                <!-- Step 3 -->
-                <div class="standard-row">
-                    <div class="standard-icon-ring">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="20 6 9 17 4 12"></polyline>
-                        </svg>
-                    </div>
-                    <span data-en="You approve." data-fr="Vous approuvez.">You approve.</span>
-                </div>
-                
-                <!-- Step 4 -->
-                <div class="standard-row">
-                    <div class="standard-icon-ring">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                        </svg>
-                    </div>
-                    <span data-en="You get ready." data-fr="Vous êtes prêt.">You get ready.</span>
-                </div>
-            </div>
-
-            <!-- The SPUR Guarantee -->
-            <div class="perks-mini-box" style="text-align: center; margin-top: 5px;">
-                <strong data-en="The SPUR Guarantee:" data-fr="La Garantie SPUR :">The SPUR Guarantee:</strong><br>
-                <span data-en="Not ready? We redo it free. Still not happy? Full refund." data-fr="Pas prêt ? Nous recommençons gratuitement. Toujours pas satisfait ? Remboursement complet.">Not ready? We redo it free. Still not happy? Full refund.</span>
+            <div class="perks-mini-box" style="text-align: left;">
+                <p style="margin-bottom: 10px;"><strong data-en="01. Zero Menus:" data-fr="01. Zéro Menu :">01. Zero Menus:</strong> <span data-en="You state your life moment. No service lists." data-fr="Vous indiquez votre moment. Pas de liste de services.">You state your life moment. No service lists.</span></p>
+                <p style="margin-bottom: 10px;"><strong data-en="02. Verified Dispatch:" data-fr="02. Dispatche Vérifié :">02. Verified Dispatch:</strong> <span data-en="We coordinate availability through a verified concierge process." data-fr="Nous coordonnons la disponibilité via un processus de conciergerie vérifié.">We coordinate availability through a verified concierge process.</span></p>
+                <p style="margin-bottom: 10px;"><strong data-en="03. Assess & Approve:" data-fr="03. Évaluer et Approuver :">03. Assess & Approve:</strong> <span data-en="The SPUR Specialist recommends either a <strong>Refresh™</strong> or <strong>Reset™</strong>. You approve before execution." data-fr="Le spécialiste SPUR recommande un <strong>Refresh™</strong> ou un <strong>Reset™</strong>. Vous approuvez avant l'exécution.">The SPUR Specialist recommends either a <strong>Refresh™</strong> or <strong>Reset™</strong>. You approve before execution.</span></p>
+                <p style="margin-bottom: 0;"><strong data-en="04. The Guarantee:" data-fr="04. La Garantie :">04. The Guarantee:</strong> <span data-en="Not ready? We redo it free. Still not happy? Full refund." data-fr="Pas prêt ? Nous recommençons gratuitement. Toujours pas satisfait ? Remboursement complet.">Not ready? We redo it free. Still not happy? Full refund.</span></p>
             </div>
             
             <button class="modal-capsule-btn" onclick="closeModals()" data-en="GOT IT" data-fr="COMPRIS">GOT IT</button>
@@ -1231,7 +845,6 @@
             
             let hasCode = localStorage.getItem('spur_applied_code') !== null;
 
-            // RIGOROUS POINT-OF-SALE CHECK
             if (hasCode && supabaseClient) {
                 const { count } = await supabaseClient
                     .from('requests')
