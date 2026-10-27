@@ -823,13 +823,34 @@
                 
                 const { data } = await supabaseClient
                     .from('clients')
-                    .select('name, last_specialist')
+                    .select('name, last_specialist, spurtan_code')
                     .eq('phone', savedPhone)
                     .single();
 
                 if (data) {
                     if (data.name) localStorage.setItem('spur_user_name', data.name);
                     if (data.last_specialist) localStorage.setItem('last_specialist', data.last_specialist);
+                    
+                    // Intelligent Discount Voiding: Check for past visits in the DB
+                    const { count } = await supabaseClient
+                        .from('requests')
+                        .select('*', { count: 'exact', head: true })
+                        .eq('phone', savedPhone);
+
+                    const hasPastVisits = count && count > 0;
+                    const localDiscountUsed = localStorage.getItem('spur_discount_used') === 'true';
+
+                    if (data.spurtan_code && !hasPastVisits && !localDiscountUsed) {
+                        localStorage.setItem('spur_applied_code', data.spurtan_code);
+                        const priceDisplay = document.getElementById('displayPrice');
+                        if (priceDisplay) priceDisplay.textContent = "$39.99 CAD";
+                    } else {
+                        // Void discount because they are a repeat customer
+                        localStorage.removeItem('spur_applied_code');
+                        localStorage.setItem('spur_discount_used', 'true');
+                        const priceDisplay = document.getElementById('displayPrice');
+                        if (priceDisplay) priceDisplay.textContent = "$49.99 CAD";
+                    }
                 }
             } catch (err) {
                 console.log("Supabase sync fallback active");
@@ -1004,6 +1025,10 @@
             localStorage.removeItem('spur_user_name');
             localStorage.removeItem('spur_user_phone');
             localStorage.removeItem('last_specialist');
+            localStorage.removeItem('spur_applied_code');
+            localStorage.removeItem('spur_discount_used');
+            const priceDisplay = document.getElementById('displayPrice');
+            if(priceDisplay) priceDisplay.textContent = "$49.99 CAD";
             alert("Profile reset. Please enter your details.");
             closeModals();
             safeOpenModal('verifyModal');
@@ -1025,7 +1050,7 @@
             await syncClientToSupabase(name, phone, 'Priority Match');
 
             const lang = localStorage.getItem('spur_lang') || 'en';
-            alert(lang === 'fr' ? "✓ Accès Spurtan Fondateur confirmé ! Votre tarif de 39,99 $ est actif." : "✓ Founding Spurtan Access confirmed! Your $39.99 rate is now active.");
+            alert(lang === 'fr' ? "✓ Accès Spurtan Fondateur confirmé ! Votre tarif de 39,99 $ est actif pour votre première visite." : "✓ Founding Spurtan Access confirmed! Your $39.99 rate is active for your first visit.");
             
             document.getElementById('displayPrice').textContent = "$39.99 CAD";
             
@@ -1041,6 +1066,7 @@
         async function handleCodeSubmit(event) {
             event.preventDefault();
             const codeVal = document.getElementById('spurInput').value.trim().toUpperCase();
+            const lang = localStorage.getItem('spur_lang') || 'en';
             
             let isMathValid = false;
             
@@ -1053,14 +1079,19 @@
                 }
             }
 
-            const lang = localStorage.getItem('spur_lang') || 'en';
-
             if (!isMathValid) {
                 alert(lang === 'fr' ? "Veuillez entrer un code valide." : "Please enter a valid code.");
                 return;
             }
 
+            // Security Check: Block discount application if they've already used it
+            if(localStorage.getItem('spur_discount_used') === 'true') {
+                alert(lang === 'fr' ? "Le tarif fondateur est valable uniquement pour votre première visite." : "The Founding Spurtan rate is valid for your first visit only.");
+                return;
+            }
+
             if (supabaseClient) {
+                // Check if code was already claimed by another phone
                 const { data, error } = await supabaseClient
                     .from('clients')
                     .select('phone')
@@ -1071,6 +1102,20 @@
                     const currentPhone = localStorage.getItem('spur_user_phone');
                     if (!currentPhone || data.phone !== currentPhone) {
                         alert(lang === 'fr' ? "Ce code a déjà été utilisé." : "This code has already been claimed.");
+                        return;
+                    }
+                }
+                
+                // Check if they have past visits registered in the DB
+                const currentPhone = localStorage.getItem('spur_user_phone');
+                if (currentPhone) {
+                    const { count } = await supabaseClient
+                        .from('requests')
+                        .select('*', { count: 'exact', head: true })
+                        .eq('phone', currentPhone);
+                        
+                    if (count && count > 0) {
+                        alert(lang === 'fr' ? "Le tarif fondateur est valable uniquement pour votre première visite." : "The Founding Spurtan rate is valid for your first visit only.");
                         return;
                     }
                 }
@@ -1137,6 +1182,10 @@
                     price: finalPrice
                 });
             } catch (err) { console.error('Request log error:', err); }
+
+            // Mark the discount as used so it never applies to future visits
+            localStorage.setItem('spur_discount_used', 'true');
+            localStorage.removeItem('spur_applied_code');
 
             // Enhanced WhatsApp String for Concierge Clarity
             let waMessage = `Hello SPUR — I would like to request a visit.\n\nType: ${type.toUpperCase()}\nCity: ${city}\nName: ${name}\nMobile: ${phone}\nOccasion: ${occasion}\n\nService: ${serviceRequested}\nTotal: $${finalPrice.toFixed(2)}\nSpecialist: ${specialist}\n\nPlease coordinate verified availability.`;
