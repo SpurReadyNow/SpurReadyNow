@@ -23,7 +23,7 @@
             --border-color: rgba(212, 175, 55, 0.25);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
 
         body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 20px 20px 35px 20px; position: relative; }
 
@@ -64,15 +64,17 @@
         .ready-line-1 { font-size: 19px; font-weight: 800; letter-spacing: 2px; line-height: 1.1; }
         .ready-line-2 { font-size: 18px; font-weight: 800; letter-spacing: 1.5px; line-height: 1.1; }
 
-        .cta-footer-note { font-size: 12px; color: var(--text-muted); letter-spacing: 0.5px; text-align: center; margin-top: 5px; max-width: 260px; line-height: 1.4; }
+        /* FIXED: Increased max-width to 300px to prevent the text wrapping issue */
+        .cta-footer-note { font-size: 12px; color: var(--text-muted); letter-spacing: 0.5px; text-align: center; margin-top: 5px; max-width: 300px; line-height: 1.4; }
+        
         .ready-later-btn { background: transparent; border: 1px solid var(--border-color); color: var(--gold); padding: 12px 24px; border-radius: 30px; font-size: 11px; font-weight: 600; letter-spacing: 1.5px; cursor: pointer; text-transform: uppercase; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px; }
         .ready-later-btn:hover { border-color: var(--gold); }
         .active-hours-note { font-size: 10px; color: #555; letter-spacing: 1px; text-transform: uppercase; text-align: center; margin-top: 5px; }
 
-        /* HOMEPAGE MICRO-GRID (2x3 Layout) */
-        .home-process-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 10px; width: 100%; max-width: 320px; margin: 25px auto 0 auto; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 25px; }
+        /* HOMEPAGE MICRO-GRID (Numbered Timeline Layout) */
+        .home-process-grid { display: grid; grid-template-columns: auto auto; justify-content: center; gap: 14px 24px; width: 100%; max-width: 320px; margin: 25px auto 0 auto; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 25px; }
         .process-item { font-size: 9px; font-weight: 600; color: var(--text-muted); display: flex; align-items: center; gap: 6px; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.2; }
-        .process-item .dot { color: var(--gold); font-size: 14px; line-height: 0; }
+        .process-step-num { color: var(--gold); font-size: 10px; font-weight: 800; letter-spacing: 1px; }
         .process-item.highlight { color: var(--gold); font-weight: 800; }
 
         .site-footer { width: 100%; text-align: center; padding-top: 25px; margin-top: auto; border-top: 1px solid rgba(255, 255, 255, 0.05); font-size: 11px; color: #777; letter-spacing: 0.5px; }
@@ -220,16 +222,16 @@
                 Active Dispatch Hours: 9:00 AM – 8:00 PM (PT)
             </div>
 
-            <!-- HOMEPAGE MICRO-GRID (Subtle 3x2 Layout) -->
+            <!-- HOMEPAGE MICRO-GRID (Numbered Timeline Layout) -->
             <div class="home-process-grid">
-                <div class="process-item"><span class="dot">•</span> <span data-en="Tap Ready Now" data-fr="Appuyez Sur Prêt">Tap Ready Now</span></div>
-                <div class="process-item"><span class="dot">•</span> <span data-en="We Find Your Specialist" data-fr="Nous Trouvons Votre Spécialiste">We Find Your Specialist</span></div>
+                <div class="process-item"><span class="process-step-num">01.</span> <span data-en="Tap Ready Now" data-fr="Appuyez Sur Prêt">Tap Ready Now</span></div>
+                <div class="process-item"><span class="process-step-num">02.</span> <span data-en="We Find Your Specialist" data-fr="Nous Trouvons Votre Spécialiste">We Find Your Specialist</span></div>
                 
-                <div class="process-item"><span class="dot">•</span> <span data-en="They Recommend" data-fr="Ils Recommandent">They Recommend</span></div>
-                <div class="process-item"><span class="dot">•</span> <span data-en="You Approve" data-fr="Vous Approuvez">You Approve</span></div>
+                <div class="process-item"><span class="process-step-num">03.</span> <span data-en="They Recommend" data-fr="Ils Recommandent">They Recommend</span></div>
+                <div class="process-item"><span class="process-step-num">04.</span> <span data-en="You Approve" data-fr="Vous Approuvez">You Approve</span></div>
                 
-                <div class="process-item"><span class="dot">•</span> <span data-en="They Do Their Art" data-fr="Ils Font Leur Art">They Do Their Art</span></div>
-                <div class="process-item highlight"><span class="dot">•</span> <span data-en="Show Up Ready" data-fr="Soyez Prêt">Show Up Ready</span></div>
+                <div class="process-item"><span class="process-step-num">05.</span> <span data-en="They Do Their Art" data-fr="Ils Font Leur Art">They Do Their Art</span></div>
+                <div class="process-item highlight"><span class="process-step-num">06.</span> <span data-en="Show Up Ready" data-fr="Soyez Prêt">Show Up Ready</span></div>
             </div>
             
         </div>
