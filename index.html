@@ -450,6 +450,44 @@
             font-size: 12px; font-weight: 800; display: flex; justify-content: center; gap: 8px; margin-top: 20px; text-decoration: none;
         }
         .cancel-link { display: block; text-align: center; font-size: 11px; color: var(--text-muted); text-decoration: underline; margin-top: 15px; }
+
+        /* 2x2 SPUR Standard Grid Styles */
+        .standards-grid {
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 12px; 
+            margin: 24px 0;
+        }
+        .standard-card {
+            background: rgba(255, 255, 255, 0.02); 
+            border: 1px solid var(--border-color); 
+            border-radius: 16px; 
+            padding: 18px 12px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            text-align: center;
+        }
+        .standard-card svg {
+            margin-bottom: 12px;
+        }
+        .standard-card span {
+            font-size: 11px; 
+            font-weight: 500; 
+            color: var(--text-main); 
+            line-height: 1.4;
+        }
+        .standard-card.highlight {
+            background: rgba(212, 175, 55, 0.05); 
+            border: 1px solid var(--gold);
+        }
+        .standard-card.highlight span {
+            font-size: 12px; 
+            font-weight: 700; 
+            color: var(--gold); 
+            text-transform: uppercase;
+        }
     </style>
 </head>
 <body>
@@ -474,8 +512,10 @@
                 <!-- SPUR Logo: Absolute Precision Lock -->
                 <div style="display: flex; align-items: flex-start; line-height: 1; margin-bottom: 6px;">
                     <span style="font-size: 32px; font-weight: 800; letter-spacing: 6px; color: #ffffff;">SPU</span>
-                    <span style="font-size: 32px; font-weight: 800; letter-spacing: 2px; color: var(--gold);">R</span>
-                    <span style="font-size: 14px; color: var(--gold); margin-top: 0px; margin-left: 4px;">✦</span>
+                    <span style="font-size: 32px; font-weight: 800; letter-spacing: 2px; color: var(--gold); position: relative;">
+                        R
+                        <span style="font-size: 14px; color: var(--gold); position: absolute; top: -2px; right: -12px;">✦</span>
+                    </span>
                 </div>
                 <span style="font-size: 8px; font-weight: 700; letter-spacing: 2.5px; color: var(--gold); text-transform: uppercase;">SHOW UP READY™</span>
             </div>
@@ -555,44 +595,43 @@
         
     </div>
 
-    <!-- HOW IT WORKS MODAL (UPDATED 2x2 GRID) -->
+    <!-- HOW IT WORKS MODAL (FULLY INTEGRATED 2x2 GRID) -->
     <div id="howItWorksModal" class="modal-overlay">
         <div class="modal-card">
             <h3 data-en="The SPUR Standard" data-fr="Le Standard SPUR">The SPUR Standard</h3>
             
             <!-- 2x2 Feature Grid -->
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 24px 0;">
-                
+            <div class="standards-grid">
                 <!-- Step 1 -->
-                <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 16px; padding: 18px 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 12px;">
+                <div class="standard-card">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle>
                     </svg>
-                    <span style="font-size: 11px; font-weight: 500; color: var(--text-main); line-height: 1.4;" data-en="We find your specialist." data-fr="Nous trouvons votre spécialiste.">We find your specialist.</span>
+                    <span data-en="We find your specialist." data-fr="Nous trouvons votre spécialiste.">We find your specialist.</span>
                 </div>
                 
                 <!-- Step 2 -->
-                <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 16px; padding: 18px 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 12px;">
+                <div class="standard-card">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                     </svg>
-                    <span style="font-size: 11px; font-weight: 500; color: var(--text-main); line-height: 1.4;" data-en="They know exactly what you need." data-fr="Ils savent ce qu'il vous faut.">They know exactly what you need.</span>
+                    <span data-en="They know exactly what you need." data-fr="Ils savent ce qu'il vous faut.">They know exactly what you need.</span>
                 </div>
                 
                 <!-- Step 3 -->
-                <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 16px; padding: 18px 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 12px;">
+                <div class="standard-card">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                         <polyline points="20 6 9 17 4 12"></polyline>
                     </svg>
-                    <span style="font-size: 11px; font-weight: 500; color: var(--text-main); line-height: 1.4;" data-en="You approve." data-fr="Vous approuvez.">You approve.</span>
+                    <span data-en="You approve." data-fr="Vous approuvez.">You approve.</span>
                 </div>
                 
                 <!-- Step 4 -->
-                <div style="background: rgba(212, 175, 55, 0.05); border: 1px solid var(--gold); border-radius: 16px; padding: 18px 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 12px;">
+                <div class="standard-card highlight">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                         <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                     </svg>
-                    <span style="font-size: 12px; font-weight: 700; color: var(--gold); line-height: 1.4; text-transform: uppercase;" data-en="You get ready." data-fr="Vous êtes prêt.">You get ready.</span>
+                    <span data-en="You get ready." data-fr="Vous êtes prêt.">You get ready.</span>
                 </div>
             </div>
 
