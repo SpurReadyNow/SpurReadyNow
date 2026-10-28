@@ -7,7 +7,6 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#0d0d0d">
-    <link rel="manifest" href="manifest.json">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.38.4/dist/umd/supabase.min.js"></script>
     <style>
         :root { --bg-color: #0d0d0d; --gold: #d4af37; --silver: #a0a0a0; --text-main: #ffffff; --text-muted: #a0a0a0; --card-bg: #141414; --border-color: rgba(212, 175, 55, 0.25); }
@@ -56,7 +55,6 @@
         select.modal-input { text-align-last: center; }
         select.modal-input option { background: #141414; color: #ffffff; }
         select.modal-input option.gold-tier { color: var(--gold); font-weight: bold; }
-        select.modal-input option.silver-tier { color: var(--silver); font-weight: bold; }
         select.modal-input option.separator { color: rgba(255,255,255,0.2); }
         .modal-capsule-btn { background: var(--gold); color: #0d0d0d; border: none; padding: 14px 24px; border-radius: 30px; font-size: 12px; font-weight: 800; cursor: pointer; margin: 10px auto 0 auto; width: 100%; text-transform: uppercase; }
         .modal-capsule-btn-secondary { background: transparent; color: var(--text-main); border: 1px solid var(--border-color); padding: 12px 20px; border-radius: 30px; font-size: 11px; font-weight: 700; cursor: pointer; margin: 8px auto 0 auto; width: 100%; text-transform: uppercase; letter-spacing: 1px; }
@@ -99,7 +97,9 @@
                 <span class="vip-star">✦</span>
                 <span data-en="Founding Spurtan Access" data-fr="Accès Spurtan Fondateur">Founding Spurtan Access</span>
             </div>
-            <div class="vip-pill-right" data-en="Own the Hour Before →" data-fr="Maîtrisez votre heure →">Own the Hour Before →</div>
+            <div class="vip-pill-right" data-en="Own the Hour Before →" data-fr="Maîtrisez votre heure →">
+                Own the Hour Before →
+            </div>
         </div>
 
         <div class="header-container">
@@ -179,7 +179,7 @@
         </div>
     </div>
 
-    <!-- HOW IT WORKS MODAL -->
+    <!-- HOW IT WORKS MODAL (The Manifesto) -->
     <div id="howItWorksModal" class="modal-overlay">
         <div class="modal-card">
             <h3 data-en="The SPUR Standard" data-fr="Le Standard SPUR">The SPUR Standard</h3>
@@ -221,11 +221,14 @@
     <div id="historyModal" class="modal-overlay">
         <div class="modal-card" style="display: flex; flex-direction: column;">
             <h3 data-en="Your Bookings" data-fr="Vos Réservations">Your Bookings</h3>
-            <div id="historyContent" style="flex-grow: 1; max-height: 400px; overflow-y: auto; margin: 15px 0; text-align: left;"></div>
+            <div id="historyContent" style="flex-grow: 1; max-height: 400px; overflow-y: auto; margin: 15px 0; text-align: left;">
+                <!-- Content injected via JS -->
+            </div>
             <button class="modal-capsule-btn" onclick="closeModals()" data-en="CLOSE" data-fr="FERMER" style="margin-top: auto;">CLOSE</button>
         </div>
     </div>
 
+    <!-- SPECIALIST INTERCEPT MODAL -->
     <div id="interceptModal" class="modal-overlay">
         <div class="modal-card">
             <h3 data-en="Securing Your Chair" data-fr="Sécurisation de votre place">Securing Your Chair</h3>
@@ -237,7 +240,7 @@
         </div>
     </div>
 
-    <!-- READY NOW MODAL (EDGE IN DROPDOWN + DYNAMIC RETURN UX) -->
+    <!-- READY NOW MODAL (NO EDGE IN DROPDOWN + DYNAMIC RETURN UX) -->
     <div id="verifyModal" class="modal-overlay">
         <div class="modal-card">
             <h3 class="dynamic-header" data-en="Get Ready Now" data-fr="Préparez-vous Maintenant">Get Ready Now</h3>
@@ -258,13 +261,15 @@
 
                 <select class="modal-input" name="client_occasion" id="occasionSelectNow">
                     <option value="" disabled selected data-en="Focus / Occasion (Optional)" data-fr="Objectif / Occasion (Optionnel)">Focus / Occasion (Optional)</option>
+                    
                     <option value="Just for You" class="gold-tier" data-en="Just for You™ — The Occasion is Me" data-fr="Juste pour vous™ — Je suis l'occasion">Just for You™ — The Occasion is Me</option>
                     <option disabled class="separator">──────────────────</option>
+                    
                     <option value="Professional" data-en="Professional — Meeting / Interview / Stage" data-fr="Professionnel — Réunion / Entretien / Scène">Professional — Meeting / Interview / Stage</option>
                     <option value="Social" data-en="Social — Date / Wedding / Night Out" data-fr="Social — Date / Mariage / Sortie">Social — Date / Wedding / Night Out</option>
                     <option value="Life" data-en="Life — Travel / Celebration / Milestone" data-fr="Vie — Voyage / Célébration / Étape">Life — Travel / Celebration / Milestone</option>
+                    
                     <option disabled class="separator">──────────────────</option>
-                    <option value="SPUR Edge" class="silver-tier" data-en="SPUR Edge™ — 15-Min Refinement ($29.99)" data-fr="SPUR Edge™ — Raffinement 15 Min (29,99 $)">SPUR Edge™ — 15-Min Refinement ($29.99)</option>
                     <option value="SPUR Reset" class="gold-tier" data-en="SPUR Reset™ — Full Restoration ($69.99)" data-fr="SPUR Reset™ — Restauration Complète (69,99 $)">SPUR Reset™ — Full Restoration ($69.99)</option>
                 </select>
 
@@ -275,7 +280,7 @@
         </div>
     </div>
 
-    <!-- READY LATER MODAL (EDGE IN DROPDOWN + DYNAMIC RETURN UX) -->
+    <!-- READY LATER MODAL (NO EDGE IN DROPDOWN + DYNAMIC RETURN UX) -->
     <div id="laterModal" class="modal-overlay">
         <div class="modal-card">
             <h3 class="dynamic-header" data-en="Plan Ahead" data-fr="Planifier à L'avance">Plan Ahead</h3>
@@ -296,13 +301,15 @@
 
                 <select class="modal-input" name="client_occasion" id="occasionSelectLater">
                     <option value="" disabled selected data-en="Focus / Occasion (Optional)" data-fr="Objectif / Occasion (Optionnel)">Focus / Occasion (Optional)</option>
+                    
                     <option value="Just for You" class="gold-tier" data-en="Just for You™ — The Occasion is Me" data-fr="Juste pour vous™ — Je suis l'occasion">Just for You™ — The Occasion is Me</option>
                     <option disabled class="separator">──────────────────</option>
+                    
                     <option value="Professional" data-en="Professional — Meeting / Interview / Stage" data-fr="Professionnel — Réunion / Entretien / Scène">Professional — Meeting / Interview / Stage</option>
-                    <option value="Social" data-en="Social — Date / Wedding / Night Out" data-fr="Social — Date / Mariage / Sortie">Social — Date / Wedding / Night Out</option>
+                    <option value="Social" data-en="Social — Date / Wedding / Night Out" data-fr="Social — Date / Mariage / Sortie">Social — Date / Mariage / Sortie</option>
                     <option value="Life" data-en="Life — Travel / Celebration / Milestone" data-fr="Vie — Voyage / Célébration / Étape">Life — Travel / Celebration / Milestone</option>
+                    
                     <option disabled class="separator">──────────────────</option>
-                    <option value="SPUR Edge" class="silver-tier" data-en="SPUR Edge™ — 15-Min Refinement ($29.99)" data-fr="SPUR Edge™ — Raffinement 15 Min (29,99 $)">SPUR Edge™ — 15-Min Refinement ($29.99)</option>
                     <option value="SPUR Reset" class="gold-tier" data-en="SPUR Reset™ — Full Restoration ($69.99)" data-fr="SPUR Reset™ — Restauration Complète (69,99 $)">SPUR Reset™ — Full Restoration ($69.99)</option>
                 </select>
 
@@ -759,8 +766,6 @@
             
             if (occasion === 'SPUR Reset') {
                 finalPrice = 69.99; serviceRequested = "SPUR Reset (Complete Hair & Beard Overhaul)";
-            } else if (occasion === 'SPUR Edge') {
-                finalPrice = 29.99; serviceRequested = "SPUR Edge (15-Min Refinement)";
             }
             
             document.getElementById('finalReceiptPrice').textContent = `$${finalPrice.toFixed(2)}`;
