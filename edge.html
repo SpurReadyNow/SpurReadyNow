@@ -135,6 +135,7 @@
 
         .modal-close { background: none; border: none; color: var(--text-muted); font-size: 12px; cursor: pointer; margin-top: 15px; display: inline-block; }
         .reset-user-link { display: none; background: none; border: none; color: var(--gold); font-size: 10px; font-weight: 700; text-transform: uppercase; cursor: pointer; text-decoration: underline; margin: 15px auto 5px auto; width: 100%; }
+        
         .perks-mini-box { background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 12px; padding: 14px; margin-bottom: 16px; text-align: left; font-size: 12px; color: var(--text-muted); line-height: 1.5; }
 
         /* Success Screen */
@@ -260,7 +261,7 @@
         
     </div>
 
-    <!-- HOW IT WORKS MODAL (2x2 Cinematic Grid - Matching Main Site) -->
+    <!-- HOW IT WORKS MODAL (TAILORED FOR 15-MIN REFINEMENT) -->
     <div id="howItWorksModal" class="modal-overlay">
         <div class="modal-card">
             <h3 data-en="The SPUR Standard" data-fr="Le Standard SPUR">The SPUR Standard</h3>
@@ -270,33 +271,32 @@
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 12px;">
                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle>
                     </svg>
-                    <span style="font-size: 11px; font-weight: 500; color: var(--text-main); line-height: 1.4;" data-en="We find your specialist." data-fr="Nous trouvons votre spécialiste.">We find your specialist.</span>
+                    <span style="font-size: 11px; font-weight: 500; color: var(--text-main); line-height: 1.4;" data-en="We dispatch a specialist." data-fr="Nous envoyons un spécialiste.">We dispatch a specialist.</span>
                 </div>
                 <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 16px; padding: 18px 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 12px;">
                         <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                     </svg>
-                    <span style="font-size: 11px; font-weight: 500; color: var(--text-main); line-height: 1.4;" data-en="They know exactly what you need." data-fr="Ils savent ce qu'il vous faut.">They know exactly what you need.</span>
+                    <span style="font-size: 11px; font-weight: 500; color: var(--text-main); line-height: 1.4;" data-en="Precision perimeter line-up." data-fr="Contours de précision.">Precision perimeter line-up.</span>
                 </div>
                 <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 16px; padding: 18px 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 12px;">
                         <polyline points="20 6 9 17 4 12"></polyline>
                     </svg>
-                    <span style="font-size: 11px; font-weight: 500; color: var(--text-main); line-height: 1.4;" data-en="You approve." data-fr="Vous approuvez.">You approve.</span>
+                    <span style="font-size: 11px; font-weight: 500; color: var(--text-main); line-height: 1.4;" data-en="You approve the finish." data-fr="Vous approuvez la finition.">You approve the finish.</span>
                 </div>
                 <div style="background: rgba(212, 175, 55, 0.05); border: 1px solid var(--gold); border-radius: 16px; padding: 18px 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 12px;">
                         <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                     </svg>
-                    <span style="font-size: 12px; font-weight: 700; color: var(--gold); line-height: 1.4; text-transform: uppercase;" data-en="You get ready." data-fr="Vous êtes prêt.">You get ready.</span>
+                    <span style="font-size: 12px; font-weight: 700; color: var(--gold); line-height: 1.4; text-transform: uppercase;" data-en="You keep it sharp." data-fr="Vous restez net.">You keep it sharp.</span>
                 </div>
             </div>
 
             <div class="perks-mini-box" style="text-align: center; margin-top: 5px;">
                 <strong data-en="The SPUR Guarantee:" data-fr="La Garantie SPUR :">The SPUR Guarantee:</strong><br>
-                <span data-en="Not ready? We redo it free. Still not happy? Full refund." data-fr="Pas prêt ? Nous recommençons gratuitement. Toujours pas satisfait ? Remboursement complet.">Not ready? We redo it free. Still not happy? Full refund.</span>
+                <span data-en="Not sharp enough? We redo it free. Still not happy? Full refund." data-fr="Pas assez net ? Nous recommençons gratuitement. Toujours pas satisfait ? Remboursement complet.">Not sharp enough? We redo it free. Still not happy? Full refund.</span>
             </div>
-            
             <button class="modal-capsule-btn" onclick="closeModals()" data-en="GOT IT" data-fr="COMPRIS">GOT IT</button>
         </div>
     </div>
