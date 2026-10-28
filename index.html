@@ -150,6 +150,13 @@
         .perks-mini-box { background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 12px; padding: 14px; margin-bottom: 16px; text-align: left; font-size: 12px; color: var(--text-muted); line-height: 1.5; }
         .perks-mini-box strong { color: var(--text-main); font-weight: 600; }
 
+        /* Detailed Steps CSS */
+        .detailed-steps { text-align: left; margin: 24px 0; }
+        .detailed-step-row { margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .detailed-step-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .step-number { color: var(--gold); font-size: 14px; font-weight: 800; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 1px; }
+        .step-desc { color: var(--text-muted); font-size: 13px; line-height: 1.4; }
+
         /* Success Screen */
         #finalSuccessView { display: none; width: 100%; max-width: 440px; text-align: center; }
         .success-header-tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 2px; color: var(--gold); background: rgba(212, 175, 55, 0.1); border: 1px solid rgba(212, 175, 55, 0.3); padding: 6px 14px; border-radius: 20px; text-transform: uppercase; margin-bottom: 20px; }
@@ -170,13 +177,6 @@
         .receipt-footer-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; border-top: 1px solid rgba(255, 255, 255, 0.06); padding-top: 16px; text-align: center; }
         .receipt-action-btn { background: var(--gold); color: #0d0d0d; padding: 14px 24px; border-radius: 30px; font-size: 12px; font-weight: 800; display: flex; justify-content: center; gap: 8px; margin-top: 20px; text-decoration: none; }
         .cancel-link { display: block; text-align: center; font-size: 11px; color: var(--text-muted); text-decoration: underline; margin-top: 15px; }
-
-        /* Detailed Steps CSS */
-        .detailed-steps { text-align: left; margin: 24px 0; }
-        .detailed-step-row { margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
-        .detailed-step-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-        .step-number { color: var(--gold); font-size: 14px; font-weight: 800; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 1px; }
-        .step-desc { color: var(--text-muted); font-size: 13px; line-height: 1.4; }
     </style>
 </head>
 <body>
@@ -265,8 +265,8 @@
                 </svg>
                 <span>READY LATER™</span>
             </button>
-            <div class="active-hours-note" data-en="Active Dispatch Hours: 9:00 AM – 8:00 PM (PT)" data-fr="Heures de dispatche actives : 9h00 – 20h00 (HP)">
-                Active Dispatch Hours: 9:00 AM – 8:00 PM (PT)
+            <div class="active-hours-note" data-en="Active Concierge Hours: 9:00 AM – 8:00 PM (PT)" data-fr="Heures de conciergerie : 9h00 – 20h00 (HP)">
+                Active Concierge Hours: 9:00 AM – 8:00 PM (PT)
             </div>
         </div>
         
@@ -280,41 +280,41 @@
         </div>
     </div>
 
-    <!-- HOW IT WORKS MODAL (Restored Detailed Version) -->
+    <!-- HOW IT WORKS MODAL (Upgraded 6-Step Manifesto) -->
     <div id="howItWorksModal" class="modal-overlay">
         <div class="modal-card">
             <h3 data-en="The SPUR Standard" data-fr="Le Standard SPUR">The SPUR Standard</h3>
             
             <div class="detailed-steps">
                 <div class="detailed-step-row">
-                    <div class="step-number">01. The Request</div>
-                    <div class="step-desc" data-en="Select Ready Now or schedule for later. No menus." data-fr="Sélectionnez Prêt Maintenant ou planifiez pour plus tard. Sans menu.">Select Ready Now or schedule for later. No menus.</div>
+                    <div class="step-number">01. THE REQUEST</div>
+                    <div class="step-desc" data-en="Tap Ready Now or schedule ahead. Zero menus." data-fr="Appuyez sur Prêt Maintenant ou planifiez. Zéro menu.">Tap Ready Now or schedule ahead. Zero menus.</div>
                 </div>
                 <div class="detailed-step-row">
-                    <div class="step-number">02. The Match</div>
-                    <div class="step-desc" data-en="Our system identifies the ideal specialist for your profile." data-fr="Notre système identifie le spécialiste idéal pour votre profil.">Our system identifies the ideal specialist for your profile.</div>
+                    <div class="step-number">02. THE ALIGNMENT</div>
+                    <div class="step-desc" data-en="We pair you with a premier specialist tailored to your profile." data-fr="Nous vous associons à un spécialiste expert adapté à votre profil.">We pair you with a premier specialist tailored to your profile.</div>
                 </div>
                 <div class="detailed-step-row">
-                    <div class="step-number">03. The Chair</div>
-                    <div class="step-desc" data-en="We secure your immediate availability." data-fr="Nous réservons votre disponibilité immédiate.">We secure your immediate availability.</div>
+                    <div class="step-number">03. THE CHAIR</div>
+                    <div class="step-desc" data-en="Your seat is secured instantly. No waiting rooms." data-fr="Votre place est réservée instantanément. Aucune salle d'attente.">Your seat is secured instantly. No waiting rooms.</div>
                 </div>
                 <div class="detailed-step-row">
-                    <div class="step-number">04. The Assessment</div>
-                    <div class="step-desc" data-en="Your specialist evaluates your exact needs." data-fr="Votre spécialiste évalue vos besoins exacts.">Your specialist evaluates your exact needs.</div>
+                    <div class="step-number">04. THE CONSULT</div>
+                    <div class="step-desc" data-en="Your specialist determines exactly what you need." data-fr="Votre spécialiste détermine exactement ce dont vous avez besoin.">Your specialist determines exactly what you need.</div>
                 </div>
                 <div class="detailed-step-row">
-                    <div class="step-number">05. The Execution</div>
-                    <div class="step-desc" data-en="Precision service tailored to your occasion." data-fr="Un service de précision adapté à votre occasion.">Precision service tailored to your occasion.</div>
+                    <div class="step-number">05. THE EXECUTION</div>
+                    <div class="step-desc" data-en="Precision grooming, engineered for your occasion." data-fr="Un service de précision, conçu pour votre occasion.">Precision grooming, engineered for your occasion.</div>
                 </div>
                 <div class="detailed-step-row">
-                    <div class="step-number">06. The Departure</div>
-                    <div class="step-desc" data-en="Frictionless digital payment. You just get ready." data-fr="Paiement numérique sans friction. Vous êtes prêt.">Frictionless digital payment. You just get ready.</div>
+                    <div class="step-number">06. THE DEPARTURE</div>
+                    <div class="step-desc" data-en="Frictionless digital checkout. You just walk out ready." data-fr="Paiement numérique sans friction. Vous repartez prêt.">Frictionless digital checkout. You just walk out ready.</div>
                 </div>
             </div>
 
             <div class="perks-mini-box" style="text-align: center; margin-top: 5px;">
                 <strong data-en="The SPUR Guarantee:" data-fr="La Garantie SPUR :">The SPUR Guarantee:</strong><br>
-                <span data-en="Not ready? We redo it free. Still not happy? Full refund." data-fr="Pas prêt ? Nous recommençons gratuitement. Toujours pas satisfait ? Remboursement complet.">Not ready? We redo it free. Still not happy? Full refund.</span>
+                <span data-en="Not ready? We redo it free.<br>Still not happy? Full refund." data-fr="Pas prêt ? Nous recommençons gratuitement.<br>Toujours pas satisfait ? Remboursement complet.">Not ready? We redo it free.<br>Still not happy? Full refund.</span>
             </div>
             <button class="modal-capsule-btn" onclick="closeModals()" data-en="GOT IT" data-fr="COMPRIS">GOT IT</button>
         </div>
