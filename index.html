@@ -9,71 +9,20 @@
     <meta name="theme-color" content="#0d0d0d">
     <link rel="manifest" href="manifest.json">
     
-    <!-- Pinned Supabase JS SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.38.4/dist/umd/supabase.min.js"></script>
 
     <style>
-        :root {
-            --bg-color: #0d0d0d;
-            --gold: #d4af37;
-            --silver: #a0a0a0;
-            --text-main: #ffffff;
-            --text-muted: #a0a0a0;
-            --card-bg: #141414;
-            --border-color: rgba(212, 175, 55, 0.25);
-        }
+        :root { --bg-color: #0d0d0d; --gold: #d4af37; --silver: #a0a0a0; --text-main: #ffffff; --text-muted: #a0a0a0; --card-bg: #141414; --border-color: rgba(212, 175, 55, 0.25); }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 20px 20px 35px 20px; position: relative; }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px 20px 35px 20px;
-            position: relative;
-        }
-
-        /* TOP VIP PILL */
-        .vip-top-pill {
-            width: 100%;
-            max-width: 440px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--border-color);
-            border-radius: 30px;
-            padding: 10px 16px;
-            margin-bottom: 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
+        .vip-top-pill { width: 100%; max-width: 440px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 30px; padding: 10px 16px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: all 0.2s ease; }
         .vip-top-pill:hover { border-color: var(--gold); }
-
         .vip-pill-left { display: flex; align-items: center; gap: 8px; font-size: 10px; font-weight: 700; letter-spacing: 1.2px; color: var(--text-muted); text-transform: uppercase; }
         .vip-star { color: var(--gold); font-size: 11px; }
         .vip-pill-right { font-size: 10px; font-weight: 800; letter-spacing: 1px; color: var(--gold); text-transform: uppercase; }
+        @media (max-width: 390px) { .vip-top-pill { flex-direction: column; justify-content: center; gap: 6px; padding: 12px 16px; text-align: center; } }
 
-        @media (max-width: 390px) {
-            .vip-top-pill {
-                flex-direction: column;
-                justify-content: center;
-                gap: 6px;
-                padding: 12px 16px;
-                text-align: center;
-            }
-        }
-
-        /* Top Header Layout */
         .header-container { width: 100%; max-width: 440px; display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 35px; }
         .top-right-group { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
         
@@ -86,25 +35,17 @@
         .toggle-capsule button.active { color: var(--gold); }
         .toggle-capsule span { color: #444; margin: 0 3px; font-size: 10px; }
 
-        /* Main Minimalist Content */
         .main-content { width: 100%; max-width: 440px; display: flex; flex-direction: column; align-items: center; flex-grow: 1; }
         .hero-section { width: 100%; text-align: center; margin-bottom: 45px; }
         .hero-title { font-size: 26px; font-weight: 400; line-height: 1.35; letter-spacing: -0.5px; margin-bottom: 12px; color: var(--text-main); }
         .hero-title-gold { font-size: 20px; font-weight: 400; line-height: 1.35; letter-spacing: -0.5px; color: var(--gold); font-style: italic; }
 
-        /* Inline Minimalist Pricing */
         .inline-pricing { font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; text-align: center; }
         .inline-pricing span { color: var(--gold); font-size: 14px; font-weight: 700; }
 
-        /* CALL TO ACTION AREA */
         .cta-container { display: flex; flex-direction: column; align-items: center; width: 100%; gap: 20px; margin-bottom: 30px; }
 
-        @keyframes breathing {
-            0% { transform: scale(1); box-shadow: 0 0 20px rgba(212, 175, 55, 0.2); }
-            50% { transform: scale(1.04); box-shadow: 0 0 35px rgba(212, 175, 55, 0.4); }
-            100% { transform: scale(1); box-shadow: 0 0 20px rgba(212, 175, 55, 0.2); }
-        }
-
+        @keyframes breathing { 0% { transform: scale(1); box-shadow: 0 0 20px rgba(212, 175, 55, 0.2); } 50% { transform: scale(1.04); box-shadow: 0 0 35px rgba(212, 175, 55, 0.4); } 100% { transform: scale(1); box-shadow: 0 0 20px rgba(212, 175, 55, 0.2); } }
         .ready-circle-btn { width: 160px; height: 160px; border-radius: 50%; background: var(--gold); color: #0d0d0d; display: flex; flex-direction: column; justify-content: center; align-items: center; border: none; cursor: pointer; animation: breathing 3s infinite ease-in-out; margin: 0 auto; text-align: center; transition: transform 0.1s ease; }
         .ready-circle-btn:active { transform: scale(0.96); }
         .ready-line-1 { font-size: 19px; font-weight: 800; letter-spacing: 2px; line-height: 1.1; }
@@ -113,15 +54,12 @@
         .cta-footer-note { font-size: 12px; color: var(--text-muted); letter-spacing: 0.5px; text-align: center; margin-top: 5px; max-width: 320px; line-height: 1.4; }
         .ready-later-btn { background: transparent; border: 1px solid var(--border-color); color: var(--gold); padding: 12px 24px; border-radius: 30px; font-size: 11px; font-weight: 600; letter-spacing: 1.5px; cursor: pointer; text-transform: uppercase; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px; }
         .ready-later-btn:hover { border-color: var(--gold); }
-
         .active-hours-note { font-size: 10px; color: #555; letter-spacing: 1px; text-transform: uppercase; text-align: center; margin-top: 10px; }
 
-        /* Footer */
         .site-footer { width: 100%; text-align: center; padding-top: 25px; margin-top: auto; border-top: 1px solid rgba(255, 255, 255, 0.05); font-size: 11px; color: #777; letter-spacing: 0.5px; }
         .site-footer a { color: var(--text-muted); text-decoration: none; margin: 0 6px; transition: color 0.2s; font-weight: 600; cursor: pointer; }
         .site-footer a:hover { color: var(--gold); text-decoration: underline; }
 
-        /* Interactive Modals */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(6px); display: none; justify-content: center; align-items: center; z-index: 100; padding: 20px; overflow-y: auto; }
         .modal-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 20px; padding: 28px 24px; width: 100%; max-width: 380px; text-align: center; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6); margin: auto; }
         .modal-card h3 { color: var(--text-main); font-size: 22px; margin-bottom: 10px; font-weight: 600; }
@@ -134,7 +72,6 @@
         select.modal-input { text-align-last: center; }
         select.modal-input option { background: #141414; color: #ffffff; }
         select.modal-input option.gold-tier { color: var(--gold); font-weight: bold; }
-        select.modal-input option.silver-tier { color: var(--silver); font-weight: bold; }
         select.modal-input option.separator { color: rgba(255,255,255,0.2); }
 
         .modal-capsule-btn { background: var(--gold); color: #0d0d0d; border: none; padding: 14px 24px; border-radius: 30px; font-size: 12px; font-weight: 800; cursor: pointer; margin: 10px auto 0 auto; width: 100%; text-transform: uppercase; }
@@ -183,7 +120,6 @@
     <!-- MAIN APP SCREEN -->
     <div class="main-content" id="mainAppContainer">
         
-        <!-- TOP VIP PILL (Responsive) -->
         <div class="vip-top-pill" onclick="safeOpenModal('spurtanModal')">
             <div class="vip-pill-left">
                 <span class="vip-star">✦</span>
@@ -194,7 +130,6 @@
             </div>
         </div>
 
-        <!-- Header Section with Absolute Precision Logo -->
         <div class="header-container">
             <div class="logo-area" style="display: flex; flex-direction: column; align-items: flex-start;">
                 <div style="display: flex; align-items: flex-start; line-height: 1; margin-bottom: 6px;">
@@ -210,25 +145,20 @@
                     <div class="live-dot" id="liveDotIndicator"></div>
                     <span id="liveBadgeText">Vancouver • Yaletown • Live</span>
                 </div>
-                
                 <div class="controls-row">
                     <div class="toggle-capsule">
-                        <button onclick="setCity('yvr')" id="btn-yvr" class="active">YVR</button>
-                        <span>|</span>
-                        <button onclick="alertCity('yyz')" id="btn-yyz" style="opacity: 0.5;">YYZ</button>
-                        <span>|</span>
+                        <button onclick="setCity('yvr')" id="btn-yvr" class="active">YVR</button><span>|</span>
+                        <button onclick="alertCity('yyz')" id="btn-yyz" style="opacity: 0.5;">YYZ</button><span>|</span>
                         <button onclick="setCity('yul')" id="btn-yul">YUL</button>
                     </div>
                     <div class="toggle-capsule">
-                        <button onclick="switchLanguage('en')" id="btn-en" class="active">EN</button>
-                        <span>|</span>
+                        <button onclick="switchLanguage('en')" id="btn-en" class="active">EN</button><span>|</span>
                         <button onclick="switchLanguage('fr')" id="btn-fr">FR</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Clean Hero Section -->
         <div class="hero-section">
             <div class="hero-title" data-en="You don't need to know what will make you look better." data-fr="Vous n'avez pas besoin de savoir ce qui vous mettra en valeur.">
                 You don't need to know what will make you look better.
@@ -238,13 +168,11 @@
             </div>
         </div>
 
-        <!-- Inline Minimalist Pricing -->
         <div class="cta-container">
             <div class="inline-pricing">
                 <span id="displayPrice">$49.99 CAD</span> <span data-en="Priority Flat Rate" data-fr="Tarif Fixe Prioritaire">Priority Flat Rate</span><br>
                 <button type="button" onclick="safeOpenModal('codeModal')" style="background:none; border:none; color:var(--text-muted); font-size:10px; font-weight:700; text-decoration:underline; cursor:pointer; margin-top:8px;" data-en="HAVE SPURTAN CODE?" data-fr="AVEZ-UN CODE SPURTAN ?">HAVE SPURTAN CODE?</button>
             </div>
-
             <div>
                 <button class="ready-circle-btn" onclick="openIntercept('now')">
                     <span class="ready-line-1">READY</span>
@@ -254,14 +182,8 @@
                     A SPUR Specialist assesses what you need.<br>You just show up.
                 </div>
             </div>
-
             <button class="ready-later-btn" onclick="openIntercept('later')">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                    <line x1="16" y1="2" x2="16" y2="6"></line>
-                    <line x1="8" y1="2" x2="8" y2="6"></line>
-                    <line x1="3" y1="10" x2="21" y2="10"></line>
-                </svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
                 <span>READY LATER™</span>
             </button>
             <div class="active-hours-note" data-en="Active Concierge Hours: 9:00 AM – 8:00 PM (PT)" data-fr="Heures de conciergerie : 9h00 – 20h00 (HP)">
@@ -269,21 +191,18 @@
             </div>
         </div>
         
-        <!-- Legal Footer -->
         <div class="site-footer">
-            <span data-en="© 2026 SPUR. All rights reserved." data-fr="© 2026 SPUR. Tous droits réservés.">© 2026 SPUR. All rights reserved.</span>
-            <br><br>
+            <span data-en="© 2026 SPUR. All rights reserved." data-fr="© 2026 SPUR. Tous droits réservés.">© 2026 SPUR. All rights reserved.</span><br><br>
             <a onclick="safeOpenModal('howItWorksModal')" data-en="How It Works" data-fr="Comment ça marche">How It Works</a> | 
             <a onclick="openHistoryModal()" data-en="My Bookings" data-fr="Mes Réservations">My Bookings</a> | 
             <a href="terms.html" data-en="Terms" data-fr="Conditions">Terms</a>
         </div>
     </div>
 
-    <!-- HOW IT WORKS MODAL (The Manifesto - Fixed Translations) -->
+    <!-- HOW IT WORKS MODAL (The Manifesto) -->
     <div id="howItWorksModal" class="modal-overlay">
         <div class="modal-card">
             <h3 data-en="The SPUR Standard" data-fr="Le Standard SPUR">The SPUR Standard</h3>
-            
             <div class="detailed-steps">
                 <div class="detailed-step-row">
                     <div class="step-number" data-en="01. THE REQUEST" data-fr="01. LA DEMANDE">01. THE REQUEST</div>
@@ -310,7 +229,6 @@
                     <div class="step-desc" data-en="Frictionless digital checkout. You just walk out ready." data-fr="Paiement numérique sans friction. Vous repartez prêt.">Frictionless digital checkout. You just walk out ready.</div>
                 </div>
             </div>
-
             <div class="perks-mini-box" style="text-align: center; margin-top: 5px;">
                 <strong data-en="The SPUR Guarantee:" data-fr="La Garantie SPUR :">The SPUR Guarantee:</strong><br>
                 <span data-en="Not ready? We redo it free.<br>Still not happy? Full refund." data-fr="Pas prêt ? Nous recommençons gratuitement.<br>Toujours pas satisfait ? Remboursement complet.">Not ready? We redo it free.<br>Still not happy? Full refund.</span>
@@ -319,12 +237,12 @@
         </div>
     </div>
 
-    <!-- BOOKING HISTORY MODAL (New Feature) -->
+    <!-- BOOKING HISTORY MODAL -->
     <div id="historyModal" class="modal-overlay">
         <div class="modal-card" style="display: flex; flex-direction: column;">
             <h3 data-en="Your Bookings" data-fr="Vos Réservations">Your Bookings</h3>
             <div id="historyContent" style="flex-grow: 1; max-height: 400px; overflow-y: auto; margin: 15px 0; text-align: left;">
-                <!-- Booking content injected here -->
+                <!-- Content injected via JS -->
             </div>
             <button class="modal-capsule-btn" onclick="closeModals()" data-en="CLOSE" data-fr="FERMER" style="margin-top: auto;">CLOSE</button>
         </div>
@@ -335,16 +253,14 @@
         <div class="modal-card">
             <h3 data-en="Securing Your Chair" data-fr="Sécurisation de votre place">Securing Your Chair</h3>
             <p id="interceptStatusDesc" data-en="Recognizing your profile preferences..." data-fr="Reconnaissance de vos préférences de profil...">Recognizing your profile preferences...</p>
-            <div style="margin: 20px 0;">
-                <strong style="color: var(--text-main); font-size: 16px;" id="recognizedSpecialistText">Request again?</strong>
-            </div>
+            <div style="margin: 20px 0;"><strong style="color: var(--text-main); font-size: 16px;" id="recognizedSpecialistText">Request again?</strong></div>
             <button class="modal-capsule-btn" onclick="confirmPreviousSpecialist()" data-en="YES" data-fr="OUI">YES</button>
             <button class="modal-capsule-btn-secondary" onclick="skipIntercept()" data-en="PRIORITY MATCH" data-fr="MATCH PRIORITAIRE">PRIORITY MATCH</button>
             <button class="modal-close" onclick="closeModals()" data-en="CANCEL" data-fr="ANNULER">CANCEL</button>
         </div>
     </div>
 
-    <!-- READY NOW MODAL (UNIFIED) -->
+    <!-- READY NOW MODAL -->
     <div id="verifyModal" class="modal-overlay">
         <div class="modal-card">
             <h3 class="dynamic-header" data-en="Get Ready Now" data-fr="Préparez-vous Maintenant">Get Ready Now</h3>
@@ -365,29 +281,23 @@
 
                 <select class="modal-input" name="client_occasion" id="occasionSelectNow">
                     <option value="" disabled selected data-en="Focus / Occasion (Optional)" data-fr="Objectif / Occasion (Optionnel)">Focus / Occasion (Optional)</option>
-                    
                     <option value="Just for You" class="gold-tier" data-en="Just for You™ — The Occasion is Me" data-fr="Juste pour vous™ — Je suis l'occasion">Just for You™ — The Occasion is Me</option>
                     <option disabled class="separator">──────────────────</option>
-                    
                     <option value="Professional" data-en="Professional — Meeting / Interview / Stage" data-fr="Professionnel — Réunion / Entretien / Scène">Professional — Meeting / Interview / Stage</option>
                     <option value="Social" data-en="Social — Date / Wedding / Night Out" data-fr="Social — Date / Mariage / Sortie">Social — Date / Wedding / Night Out</option>
                     <option value="Life" data-en="Life — Travel / Celebration / Milestone" data-fr="Vie — Voyage / Célébration / Étape">Life — Travel / Celebration / Milestone</option>
-                    
                     <option disabled class="separator">──────────────────</option>
-                    
-                    <option value="SPUR Edge" class="silver-tier" data-en="SPUR Edge™ — 15-Min Refinement ($29.99)" data-fr="SPUR Edge™ — Raffinement 15 Min (29,99 $)">SPUR Edge™ — 15-Min Refinement ($29.99)</option>
                     <option value="SPUR Reset" class="gold-tier" data-en="SPUR Reset™ — Complete Hair & Beard Overhaul ($69.99)" data-fr="SPUR Reset™ — Refonte Complète Cheveux & Barbe (69,99 $)">SPUR Reset™ — Complete Hair & Beard Overhaul ($69.99)</option>
                 </select>
 
                 <button type="submit" class="modal-capsule-btn" id="nowSubmitBtn" data-en="SEND REQUEST" data-fr="ENVOYER LA DEMANDE">SEND REQUEST</button>
             </form>
-            <button class="modal-close" onclick="closeModals()" data-en="CANCEL" data-fr="ANNULER">CANCEL</button>
-            <br>
+            <button class="modal-close" onclick="closeModals()" data-en="CANCEL" data-fr="ANNULER">CANCEL</button><br>
             <button type="button" class="reset-user-link" id="resetUserBtn" onclick="resetUser()" data-en="Not you? Reset details" data-fr="Pas vous ? Réinitialiser">Not you? Reset details</button>
         </div>
     </div>
 
-    <!-- READY LATER MODAL (UNIFIED) -->
+    <!-- READY LATER MODAL -->
     <div id="laterModal" class="modal-overlay">
         <div class="modal-card">
             <h3 class="dynamic-header" data-en="Plan Ahead" data-fr="Planifier à L'avance">Plan Ahead</h3>
@@ -408,17 +318,12 @@
 
                 <select class="modal-input" name="client_occasion" id="occasionSelectLater">
                     <option value="" disabled selected data-en="Focus / Occasion (Optional)" data-fr="Objectif / Occasion (Optionnel)">Focus / Occasion (Optional)</option>
-                    
                     <option value="Just for You" class="gold-tier" data-en="Just for You™ — The Occasion is Me" data-fr="Juste pour vous™ — Je suis l'occasion">Just for You™ — The Occasion is Me</option>
                     <option disabled class="separator">──────────────────</option>
-                    
                     <option value="Professional" data-en="Professional — Meeting / Interview / Stage" data-fr="Professionnel — Réunion / Entretien / Scène">Professional — Meeting / Interview / Stage</option>
                     <option value="Social" data-en="Social — Date / Wedding / Night Out" data-fr="Social — Date / Mariage / Sortie">Social — Date / Wedding / Night Out</option>
                     <option value="Life" data-en="Life — Travel / Celebration / Milestone" data-fr="Vie — Voyage / Célébration / Étape">Life — Travel / Celebration / Milestone</option>
-                    
                     <option disabled class="separator">──────────────────</option>
-                    
-                    <option value="SPUR Edge" class="silver-tier" data-en="SPUR Edge™ — 15-Min Refinement ($29.99)" data-fr="SPUR Edge™ — Raffinement 15 Min (29,99 $)">SPUR Edge™ — 15-Min Refinement ($29.99)</option>
                     <option value="SPUR Reset" class="gold-tier" data-en="SPUR Reset™ — Complete Hair & Beard Overhaul ($69.99)" data-fr="SPUR Reset™ — Refonte Complète Cheveux & Barbe (69,99 $)">SPUR Reset™ — Complete Hair & Beard Overhaul ($69.99)</option>
                 </select>
 
@@ -440,8 +345,7 @@
                 </select>
                 <button type="submit" class="modal-capsule-btn" data-en="REQUEST SCHEDULED COMMITMENT" data-fr="DEMANDER UNE VISITE PLANIFIÉE">REQUEST SCHEDULED COMMITMENT</button>
             </form>
-            <button class="modal-close" onclick="closeModals()" data-en="CANCEL" data-fr="ANNULER">CANCEL</button>
-            <br>
+            <button class="modal-close" onclick="closeModals()" data-en="CANCEL" data-fr="ANNULER">CANCEL</button><br>
             <button type="button" class="reset-user-link" id="resetUserBtnLater" onclick="resetUser()" data-en="Not you? Reset details" data-fr="Pas vous ? Réinitialiser" style="display:none;">Not you? Reset details</button>
         </div>
     </div>
@@ -492,7 +396,7 @@
         </div>
     </div>
 
-    <!-- SUCCESS SCREEN (With Return Loop) -->
+    <!-- SUCCESS SCREEN -->
     <div id="finalSuccessView">
         <div class="success-header-tag" id="receiptHeaderTag">Verified Request</div>
         <div class="success-main-title" data-en="Request Received." data-fr="Demande Reçue.">Request Received.</div>
@@ -524,8 +428,6 @@
             <a href="#" id="whatsappAutoBtn" class="receipt-action-btn" target="_blank">
                 <span data-en="💬 CONFIRM VIA WHATSAPP (READY)" data-fr="💬 CONFIRMER VIA WHATSAPP (PRÊT)">💬 CONFIRM VIA WHATSAPP (READY)</span>
             </a>
-            
-            <!-- NEW SEAMLESS RETURN BUTTON -->
             <button onclick="returnToHome()" class="modal-capsule-btn-secondary" style="margin-top: 15px; border-color: transparent;" data-en="← BACK TO HOME" data-fr="← RETOUR À L'ACCUEIL">← BACK TO HOME</button>
             <div style="margin-top: 10px; font-size: 11px; color: var(--text-muted);" data-en="Need to cancel? Message Concierge." data-fr="Besoin d'annuler ? Contactez le Concierge.">Need to cancel? Message Concierge.</div>
         </div>
@@ -545,14 +447,12 @@
         const SUPABASE_ANON_KEY = 'sb_publishable_h-5S_3VCTLKsN8iVUc_LxQ_T7rn1HlJ';
         const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
 
-        // NEW: Seamless Return to Home Logic
         function returnToHome() {
             document.getElementById('finalSuccessView').style.display = 'none';
             document.getElementById('mainAppContainer').style.display = 'flex';
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // NEW: Load Previous Bookings Logic
         async function openHistoryModal() {
             safeOpenModal('historyModal');
             const historyContent = document.getElementById('historyContent');
@@ -567,13 +467,8 @@
             historyContent.innerHTML = `<div style="text-align:center; color: var(--text-muted); font-size: 12px; margin-top: 20px;">${lang === 'fr' ? "Recherche des réservations..." : "Fetching bookings..."}</div>`;
 
             try {
-                const { data, error } = await supabaseClient
-                    .from('requests')
-                    .select('*')
-                    .eq('phone', phone)
-                    .order('created_at', { ascending: false })
-                    .limit(5);
-
+                if (!supabaseClient) throw new Error("No DB");
+                const { data, error } = await supabaseClient.from('requests').select('*').eq('phone', phone).order('created_at', { ascending: false }).limit(5);
                 if (error) throw error;
 
                 if (!data || data.length === 0) {
@@ -596,9 +491,7 @@
                     `;
                 });
                 historyContent.innerHTML = html;
-
             } catch (err) {
-                console.error(err);
                 historyContent.innerHTML = `<div style="text-align:center; color: #ff4757; font-size: 12px; margin-top: 20px;">Error loading history.</div>`;
             }
         }
@@ -642,7 +535,7 @@
                         if (priceDisplay) priceDisplay.textContent = "$49.99 CAD";
                     }
                 }
-            } catch (err) { console.log("Supabase sync fallback active"); }
+            } catch (err) {}
         }
 
         async function syncClientToSupabase(name, phone, specialist) {
@@ -699,6 +592,12 @@
             if (savedName) {
                 const sub = document.getElementById('dynamicHeroSubtitle');
                 if (sub) sub.textContent = lang === 'fr' ? "Bon retour, " + savedName.split(' ')[0] + "." : "Welcome back, " + savedName.split(' ')[0] + ".";
+                
+                document.querySelectorAll('.dynamic-header').forEach(header => {
+                    if (header.textContent.includes('Welcome back') || header.textContent.includes('Bon retour')) {
+                         header.textContent = lang === 'fr' ? "Bon retour, " + savedName.split(' ')[0] : "Welcome back, " + savedName.split(' ')[0];
+                    }
+                });
             }
             localStorage.setItem('spur_lang', lang); updateBadgeText(); updateLiveCounter();
         }
@@ -740,16 +639,17 @@
                     const savedPhone = localStorage.getItem('spur_user_phone');
                     const contactFields = modal.querySelector('.contact-fields');
                     const resetBtn = id === 'verifyModal' ? document.getElementById('resetUserBtn') : document.getElementById('resetUserBtnLater');
+                    const lang = localStorage.getItem('spur_lang') || 'en';
+                    
                     if (savedName && savedPhone) {
                         if(contactFields) { contactFields.style.display = 'none'; contactFields.querySelectorAll('input').forEach(i => i.required = false); }
                         if(resetBtn) resetBtn.style.display = 'block';
                         const header = modal.querySelector('.dynamic-header');
-                        if(header) header.textContent = "Welcome back, " + savedName.split(' ')[0];
+                        if(header) header.textContent = lang === 'fr' ? "Bon retour, " + savedName.split(' ')[0] : "Welcome back, " + savedName.split(' ')[0];
                     } else {
                         if(contactFields) { contactFields.style.display = 'block'; contactFields.querySelectorAll('input').forEach(i => i.required = true); }
                         if(resetBtn) resetBtn.style.display = 'none';
                         const header = modal.querySelector('.dynamic-header');
-                        const lang = localStorage.getItem('spur_lang') || 'en';
                         if(header) header.textContent = id === 'verifyModal' ? (lang === 'fr' ? "Préparez-vous Maintenant" : "Get Ready Now") : (lang === 'fr' ? "Planifier à L'avance" : "Plan Ahead");
                     }
                 }
@@ -854,8 +754,6 @@
             
             if (occasion === 'SPUR Reset') {
                 finalPrice = 69.99; serviceRequested = "SPUR Reset (Complete Hair & Beard Overhaul)";
-            } else if (occasion === 'SPUR Edge') {
-                finalPrice = 29.99; serviceRequested = "SPUR Edge (15-Min Refinement)";
             }
             
             document.getElementById('finalReceiptPrice').textContent = `$${finalPrice.toFixed(2)}`;
@@ -891,12 +789,15 @@
                 switchLanguage(localStorage.getItem('spur_lang') || 'en');
                 await checkReturningUserRealtime();
                 await updateLiveCounter();
+                
+                const lang = localStorage.getItem('spur_lang') || 'en';
                 const savedName = localStorage.getItem('spur_user_name');
                 const sub = document.getElementById('dynamicHeroSubtitle');
-                if (savedName && sub) {
-                    const lang = localStorage.getItem('spur_lang') || 'en';
-                    sub.textContent = lang === 'fr' ? "Bon retour, " + savedName.split(' ')[0] + "." : "Welcome back, " + savedName.split(' ')[0] + ".";
+                
+                if (savedName) {
+                    if (sub) sub.textContent = lang === 'fr' ? "Bon retour, " + savedName.split(' ')[0] + "." : "Welcome back, " + savedName.split(' ')[0] + ".";
                 }
+                
                 const hasCode = localStorage.getItem('spur_applied_code') !== null;
                 const usedCode = localStorage.getItem('spur_discount_used') === 'true';
                 if(hasCode && !usedCode) { document.getElementById('displayPrice').textContent = "$39.99 CAD"; }
