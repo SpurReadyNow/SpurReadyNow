@@ -63,7 +63,6 @@
         .vip-star { color: var(--gold); font-size: 11px; }
         .vip-pill-right { font-size: 10px; font-weight: 800; letter-spacing: 1px; color: var(--gold); text-transform: uppercase; }
 
-        /* Media Query: Fixes iPhone text crashing */
         @media (max-width: 390px) {
             .vip-top-pill {
                 flex-direction: column;
@@ -135,6 +134,7 @@
         select.modal-input { text-align-last: center; }
         select.modal-input option { background: #141414; color: #ffffff; }
         select.modal-input option.gold-tier { color: var(--gold); font-weight: bold; }
+        select.modal-input option.silver-tier { color: var(--silver); font-weight: bold; }
         select.modal-input option.separator { color: rgba(255,255,255,0.2); }
 
         .modal-capsule-btn { background: var(--gold); color: #0d0d0d; border: none; padding: 14px 24px; border-radius: 30px; font-size: 12px; font-weight: 800; cursor: pointer; margin: 10px auto 0 auto; width: 100%; text-transform: uppercase; }
@@ -146,9 +146,6 @@
 
         .modal-close { background: none; border: none; color: var(--text-muted); font-size: 12px; cursor: pointer; margin-top: 15px; display: inline-block; }
         .reset-user-link { display: none; background: none; border: none; color: var(--gold); font-size: 10px; font-weight: 700; text-transform: uppercase; cursor: pointer; text-decoration: underline; margin: 15px auto 5px auto; width: 100%; }
-
-        .code-modal-bridge { margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(255, 255, 255, 0.06); font-size: 11px; color: var(--text-muted); }
-        .code-modal-bridge button { background: none; border: none; color: var(--gold); font-weight: 700; text-decoration: underline; cursor: pointer; font-size: 11px; margin-top: 4px; }
         
         .perks-mini-box { background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 12px; padding: 14px; margin-bottom: 16px; text-align: left; font-size: 12px; color: var(--text-muted); line-height: 1.5; }
         .perks-mini-box strong { color: var(--text-main); font-weight: 600; }
@@ -276,7 +273,7 @@
         </div>
     </div>
 
-    <!-- HOW IT WORKS MODAL (2x2 Cinematic Grid) -->
+    <!-- HOW IT WORKS MODAL -->
     <div id="howItWorksModal" class="modal-overlay">
         <div class="modal-card">
             <h3 data-en="The SPUR Standard" data-fr="Le Standard SPUR">The SPUR Standard</h3>
@@ -286,7 +283,7 @@
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 12px;">
                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle>
                     </svg>
-                    <span style="font-size: 11px; font-weight: 500; color: var(--text-main); line-height: 1.4;" data-en="We find your specialist." data-fr="Nous trouvons votre spécialiste.">We find your specialist.</span>
+                    <span style="font-size: 11px; font-weight: 500; color: var(--text-main); line-height: 1.4;" data-en="We secure your chair." data-fr="Nous réservons votre fauteuil.">We secure your chair.</span>
                 </div>
                 <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 16px; padding: 18px 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 12px;">
@@ -330,7 +327,7 @@
         </div>
     </div>
 
-    <!-- READY NOW MODAL -->
+    <!-- READY NOW MODAL (UNIFIED) -->
     <div id="verifyModal" class="modal-overlay">
         <div class="modal-card">
             <h3 class="dynamic-header" data-en="Get Ready Now" data-fr="Préparez-vous Maintenant">Get Ready Now</h3>
@@ -351,13 +348,18 @@
 
                 <select class="modal-input" name="client_occasion" id="occasionSelectNow">
                     <option value="" disabled selected data-en="Focus / Occasion (Optional)" data-fr="Objectif / Occasion (Optionnel)">Focus / Occasion (Optional)</option>
+                    
                     <option value="Just for You" class="gold-tier" data-en="Just for You™ — The Occasion is Me" data-fr="Juste pour vous™ — Je suis l'occasion">Just for You™ — The Occasion is Me</option>
                     <option disabled class="separator">──────────────────</option>
+                    
                     <option value="Professional" data-en="Professional — Meeting / Interview / Stage" data-fr="Professionnel — Réunion / Entretien / Scène">Professional — Meeting / Interview / Stage</option>
                     <option value="Social" data-en="Social — Date / Wedding / Night Out" data-fr="Social — Date / Mariage / Sortie">Social — Date / Wedding / Night Out</option>
                     <option value="Life" data-en="Life — Travel / Celebration / Milestone" data-fr="Vie — Voyage / Célébration / Étape">Life — Travel / Celebration / Milestone</option>
+                    
                     <option disabled class="separator">──────────────────</option>
-                    <option value="SPUR Reset" class="gold-tier" data-en="SPUR Reset™ — Full Restoration ($69.99)" data-fr="SPUR Reset™ — Restauration Complète (69,99 $)">SPUR Reset™ — Full Restoration ($69.99)</option>
+                    
+                    <option value="SPUR Edge" class="silver-tier" data-en="SPUR Edge™ — 15-Min Refinement ($29.99)" data-fr="SPUR Edge™ — Raffinement 15 Min (29,99 $)">SPUR Edge™ — 15-Min Refinement ($29.99)</option>
+                    <option value="SPUR Reset" class="gold-tier" data-en="SPUR Reset™ — Complete Hair & Beard Overhaul ($69.99)" data-fr="SPUR Reset™ — Refonte Complète Cheveux & Barbe (69,99 $)">SPUR Reset™ — Complete Hair & Beard Overhaul ($69.99)</option>
                 </select>
 
                 <button type="submit" class="modal-capsule-btn" id="nowSubmitBtn" data-en="SEND REQUEST" data-fr="ENVOYER LA DEMANDE">SEND REQUEST</button>
@@ -368,7 +370,7 @@
         </div>
     </div>
 
-    <!-- READY LATER MODAL -->
+    <!-- READY LATER MODAL (UNIFIED) -->
     <div id="laterModal" class="modal-overlay">
         <div class="modal-card">
             <h3 class="dynamic-header" data-en="Plan Ahead" data-fr="Planifier à L'avance">Plan Ahead</h3>
@@ -389,13 +391,18 @@
 
                 <select class="modal-input" name="client_occasion" id="occasionSelectLater">
                     <option value="" disabled selected data-en="Focus / Occasion (Optional)" data-fr="Objectif / Occasion (Optionnel)">Focus / Occasion (Optional)</option>
+                    
                     <option value="Just for You" class="gold-tier" data-en="Just for You™ — The Occasion is Me" data-fr="Juste pour vous™ — Je suis l'occasion">Just for You™ — The Occasion is Me</option>
                     <option disabled class="separator">──────────────────</option>
+                    
                     <option value="Professional" data-en="Professional — Meeting / Interview / Stage" data-fr="Professionnel — Réunion / Entretien / Scène">Professional — Meeting / Interview / Stage</option>
                     <option value="Social" data-en="Social — Date / Wedding / Night Out" data-fr="Social — Date / Mariage / Sortie">Social — Date / Wedding / Night Out</option>
                     <option value="Life" data-en="Life — Travel / Celebration / Milestone" data-fr="Vie — Voyage / Célébration / Étape">Life — Travel / Celebration / Milestone</option>
+                    
                     <option disabled class="separator">──────────────────</option>
-                    <option value="SPUR Reset" class="gold-tier" data-en="SPUR Reset™ — Full Restoration ($69.99)" data-fr="SPUR Reset™ — Restauration Complète (69,99 $)">SPUR Reset™ — Full Restoration ($69.99)</option>
+                    
+                    <option value="SPUR Edge" class="silver-tier" data-en="SPUR Edge™ — 15-Min Refinement ($29.99)" data-fr="SPUR Edge™ — Raffinement 15 Min (29,99 $)">SPUR Edge™ — 15-Min Refinement ($29.99)</option>
+                    <option value="SPUR Reset" class="gold-tier" data-en="SPUR Reset™ — Complete Hair & Beard Overhaul ($69.99)" data-fr="SPUR Reset™ — Refonte Complète Cheveux & Barbe (69,99 $)">SPUR Reset™ — Complete Hair & Beard Overhaul ($69.99)</option>
                 </select>
 
                 <input type="date" class="modal-input" name="requested_date" id="laterDateInput" required>
@@ -470,14 +477,14 @@
 
     <!-- SUCCESS SCREEN -->
     <div id="finalSuccessView">
-        <div class="success-header-tag" id="receiptHeaderTag">Verified Dispatch</div>
+        <div class="success-header-tag" id="receiptHeaderTag">Verified Request</div>
         <div class="success-main-title" data-en="Request Received." data-fr="Demande Reçue.">Request Received.</div>
         <div class="success-sub-title" data-en="We are coordinating your specialist match." data-fr="Nous coordonnons votre match de spécialiste.">We are coordinating your specialist match.</div>
         <div class="success-receipt-card">
             <div class="receipt-top-row">
                 <div>
                     <div class="receipt-title" data-en="Check your messages" data-fr="Vérifiez vos messages">Check your messages</div>
-                    <div class="receipt-updates-tag" id="displayPhoneLine">DISPATCH LINE: ACTIVE</div>
+                    <div class="receipt-updates-tag" id="displayPhoneLine">CONCIERGE LINE: ACTIVE</div>
                 </div>
                 <div class="receipt-price-box">
                     <div class="receipt-price" id="finalReceiptPrice">$49.99</div>
@@ -769,6 +776,8 @@
             
             if (occasion === 'SPUR Reset') {
                 finalPrice = 69.99; serviceRequested = "SPUR Reset (Hair & Beard Overhaul)";
+            } else if (occasion === 'SPUR Edge') {
+                finalPrice = 29.99; serviceRequested = "SPUR Edge (15-Min Refinement)";
             }
             
             document.getElementById('finalReceiptPrice').textContent = `$${finalPrice.toFixed(2)}`;
