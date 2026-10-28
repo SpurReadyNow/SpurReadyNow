@@ -357,7 +357,7 @@
                     <option value="Social" data-en="Social — Date / Wedding / Night Out" data-fr="Social — Date / Mariage / Sortie">Social — Date / Wedding / Night Out</option>
                     <option value="Life" data-en="Life — Travel / Celebration / Milestone" data-fr="Vie — Voyage / Célébration / Étape">Life — Travel / Celebration / Milestone</option>
                     <option disabled class="separator">──────────────────</option>
-                    <option value="SPUR Reset" class="gold-tier" data-en="SPUR Reset™ — Complete Hair & Beard Overhaul ($69.99)" data-fr="SPUR Reset™ — Refonte Complète Cheveux & Barbe (69,99 $)">SPUR Reset™ — Complete Hair & Beard Overhaul ($69.99)</option>
+                    <option value="SPUR Reset" class="gold-tier" data-en="SPUR Reset™ — Full Restoration ($69.99)" data-fr="SPUR Reset™ — Restauration Complète (69,99 $)">SPUR Reset™ — Full Restoration ($69.99)</option>
                 </select>
 
                 <button type="submit" class="modal-capsule-btn" id="nowSubmitBtn" data-en="SEND REQUEST" data-fr="ENVOYER LA DEMANDE">SEND REQUEST</button>
@@ -395,7 +395,7 @@
                     <option value="Social" data-en="Social — Date / Wedding / Night Out" data-fr="Social — Date / Mariage / Sortie">Social — Date / Wedding / Night Out</option>
                     <option value="Life" data-en="Life — Travel / Celebration / Milestone" data-fr="Vie — Voyage / Célébration / Étape">Life — Travel / Celebration / Milestone</option>
                     <option disabled class="separator">──────────────────</option>
-                    <option value="SPUR Reset" class="gold-tier" data-en="SPUR Reset™ — Complete Hair & Beard Overhaul ($69.99)" data-fr="SPUR Reset™ — Refonte Complète Cheveux & Barbe (69,99 $)">SPUR Reset™ — Complete Hair & Beard Overhaul ($69.99)</option>
+                    <option value="SPUR Reset" class="gold-tier" data-en="SPUR Reset™ — Full Restoration ($69.99)" data-fr="SPUR Reset™ — Restauration Complète (69,99 $)">SPUR Reset™ — Full Restoration ($69.99)</option>
                 </select>
 
                 <input type="date" class="modal-input" name="requested_date" id="laterDateInput" required>
@@ -521,8 +521,7 @@
         async function updateLiveCounter() {
             if (!supabaseClient) return;
             try {
-                const { count, error } = await supabaseClient
-                    .from('clients').select('*', { count: 'exact', head: true }).not('spurtan_code', 'is', null);
+                const { count, error } = await supabaseClient.from('clients').select('*', { count: 'exact', head: true }).not('spurtan_code', 'is', null);
                 if (error) throw error;
                 const usedCodes = count || 0;
                 const remainingCodes = 99 - usedCodes;
@@ -532,9 +531,7 @@
                     badge.innerText = lang === 'fr' ? "LISTE D'ATTENTE SEULEMENT" : "WAITLIST ONLY";
                     badge.style.color = "#ff4757"; badge.style.borderColor = "rgba(255, 71, 87, 0.3)"; badge.style.background = "rgba(255, 71, 87, 0.1)";
                     document.getElementById('spurtanSubmitBtn').disabled = true;
-                } else {
-                    badge.innerText = lang === 'fr' ? `Seulement ${remainingCodes} places restantes` : `Only ${remainingCodes} spots remaining`;
-                }
+                } else { badge.innerText = lang === 'fr' ? `Seulement ${remainingCodes} places restantes` : `Only ${remainingCodes} spots remaining`; }
             } catch (err) { document.getElementById('spotsRemainingBadge').style.display = 'none'; }
         }
 
@@ -555,8 +552,7 @@
                         const priceDisplay = document.getElementById('displayPrice');
                         if (priceDisplay) priceDisplay.textContent = "$39.99 CAD";
                     } else {
-                        localStorage.removeItem('spur_applied_code');
-                        localStorage.setItem('spur_discount_used', 'true');
+                        localStorage.removeItem('spur_applied_code'); localStorage.setItem('spur_discount_used', 'true');
                         const priceDisplay = document.getElementById('displayPrice');
                         if (priceDisplay) priceDisplay.textContent = "$49.99 CAD";
                     }
@@ -595,11 +591,8 @@
             const liveDot = document.getElementById('liveDotIndicator');
             if (cityData[city].isLive) {
                 liveDot.style.backgroundColor = "#2ecc71"; liveDot.style.boxShadow = "0 0 6px #2ecc71";
-            } else {
-                liveDot.style.backgroundColor = "#f39c12"; liveDot.style.boxShadow = "0 0 6px #f39c12";
-            }
-            updateBadgeText();
-            localStorage.setItem('spur_active_city', city);
+            } else { liveDot.style.backgroundColor = "#f39c12"; liveDot.style.boxShadow = "0 0 6px #f39c12"; }
+            updateBadgeText(); localStorage.setItem('spur_active_city', city);
         }
 
         function updateBadgeText() {
@@ -622,8 +615,7 @@
                 const sub = document.getElementById('dynamicHeroSubtitle');
                 if (sub) sub.textContent = lang === 'fr' ? "Bon retour, " + savedName.split(' ')[0] + "." : "Welcome back, " + savedName.split(' ')[0] + ".";
             }
-            localStorage.setItem('spur_lang', lang);
-            updateBadgeText(); updateLiveCounter();
+            localStorage.setItem('spur_lang', lang); updateBadgeText(); updateLiveCounter();
         }
 
         let currentInterceptType = 'now';
