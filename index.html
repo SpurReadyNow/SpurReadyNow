@@ -41,7 +41,7 @@
             position: relative;
         }
 
-        /* TOP VIP PILL - Updated for Mobile */
+        /* TOP VIP PILL */
         .vip-top-pill {
             width: 100%;
             max-width: 440px;
@@ -176,7 +176,6 @@
         .grid-box-lbl { font-size: 10px; color: var(--text-muted); text-transform: uppercase; }
         .receipt-footer-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; border-top: 1px solid rgba(255, 255, 255, 0.06); padding-top: 16px; text-align: center; }
         .receipt-action-btn { background: var(--gold); color: #0d0d0d; padding: 14px 24px; border-radius: 30px; font-size: 12px; font-weight: 800; display: flex; justify-content: center; gap: 8px; margin-top: 20px; text-decoration: none; }
-        .cancel-link { display: block; text-align: center; font-size: 11px; color: var(--text-muted); text-decoration: underline; margin-top: 15px; }
     </style>
 </head>
 <body>
@@ -275,39 +274,39 @@
             <span data-en="© 2026 SPUR. All rights reserved." data-fr="© 2026 SPUR. Tous droits réservés.">© 2026 SPUR. All rights reserved.</span>
             <br><br>
             <a onclick="safeOpenModal('howItWorksModal')" data-en="How It Works" data-fr="Comment ça marche">How It Works</a> | 
-            <a href="terms.html" data-en="Terms of Service" data-fr="Conditions d'utilisation">Terms of Service</a> | 
-            <a href="privacy.html" data-en="Privacy Policy" data-fr="Politique de confidentialité">Privacy Policy</a>
+            <a onclick="openHistoryModal()" data-en="My Bookings" data-fr="Mes Réservations">My Bookings</a> | 
+            <a href="terms.html" data-en="Terms" data-fr="Conditions">Terms</a>
         </div>
     </div>
 
-    <!-- HOW IT WORKS MODAL (Upgraded 6-Step Manifesto) -->
+    <!-- HOW IT WORKS MODAL (The Manifesto - Fixed Translations) -->
     <div id="howItWorksModal" class="modal-overlay">
         <div class="modal-card">
             <h3 data-en="The SPUR Standard" data-fr="Le Standard SPUR">The SPUR Standard</h3>
             
             <div class="detailed-steps">
                 <div class="detailed-step-row">
-                    <div class="step-number">01. THE REQUEST</div>
+                    <div class="step-number" data-en="01. THE REQUEST" data-fr="01. LA DEMANDE">01. THE REQUEST</div>
                     <div class="step-desc" data-en="Tap Ready Now or schedule ahead. Zero menus." data-fr="Appuyez sur Prêt Maintenant ou planifiez. Zéro menu.">Tap Ready Now or schedule ahead. Zero menus.</div>
                 </div>
                 <div class="detailed-step-row">
-                    <div class="step-number">02. THE ALIGNMENT</div>
+                    <div class="step-number" data-en="02. THE ALIGNMENT" data-fr="02. L'ALIGNEMENT">02. THE ALIGNMENT</div>
                     <div class="step-desc" data-en="We pair you with a premier specialist tailored to your profile." data-fr="Nous vous associons à un spécialiste expert adapté à votre profil.">We pair you with a premier specialist tailored to your profile.</div>
                 </div>
                 <div class="detailed-step-row">
-                    <div class="step-number">03. THE CHAIR</div>
+                    <div class="step-number" data-en="03. THE CHAIR" data-fr="03. LE FAUTEUIL">03. THE CHAIR</div>
                     <div class="step-desc" data-en="Your seat is secured instantly. No waiting rooms." data-fr="Votre place est réservée instantanément. Aucune salle d'attente.">Your seat is secured instantly. No waiting rooms.</div>
                 </div>
                 <div class="detailed-step-row">
-                    <div class="step-number">04. THE CONSULT</div>
+                    <div class="step-number" data-en="04. THE CONSULT" data-fr="04. LA CONSULTATION">04. THE CONSULT</div>
                     <div class="step-desc" data-en="Your specialist determines exactly what you need." data-fr="Votre spécialiste détermine exactement ce dont vous avez besoin.">Your specialist determines exactly what you need.</div>
                 </div>
                 <div class="detailed-step-row">
-                    <div class="step-number">05. THE EXECUTION</div>
+                    <div class="step-number" data-en="05. THE EXECUTION" data-fr="05. L'EXÉCUTION">05. THE EXECUTION</div>
                     <div class="step-desc" data-en="Precision grooming, engineered for your occasion." data-fr="Un service de précision, conçu pour votre occasion.">Precision grooming, engineered for your occasion.</div>
                 </div>
                 <div class="detailed-step-row">
-                    <div class="step-number">06. THE DEPARTURE</div>
+                    <div class="step-number" data-en="06. THE DEPARTURE" data-fr="06. LE DÉPART">06. THE DEPARTURE</div>
                     <div class="step-desc" data-en="Frictionless digital checkout. You just walk out ready." data-fr="Paiement numérique sans friction. Vous repartez prêt.">Frictionless digital checkout. You just walk out ready.</div>
                 </div>
             </div>
@@ -317,6 +316,17 @@
                 <span data-en="Not ready? We redo it free.<br>Still not happy? Full refund." data-fr="Pas prêt ? Nous recommençons gratuitement.<br>Toujours pas satisfait ? Remboursement complet.">Not ready? We redo it free.<br>Still not happy? Full refund.</span>
             </div>
             <button class="modal-capsule-btn" onclick="closeModals()" data-en="GOT IT" data-fr="COMPRIS">GOT IT</button>
+        </div>
+    </div>
+
+    <!-- BOOKING HISTORY MODAL (New Feature) -->
+    <div id="historyModal" class="modal-overlay">
+        <div class="modal-card" style="display: flex; flex-direction: column;">
+            <h3 data-en="Your Bookings" data-fr="Vos Réservations">Your Bookings</h3>
+            <div id="historyContent" style="flex-grow: 1; max-height: 400px; overflow-y: auto; margin: 15px 0; text-align: left;">
+                <!-- Booking content injected here -->
+            </div>
+            <button class="modal-capsule-btn" onclick="closeModals()" data-en="CLOSE" data-fr="FERMER" style="margin-top: auto;">CLOSE</button>
         </div>
     </div>
 
@@ -482,7 +492,7 @@
         </div>
     </div>
 
-    <!-- SUCCESS SCREEN -->
+    <!-- SUCCESS SCREEN (With Return Loop) -->
     <div id="finalSuccessView">
         <div class="success-header-tag" id="receiptHeaderTag">Verified Request</div>
         <div class="success-main-title" data-en="Request Received." data-fr="Demande Reçue.">Request Received.</div>
@@ -514,7 +524,10 @@
             <a href="#" id="whatsappAutoBtn" class="receipt-action-btn" target="_blank">
                 <span data-en="💬 CONFIRM VIA WHATSAPP (READY)" data-fr="💬 CONFIRMER VIA WHATSAPP (PRÊT)">💬 CONFIRM VIA WHATSAPP (READY)</span>
             </a>
-            <a href="#" class="cancel-link" onclick="location.reload(); return false;" data-en="Need to modify or cancel? Message Concierge." data-fr="Besoin de modifier ou d'annuler ? Contactez le Concierge.">Need to modify or cancel? Message Concierge.</a>
+            
+            <!-- NEW SEAMLESS RETURN BUTTON -->
+            <button onclick="returnToHome()" class="modal-capsule-btn-secondary" style="margin-top: 15px; border-color: transparent;" data-en="← BACK TO HOME" data-fr="← RETOUR À L'ACCUEIL">← BACK TO HOME</button>
+            <div style="margin-top: 10px; font-size: 11px; color: var(--text-muted);" data-en="Need to cancel? Message Concierge." data-fr="Besoin d'annuler ? Contactez le Concierge.">Need to cancel? Message Concierge.</div>
         </div>
     </div>
 
@@ -531,6 +544,64 @@
         const SUPABASE_URL = 'https://quqcgjkbvajcltwuoqvz.supabase.co';
         const SUPABASE_ANON_KEY = 'sb_publishable_h-5S_3VCTLKsN8iVUc_LxQ_T7rn1HlJ';
         const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+
+        // NEW: Seamless Return to Home Logic
+        function returnToHome() {
+            document.getElementById('finalSuccessView').style.display = 'none';
+            document.getElementById('mainAppContainer').style.display = 'flex';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // NEW: Load Previous Bookings Logic
+        async function openHistoryModal() {
+            safeOpenModal('historyModal');
+            const historyContent = document.getElementById('historyContent');
+            const lang = localStorage.getItem('spur_lang') || 'en';
+            const phone = localStorage.getItem('spur_user_phone');
+            
+            if (!phone) {
+                historyContent.innerHTML = `<div style="text-align:center; color: var(--text-muted); font-size: 12px; margin-top: 20px;">${lang === 'fr' ? "Aucun profil trouvé. Effectuez une réservation pour créer votre profil." : "No profile found. Make a request to build your profile."}</div>`;
+                return;
+            }
+
+            historyContent.innerHTML = `<div style="text-align:center; color: var(--text-muted); font-size: 12px; margin-top: 20px;">${lang === 'fr' ? "Recherche des réservations..." : "Fetching bookings..."}</div>`;
+
+            try {
+                const { data, error } = await supabaseClient
+                    .from('requests')
+                    .select('*')
+                    .eq('phone', phone)
+                    .order('created_at', { ascending: false })
+                    .limit(5);
+
+                if (error) throw error;
+
+                if (!data || data.length === 0) {
+                    historyContent.innerHTML = `<div style="text-align:center; color: var(--text-muted); font-size: 12px; margin-top: 20px;">${lang === 'fr' ? "Aucune réservation passée trouvée." : "No past bookings found."}</div>`;
+                    return;
+                }
+
+                let html = '';
+                data.forEach(req => {
+                    const date = new Date(req.created_at).toLocaleDateString(lang === 'fr' ? 'fr-CA' : 'en-CA', { month: 'short', day: 'numeric', year: 'numeric' });
+                    html += `
+                        <div class="perks-mini-box" style="margin-bottom: 10px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                                <strong style="color: var(--gold); font-size: 11px;">${date}</strong>
+                                <span style="font-size: 10px; color: #2ecc71; font-weight: 700;">${req.type.toUpperCase()}</span>
+                            </div>
+                            <div style="font-size: 12px; color: var(--text-main); margin-bottom: 4px;">${req.service}</div>
+                            <div style="font-size: 10px; color: var(--text-muted);">📍 ${req.city}</div>
+                        </div>
+                    `;
+                });
+                historyContent.innerHTML = html;
+
+            } catch (err) {
+                console.error(err);
+                historyContent.innerHTML = `<div style="text-align:center; color: #ff4757; font-size: 12px; margin-top: 20px;">Error loading history.</div>`;
+            }
+        }
 
         async function updateLiveCounter() {
             if (!supabaseClient) return;
