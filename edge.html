@@ -54,7 +54,7 @@
         .ready-later-btn:hover { border-color: var(--gold); }
         .active-hours-note { font-size: 10px; color: #555; letter-spacing: 1px; text-transform: uppercase; text-align: center; margin-top: 10px; }
 
-        .site-footer { width: 100%; text-align: center; padding-top: 25px; margin-top: auto; border-top: 1px solid rgba(255, 255, 255, 0.05); font-size: 11px; color: #777; letter-spacing: 0.5px; }
+        .site-footer { width: 100%; text-align: center; padding-top: 25px; margin-top: auto; border-top: 1px solid rgba(255, 255, 255, 0.05); font-size: 11px; color: #777; letter-spacing: 0.5px; line-height: 1.6; }
         .site-footer a { color: var(--text-muted); text-decoration: none; margin: 0 6px; transition: color 0.2s; font-weight: 600; cursor: pointer; }
         .site-footer a:hover { color: var(--gold); text-decoration: underline; }
 
@@ -79,7 +79,6 @@
         
         .perks-mini-box { background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 12px; padding: 14px; margin-bottom: 16px; text-align: left; font-size: 12px; color: var(--text-muted); line-height: 1.5; }
 
-        /* Success Screen */
         #finalSuccessView { display: none; width: 100%; max-width: 440px; text-align: center; }
         .success-header-tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 2px; color: var(--gold); background: rgba(212, 175, 55, 0.1); border: 1px solid rgba(212, 175, 55, 0.3); padding: 6px 14px; border-radius: 20px; text-transform: uppercase; margin-bottom: 20px; }
         .success-main-title { font-size: 32px; font-weight: 700; color: var(--text-main); margin-bottom: 8px; }
@@ -176,11 +175,13 @@
             </div>
         </div>
         
+        <!-- RESTORED FOOTER -->
         <div class="site-footer">
             <span data-en="© 2026 SPUR. All rights reserved." data-fr="© 2026 SPUR. Tous droits réservés.">© 2026 SPUR. All rights reserved.</span><br><br>
             <a onclick="safeOpenModal('howItWorksModal')" data-en="How It Works" data-fr="Comment ça marche">How It Works</a> | 
-            <a onclick="openHistoryModal()" data-en="My Bookings" data-fr="Mes Réservations">My Bookings</a> | 
-            <a href="terms.html" data-en="Terms" data-fr="Conditions">Terms</a>
+            <a onclick="openHistoryModal()" data-en="My Bookings" data-fr="Mes Réservations">My Bookings</a><br><br>
+            <a href="terms.html" data-en="Terms of Service" data-fr="Conditions d'utilisation">Terms of Service</a> | 
+            <a href="privacy.html" data-en="Privacy Policy" data-fr="Politique de confidentialité">Privacy Policy</a>
         </div>
     </div>
 
@@ -340,7 +341,7 @@
                 <span data-en="💬 CONFIRM VIA WHATSAPP (READY)" data-fr="💬 CONFIRMER VIA WHATSAPP (PRÊT)">💬 CONFIRM VIA WHATSAPP (READY)</span>
             </a>
             
-            <!-- NEW SEAMLESS RETURN BUTTON -->
+            <!-- SEAMLESS RETURN BUTTON -->
             <button onclick="returnToHome()" class="modal-capsule-btn-secondary" style="margin-top: 15px; border-color: transparent;" data-en="← BACK TO HOME" data-fr="← RETOUR À L'ACCUEIL">← BACK TO HOME</button>
             <div style="margin-top: 10px; font-size: 11px; color: var(--text-muted);" data-en="Need to cancel? Message Concierge." data-fr="Besoin d'annuler ? Contactez le Concierge.">Need to cancel? Message Concierge.</div>
         </div>
@@ -514,7 +515,7 @@
                     const contactFields = modal.querySelector('.contact-fields');
                     const resetBtn = id === 'verifyModal' ? document.getElementById('resetUserBtn') : document.getElementById('resetUserBtnLater');
                     const lang = localStorage.getItem('spur_lang') || 'en';
-
+                    
                     if (savedName && savedPhone) {
                         if(contactFields) { contactFields.style.display = 'none'; contactFields.querySelectorAll('input').forEach(i => i.required = false); }
                         if(resetBtn) resetBtn.style.display = 'block';
@@ -546,13 +547,13 @@
             
             let name = localStorage.getItem('spur_user_name');
             let phone = localStorage.getItem('spur_user_phone');
-
-            const nameInput = form.querySelector('input[name="client_name"]');
-            const phoneInput = form.querySelector('input[name="client_phone"]');
             
             const occasion = "SPUR Edge (15-Min Refinement)";
             const finalPrice = 29.99;
             const serviceRequested = "SPUR Edge";
+
+            const nameInput = form.querySelector('input[name="client_name"]');
+            const phoneInput = form.querySelector('input[name="client_phone"]');
 
             if (nameInput && nameInput.value.trim()) { name = nameInput.value.trim(); localStorage.setItem('spur_user_name', name); }
             if (phoneInput && phoneInput.value.trim().length >= 10) { phone = phoneInput.value.trim(); localStorage.setItem('spur_user_phone', phone); }
@@ -597,8 +598,9 @@
                 const lang = localStorage.getItem('spur_lang') || 'en';
                 const savedName = localStorage.getItem('spur_user_name');
                 const sub = document.getElementById('dynamicHeroSubtitle');
-                if (savedName && sub) {
-                    sub.textContent = lang === 'fr' ? "Bon retour, " + savedName.split(' ')[0] + "." : "Welcome back, " + savedName.split(' ')[0] + ".";
+                
+                if (savedName) {
+                    if (sub) sub.textContent = lang === 'fr' ? "Bon retour, " + savedName.split(' ')[0] + "." : "Welcome back, " + savedName.split(' ')[0] + ".";
                 }
             } catch (e) {}
         });
