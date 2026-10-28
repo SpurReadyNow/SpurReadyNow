@@ -83,6 +83,7 @@
 <body>
 
     <div class="main-content" id="mainAppContainer">
+        
         <div class="vip-top-pill">
             <div class="vip-pill-left"><span class="vip-star">✦</span><span data-en="SPUR Edge™ | 15-Min Refinement" data-fr="SPUR Edge™ | Raffinement 15 Min">SPUR Edge™ | 15-Min Refinement</span></div>
             <div class="vip-pill-right" data-en="Keep It Sharp" data-fr="Restez Net">Keep It Sharp</div>
@@ -179,23 +180,26 @@
         </div>
     </div>
 
-    <!-- READY NOW MODAL -->
+    <!-- READY NOW MODAL (PURE EDGE + DYNAMIC RETURN UX) -->
     <div id="verifyModal" class="modal-overlay">
         <div class="modal-card">
             <h3 class="dynamic-header" data-en="Get Ready Now" data-fr="Préparez-vous Maintenant">Get Ready Now</h3>
             <p class="dynamic-desc" data-en="Enter your details. We will coordinate your match." data-fr="Entrez vos coordonnées. Nous coordonnerons votre match.">Enter your details. We will coordinate your match.</p>
+            
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleSubmit(event, 'now')">
                 <input type="text" name="_gotcha" style="display:none">
                 <input type="hidden" name="city_location" class="formCityField" value="Yaletown, Vancouver">
                 <input type="hidden" name="dispatch_channel" value="Priority Ready">
                 <input type="hidden" name="requested_specialist" class="specialistHiddenField" value="Priority Match">
                 <input type="hidden" name="client_occasion" value="SPUR Edge (15-Min Refinement)">
+                
                 <div id="inputFieldsWrapper">
                     <div class="contact-fields">
                         <input type="text" class="modal-input" name="client_name" id="nameInputNow" placeholder="First Name" data-en-placeholder="First Name" data-fr-placeholder="Prénom" required>
                         <input type="tel" class="modal-input" name="client_phone" id="phoneInputNow" placeholder="10 Digit Mobile" data-en-placeholder="10 Digit Mobile" data-fr-placeholder="Mobile à 10 chiffres" pattern="[0-9]{10}" required>
                     </div>
                 </div>
+
                 <button type="submit" class="modal-capsule-btn" id="nowSubmitBtn" data-en="SEND REQUEST" data-fr="ENVOYER LA DEMANDE">SEND REQUEST</button>
             </form>
             <button class="modal-close" onclick="closeModals()" data-en="CANCEL" data-fr="ANNULER">CANCEL</button><br>
@@ -203,23 +207,26 @@
         </div>
     </div>
 
-    <!-- READY LATER MODAL -->
+    <!-- READY LATER MODAL (PURE EDGE + DYNAMIC RETURN UX) -->
     <div id="laterModal" class="modal-overlay">
         <div class="modal-card">
             <h3 class="dynamic-header" data-en="Plan Ahead" data-fr="Planifier à L'avance">Plan Ahead</h3>
             <p class="dynamic-desc" data-en="Commit to a scheduled visit. We'll coordinate availability." data-fr="Engagez-vous pour une visite planifiée.">Commit to a scheduled visit. We'll coordinate availability.</p>
+            
             <form action="https://formspree.io/f/mjykllwj" method="POST" onsubmit="handleSubmit(event, 'later')">
                 <input type="text" name="_gotcha" style="display:none">
                 <input type="hidden" name="city_location" class="formCityField" value="Yaletown, Vancouver">
                 <input type="hidden" name="dispatch_channel" value="Scheduled Request">
                 <input type="hidden" name="requested_specialist" class="specialistHiddenField" value="Priority Match">
                 <input type="hidden" name="client_occasion" value="SPUR Edge (15-Min Refinement)">
+                
                 <div id="inputFieldsWrapperLater">
                     <div class="contact-fields">
                         <input type="text" class="modal-input" name="client_name" placeholder="First Name" data-en-placeholder="First Name" data-fr-placeholder="Prénom" required>
                         <input type="tel" class="modal-input" name="client_phone" placeholder="10 Digit Mobile" data-en-placeholder="10 Digit Mobile" data-fr-placeholder="Mobile à 10 chiffres" pattern="[0-9]{10}" required>
                     </div>
                 </div>
+
                 <input type="date" class="modal-input" name="requested_date" id="laterDateInput" required>
                 <select class="modal-input" name="requested_time" required>
                     <option value="" disabled selected data-en="Select Preferred Time" data-fr="Sélectionnez l'heure">Select Preferred Time</option>
@@ -405,22 +412,42 @@
             try {
                 const modal = document.getElementById(id);
                 if (!modal) return;
+                
                 if (id === 'verifyModal' || id === 'laterModal') {
                     const savedName = localStorage.getItem('spur_user_name');
                     const savedPhone = localStorage.getItem('spur_user_phone');
                     const contactFields = modal.querySelector('.contact-fields');
                     const resetBtn = id === 'verifyModal' ? document.getElementById('resetUserBtn') : document.getElementById('resetUserBtnLater');
+                    const desc = modal.querySelector('.dynamic-desc');
+                    const submitBtn = modal.querySelector('button[type="submit"]');
                     const lang = localStorage.getItem('spur_lang') || 'en';
+                    
                     if (savedName && savedPhone) {
                         if(contactFields) { contactFields.style.display = 'none'; contactFields.querySelectorAll('input').forEach(i => i.required = false); }
                         if(resetBtn) resetBtn.style.display = 'block';
                         const header = modal.querySelector('.dynamic-header');
                         if(header) header.textContent = lang === 'fr' ? "Bon retour, " + savedName.split(' ')[0] : "Welcome back, " + savedName.split(' ')[0];
+                        if(desc) desc.textContent = lang === 'fr' ? "Votre profil est sécurisé. Confirmez ci-dessous pour coordonner votre match." : "Your profile is secured. Confirm below to coordinate your match.";
+                        
+                        if(submitBtn) {
+                            if (id === 'verifyModal') submitBtn.textContent = lang === 'fr' ? "CONFIRMER LA DEMANDE" : "CONFIRM REQUEST";
+                            else submitBtn.textContent = lang === 'fr' ? "CONFIRMER LA VISITE PLANIFIÉE" : "CONFIRM SCHEDULED COMMITMENT";
+                        }
                     } else {
                         if(contactFields) { contactFields.style.display = 'block'; contactFields.querySelectorAll('input').forEach(i => i.required = true); }
                         if(resetBtn) resetBtn.style.display = 'none';
                         const header = modal.querySelector('.dynamic-header');
                         if(header) header.textContent = id === 'verifyModal' ? (lang === 'fr' ? "Préparez-vous Maintenant" : "Get Ready Now") : (lang === 'fr' ? "Planifier à L'avance" : "Plan Ahead");
+                        
+                        if(desc) {
+                            if (id === 'verifyModal') desc.textContent = lang === 'fr' ? "Entrez vos coordonnées. Nous coordonnerons votre match." : "Enter your details. We will coordinate your match.";
+                            else desc.textContent = lang === 'fr' ? "Engagez-vous pour une visite planifiée. Nous coordonnerons la disponibilité." : "Commit to a scheduled visit. We'll coordinate availability.";
+                        }
+                        
+                        if(submitBtn) {
+                            if (id === 'verifyModal') submitBtn.textContent = lang === 'fr' ? "ENVOYER LA DEMANDE" : "SEND REQUEST";
+                            else submitBtn.textContent = lang === 'fr' ? "DEMANDER UNE VISITE PLANIFIÉE" : "REQUEST SCHEDULED COMMITMENT";
+                        }
                     }
                 }
                 modal.style.display = 'flex';
@@ -431,8 +458,17 @@
             localStorage.removeItem('spur_user_name'); 
             localStorage.removeItem('spur_user_phone'); 
             localStorage.removeItem('last_specialist');
-            alert("Profile reset. Please enter your details.");
-            closeModals(); safeOpenModal('verifyModal');
+            localStorage.removeItem('spur_applied_code'); 
+            localStorage.removeItem('spur_history'); 
+            
+            const priceDisplay = document.getElementById('displayPrice');
+            if(priceDisplay) priceDisplay.textContent = "$49.99 CAD";
+            
+            if (document.getElementById('laterModal').style.display === 'flex') {
+                safeOpenModal('laterModal');
+            } else {
+                safeOpenModal('verifyModal');
+            }
         }
 
         function closeModals() { document.querySelectorAll('.modal-overlay').forEach(el => el.style.display = 'none'); }
