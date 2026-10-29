@@ -25,7 +25,7 @@
         <div class="top-right-group">
             <div class="live-badge"><div class="live-dot" id="liveDotIndicator"></div><span id="liveBadgeText">YVR • Yaletown • Live</span></div>
             <div class="controls-row">
-                <div class="toggle-capsule"><button onclick="setCity('yvr')" id="btn-yvr" class="active">YVR</button><span>|</span><button onclick="alertCity('yyz')" id="btn-yyz" style="opacity: 0.5;">YYZ</button><span>|</span><button onclick="setCity('yul')" id="btn-yul">YUL</button></div>
+                <div class="toggle-capsule"><button onclick="setCity('yvr')" id="btn-yvr" class="active">YVR</button><span>|</span><button onclick="setCity('yyz')" id="btn-yyz" style="opacity: 0.5;">YYZ</button><span>|</span><button onclick="setCity('yul')" id="btn-yul">YUL</button></div>
                 <div class="toggle-capsule"><button onclick="switchLanguage('en')" id="btn-en" class="active">EN</button><span>|</span><button onclick="switchLanguage('fr')" id="btn-fr">FR</button></div>
             </div>
         </div>
@@ -108,7 +108,7 @@
     </div>
 </div>
 
-<!-- READY NOW MODAL (PURE ZERO-MENU) -->
+<!-- READY NOW MODAL (PURE EDGE, ZERO-MENU) -->
 <div id="verifyModal" class="modal-overlay">
     <div class="modal-card">
         <h3 class="dynamic-header" data-en="Get Ready Now" data-fr="Préparez-vous Maintenant">Get Ready Now</h3>
@@ -123,7 +123,7 @@
     </div>
 </div>
 
-<!-- READY LATER MODAL (PURE ZERO-MENU) -->
+<!-- READY LATER MODAL (PURE EDGE, ZERO-MENU) -->
 <div id="laterModal" class="modal-overlay">
     <div class="modal-card">
         <h3 class="dynamic-header" data-en="Plan Ahead" data-fr="Planifier à L'avance">Plan Ahead</h3>
@@ -143,7 +143,7 @@
     </div>
 </div>
 
-<!-- SUCCESS SCREEN WITH LUXURY CANCEL LINK -->
+<!-- SUCCESS SCREEN WITH LUXURY HOSPITALITY CANCEL LINK -->
 <div id="finalSuccessView">
     <div class="success-header-tag" id="receiptHeaderTag">Verified Request</div>
     <div class="success-main-title" data-en="Request Received." data-fr="Demande Reçue.">Request Received.</div>
@@ -161,6 +161,7 @@
         <a href="#" id="whatsappAutoBtn" class="receipt-action-btn" target="_blank"><span data-en="💬 CONFIRM VIA WHATSAPP (READY)" data-fr="💬 CONFIRMER VIA WHATSAPP (PRÊT)">💬 CONFIRM VIA WHATSAPP (READY)</span></a>
         <button onclick="returnToHome()" class="modal-capsule-btn-secondary" style="margin-top: 15px; border-color: transparent;" data-en="← BACK TO HOME" data-fr="← RETOUR À L'ACCUEIL">← BACK TO HOME</button>
         
+        <!-- CLICKABLE LUXURY CANCEL LINK -->
         <div style="margin-top: 15px; font-size: 11px; color: var(--text-muted);">
             <span data-en="Change of plans?" data-fr="Changement de programme ?">Change of plans?</span> 
             <a href="https://wa.me/14387251010?text=Hello%20SPUR%20%E2%80%94%20I%20need%20to%20modify%20my%20recent%20request." target="_blank" style="color: var(--text-main); text-decoration: underline; font-weight: 600;">
@@ -180,7 +181,6 @@ function isPTHours(){try{const now=new Date();const ptString=now.toLocaleString(
 function returnToHome(){document.getElementById('finalSuccessView').style.display='none';document.getElementById('mainAppContainer').style.display='flex';window.scrollTo({top:0,behavior:'smooth'});}
 
 async function openHistoryModal(){safeOpenModal('historyModal');const historyContent=document.getElementById('historyContent');const lang=localStorage.getItem('spur_lang')||'en';let bookingsData=JSON.parse(localStorage.getItem('spur_history')||'[]');if(bookingsData.length===0){historyContent.innerHTML=`<div style="text-align:center; color: var(--text-muted); font-size: 12px; margin-top: 20px;">${lang==='fr'?"Aucune réservation passée trouvée sur cet appareil.":"No past bookings found on this device."}</div>`;return;}let html='';bookingsData.forEach(req=>{const dateObj=new Date(req.date);const formattedDate=dateObj.toLocaleDateString(lang==='fr'?'fr-CA':'en-CA',{month:'short',day:'numeric',year:'numeric'});html+=`<div class="perks-mini-box" style="margin-bottom: 10px;"><div style="display: flex; justify-content: space-between; margin-bottom: 6px;"><strong style="color: var(--gold); font-size: 11px;">${formattedDate}</strong><span style="font-size: 10px; color: #2ecc71; font-weight: 700;">${(req.type||'now').toUpperCase()}</span></div><div style="font-size: 12px; color: var(--text-main); margin-bottom: 4px;">${req.service}</div><div style="font-size: 10px; color: var(--text-muted);">📍 ${req.city}</div></div>`;});historyContent.innerHTML=html;}
-
 async function checkReturningUserRealtime(){try{if(!supabaseClient)return;const savedPhone=localStorage.getItem('spur_user_phone');if(!savedPhone)return;const{data}=await supabaseClient.from('clients').select('name, last_specialist').eq('phone',savedPhone).single();if(data){if(data.name)localStorage.setItem('spur_user_name',data.name);if(data.last_specialist)localStorage.setItem('last_specialist',data.last_specialist);}}catch(err){}}
 async function syncClientToSupabase(name,phone,specialist){try{if(!supabaseClient)return;const payload={phone:phone,name:name,last_specialist:specialist};await supabaseClient.from('clients').upsert(payload,{onConflict:'phone'});}catch(err){}}
 
@@ -190,7 +190,11 @@ function updateBadgeText(){const lang=localStorage.getItem('spur_lang')||'en';co
 function switchLanguage(lang){document.getElementById('btn-en').classList.toggle('active',lang==='en');document.getElementById('btn-fr').classList.toggle('active',lang==='fr');document.querySelectorAll('[data-en]').forEach(el=>{if(el.hasAttribute('data-fr')){el.innerHTML=lang==='fr'?el.getAttribute('data-fr'):el.getAttribute('data-en');}});document.querySelectorAll('[data-en-placeholder]').forEach(el=>{if(lang==='fr'&&el.hasAttribute('data-fr-placeholder')){el.placeholder=el.getAttribute('data-fr-placeholder');}else if(lang==='en'&&el.hasAttribute('data-en-placeholder')){el.placeholder=el.getAttribute('data-en-placeholder');}});const savedName=localStorage.getItem('spur_user_name');if(savedName){const sub=document.getElementById('dynamicHeroSubtitle');if(sub)sub.textContent=lang==='fr'?"Bon retour, "+savedName.split(' ')[0]+".":"Welcome back, "+savedName.split(' ')[0]+".";document.querySelectorAll('.dynamic-header').forEach(header=>{if(header.textContent.includes('Welcome back')||header.textContent.includes('Bon retour')){header.textContent=lang==='fr'?"Bon retour, "+savedName.split(' ')[0]:"Welcome back, "+savedName.split(' ')[0];}});}localStorage.setItem('spur_lang',lang);updateBadgeText();}
 
 let currentInterceptType='now';
-function openIntercept(type){const lang=localStorage.getItem('spur_lang')||'en';if(type==='now'&&currentCity==='yvr'&&!isPTHours()){alert(lang==='fr'?"Le concierge est actuellement hors ligne. Veuillez utiliser Planifier à l'avance pour sécuriser une place pour demain.":"The concierge is currently offline. Please use Ready Later to secure a chair for tomorrow.");return;}try{currentInterceptType=type;const savedSpecialist=localStorage.getItem('last_specialist');const savedName=localStorage.getItem('spur_user_name');if(savedName&&savedSpecialist&&savedSpecialist!=='Priority Match'&&savedSpecialist!=='undefined'){document.getElementById('recognizedSpecialistText').textContent=lang==='fr'?`Demander ${savedSpecialist} à nouveau ?`:`Request ${savedSpecialist} again?`;document.getElementById('interceptModal').style.display='flex';}else{safeOpenModal(type==='now'?'verifyModal':'laterModal');}}catch(err){safeOpenModal(type==='now'?'verifyModal':'laterModal');}}
+function openIntercept(type){const lang=localStorage.getItem('spur_lang')||'en';
+// EDGE WAITLIST BLOCKER
+if(currentCity==='yul'||currentCity==='yyz'){alert(lang==='fr'?"Cette ville est actuellement sur liste d'attente. L'accès Fondateur est géré sur le site principal.":"This city is currently waitlisted. Founding Spurtan access is managed on the main site.");return;}
+if(type==='now'&&currentCity==='yvr'&&!isPTHours()){alert(lang==='fr'?"Le concierge est actuellement hors ligne. Veuillez utiliser Planifier à l'avance pour sécuriser une place pour demain.":"The concierge is currently offline. Please use Ready Later to secure a chair for tomorrow.");return;}
+try{currentInterceptType=type;const savedSpecialist=localStorage.getItem('last_specialist');const savedName=localStorage.getItem('spur_user_name');if(savedName&&savedSpecialist&&savedSpecialist!=='Priority Match'&&savedSpecialist!=='undefined'){document.getElementById('recognizedSpecialistText').textContent=lang==='fr'?`Demander ${savedSpecialist} à nouveau ?`:`Request ${savedSpecialist} again?`;document.getElementById('interceptModal').style.display='flex';}else{safeOpenModal(type==='now'?'verifyModal':'laterModal');}}catch(err){safeOpenModal(type==='now'?'verifyModal':'laterModal');}}
 function confirmPreviousSpecialist(){const savedSpecialist=localStorage.getItem('last_specialist')||'Priority Match';document.querySelectorAll('.specialistHiddenField').forEach(el=>el.value=savedSpecialist);document.getElementById('interceptModal').style.display='none';safeOpenModal(currentInterceptType==='now'?'verifyModal':'laterModal');}
 function skipIntercept(){document.querySelectorAll('.specialistHiddenField').forEach(el=>el.value='Priority Match');document.getElementById('interceptModal').style.display='none';safeOpenModal(currentInterceptType==='now'?'verifyModal':'laterModal');}
 
